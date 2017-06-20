@@ -56,5 +56,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth.discuz.admin' => \App\Http\Middleware\DiscuzAdminAuth::class,
+        'auth.discuz.user' => \App\Http\Middleware\DiscuzUserAuth::class,
+        'menu' => \App\Http\Middleware\MenuMiddleware::class,
     ];
 }

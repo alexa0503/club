@@ -1,0 +1,339 @@
+body {
+    background: url('../images/mall/bkg_index.jpg') no-repeat center 0 fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#top {
+    background: #ebeaea;
+    height: 161px;
+}
+#top .container,#main .container {
+    min-width: 1100px;
+    width: 1100px;
+    margin: 0 auto;
+}
+#login {
+    background: #FFFFFF;
+    height: 32px;
+}
+#login .container {
+    width: 1100px;
+    margin: 0 auto;
+    text-align: right;
+    line-height: 32px;
+}
+#search .form-control,#search .btn {
+    border-radius:0;
+    background: #efedec;
+    border-color: #858585;
+}
+#search .form-control {
+    border-right:none;
+}
+#search .btn {
+    border-left: none;
+}
+#bs-navbar {
+    background: #e60012;
+}
+#bs-navbar .nav>li>a {
+    color:#fff;
+}
+#bs-navbar .nav>li.active,#bs-navbar .nav>li>a:hover {
+    background: #a01313;
+    font-weight: bold;
+}
+#bs-navbar .navbar-right>li {
+    margin: 0;
+    padding: 0;
+}
+#bs-navbar .navbar-right>li>a {
+    margin: 0;
+    padding: 0;
+    line-height: 48px;
+}
+#bs-navbar .navbar-right>li>a:hover {
+    font-weight: normal;
+    background: #e60012;
+}
+#main .container #kv,#main .container .row1{
+    margin: 15px 0 0;
+    position: relative;
+}
+#main .container #item-top {
+    margin-top:0;
+    background: #FFFFFF;
+}
+#main .container #kv #kv-text{
+    position: absolute;
+    top:300px;
+    left: 0;
+    padding: 10px 20px;
+    height: 138px;
+    width: 445px;
+    color: #FFFFFF;
+    background-color: rgba(189,37,11,0.65);
+}
+#main .container #kv #kv-text h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
+#main .container #kv #kv-text p {
+    font-size: 30px;
+    font-weight: normal;
+    opacity: 0.65;
+}
+#main .container .row1 {
+    margin-top: 10px;
+    background-color: rgba(255,255,255,0.90);
+    color:#FFFFFF;
+}
+#main .row1 .top-border {
+    width: 800px;
+    margin: 0 auto 0 0;
+    height: 4px;
+    background: #f50c0c;
+}
+#main .row1 .top {
+    width: 155px;
+    margin: 0 auto 0 0;
+    height: 48px;
+    line-height: 48px;
+    font-size: 21px;
+    background: #f50c0c;
+}
+#main .row1 .top span {
+    padding-left: 10px;
+}
+#main .row1 .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 27px;
+    vertical-align: middle;
+    border-top: 8px dashed;
+    border-top: 8px solid \9;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    border-top-color: #f50c0c !important;
+    margin-top: -14px;
+}
+#main .row1 .content {
+    color: #000000;
+}
+#main .row1 .content .kv {
+    padding: 20px 30px 38px;
+}
+#main .row1 .content .border {
+    border-right: 1px solid #d2241e;
+}
+#main .row1 .content h4 {
+    font-size: 16px;
+    font-weight:bold;
+    display: block;
+    text-align: center;
+}
+#main .row1 .content span {
+    color: #d2241e;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+}
+#main .row1 .content a {
+    display: block;
+    text-align: center;
+}
+footer {
+    width: 1100px;
+    margin: 40px auto 0;
+    padding: 40px 20px 20px;
+    background: #262626;
+    color: #ffffff;
+}
+#footer-navbar {
+    width: 700px;
+    margin-left:40px;
+    margin-right: auto;
+    position: relative;
+}
+#footer-navbar a {
+    color: #ffffff;
+    display: block;
+    padding-bottom: 20px;
+    font-size: 12px;
+}
+#footer-navbar .nav a {
+    color: #727272;
+    margin: 0;
+    padding: 5px 0;
+}
+#footer-navbar .nav a:hover {
+    background: #262626;
+}
+#footer-services {
+    color:#727272;
+    padding-right: 20px;
+    width: 280px;
+}
+#footer-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: -300px;
+    padding-right: 20px;
+}
+#footer-services h4 {
+    padding: 0px;
+    margin: 0px;
+    line-height: 14px;
+    font-size: 12px;
+}
+#footer-services h2 {
+    font-size: 16px;
+    padding: 0px;
+    margin: 5px 0;
+    line-height: 24px;
+}
+#footer-services p {
+    font-size: 12px;
+    padding: 0px;
+    margin: 0;
+    line-height: 14px;
+}
+#footer-logo {
+    margin: 20px 40px 0;
+    border-top:1px solid #727272;
+    border-bottom:1px solid #727272;
+}
+#item-top #images {
+    margin:20px auto 20px 20px;
+    width: 400px;
+}
+.slider-for {
+    border: 1px solid #d2d2d2;
+}
+.slider-nav {
+    margin-top: 20px;
+}
+.slider-nav .slick-current {
+    border:2px solid red;
+}
+.slick-slide {
+    margin-right: 20px;
+    border:2px solid #ffffff;
+}
+#item-detail .title {
+    font-size: 20px;
+    margin: 20px 0 0 0;
+    line-height: 30px;
+}
+#item-detail .subtitle {
+    font-size: 18px;
+    color: #a8a8a8;
+    margin: 0 0 20px 0;
+    line-height: 30px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #a8a8a8;
+}
+#item-detail .form-horizontal .control-label {
+    text-align: left!important;
+    color: #a8a8a8;
+    font-weight: normal;
+}
+.funkyradio .funkyradio-default {
+    width: 100px;
+    float: left;
+    margin-top: -30px;
+    margin-right: 10px;
+}
+.funkyradio label {
+    /*min-width: 400px;*/
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #D1D3D4;
+    font-weight: normal;
+}
+.funkyradio input[type="radio"]:empty, .funkyradio input[type="checkbox"]:empty {
+    display: none;
+}
+.funkyradio input[type="radio"]:empty ~ label, .funkyradio input[type="checkbox"]:empty ~ label {
+    position: relative;
+    line-height: 2.5em;
+    text-indent: 3.25em;
+    margin-top: 2em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.funkyradio input[type="radio"]:empty ~ label:before, .funkyradio input[type="checkbox"]:empty ~ label:before {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content:'';
+    width: 2.5em;
+    background: #fff;
+    border-radius: 3px 0 0 3px;
+}
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+    content:'\2714';
+    text-indent: .9em;
+    color: #C2C2C2;
+}
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+    color: #888;
+}
+.funkyradio input[type="radio"]:checked ~ label:before, .funkyradio input[type="checkbox"]:checked ~ label:before {
+    content:'\2714';
+    text-indent: .9em;
+    color: #333;
+    background-color: #ccc;
+}
+.funkyradio input[type="radio"]:checked ~ label, .funkyradio input[type="checkbox"]:checked ~ label {
+    color: #777;
+}
+.funkyradio input[type="radio"]:focus ~ label:before, .funkyradio input[type="checkbox"]:focus ~ label:before {
+    box-shadow: 0 0 0 3px #999;
+}
+.funkyradio-default input[type="radio"]:checked ~ label:before, .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+    color: #e60012;
+    background-color: #fff;
+}
+.funkyradio-primary input[type="radio"]:checked ~ label:before, .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #337ab7;
+}
+.funkyradio-success input[type="radio"]:checked ~ label:before, .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #5cb85c;
+}
+.funkyradio-danger input[type="radio"]:checked ~ label:before, .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #d9534f;
+}
+.funkyradio-warning input[type="radio"]:checked ~ label:before, .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #f0ad4e;
+}
+.funkyradio-info input[type="radio"]:checked ~ label:before, .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #5bc0de;
+}
+.btn-custom {
+    border-radius: 0;
+    background-color: #e60012;
+    color: #ffffff;
+}
+.btn-custom:hover {
+    color: #fff;
+    background-color: #e60012;
+}
+#item-content {
+    margin-top: 30px;
+    background-color:#e6e6e6 ;
+    padding: 10px;
+}

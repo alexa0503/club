@@ -8,7 +8,6 @@
  */
 
 error_reporting(0);
-
 define('UC_CLIENT_VERSION', '1.6.0');
 define('UC_CLIENT_RELEASE', '20170101');
 
@@ -42,7 +41,6 @@ if(!defined('IN_UC')) {
 	$discuz->init();
 
 	require DISCUZ_ROOT.'./config/config_ucenter.php';
-
 	$get = $post = array();
 
 	$code = @$_GET['code'];

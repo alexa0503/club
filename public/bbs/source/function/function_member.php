@@ -79,6 +79,7 @@ function setloginstatus($member, $cookietime) {
 	C::app()->session->updatesession();
 
 	dsetcookie('auth', authcode("{$member['password']}\t{$member['uid']}", 'ENCODE'), $cookietime, 1, true);
+	dsetcookie('test',getglobal('authkey'));
 	dsetcookie('loginuser');
 	dsetcookie('activationauth');
 	dsetcookie('pmnum');
