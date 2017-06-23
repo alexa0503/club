@@ -1,0 +1,10 @@
+@charset 'utf-8';
+// @import "normalize";
+@import "libs/_resetHtml5";
+@import "libs/_clearfix";
+@import "libs/_common";
+
+body {
+  font: 16px/1.4286  'Simhei', Helmet ,Arial, SimSun, Helvetica, sans-serif;
+  -webkit-overflow-scrolling: touch;
+}

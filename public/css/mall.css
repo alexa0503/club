@@ -146,11 +146,13 @@ body {
     text-align: center;
 }
 footer {
+    background: #262626;
+    color: #ffffff;
+}
+footer .container {
     width: 1100px;
     margin: 40px auto 0;
     padding: 40px 20px 20px;
-    background: #262626;
-    color: #ffffff;
 }
 #footer-navbar {
     width: 700px;
@@ -336,4 +338,33 @@ footer {
     margin-top: 30px;
     background-color:#e6e6e6 ;
     padding: 10px;
+}
+#modal-login .form-horizontal,#modal-address .form-horizontal  {
+    margin-left:10px;
+    margin-right:10px;
+}
+.form-horizontal .form-control {
+    border-radius:0;
+}
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+#modal-login label,#modal-address label {
+    font-weight: normal;
+    font-size: 12px;
 }

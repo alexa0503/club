@@ -13,6 +13,14 @@
                 </div><!-- /form-group -->
 
                 <div class="form-group">
+                    <label for="subtitle" class="col-lg-2 control-label">副标题</label>
+                    <div class="col-lg-10">
+                        <input value="{{$item->subtitle}}" name="subtitle" type="text" class="form-control" id="subtitle" placeholder="请输入副标题">
+                        <label class="help-block" for="" id="help-subtitle"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group">
                     <label for="feature1" class="col-lg-2 control-label">爆款推荐[大于0整数为推荐]</label>
                     <div class="col-lg-10">
                         <input value="{{$item->feature1}}" name="feature1" type="text" class="form-control" id="name" placeholder="请输入产品名">
@@ -105,54 +113,54 @@
 	</div>
 @endsection
 @section('scripts')
-<!--form-->
-<script src="{{asset('js/jquery.form.js')}}"></script>
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
-<script>
-function thumbRemove(obj) {
-    if(confirm('确认删除?')){
-        obj.parent('.col-md-3').remove();
-    }
-}
-function SetUrl(url1,url2){
-    var url = '{{url("/")}}'+url2.replace('//','/');
-    var html = '';
-    html += '<div class="col-md-3"><a href="javascript:;" title="点击删除" onclick="thumbRemove($(this))" class="thumbnail"><img src="'+url+'" /></a><input type="hidden" name="images[]" value="'+url+'"></div>';
-    $('#thumbs-add').before(html);
-}
- $().ready(function(){
-     $('.article-ckeditor').ckeditor({
-         filebrowserBrowseUrl: '{!! url("/filemanager?type=Images") !!}'
-     });
-     $('.select2').select2({
- 		tags: true,
- 		language: "zh-CN",
- 		placeholder: "请输入",
- 	});
-
-
-
-    $('#post-form').ajaxForm({
-        dataType: 'json',
-        success: function(json) {
-            $('#post-form').modal('hide');
-            location.href= json.url;
-        },
-        error: function(xhr){
-            var json = jQuery.parseJSON(xhr.responseText);
-            if (xhr.status == 200){
-                $('#post-form').modal('hide');
-                location.href= json.url;
+    <!--form-->
+    <script src="{{asset('js/jquery.form.js')}}"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
+    <script>
+        function thumbRemove(obj) {
+            if(confirm('确认删除?')){
+                obj.parent('.col-md-3').remove();
             }
-            $('.help-block').html('');
-            $.each(json, function(index,value){
-                $('#'+index).parents('.form-group').addClass('has-error');
-                $('#help-'+index).html(value);
-                //$('#'+index).next('.help-block').html(value);
-            });
         }
-    });
- })
-</script>
+        function SetUrl(url1,url2){
+            var url = '{{url("/")}}'+url2.replace('//','/');
+            var html = '';
+            html += '<div class="col-md-3"><a href="javascript:;" title="点击删除" onclick="thumbRemove($(this))" class="thumbnail"><img src="'+url+'" /></a><input type="hidden" name="images[]" value="'+url+'"></div>';
+            $('#thumbs-add').before(html);
+        }
+        $().ready(function(){
+            $('.article-ckeditor').ckeditor({
+                filebrowserBrowseUrl: '{!! url("/filemanager?type=Images") !!}'
+            });
+            $('.select2').select2({
+                tags: true,
+                language: "zh-CN",
+                placeholder: "请输入",
+            });
+
+
+
+            $('#post-form').ajaxForm({
+                dataType: 'json',
+                success: function(json) {
+                    $('#post-form').modal('hide');
+                    location.href= json.url;
+                },
+                error: function(xhr){
+                    var json = jQuery.parseJSON(xhr.responseText);
+                    if (xhr.status == 200){
+                        $('#post-form').modal('hide');
+                        location.href= json.url;
+                    }
+                    $('.help-block').html('');
+                    $.each(json, function(index,value){
+                        $('#'+index).parents('.form-group').addClass('has-error');
+                        $('#help-'+index).html(value);
+                        //$('#'+index).next('.help-block').html(value);
+                    });
+                }
+            });
+        })
+    </script>
 @endsection

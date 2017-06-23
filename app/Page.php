@@ -12,10 +12,6 @@ class Page extends Model
     }
     public function blocks()
     {
-        return $this->hasMany('App\Block')->orderBy('sort_id', 'ASC');
-    }
-    public function getBlocksFromName($name)
-    {
-        return $this->hasMany('App\Block')->where('is_posted', 1)->where('name',$name)->orderBy('sort_id', 'ASC');
+        return $this->hasMany('App\Block')->where('is_posted', 1)->orderBy('sort_id', 'ASC');
     }
 }

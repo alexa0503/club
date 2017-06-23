@@ -5,10 +5,10 @@ namespace App\Helpers;
  */
 class DiscuzHelper
 {
-    protected $key = 'c139bdcf7873ceb929d66f0677f4bdf1';
+    //protected static $key = '85be29aDkjYOAQgU';
     public static function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0) {
     	$ckey_length = 4;
-    	$key = md5($key != '' ? $key : self::$key);//self::getglobal('authkey')
+    	$key = md5($key != '' ? $key : self::getglobal('authkey'));
     	$keya = md5(substr($key, 0, 16));
     	$keyb = md5(substr($key, 16, 16));
     	$keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length): substr(md5(microtime()), -$ckey_length)) : '';
@@ -64,5 +64,9 @@ class DiscuzHelper
     		$v = &$v[$k];
     	}
     	return $v;
+    }
+    public static function getUserByName($name)
+    {
+
     }
 }

@@ -6,7 +6,6 @@
  *
  *      $Id: uc.php 36358 2017-01-20 02:05:50Z nemohou $
  */
-
 error_reporting(0);
 define('UC_CLIENT_VERSION', '1.6.0');
 define('UC_CLIENT_RELEASE', '20170101');
@@ -37,6 +36,7 @@ define('CURSCRIPT', 'api');
 if(!defined('IN_UC')) {
 	require_once '../source/class/class_core.php';
 
+
 	$discuz = C::app();
 	$discuz->init();
 
@@ -56,7 +56,7 @@ if(!defined('IN_UC')) {
 	include_once DISCUZ_ROOT.'./uc_client/lib/xml.class.php';
 	$post = xml_unserialize(file_get_contents('php://input'));
 
-	if(in_array($get['action'], array('test', 'deleteuser', 'renameuser', 'gettag', 'synlogin', 'synlogout', 'updatepw', 'updatebadwords', 'updatehosts', 'updateapps', 'updateclient', 'updatecredit', 'getcredit', 'getcreditsettings', 'updatecreditsettings', 'addfeed'))) {
+	if(in_array($get['action'], array('test', 'deleteuser', 'renameuser', 'gettag', 'synlogin', 'synlogout', 'updatepw', 'updatebadwords', 'updatehosts', 'updateapps', 'updateclient', 'updatecredit', 'getcredit', 'getcreditsettings', 'updatecreditsettings', 'addfeed', 'sendpm'))) {
 		$uc_note = new uc_note();
 		echo call_user_func(array($uc_note, $get['action']), $get, $post);
 		exit();
@@ -419,5 +419,15 @@ class uc_note {
 			return API_RETURN_FORBIDDEN;
 		}
 		return API_RETURN_SUCCEED;
+	}
+	//uc_pm_send(integer fromuid , string msgto , string subject , string message [, bool instantly , integer replypmid , bool isusername , integer type])
+	function sendpm($get, $post) {
+		defined('UC_API',20);
+		require_once './../uc_client/client.php';
+		$fromuid = $get['fromuid'];
+		$msgto = $get['msgto'];
+		$subject = $get['subject'];
+		$message = $get['message'];
+		uc_pm_send($fromuid, $msgto, $subject, $message);
 	}
 }

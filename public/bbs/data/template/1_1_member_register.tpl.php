@@ -1,6 +1,6 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('register');
 0
-|| checktplrefresh('./template/default/member/register.htm', './template/default/common/seccheck.htm', 1497517522, '1', './data/template/1_1_member_register.tpl.php', './template/default', 'member/register')
+|| checktplrefresh('./template/default/member/register.htm', './template/default/common/seccheck.htm', 1498125156, '1', './data/template/1_1_member_register.tpl.php', './template/default', 'member/register')
 ;?><?php include template('common/header'); ?><script type="text/javascript">
 var strongpw = new Array();
 <?php if($_G['setting']['strongpw']) { if(is_array($_G['setting']['strongpw'])) foreach($_G['setting']['strongpw'] as $key => $val) { ?>strongpw[<?php echo $key;?>] = <?php echo $val;?>;
@@ -10,7 +10,7 @@ var pwlength = <?php if($_G['setting']['pwlength']) { ?><?php echo $_G['setting'
 
 <script src="<?php echo $this->setting['jspath'];?>register.js?<?php echo VERHASH;?>" type="text/javascript"></script>
 
-<div id="ct" class="ptm wp cl">
+<div id="ct" class="ptm wp cl new_c">
 <div class="nfl" id="main_succeed" style="display: none">
 <div class="f_c altw">
 <div class="alert_right">
@@ -57,7 +57,7 @@ var pwlength = <?php if($_G['setting']['pwlength']) { ?><?php echo $_G['setting'
 <div class="rfm">
 <table>
 <tr>
-<th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['email'];?>">Email:</label></th>
+<th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['email'];?>">Email</label></th>
 <td>
 <input type="text" id="<?php echo $this->setting['reginput']['email'];?>" name="<?php echo $this->setting['reginput']['email'];?>" autocomplete="off" size="25" tabindex="1" class="px" required /><br /><em id="emailmore">&nbsp;</em>
 <input type="hidden" name="handlekey" value="sendregister"/>
@@ -100,7 +100,7 @@ showDialog(msg, 'notice');
 <div class="rfm">
 <table>
 <tr>
-<th><span class="rq">*</span><label for="invitecode">邀请码:</label></th>
+<th><span class="rq">*</span><label for="invitecode">邀请码</label></th>
 <td><input type="text" id="invitecode" name="invitecode" autocomplete="off" size="25" onblur="checkinvite()" tabindex="1" class="px" required /><?php if($this->setting['inviteconfig']['buyinvitecode'] && $this->setting['inviteconfig']['invitecodeprice'] && ($this->setting['ec_tenpay_bargainor'] || $this->setting['ec_tenpay_opentrans_chnid'] || $this->setting['ec_account'])) { ?><p><a href="misc.php?mod=buyinvitecode" target="_blank" class="xi2">还没有邀请码？点击此处获取</a></p><?php } ?></td>
 <td class="tipcol"><i id="tip_invitecode" class="p_tip"><?php if($this->setting['inviteconfig']['invitecodeprompt']) { ?><?php echo $this->setting['inviteconfig']['invitecodeprompt'];?><?php } ?></i><kbd id="chk_invitecode" class="p_chk"></kbd></td>
 </tr>
@@ -109,7 +109,7 @@ showDialog(msg, 'notice');
 <div class="rfm">
 <table>
 <tr>
-<th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['username'];?>">用户名:</label></th>
+<th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['username'];?>">用户名</label></th>
 <td><input type="text" id="<?php echo $this->setting['reginput']['username'];?>" name="" class="px" tabindex="1" value="<?php echo dhtmlspecialchars($_GET['defaultusername']); ?>" autocomplete="off" size="25" maxlength="15" required /></td>
 <td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['username'];?>" class="p_tip">用户名由 3 到 15 个字符组成</i><kbd id="chk_<?php echo $this->setting['reginput']['username'];?>" class="p_chk"></kbd></td>
 </tr>
@@ -119,7 +119,7 @@ showDialog(msg, 'notice');
 <div class="rfm">
 <table>
 <tr>
-<th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['password'];?>">密码:</label></th>
+<th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['password'];?>">密码</label></th>
 <td><input type="password" id="<?php echo $this->setting['reginput']['password'];?>" name="" size="25" tabindex="1" class="px" required /></td>
 <td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['password'];?>" class="p_tip">请填写密码<?php if($_G['setting']['pwlength']) { ?>, 最小长度为 <?php echo $_G['setting']['pwlength'];?> 个字符<?php } ?></i><kbd id="chk_<?php echo $this->setting['reginput']['password'];?>" class="p_chk"></kbd></td>
 </tr>
@@ -129,7 +129,7 @@ showDialog(msg, 'notice');
 <div class="rfm">
 <table>
 <tr>
-<th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['password2'];?>">确认密码:</label></th>
+<th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['password2'];?>">确认密码</label></th>
 <td><input type="password" id="<?php echo $this->setting['reginput']['password2'];?>" name="" size="25" tabindex="1" value="" class="px" required /></td>
 <td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['password2'];?>" class="p_tip">请再次输入密码</i><kbd id="chk_<?php echo $this->setting['reginput']['password2'];?>" class="p_chk"></kbd></td>
 </tr>
@@ -139,7 +139,7 @@ showDialog(msg, 'notice');
 <div class="rfm">
 <table>
 <tr>
-<th><?php if(!$_G['setting']['forgeemail']) { ?><span class="rq">*</span><?php } ?><label for="<?php echo $this->setting['reginput']['email'];?>">Email:</label></th>
+<th><?php if(!$_G['setting']['forgeemail']) { ?><span class="rq">*</span><?php } ?><label for="<?php echo $this->setting['reginput']['email'];?>">Email</label></th>
 <td><input type="text" id="<?php echo $this->setting['reginput']['email'];?>" name="" autocomplete="off" size="25" tabindex="1" class="px" value="<?php echo $hash['0'];?>" <?php if(!$_G['setting']['forgeemail']) { ?>required<?php } ?> /><br /><em id="emailmore">&nbsp;</em></td>
 <td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['email'];?>" class="p_tip">请输入正确的邮箱地址</i><kbd id="chk_<?php echo $this->setting['reginput']['email'];?>" class="p_chk"></kbd></td>
 </tr>
@@ -158,7 +158,7 @@ showDialog(msg, 'notice');
 <div class="rfm">
 <table>
 <tr>
-<th><span class="rq">*</span><label for="regmessage">注册原因:</label></th>
+<th><span class="rq">*</span><label for="regmessage">注册原因</label></th>
 <td><input id="regmessage" name="regmessage" class="px" autocomplete="off" size="25" tabindex="1" required /></td>
 <td class="tipcol"><i id="tip_regmessage" class="p_tip">您填写的注册原因会被当作申请注册的重要参考依据，请认真填写。</i></td>
 </tr>
@@ -176,7 +176,7 @@ showDialog(msg, 'notice');
 <div class="rfm">
 <table>
 <tr>
-<th><?php if($field['required']) { ?><span class="rq">*</span><?php } ?><label for="<?php echo $field['fieldid'];?>"><?php echo $field['title'];?>:</label></th>
+<th><?php if($field['required']) { ?><span class="rq">*</span><?php } ?><label for="<?php echo $field['fieldid'];?>"><?php echo $field['title'];?></label></th>
 <td><?php echo $htmls[$field['fieldid']];?></td>
 <td class="tipcol"><i id="tip_<?php echo $field['fieldid'];?>" class="p_tip"><?php if($field['description']) { echo dhtmlspecialchars($field['description']); } ?></i><kbd id="chk_<?php echo $field['fieldid'];?>" class="p_chk"></kbd></td>
 </tr>
@@ -206,21 +206,7 @@ $sectpl = str_replace("'", "\'", $sectpl);?><?php if($secqaacheck) { ?>
 
 <div id="layer_reginfo_b">
 <div class="rfm mbw bw0">
-<table width="100%">
-<tr>
-<th>&nbsp;</th>
-<td>
-<span id="reginfo_a_btn">
-<?php if($_GET['action'] != 'activation') { ?><em>&nbsp;</em><?php } ?>
-<button class="pn pnc" id="registerformsubmit" type="submit" name="regsubmit" value="true" tabindex="1"><strong><?php if($_GET['action'] == 'activation') { ?>激活<?php } else { ?>提交<?php } ?></strong></button>
-<?php if($bbrules) { ?>
-<input type="checkbox" class="pc" name="agreebbrule" value="<?php echo $bbrulehash;?>" id="agreebbrule" checked="checked" /> <label for="agreebbrule">同意<a href="javascript:;" onclick="showBBRule()">网站服务条款</a></label>
-<?php } ?>
-</span>
-</td>
-<td><?php if($this->setting['sitemessage']['register']) { ?><a href="javascript:;" id="custominfo_register" class="y"><img src="<?php echo IMGDIR;?>/info_small.gif" alt="帮助" /></a><?php } ?></td>
-</tr>
-</table>
+          <button class="pn pnc" id="registerformsubmit" type="submit" name="regsubmit" value="true" tabindex="1"><strong><?php if($_GET['action'] == 'activation') { ?>激活<?php } else { ?>提交<?php } ?></strong></button>
 </div>
 <?php if(!empty($_G['setting']['pluginhooks']['register_logging_method'])) { ?>
 <div class="rfm bw0 <?php if(empty($_GET['infloat'])) { ?> mbw<?php } ?>">

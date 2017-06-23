@@ -45,6 +45,7 @@ class ItemController extends Controller
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
         $item->feature2 = $request->feature2;
+        $item->subtitle = $request->subtitle;
         $inventories = [];
         foreach( $request->colors as $k=>$v){
             $quantity = $request->quantities[$k] ? : 0;
@@ -95,6 +96,7 @@ class ItemController extends Controller
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
         $item->feature2 = $request->feature2;
+        $item->subtitle = $request->subtitle;
         $inventories = [];
         foreach( $request->colors as $k=>$v){
             $quantity = $request->quantities[$k] ? : 0;

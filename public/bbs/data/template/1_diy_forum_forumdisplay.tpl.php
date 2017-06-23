@@ -1,26 +1,26 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('forumdisplay');
 0
-|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/forumdisplay_leftside.htm', 1497518216, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
-|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/recommend.htm', 1497518216, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
-|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/common/seccheck.htm', 1497518216, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
-|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/forumdisplay_list.htm', 1497518216, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
-|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/forumdisplay_sort.htm', 1497518216, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
-|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/search_sortoption.htm', 1497518216, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
-|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/search_sortoption.htm', 1497518216, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
+|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/forumdisplay_leftside.htm', 1498131397, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
+|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/recommend.htm', 1498131397, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
+|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/common/seccheck.htm', 1498131397, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
+|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/forumdisplay_list.htm', 1498131397, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
+|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/forumdisplay_sort.htm', 1498131397, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
+|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/search_sortoption.htm', 1498131397, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
+|| checktplrefresh('./template/default/forum/forumdisplay.htm', './template/default/forum/search_sortoption.htm', 1498131397, 'diy', './data/template/1_diy_forum_forumdisplay.tpl.php', './template/default', 'forum/forumdisplay')
 ;?><?php include template('common/header'); if($_G['forum']['ismoderator']) { ?>
 <script src="<?php echo $_G['setting']['jspath'];?>forum_moderate.js?<?php echo VERHASH;?>" type="text/javascript"></script>
 <?php } ?>
 <style id="diy_style" type="text/css"></style>
-<!--[diy=diynavtop]--><div id="diynavtop" class="area"></div><!--[/diy]-->
-<div id="pt" class="bm cl">
-<div class="z">
-<a href="./" class="nvhm" title="首页"><?php echo $_G['setting']['bbname'];?></a><em>&raquo;</em><a href="forum.php"><?php echo $_G['setting']['navs']['2']['navname'];?></a><?php echo $navigation;?>
-</div>
-</div><?php echo adshow("text/wp a_t");?><div class="wp">
+<!--[diy=diynavtop]--><div id="diynavtop" class="area"></div><!--[/diy]--><?php echo adshow("text/wp a_t");?><div class="wp">
 <!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
 </div>
 <div class="boardnav">
-<div id="ct" class="wp cl<?php if($_G['forum']['allowside']) { ?> ct2<?php } ?>"<?php if($leftside) { ?> style="margin-left:<?php echo $_G['leftsidewidth_mwidth'];?>px"<?php } ?>>
+  <div id="pt" class="bm cl">
+    <div class="z">
+      <a href="./" class="nvhm" title="首页"><?php echo $_G['setting']['bbname'];?></a><em>&raquo;</em><a href="forum.php"><?php echo $_G['setting']['navs']['2']['navname'];?></a><?php echo $navigation;?>
+    </div>
+  </div>
+<div id="ct" class="wp cl<?php if($_G['forum']['allowside']) { ?> ct2<?php } ?> "<?php if($leftside) { ?> style="margin-left:<?php echo $_G['leftsidewidth_mwidth'];?>px"<?php } ?>>
 <?php if($leftside) { ?>
 <div id="sd_bdl" class="bdl" onmouseover="showMenu({'ctrlid':this.id, 'pos':'dz'});" style="width:<?php echo $_G['setting']['leftsidewidth'];?>px;margin-left:-<?php echo $_G['leftsidewidth_mwidth'];?>px">
 <?php if(!empty($_G['setting']['pluginhooks']['forumdisplay_leftside_top'])) echo $_G['setting']['pluginhooks']['forumdisplay_leftside_top'];?>

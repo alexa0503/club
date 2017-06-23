@@ -1,6 +1,5 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); if($_G['uid']) { ?>
 <div id="um">
-<div class="avt y"><a href="home.php?mod=space&amp;uid=<?php echo $_G['uid'];?>"><?php echo avatar($_G[uid],small);?></a></div>
 <p>
 <strong class="vwmy<?php if($_G['setting']['connect']['allow'] && $_G['member']['conisbind']) { ?> qq<?php } ?>"><a href="home.php?mod=space&amp;uid=<?php echo $_G['uid'];?>" target="_blank" title="访问我的空间"><?php echo $_G['member']['username'];?></a></strong>
 <?php if($_G['group']['allowinvisible']) { ?>
@@ -21,13 +20,11 @@
 <span class="pipe">|</span><a href="admin.php" target="_blank">管理中心</a>
 <?php } ?>
 <?php if(!empty($_G['setting']['pluginhooks']['global_usernav_extra2'])) echo $_G['setting']['pluginhooks']['global_usernav_extra2'];?>
-<span class="pipe">|</span><a href="member.php?mod=logging&amp;action=logout&amp;formhash=<?php echo FORMHASH;?>">退出</a>
-</p>
-<p>
 <?php if(!empty($_G['setting']['pluginhooks']['global_usernav_extra3'])) echo $_G['setting']['pluginhooks']['global_usernav_extra3'];?>
 <a href="home.php?mod=spacecp&amp;ac=credit&amp;showcredit=1" id="extcreditmenu"<?php if(!$_G['setting']['bbclosed']) { ?> onmouseover="delayShow(this, showCreditmenu);" class="showmenu"<?php } ?>>积分: <?php echo $_G['member']['credits'];?></a>
 <span class="pipe">|</span><a href="home.php?mod=spacecp&amp;ac=usergroup" id="g_upmine" class="showmenu" onmouseover="delayShow(this, showUpgradeinfo)">用户组: <?php echo $_G['group']['grouptitle'];?><?php if($_G['member']['freeze']) { ?><span class="xi1">(已冻结)</span><?php } ?></a>
-</p>
+    <span class="pipe">|</span><a href="member.php?mod=logging&amp;action=logout&amp;formhash=<?php echo FORMHASH;?>">退出</a>
+  </p>
 </div>
 <?php } elseif(!empty($_G['cookie']['loginuser'])) { ?>
 <p>
@@ -35,17 +32,17 @@
 <span class="pipe">|</span><a href="member.php?mod=logging&amp;action=login" onclick="showWindow('login', this.href)">激活</a>
 <span class="pipe">|</span><a href="member.php?mod=logging&amp;action=logout&amp;formhash=<?php echo FORMHASH;?>">退出</a>
 </p>
-<?php } elseif(!$_G['connectguest']) { include template('member/login_simple'); } else { ?>
+<?php } elseif(!$_G['connectguest']) { ?>
+<p class="loginTop"><a href="member.php?mod=logging&amp;action=login&amp;referer=forum.php" onclick="showWindow('login', this.href);return false;" class="xi2">登录</a><a href="member.php?mod=register" class="xi2">注册</a></p>
+<?php } else { ?>
 <div id="um">
 <div class="avt y"><?php echo avatar(0,small);?></div>
 <p>
 <strong class="vwmy qq"><?php echo $_G['member']['username'];?></strong>
 <?php if(!empty($_G['setting']['pluginhooks']['global_usernav_extra1'])) echo $_G['setting']['pluginhooks']['global_usernav_extra1'];?>
+    <a href="home.php?mod=spacecp&amp;ac=credit&amp;showcredit=1">积分: 0</a>
+    <span class="pipe">|</span>用户组: <?php echo $_G['group']['grouptitle'];?>
 <span class="pipe">|</span><a href="member.php?mod=logging&amp;action=logout&amp;formhash=<?php echo FORMHASH;?>">退出</a>
-</p>
-<p>
-<a href="home.php?mod=spacecp&amp;ac=credit&amp;showcredit=1">积分: 0</a>
-<span class="pipe">|</span>用户组: <?php echo $_G['group']['grouptitle'];?>
 </p>
 </div>
 <?php } ?>

@@ -17,7 +17,7 @@
                 <tbody>
                 @foreach ($rows as $row)
                 <tr>
-                    <td>{{ $blocks[$row->name] }}</td>
+                    <td>{{ $blocks[$row->page_id][$row->name] }}</td>
                     <td>{{ $row->title }}</td>
                     <td>{{ $row->sort_id }}</td>
                     <td>{{ $row->is_posted == '1' ? '是' : '否' }}</td>

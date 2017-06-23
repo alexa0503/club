@@ -13,6 +13,14 @@
                 </div><!-- /form-group -->
 
                 <div class="form-group">
+                    <label for="subtitle" class="col-lg-2 control-label">副标题</label>
+                    <div class="col-lg-10">
+                        <input value="" name="subtitle" type="text" class="form-control" id="subtitle" placeholder="请输入副标题">
+                        <label class="help-block" for="" id="help-subtitle"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group">
                     <label for="feature1" class="col-lg-2 control-label">爆款推荐[大于0整数为推荐]</label>
                     <div class="col-lg-10">
                         <input value="" name="feature1" type="text" class="form-control" id="name" placeholder="请输入产品名">

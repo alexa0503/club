@@ -18,108 +18,100 @@
                         <div class="panel panel-default">
                             <!-- Start .panel -->
                             <div class="panel-body pt0 pb0">
-                                {{ Form::open(array('route' => ['page.block.update', $row->page_id,$row->id], 'class'=>'form-horizontal group-border stripped', 'method'=>'PUT', 'id'=>'form')) }}
-                                    <!--<div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">区块种类</label>
-                                        <div class="col-lg-10 col-md-9">
-                                            <select name="name" class="select2 form-control">
-                                                <option value="">请选择区块种类</option>
-                                                @foreach ($blocks as $name=>$block)
-                                                <option value="{{$name}}" @if ($name == $row->name){{'selected="selected"'}}@endif>{{$block}}</option>
-                                                @endforeach
-                                            </select>
-                                            <label class="help-block" for="name"></label>
-                                        </div>
-                                    </div>-->
-                                    <!-- End .form-group  -->
+                                {{ Form::open(array('route' => ['page.block.update', $row->page_id,$row->id], 'class'=>'form-horizontal group-border stripped', 'method'=>'PUT', 'id'=>'post-form')) }}
+                                <div class="form-group">
+                                    <label for="text" class="col-lg-2 col-md-3 control-label">区块种类</label>
+                                    <div class="col-lg-10 col-md-9">
+                                        <select id="name" name="name" class="select2 form-control">
+                                            <option value="">请选择区块种类</option>
+                                            @foreach ($blocks as $key=>$block)
+                                                <option value="{{$key}}" @if ($key == $row->name){{'selected="selected"'}}@endif>{{$block}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label class="help-block" for="name" id="help-name"></label>
+                                    </div>
+                                </div>
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">标题</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <input type="text" name="title" class="form-control" value="{{$row->title}}">
-                                            <label class="help-block" for="title"></label>
+                                            <input type="text" value="{{$row->title}}" id="title" name="title" class="form-control">
+                                            <label class="help-block" for="title" id="help-title"></label>
                                         </div>
                                     </div>
-                                    <!-- End .form-group  -->
+                                    <div class="form-group">
+                                        <label for="link" class="col-lg-2 col-md-3 control-label">链接</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input type="text" id="link" name="link" class="form-control" value="{{$row->link}}">
+                                            <label class="help-block" for="link" id="help-link"></label>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">描述</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <textarea name="description" class="form-control" rows="5" placeholder="请输入">{{$row->description}}</textarea>
-                                            <label class="help-block" for="description"></label>
+                                            <textarea id="description" name="description" class="form-control" rows="5" placeholder="请输入">{{$row->description}}</textarea>
+                                            <label class="help-block" for="description" id="help-description"></label>
                                         </div>
                                     </div>
-                                    <!-- End .form-group  -->
-                                    @if ($row->name == 'graphic')
+
+
+                                <div class="form-group">
+                                    <label for="" class="col-lg-2 control-label">图片</label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                            <a id="c-image" data-input="image" data-preview="preview-image" class="btn btn-primary">
+                                            <i class="fa fa-picture-o"></i> Choose
+                                            </a>
+                                            </span>
+                                            <input id="image" value="{{$row->image}}" class="form-control" type="text" name="image">
+                                        </div>
+                                        <img id="preview-image" src="{{asset($row->image)}}" style="margin-top:15px;max-height:100px;">
+                                        <label class="help-block" for="" id="help-image"></label>
+                                    </div><!-- /.col -->
+                                </div><!-- /form-group -->
+
+                                <div class="form-group">
+                                    <label for="" class="col-lg-2 control-label">缩略图</label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                            <a id="c-thumb" data-input="thumb" data-preview="preview-thumb" class="btn btn-primary">
+                                            <i class="fa fa-picture-o"></i> Choose
+                                            </a>
+                                            </span>
+                                            <input value="{{$row->thumb}}" id="thumb" class="form-control" type="text" name="thumb">
+                                        </div>
+                                        <img src="{{asset($row->thumb)}}" id="preview-thumb" style="margin-top:15px;max-height:100px;">
+                                        <label class="help-block" for="" id="help-thumb"></label>
+                                    </div><!-- /.col -->
+                                </div><!-- /form-group -->
+
+
+
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">内容</label>
+                                        <label for="" class="col-lg-2 col-md-3 control-label">排序</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <textarea name="content" class="form-control" rows="5" placeholder="请输入">{{$row->content}}</textarea>
-                                            <label class="help-block" for="content"></label>
-                                        </div>
-                                    </div>
-                                    <!-- End .form-group  -->
-                                    @endif
-                                    @if ($row->name == 'kv' || $row->name == 'graphic')
-                                    <div class="form-group">
-                                        <label class="col-lg-2 col-md-3 control-label" for="">头图</label>
-                                        <div class="col-lg-10 col-md-9">
-                                            <input id="header-explorer" name="file1" type="file" multiple >
-                                            <input name="header_image" value="{{$row->header_image}}" type="hidden" />
-                                            <label class="help-block" for="image"></label>
-                                        </div>
-                                    </div>
-                                    <!-- End .form-group  -->
-                                    @endif
-                                    @if ($row->name == 'graphic')
-                                    <div class="form-group">
-                                        <label class="col-lg-2 col-md-3 control-label" for="">背景图/大图</label>
-                                        <div class="col-lg-10 col-md-9">
-                                            <input id="bkg-explorer" name="file2" type="file" multiple >
-                                            <input name="bkg_image" value="{{$row->bkg_image}}" type="hidden" />
-                                            <label class="help-block" for="image_bkg"></label>
-                                        </div>
-                                    </div>
-                                    <!-- End .form-group  -->
-                                    @endif
-                                    @if ($row->name == 'gallery')
-                                    <div class="form-group">
-                                        <label class="col-lg-2 col-md-3 control-label" for="">图库</label>
-                                        <div class="col-lg-10 col-md-9" id="div-gallery">
-                                            <input id="gallery-explorer" name="file3[]" type="file" multiple >
-                                            <label class="help-block" for="gallery[]"></label>
-                                            @if($row->gallery && is_array($row->gallery))
-                                                @foreach($row->gallery as $image)
-                                            <input name="gallery[]" value="{{$image}}" type="hidden" />
-                                                @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <!-- End .form-group  -->
-                                    @endif
-                                    @if($row->name == 'video' || $row->name == 'kv')
-                                    <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">链接</label>
-                                        <div class="col-lg-10 col-md-9">
-                                            <input type="text" name="link" class="form-control" value="{{$row->link}}">
-                                            <label class="help-block" for="link"></label>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">排序</label>
-                                        <div class="col-lg-10 col-md-9">
-                                            <input type="text" name="sort_id" class="form-control" value="{{$row->sort_id}}">
-                                            <label class="help-block" for="sort_id"></label>
+                                            <input type="text" id="sort_id" name="sort_id" class="form-control" value="{{$row->sort_id}}">
+                                            <label class="help-block" for="sort_id" id="help-username"></label>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">是否发布</label>
+                                        <label for="" class="col-lg-2 col-md-3 control-label">发帖用户名</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <select name="is_posted" class="form-control">
-                                                <option value="1"@if($row->is_posted == '1'){{' selected="selected"'}}@endif>是</option>
-                                                <option value="0"@if($row->is_posted == '0'){{' selected="selected"'}}@endif>否</option>
+                                            <input type="text" id="username" name="username" class="form-control" value="{{$row->username}}">
+                                            <label class="help-block" for="username" id="help-username"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-lg-2 col-md-3 control-label">是否发布</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <select name="is_posted" class="form-control" id="is_posted">
+                                                <option value="1" @if($row->is_posted == 1)selected="selected"@endif>是</option>
+                                                <option value="0" @if($row->is_posted == 0)selected="selected"@endif>否</option>
                                             </select>
-                                            <label class="help-block" for="is_posted"></label>
+                                            <label class="help-block" for="is_posted" id="help-is_posted"></label>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
@@ -146,143 +138,45 @@
     </div>
 @endsection
 @section('scripts')
-<script>
-$(document).ready(function() {
-    $('.select2').select2();
-    $('#form').ajaxForm({
-        dataType: 'json',
-        success: function() {
-            $('#form .form-group .help-block').empty();
-            $('#form .form-group').removeClass('has-error');
-            location.href='{{route("page.block.index",["page"=>$row->page_id])}}';
-        },
-        error: function(xhr){
-            try {
-                var json = jQuery.parseJSON(xhr.responseText);
-                var keys = Object.keys(json);
-                $('#form .form-group .help-block').empty();
-                $('#form .form-group').removeClass('has-error');
-                $('#form .form-group').each(function(){
-                    var name = $(this).find('select').attr('name') || $(this).find('input,textarea').attr('name');
-                    //console.log(name);
-                    if( jQuery.inArray(name, keys) != -1){
-                        $(this).addClass('has-error');
-                        $(this).find('.help-block').html(json[name]);
+    <!--form-->
+    <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+    <script src="{{asset('js/jquery.form.js')}}"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
+    <script>
+        $('#c-image').filemanager('image',{prefix:'{!! url("/filemanager") !!}'});
+        $('#c-thumb').filemanager('image',{prefix:'{!! url("/filemanager") !!}'});
+        $().ready(function () {
+            $('.article-ckeditor').ckeditor({
+                filebrowserBrowseUrl: '{!! url("/filemanager?type=Images") !!}'
+            });
+            $('.select2').select2({
+                tags: true,
+                language: "zh-CN",
+                placeholder: "请输入",
+            });
+
+
+            $('#post-form').ajaxForm({
+                dataType: 'json',
+                success: function (json) {
+                    $('#post-form').modal('hide');
+                    location.href = json.url;
+                },
+                error: function (xhr) {
+                    var json = jQuery.parseJSON(xhr.responseText);
+                    if (xhr.status == 200) {
+                        $('#post-form').modal('hide');
+                        location.href = json.url;
                     }
-                })
-                //return true;
-            } catch(e) {
-                alert('提交失败，请联系管理员');
-                //console.log(e);
-                return false;
-            }
-
-        }
-    });
-    @if ($row->name == 'kv' || $row->name == 'graphic')
-    var file_config_header = {
-        theme: 'explorer',
-        uploadUrl: '{{url("admin/file/upload/file1")}}',
-        uploadAsync: false,
-        maxFileCount: 1,
-        allowedFileTypes: ["image", "video"],
-        overwriteInitial: true,
-        initialPreviewAsData: true,
-        fileActionSettings: {
-            showUpload: false
-        }
-    };
-            @if($row->header_image)
-    var obj1 = {
-            initialPreview: [
-                "{{asset($row->header_image)}}"
-            ],
-            initialPreviewConfig: [
-                {caption: "", size: "{{ filesize($row->header_image) }}", width: "400px", url: "{{url('admin/file/delete')}}", key: 1,extra:{name:'{{$row->header_image}}'}}
-            ]
-        };
-    $.extend( file_config_header, obj1 );
-            @endif
-
-    $("#header-explorer").fileinput(file_config_header).on('filebatchuploadsuccess', function(event, data) {
-        $('input[name="header_image"]').val(data.response.initialPreviewConfig[0].value);
-    }).on('filedeleted',function () {
-        $('input[name="header_image"]').val('');
-    });
-    @endif
-
-    @if ($row->name == 'graphic')
-    var file_config_bkg = {
-        theme: 'explorer',
-        uploadUrl: '{{url("admin/file/upload/file2")}}',
-        uploadAsync: false,
-        maxFileCount: 1,
-        allowedFileTypes: ["image", "video"],
-        overwriteInitial: true,
-        initialPreviewAsData: true,
-        fileActionSettings: {
-            showUpload: false
-        }
-    };
-
-    @if($row->bkg_image)
-    var obj2 = {
-        initialPreview: [
-            "{{asset($row->bkg_image)}}"
-        ],
-        initialPreviewConfig: [
-            {caption: "", size: "{{ filesize($row->bkg_image) }}", width: "400px", url: "{{url('admin/file/delete')}}", key: 1,extra:{name:'{{$row->bkg_image}}'}}
-        ]
-    };
-    $.extend( file_config_bkg, obj2 );
-    @endif
-    $("#bkg-explorer").fileinput(file_config_bkg).on('filebatchuploadsuccess', function(event, data) {
-        $('input[name="bkg_image"]').val(data.response.initialPreviewConfig[0].value);
-    }).on('filedeleted',function () {
-        $('input[name="bkg_image"]').val('');
-    });
-    @endif
-
-
-    @if ($row->name == 'gallery')
-    var file_config_gallery = {
-        theme: 'explorer',
-        uploadUrl: '{{url("admin/file/upload/file3")}}',
-        uploadAsync: false,
-        allowedFileTypes: ["image", "video"],
-        overwriteInitial: false,
-        initialPreviewAsData: true,
-        fileActionSettings: {
-            showUpload: false
-        }
-    };
-    @if($row->gallery && is_array($row->gallery))
-        var preview = [];
-        var config = [];
-        @foreach($row->gallery as $image)
-            preview.push('{{asset($image)}}');
-            config.push({caption: "", size: "{{ filesize($image) }}", width: "400px", url: "{{url('admin/file/delete')}}", key: '{{$image}}',extra:{name:'{{$image}}'}});
-        @endforeach
-    var obj3 = {
-        initialPreview: preview,
-        initialPreviewConfig: config
-    };
-    $.extend( file_config_gallery, obj3 );
-    @endif
-    $("#gallery-explorer").fileinput(file_config_gallery).on('filebatchuploadsuccess', function(event, data) {
-        console.log(data.response);
-        $.each(data.response.initialPreviewConfig, function (index, value) {
-            $("#div-gallery").append('<input name="gallery[]" value="'+value.value+'" type="hidden" />');
-        });
-    }).on('filedeleted',function (event, key) {
-        var obj = $("#div-gallery").find('input[name="gallery[]"]');
-        obj.each(function (index) {
-            if(obj.eq(index) && obj.eq(index).val() == key){
-                obj.eq(index).remove();
-            }
-        });
-    });
-    @endif
-});
-</script>
+                    $('.help-block').html('');
+                    $.each(json, function (index, value) {
+                        $('#' + index).parents('.form-group').addClass('has-error');
+                        $('#help-' + index).html(value);
+                        //$('#'+index).next('.help-block').html(value);
+                    });
+                }
+            });
+        })
+    </script>
 @endsection

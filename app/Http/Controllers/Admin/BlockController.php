@@ -33,7 +33,7 @@ class BlockController extends Controller
     public function create($page)
     {
         return view('admin/block/create', [
-            'blocks' => config('custom.blocks'),
+            'blocks' => config('custom.blocks')[$page],
             'page' => \App\Page::find($page),
         ]);
     }
@@ -52,15 +52,16 @@ class BlockController extends Controller
         try{
             $block->page_id = $page;
             $block->name = $request->input('name');
+            $block->image = $request->input('image');
+            $block->thumb = $request->input('thumb');
             $block->title = $request->input('title');
             $block->content = $request->input('content') ? : '';
             $block->description = $request->input('description');
             $block->is_posted = $request->input('is_posted');
             $block->sort_id = $request->input('sort_id') ?: 0;
-            $block->header_image = $request->input('header_image');
-            $block->bkg_image = $request->input('bkg_image');
-            $block->gallery = $request->input('gallery');
             $block->link = $request->input('link');
+            $block->username = $request->input('username');
+            $block->gallery = '';
             $block->save();
             DB::commit();
 
@@ -68,7 +69,7 @@ class BlockController extends Controller
             DB::rollBack();
             return response(['gallery[]' => $e->getMessage()], 422);
         }
-        return response([]);
+        return response(['ret'=>0,'url'=>route('page.block.index',['page'=>$page])]);
     }
 
     /**
@@ -93,7 +94,7 @@ class BlockController extends Controller
         $row = \App\Block::find($id);
         return view('admin/block/edit', [
             'row' => $row,
-            'blocks' => config('custom.blocks'),
+            'blocks' => config('custom.blocks')[$page],
             'page' => \App\Page::find($page),
         ]);
     }
@@ -111,15 +112,17 @@ class BlockController extends Controller
 
         DB::beginTransaction();
         try{
+            $block->name = $request->input('name');
+            $block->image = $request->input('image');
+            $block->thumb = $request->input('thumb');
             $block->title = $request->input('title');
             $block->content = $request->input('content') ? : '';
             $block->description = $request->input('description');
             $block->is_posted = $request->input('is_posted');
             $block->sort_id = $request->input('sort_id') ?: 0;
-            $block->header_image = $request->input('header_image');
-            $block->bkg_image = $request->input('bkg_image');
-            $block->gallery = $request->input('gallery');
             $block->link = $request->input('link');
+            $block->username = $request->input('username');
+            $block->gallery = '';
             $block->save();
             DB::commit();
 
@@ -127,7 +130,7 @@ class BlockController extends Controller
             DB::rollBack();
             return response(['gallery[]' => $e->getMessage()], 422);
         }
-        return response([]);
+        return response(['ret'=>0,'url'=>route('page.block.index',['page'=>$page])]);
 
     }
 

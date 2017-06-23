@@ -15,29 +15,28 @@ class DiscuzUserAuth
      */
     public function handle($request, Closure $next)
     {
-        $user = \App\User::where('uid',1)->first();
-        \Session::put('discuz.user', $user->toArray());
-
-        /*
-        if( !isset($_COOKIE['K4Ps_2132_auth']) ){
-            return redirect('/bbs/admin.php');
-        }
-
-        $auth = explode("\t", DiscuzHelper::authcode($_COOKIE['K4Ps_2132_auth'],'DECODE'));
-
-        if( !$auth || empty($auth) ){
-            return redirect('/bbs');
+        $authcode = null;
+        if( isset($_COOKIE['K4Ps_2132_auth']) ){
+            $key = md5('85be29aDkjYOAQgU'.$_COOKIE['K4Ps_2132_saltkey']);
+            $authcode = DiscuzHelper::authcode($_COOKIE['K4Ps_2132_auth'],'DECODE',$key);
         }
         else{
+            \Session::put('discuz.user', null);
+        }
+
+        if( !$authcode || empty($authcode) ){
+            //return redirect('/bbs');
+        }
+        else{
+            $auth = explode("\t", $authcode);
             $user = \App\User::where('uid',$auth[1])->first();
             if( !$user ){
-                return redirect('/bbs');
+                //return redirect('/bbs');
             }
             else{
                 \Session::put('discuz.user', $user->toArray());
             }
         }
-        */
         $today = strtotime(date('Y-m-d'));
         $yesterday = strtotime("-1 day",$today);
         $count = \App\Post::where('first',1)->where('dateline','>=',$today)->count();
@@ -52,6 +51,10 @@ class DiscuzUserAuth
 
         $count = \App\User::count();
         \Session::put('discuz.user.count', $count);
+
+        $user = \App\User::orderBy('regdate','DESC')->first();
+        \Session::put('discuz.user.latest', $user->username);
+
 
         return $next($request);
     }
