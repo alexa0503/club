@@ -11,7 +11,7 @@
 
 <script type="text/javascript" src="{$this->setting[jspath]}register.js?{VERHASH}"></script>
 
-<div id="ct" class="ptm wp cl">
+<div id="ct" class="ptm wp cl new_c">
 	<div class="nfl" id="main_succeed" style="display: none">
 		<div class="f_c altw">
 			<div class="alert_right">
@@ -58,7 +58,7 @@
 						<div class="rfm">
 							<table>
 								<tr>
-									<th><span class="rq">*</span><label for="{$this->setting['reginput']['email']}">{lang email}:</label></th>
+									<th><span class="rq">*</span><label for="{$this->setting['reginput']['email']}">{lang email}</label></th>
 									<td>
 										<input type="text" id="{$this->setting['reginput']['email']}" name="$this->setting['reginput']['email']" autocomplete="off" size="25" tabindex="1" class="px" required /><br /><em id="emailmore">&nbsp;</em>
 										<input type="hidden" name="handlekey" value="sendregister"/>
@@ -108,7 +108,7 @@
 						<div class="rfm">
 							<table>
 								<tr>
-									<th><span class="rq">*</span><label for="invitecode">{lang invite_code}:</label></th>
+									<th><span class="rq">*</span><label for="invitecode">{lang invite_code}</label></th>
 									<td><input type="text" id="invitecode" name="invitecode" autocomplete="off" size="25" onblur="checkinvite()" tabindex="1" class="px" required /><!--{if $this->setting['inviteconfig']['buyinvitecode'] && $this->setting['inviteconfig']['invitecodeprice'] && ($this->setting[ec_tenpay_bargainor] || $this->setting[ec_tenpay_opentrans_chnid] || $this->setting[ec_account])}--><p><a href="misc.php?mod=buyinvitecode" target="_blank" class="xi2">{lang register_buyinvitecode}</a></p><!--{/if}--></td>
 									<td class="tipcol"><i id="tip_invitecode" class="p_tip"><!--{if $this->setting['inviteconfig']['invitecodeprompt']}-->$this->setting[inviteconfig][invitecodeprompt]<!--{/if}--></i><kbd id="chk_invitecode" class="p_chk"></kbd></td>
 								</tr>
@@ -121,7 +121,7 @@
 							<div class="rfm">
 								<table>
 									<tr>
-										<th><span class="rq">*</span><label for="{$this->setting['reginput']['username']}">{lang username}:</label></th>
+										<th><span class="rq">*</span><label for="{$this->setting['reginput']['username']}">{lang username}</label></th>
 										<td><input type="text" id="{$this->setting['reginput']['username']}" name="" class="px" tabindex="1" value="{echo dhtmlspecialchars($_GET[defaultusername])}" autocomplete="off" size="25" maxlength="15" required /></td>
 										<td class="tipcol"><i id="tip_{$this->setting['reginput']['username']}" class="p_tip">{lang register_username_tips}</i><kbd id="chk_{$this->setting['reginput']['username']}" class="p_chk"></kbd></td>
 									</tr>
@@ -131,7 +131,7 @@
 							<div class="rfm">
 								<table>
 									<tr>
-										<th><span class="rq">*</span><label for="{$this->setting['reginput']['password']}">{lang password}:</label></th>
+										<th><span class="rq">*</span><label for="{$this->setting['reginput']['password']}">{lang password}</label></th>
 										<td><input type="password" id="{$this->setting['reginput']['password']}" name="" size="25" tabindex="1" class="px" required /></td>
 										<td class="tipcol"><i id="tip_{$this->setting['reginput']['password']}" class="p_tip">{lang register_password_tips}<!--{if $_G['setting']['pwlength']}-->, {lang register_password_length_tips1} $_G['setting']['pwlength'] {lang register_password_length_tips2}<!--{/if}--></i><kbd id="chk_{$this->setting['reginput']['password']}" class="p_chk"></kbd></td>
 									</tr>
@@ -141,7 +141,7 @@
 							<div class="rfm">
 								<table>
 									<tr>
-										<th><span class="rq">*</span><label for="{$this->setting['reginput']['password2']}">{lang password_confirm}:</label></th>
+										<th><span class="rq">*</span><label for="{$this->setting['reginput']['password2']}">{lang password_confirm}</label></th>
 										<td><input type="password" id="{$this->setting['reginput']['password2']}" name="" size="25" tabindex="1" value="" class="px" required /></td>
 										<td class="tipcol"><i id="tip_{$this->setting['reginput']['password2']}" class="p_tip">{lang register_repassword_tips}</i><kbd id="chk_{$this->setting['reginput']['password2']}" class="p_chk"></kbd></td>
 									</tr>
@@ -151,7 +151,7 @@
 							<div class="rfm">
 								<table>
 									<tr>
-										<th><!--{if !$_G['setting']['forgeemail']}--><span class="rq">*</span><!--{/if}--><label for="{$this->setting['reginput']['email']}">{lang email}:</label></th>
+										<th><!--{if !$_G['setting']['forgeemail']}--><span class="rq">*</span><!--{/if}--><label for="{$this->setting['reginput']['email']}">{lang email}</label></th>
 										<td><input type="text" id="{$this->setting['reginput']['email']}" name="" autocomplete="off" size="25" tabindex="1" class="px" value="$hash[0]" {if !$_G['setting']['forgeemail']}required{/if} /><br /><em id="emailmore">&nbsp;</em></td>
 										<td class="tipcol"><i id="tip_{$this->setting['reginput']['email']}" class="p_tip">{lang register_email_tips}</i><kbd id="chk_{$this->setting['reginput']['email']}" class="p_chk"></kbd></td>
 									</tr>
@@ -174,7 +174,7 @@
 						<div class="rfm">
 							<table>
 								<tr>
-									<th><span class="rq">*</span><label for="regmessage">{lang register_message}:</label></th>
+									<th><span class="rq">*</span><label for="regmessage">{lang register_message}</label></th>
 									<td><input id="regmessage" name="regmessage" class="px" autocomplete="off" size="25" tabindex="1" required /></td>
 									<td class="tipcol"><i id="tip_regmessage" class="p_tip">{lang register_message1}</i></td>
 								</tr>
@@ -199,7 +199,7 @@
 							<div class="rfm">
 								<table>
 									<tr>
-										<th><!--{if $field['required']}--><span class="rq">*</span><!--{/if}--><label for="$field['fieldid']">$field[title]:</label></th>
+										<th><!--{if $field['required']}--><span class="rq">*</span><!--{/if}--><label for="$field['fieldid']">$field[title]</label></th>
 										<td>$htmls[$field['fieldid']]</td>
 										<td class="tipcol"><i id="tip_$field['fieldid']" class="p_tip"><!--{if $field['description']}--><!--{echo dhtmlspecialchars($field[description])}--><!--{/if}--></i><kbd id="chk_$field['fieldid']" class="p_chk"></kbd></td>
 									</tr>
@@ -223,21 +223,7 @@
 
 		<div id="layer_reginfo_b">
 			<div class="rfm mbw bw0">
-				<table width="100%">
-					<tr>
-						<th>&nbsp;</th>
-						<td>
-							<span id="reginfo_a_btn">
-								<!--{if $_GET[action] != 'activation'}--><em>&nbsp;</em><!--{/if}-->
-									<button class="pn pnc" id="registerformsubmit" type="submit" name="regsubmit" value="true" tabindex="1"><strong><!--{if $_GET[action] == 'activation'}-->{lang activation}<!--{else}-->{lang submit}<!--{/if}--></strong></button>
-								<!--{if $bbrules}-->
-									<input type="checkbox" class="pc" name="agreebbrule" value="$bbrulehash" id="agreebbrule" checked="checked" /> <label for="agreebbrule">{lang agree}<a href="javascript:;" onclick="showBBRule()">{lang rulemessage}</a></label>
-								<!--{/if}-->
-							</span>
-						</td>
-						<td><!--{if $this->setting['sitemessage'][register]}--><a href="javascript:;" id="custominfo_register" class="y"><img src="{IMGDIR}/info_small.gif" alt="{lang faq}" /></a><!--{/if}--></td>
-					</tr>
-				</table>
+          <button class="pn pnc" id="registerformsubmit" type="submit" name="regsubmit" value="true" tabindex="1"><strong><!--{if $_GET[action] == 'activation'}-->{lang activation}<!--{else}-->{lang submit}<!--{/if}--></strong></button>
 			</div>
 			<!--{if !empty($_G['setting']['pluginhooks']['register_logging_method'])}-->
 				<div class="rfm bw0 {if empty($_GET['infloat'])} mbw{/if}">

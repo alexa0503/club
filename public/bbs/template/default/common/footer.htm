@@ -1,3 +1,291 @@
   </div>
+<!--{if empty($topic) || ($topic[usefooter])}-->
+  <!--{eval $focusid = getfocus_rand($_G[basescript]);}-->
+  <!--{if $focusid !== null}-->
+    <!--{eval $focus = $_G['cache']['focus']['data'][$focusid];}-->
+    <!--{eval $focusnum = count($_G['setting']['focus'][$_G[basescript]]);}-->
+    <div class="focus" id="sitefocus">
+      <div class="bm">
+        <div class="bm_h cl">
+          <a href="javascript:;" onclick="setcookie('nofocus_$_G[basescript]', 1, $_G['cache']['focus']['cookie']*3600);$('sitefocus').style.display='none'" class="y" title="{lang close}">{lang close}</a>
+          <h2>
+            <!--{if $_G['cache']['focus']['title']}-->{$_G['cache']['focus']['title']}<!--{else}-->{lang focus_hottopics}<!--{/if}-->
+            <span id="focus_ctrl" class="fctrl"><img src="{IMGDIR}/pic_nv_prev.gif" alt="{lang footer_previous}" title="{lang footer_previous}" id="focusprev" class="cur1" onclick="showfocus('prev');" /> <em><span id="focuscur"></span>/$focusnum</em> <img src="{IMGDIR}/pic_nv_next.gif" alt="{lang footer_next}" title="{lang footer_next}" id="focusnext" class="cur1" onclick="showfocus('next')" /></span>
+          </h2>
+        </div>
+        <div class="bm_c" id="focus_con">
+        </div>
+      </div>
+    </div>
+    <!--{eval $focusi = 0;}-->
+    <!--{loop $_G['setting']['focus'][$_G[basescript]] $id}-->
+        <div class="bm_c" style="display: none" id="focus_$focusi">
+          <dl class="xld cl bbda">
+            <dt><a href="{$_G['cache']['focus']['data'][$id]['url']}" class="xi2" target="_blank">$_G['cache']['focus']['data'][$id]['subject']</a></dt>
+            <!--{if $_G['cache']['focus']['data'][$id][image]}-->
+            <dd class="m"><a href="{$_G['cache']['focus']['data'][$id]['url']}" target="_blank"><img src="{$_G['cache']['focus']['data'][$id]['image']}" alt="$_G['cache']['focus']['data'][$id]['subject']" /></a></dd>
+            <!--{/if}-->
+            <dd>$_G['cache']['focus']['data'][$id]['summary']</dd>
+          </dl>
+          <p class="ptn cl"><a href="{$_G['cache']['focus']['data'][$id]['url']}" class="xi2 y" target="_blank">{lang focus_show} &raquo;</a></p>
+        </div>
+    <!--{eval $focusi ++;}-->
+    <!--{/loop}-->
+    <script type="text/javascript">
+      var focusnum = $focusnum;
+      if(focusnum < 2) {
+        $('focus_ctrl').style.display = 'none';
+      }
+      if(!$('focuscur').innerHTML) {
+        var randomnum = parseInt(Math.round(Math.random() * focusnum));
+        $('focuscur').innerHTML = Math.max(1, randomnum);
+      }
+      showfocus();
+      var focusautoshow = window.setInterval('showfocus(\'next\', 1);', 5000);
+    </script>
+  <!--{/if}-->
+  <!--{if $_G['uid'] && $_G['member']['allowadmincp'] == 1 && $_G['setting']['showpatchnotice'] == 1}-->
+    <div class="focus patch" id="patch_notice"></div>
+  <!--{/if}-->
+
+  <!--{ad/footerbanner/wp a_f/1}--><!--{ad/footerbanner/wp a_f/2}--><!--{ad/footerbanner/wp a_f/3}-->
+  <!--{ad/float/a_fl/1}--><!--{ad/float/a_fr/2}-->
+  <!--{ad/couplebanner/a_fl a_cb/1}--><!--{ad/couplebanner/a_fr a_cb/2}-->
+  <!--{ad/cornerbanner/a_cn}-->
+
+  <!--{hook/global_footer}-->
+
+<div class="footer">
+  <div class="footer_cont cl">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/index">首页</a></li>
+      </ul>
+      <ul>
+        <li><span>车型展示</span></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/page580">风光580</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/page370">风光370</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/page360">风光360</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/page360b">风光360欧洲柴油版</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/page330">风光330</a></li>
+      </ul>
+      <ul>
+        <li><span>购车支持</span></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/1">预约试驾</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/2">专营店查询</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/zxgc">在线购车</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/4">天猫旗舰店</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/5">型录索取</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/6">集团购车</a></li>
+      </ul>
+      <ul>
+        <li><span>风光动态</span></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/1">风光资讯</a></li><li><a href="http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/3">活动促销</a></li><li><a href="http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/2">媒体声音</a></li>      </ul>
+      <ul>
+        <li><span>关于东风风光</span></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/1">品牌介绍</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/2">精彩视频</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/3">壁纸欣赏</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/4">联系我们</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/5">经销商招募</a></li>
+      </ul>
+
+      <ul>
+        <li><span>售后服务</span></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/1">服务承诺</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/2">服务站点查询</a></li>
+        <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/3">售后手册公示</a></li>
+      </ul>
+    </div>
+    <div class="footer_tel">
+      <p>24小时关怀热线</p>
+      <h2>400-887-5551</h2>
+      <p>ICP备案号：渝ICP备16003854号-1</p>
+    </div>
+    <dl class="quick_links">
+      <dt>企业快速链接</dt>
+      <dd>
+        <a href="http://www.dfmc.com.cn/" target="_blank">东风公司官网</a>
+        <a href="http://61.184.92.51/StarGPS/Login.aspx" target="_blank">东风小康GPS管理分析系统</a>
+        <a href="http://dms.dfsk.com.cn/" target="_blank">东风小康商务平台</a>
+      </dd>
+    </dl>
+
+    <div class="footer_share">
+      <div class="logo_b"><img src="static/assets/imgs/layout/logo_footer.png" alt=""></div>
+      <div class="share_icons">
+        <a href="javascript:;"><img src="static/assets/imgs/layout/icons_wb.png" alt=""></a>
+        <a href="javascript:;"><img src="static/assets/imgs/layout/icons_wx.png" alt=""></a>
+        <a href="javascript:;"><img src="static/assets/imgs/layout/icons_tx.png" alt=""></a>
+      </div>
+      <div class="focus_wb">
+        <div>
+        <wb:follow-button uid="2131542193" type="red_1" width="67" height="24"><iframe src="http://widget.weibo.com/relationship/followbutton.php?btn=red&amp;style=1&amp;uid=2131542193&amp;width=67&amp;height=24&amp;language=zh_cn" width="67" height="24" frameborder="0" scrolling="no" marginheight="0"></iframe></wb:follow-button>
+        </div>
+      </div>
+      <div class="focus_wx"><img src="static/assets/imgs/layout/focus_wx.png" alt=""></div>
+    </div>
+  </div>
+</div>
+
+  <!--{eval updatesession();}-->
+  <!--{if $_G['uid'] && $_G['group']['allowinvisible']}-->
+    <script type="text/javascript">
+    var invisiblestatus = '<!--{if $_G['session']['invisible']}-->{lang login_invisible_mode}<!--{else}-->{lang login_normal_mode}<!--{/if}-->';
+    var loginstatusobj = $('loginstatusid');
+    if(loginstatusobj != undefined && loginstatusobj != null) loginstatusobj.innerHTML = invisiblestatus;
+    </script>
+  <!--{/if}-->
+
+<!--{/if}-->
+
+<!--{if !$_G['setting']['bbclosed'] && !$_G['member']['freeze'] && !$_G['member']['groupexpiry']}-->
+  <!--{if $_G[uid] && !isset($_G['cookie']['checkpm'])}-->
+  <script type="text/javascript" src="home.php?mod=spacecp&ac=pm&op=checknewpm&rand=$_G[timestamp]"></script>
+  <!--{/if}-->
+
+  <!--{if $_G[uid] && helper_access::check_module('follow') && !isset($_G['cookie']['checkfollow'])}-->
+  <script type="text/javascript" src="home.php?mod=spacecp&ac=follow&op=checkfeed&rand=$_G[timestamp]"></script>
+  <!--{/if}-->
+
+  <!--{if !isset($_G['cookie']['sendmail'])}-->
+  <script type="text/javascript" src="home.php?mod=misc&ac=sendmail&rand=$_G[timestamp]"></script>
+  <!--{/if}-->
+
+  <!--{if $_G[uid] && $_G['member']['allowadmincp'] == 1 && !isset($_G['cookie']['checkpatch'])}-->
+  <script type="text/javascript" src="misc.php?mod=patch&action=checkpatch&rand=$_G[timestamp]"></script>
+  <!--{/if}-->
+<!--{/if}-->
+
+<!--{if $_GET['diy'] == 'yes'}-->
+  <!--{if check_diy_perm($topic) && (empty($do) || $do != 'index')}-->
+    <script type="text/javascript" src="{$_G[setting][jspath]}common_diy.js?{VERHASH}"></script>
+    <script type="text/javascript" src="{$_G[setting][jspath]}portal_diy{if !check_diy_perm($topic, 'layout')}_data{/if}.js?{VERHASH}"></script>
+  <!--{/if}-->
+  <!--{if $space['self'] && CURMODULE == 'space' && $do == 'index'}-->
+    <script type="text/javascript" src="{$_G[setting][jspath]}common_diy.js?{VERHASH}"></script>
+    <script type="text/javascript" src="{$_G[setting][jspath]}space_diy.js?{VERHASH}"></script>
+  <!--{/if}-->
+<!--{/if}-->
+<!--{if $_G['uid'] && $_G['member']['allowadmincp'] == 1 && empty($_G['cookie']['pluginnotice'])}-->
+  <div class="focus plugin" id="plugin_notice"></div>
+  <script type="text/javascript">pluginNotice();</script>
+<!--{/if}-->
+<!--{if !$_G['setting']['bbclosed'] && !$_G['member']['freeze'] && !$_G['member']['groupexpiry'] && $_G['setting']['disableipnotice'] != 1 && $_G['uid'] && !empty($_G['cookie']['lip'])}-->
+  <div class="focus plugin" id="ip_notice"></div>
+  <script type="text/javascript">ipNotice();</script>
+<!--{/if}-->
+<!--{if $_G['member']['newprompt'] && (empty($_G['cookie']['promptstate_'.$_G[uid]]) || $_G['cookie']['promptstate_'.$_G[uid]] != $_G['member']['newprompt']) && $_GET['do'] != 'notice'}-->
+  <script type="text/javascript">noticeTitle();</script>
+<!--{/if}-->
+
+<!--{if ($_G[member][newpm] || $_G[member][newprompt]) && empty($_G['cookie']['ignore_notice'])}-->
+  <script type="text/javascript" src="{$_G[setting][jspath]}html5notification.js?{VERHASH}"></script>
+  <script type="text/javascript">
+  var h5n = new Html5notification();
+  if(h5n.issupport()) {
+    <!--{if $_G[member][newpm] && $_GET[do] != 'pm'}-->
+    h5n.shownotification('pm', '$_G[siteurl]home.php?mod=space&do=pm', '<!--{avatar($_G[uid],small,true)}-->', '{lang newpm_subject}', '{lang newpm_notice_info}');
+    <!--{/if}-->
+    <!--{if $_G[member][newprompt] && $_GET[do] != 'notice'}-->
+        <!--{loop $_G['member']['category_num'] $key $val}-->
+          <!--{eval $noticetitle = lang('template', 'notice_'.$key);}-->
+          h5n.shownotification('notice_$key', '$_G[siteurl]home.php?mod=space&do=notice&view=$key', '<!--{avatar($_G[uid],small,true)}-->', '$noticetitle ($val)', '{lang newnotice_notice_info}');
+        <!--{/loop}-->
+    <!--{/if}-->
+  }
+  </script>
+<!--{/if}-->
+
+<!--{eval userappprompt();}-->
+<!--{if $_G['basescript'] != 'userapp'}-->
+<div id="scrolltop">
+  <!--{if $_G[fid] && $_G['mod'] == 'viewthread'}-->
+  <span><a href="forum.php?mod=post&action=reply&fid=$_G[fid]&tid=$_G[tid]&extra=$_GET[extra]&page=$page{if $_GET[from]}&from=$_GET[from]{/if}" onclick="showWindow('reply', this.href)" class="replyfast" title="{lang fastreply}"><b>{lang fastreply}</b></a></span>
+  <!--{/if}-->
+  <span hidefocus="true"><a title="{lang scrolltop}" onclick="window.scrollTo('0','0')" class="scrolltopa" ><b>{lang scrolltop}</b></a></span>
+  <!--{if $_G[fid]}-->
+  <span>
+    <!--{if $_G['mod'] == 'viewthread'}-->
+    <a href="forum.php?mod=forumdisplay&fid=$_G[fid]" hidefocus="true" class="returnlist" title="{lang return_list}"><b>{lang return_list}</b></a>
+    <!--{else}-->
+    <a href="forum.php" hidefocus="true" class="returnboard" title="{lang return_forum}"><b>{lang return_forum}</b></a>
+    <!--{/if}-->
+  </span>
+  <!--{/if}-->
+</div>
+<script type="text/javascript">_attachEvent(window, 'scroll', function () { showTopLink(); });checkBlind();</script>
+<!--{/if}-->
+<!--{if isset($_G['makehtml'])}-->
+  <script type="text/javascript" src="{$_G[setting][jspath]}html2dynamic.js?{VERHASH}"></script>
+  <script type="text/javascript">
+    var html_lostmodify = {TIMESTAMP};
+    htmlGetUserStatus();
+    <!--{if isset($_G['htmlcheckupdate'])}-->
+    htmlCheckUpdate();
+    <!--{/if}-->
+  </script>
+<!--{/if}-->
+<!--{eval output();}-->
+
+<script type="text/javascript" src="static/assets/js/public/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="static/assets/js/public/swiper-3.4.0.jquery.min.js"></script>
+<script type="text/javascript">
+var JQ = jQuery.noConflict();
+
+JQ(function() {
+    // 底部关注的弹出
+    var _share_icons = JQ('.share_icons'),
+        _focus_wb = JQ('.focus_wb'),
+        _focus_wx = JQ('.focus_wx');
+
+    var _quick_links = JQ('.quick_links'),
+        _quick_links_con = _quick_links.find('dd');
+
+    var spic_index, _spic_con = JQ('.spic_con'),
+        _s_pic = _spic_con.find('li');
+
+    _share_icons.on('mouseover', 'a', function(e) {
+        var _this = JQ(this);
+        var index = _this.index();
+
+        if (index == 0) {
+            _focus_wb.show();
+            _focus_wx.hide();
+
+        } else if (index == 1) {
+            _focus_wb.hide();
+            _focus_wx.show();
+        }
+    });
+
+    JQ(document).on('click', function() {
+        _focus_wx.hide();
+        _focus_wb.hide();
+    });
+
+    // 底部点击出现
+    _quick_links.on('click', function() {
+        _quick_links_con.slideToggle();
+    });
+
+
+    var mySwiper = new Swiper('.swiper-container', {
+        onSlideChangeEnd: function(swiper) {
+            _s_pic.eq(swiper.activeIndex).addClass('on');
+        },
+        onSlideChangeStart: function(swiper) {
+            _s_pic.removeClass('on');
+        }
+    })
+
+    _s_pic.on('click', function(e) {
+        var _this = JQ(this);
+        spic_index = _this.index();
+        mySwiper.slideTo(spic_index);
+    });
+
+});
+</script>
 </body>
 </html>

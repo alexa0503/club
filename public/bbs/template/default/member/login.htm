@@ -2,7 +2,7 @@
 
 <!--{eval $loginhash = 'L'.random(4);}-->
 <!--{if empty($_GET['infloat'])}-->
-<div id="ct" class="ptm wp w cl">
+<div id="ct" class="ptm wp w cl new_c">
 	<div class="nfl" id="main_succeed" style="display: none">
 		<div class="f_c altw">
 			<div class="alert_right">
@@ -20,7 +20,7 @@
 					<a href="member.php?mod={$_G[setting][regname]}" class="xi2">{lang login_guest}</a>
 				</span>
 				<!--{if !$secchecklogin2}-->
-					<h3 class="xs2">{lang login}</h3>
+					<h3 class="xs2">用户登陆</h3>
 				<!--{else}-->
 					<h3 class="xs2">{lang login_seccheck2}</h3>
 				<!--{/if}-->
@@ -37,14 +37,14 @@
 			<span><!--{if !empty($_GET['infloat']) && !isset($_GET['frommessage'])}--><a href="javascript:;" class="flbc" onclick="hideWindow('$_GET[handlekey]', 0, 1);" title="{lang close}">{lang close}</a><!--{/if}--></span>
 		</h3>
 		<!--{hook/logging_top}-->
-		<form method="post" autocomplete="off" name="login" id="loginform_$loginhash" class="cl" onsubmit="{if $this->setting['pwdsafety']}pwmd5('password3_$loginhash');{/if}pwdclear = 1;ajaxpost('loginform_$loginhash', 'returnmessage_$loginhash', 'returnmessage_$loginhash', 'onerror');return false;" action="member.php?mod=logging&action=login&loginsubmit=yes{if !empty($_GET['handlekey'])}&handlekey=$_GET[handlekey]{/if}{if isset($_GET['frommessage'])}&frommessage{/if}&loginhash=$loginhash">
+		<form method="post" autocomplete="off" name="login" id="loginform_$loginhash" class="cl login_con" onsubmit="{if $this->setting['pwdsafety']}pwmd5('password3_$loginhash');{/if}pwdclear = 1;ajaxpost('loginform_$loginhash', 'returnmessage_$loginhash', 'returnmessage_$loginhash', 'onerror');return false;" action="member.php?mod=logging&action=login&loginsubmit=yes{if !empty($_GET['handlekey'])}&handlekey=$_GET[handlekey]{/if}{if isset($_GET['frommessage'])}&frommessage{/if}&loginhash=$loginhash">
 			<div class="c cl">
 				<input type="hidden" name="formhash" value="{FORMHASH}" />
 				<input type="hidden" name="referer" value="{echo dreferer()}" />
 				<!--{if $auth}-->
 					<input type="hidden" name="auth" value="$auth" />
 				<!--{/if}-->
-				
+
 				<!--{if $invite}-->
 				<div class="rfm">
 					<table>
@@ -57,7 +57,7 @@
 				<!--{/if}-->
 
 				<!--{if !$auth}-->
-				<div class="rfm">
+				<div class="rfm classic_rfm">
 					<table>
 						<tr>
 							<th>
@@ -78,7 +78,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="rfm">
+				<div class="rfm classic_rfm">
 					<table>
 						<tr>
 							<th><label for="password3_$loginhash">{lang login_password}:</label></th>
@@ -90,7 +90,7 @@
 				<!--{/if}-->
 
 				<!--{if empty($_GET['auth']) || $questionexist}-->
-				<div class="rfm">
+				<div class="rfm classic_rfm">
 					<table>
 						<tr>
 							<th>{lang security_q}:</th>
@@ -107,7 +107,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="rfm" id="loginanswer_row_$loginhash" {if !$questionexist} style="display:none"{/if}>
+				<div class="rfm classic_rfm" id="loginanswer_row_$loginhash" {if !$questionexist} style="display:none"{/if}>
 					<table>
 						<tr>
 							<th>{lang security_a}:</th>
@@ -133,17 +133,21 @@
 					</table>
 				</div>
 
-				<div class="rfm mbw bw0">
+				<div class="rfm mbw bw0  rfm_btn">
 					<table width="100%">
 						<tr>
 							<th>&nbsp;</th>
 							<td>
 								<button class="pn pnc" type="submit" name="loginsubmit" value="true" tabindex="1"><strong>{lang login}</strong></button>
 							</td>
-							<td>
-								<!--{if $this->setting['sitemessage'][login] && empty($_GET['infloat'])}--><a href="javascript:;" id="custominfo_login_$loginhash" class="y">&nbsp;<img src="{IMGDIR}/info_small.gif" alt="{lang faq}" class="vm" /></a><!--{/if}-->
-								<!--{if !$this->setting['bbclosed'] && empty($_GET['infloat'])}--><a href="javascript:;" onclick="ajaxget('member.php?mod=clearcookies&formhash={FORMHASH}', 'returnmessage_$loginhash', 'returnmessage_$loginhash');return false;" title="{lang login_clearcookies}" class="y">{lang login_clearcookies}</a><!--{/if}-->
-							</td>
+							<!-- <td> -->
+								<!--{if $this->setting['sitemessage'][login] && empty($_GET['infloat'])}-->
+               <!--  <a href="javascript:;" id="custominfo_login_$loginhash" class="y">&nbsp;<img src="{IMGDIR}/info_small.gif" alt="{lang faq}" class="vm" /></a> -->
+                <!--{/if}-->
+								<!--{if !$this->setting['bbclosed'] && empty($_GET['infloat'])}-->
+                <!-- <a href="javascript:;" onclick="ajaxget('member.php?mod=clearcookies&formhash={FORMHASH}', 'returnmessage_$loginhash', 'returnmessage_$loginhash');return false;" title="{lang login_clearcookies}" class="y">{lang login_clearcookies}</a> -->
+                <!--{/if}-->
+							<!-- </td> -->
 						</tr>
 					</table>
 				</div>
@@ -232,7 +236,7 @@
 		<!--{elseif $seccodecheck && !(empty($_GET['auth']) || $questionexist)}-->
 			if($('loginform_$loginhash')) {
 				safescript('seccodefocus', function() {$('loginform_$loginhash').seccodeverify.focus()}, 500, 10);
-			}			
+			}
 		<!--{/if}-->
 	}
 	initinput_login();

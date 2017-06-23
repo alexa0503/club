@@ -1,25 +1,25 @@
 <!--{template common/header}-->
 
 
-<div id="pt" class="bm cl">
+<!-- <div id="pt" class="bm cl"> -->
 	<!--{if empty($gid) && $announcements}-->
-	<div class="y">
-		<div id="an">
-			<dl class="cl">
-				<dt class="z xw1">{lang announcements}:&nbsp;</dt>
-				<dd>
-					<div id="anc"><ul id="ancl">$announcements</ul></div>
-				</dd>
-			</dl>
-		</div>
-		<script type="text/javascript">announcement();</script>
-	</div>
+	<!-- <div class="y"> -->
+		<!-- <div id="an"> -->
+			<!-- <dl class="cl"> -->
+				<!-- <dt class="z xw1">{lang announcements}:&nbsp;</dt> -->
+				<!-- <dd> -->
+					<!-- <div id="anc"><ul id="ancl">$announcements</ul></div> -->
+				<!-- </dd> -->
+			<!-- </dl> -->
+		<!-- </div> -->
+		<!-- <script type="text/javascript">announcement();</script> -->
+	<!-- </div> -->
 	<!--{/if}-->
-	<div class="z">
-		<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
-	</div>
-	<div class="z"><!--{hook/index_status_extra}--></div>
-</div>
+	<!-- <div class="z"> -->
+		<!-- <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation -->
+	<!-- </div> -->
+	<!-- <div class="z">{hook/index_status_extra}</div> -->
+<!-- </div> -->
 
 
 <!--{if empty($gid)}-->
@@ -34,7 +34,9 @@
 	</div>
 <!--{/if}-->
 
-<div id="ct" class="wp cl{if $_G['setting']['forumallowside']} ct2{/if}">
+<div id="ct" class="wp cl{if $_G['setting']['forumallowside']} ct2{/if} new_c">
+    <h3 id="layer_reginfo_t" class="xs2">
+    车型版区</h3>
 	<!--{if empty($gid)}-->
 		<div id="chart" class="bm bw0 cl">
 			<p class="chart z">{lang index_today}: <em>$todayposts</em><span class="pipe">|</span>{lang index_yesterday}: <em>$postdata[0]</em><span class="pipe">|</span>{lang index_posts}: <em>$posts</em><span class="pipe">|</span>{lang index_members}: <em>$_G['cache']['userstats']['totalmembers']</em><!--{if $_G['cache']['userstats']['newsetuser']}--><span class="pipe">|</span>{lang welcome_new_members}: <em><a href="home.php?mod=space&username={echo rawurlencode($_G['cache']['userstats']['newsetuser'])}" target="_blank" class="xi2">$_G['cache']['userstats']['newsetuser']</a></em><!--{/if}--></p>
@@ -200,18 +202,8 @@
 								</div>
 								<dl>
 									<dt><a href="forum.php?mod=collection&action=view&ctid={$colletion[ctid]}">$colletion[name]</a></dt>
-									<dd><em>{lang forum_threads}: <!--{echo dnumber($colletion[threadnum])}--></em>, <em>{lang collection_commentnum}: <!--{echo dnumber($colletion[commentnum])}--></em></dd>
-									<dd>
-									<!--{if $colletion['lastpost']}-->
-										<!--{if $forumcolumns < 3}-->
-											<a href="forum.php?mod=redirect&tid=$colletion[lastpost]&goto=lastpost#lastpost" class="xi2"><!--{echo cutstr($colletion[lastsubject], 30)}--></a> <cite><!--{date($colletion[lastposttime])}--> <!--{if $colletion['lastposter']}-->$colletion['lastposter']<!--{else}-->$_G[setting][anonymoustext]<!--{/if}--></cite>
-										<!--{else}-->
-											<a href="forum.php?mod=redirect&tid=$colletion[lastpost]&goto=lastpost#lastpost">{lang forum_lastpost}: <!--{date($colletion[lastposttime])}--></a>
-										<!--{/if}-->
-									<!--{else}-->
-										{lang never}
-									<!--{/if}-->
-									</dd>
+									<dd><em>{lang forum_threads}: <!--{echo dnumber($colletion[threadnum])}--></em> | <em>{lang collection_commentnum}: <!--{echo dnumber($colletion[commentnum])}--></em></dd>
+
 									<!--{hook/index_followcollection_extra $colletion[ctid]}-->
 								</dl>
 							</td>
@@ -264,24 +256,9 @@
 									</div>
 									<dl{if !empty($forum[extra][iconwidth]) && !empty($forum[icon])} style="margin-left: {$forum[extra][iconwidth]}px;"{/if}>
 										<dt><a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}{if $forum[extra][namecolor]} style="color: {$forum[extra][namecolor]};"{/if}>$forum[name]</a><!--{if $forum[todayposts] && !$forum['redirect']}--><em class="xw0 xi1" title="{lang forum_todayposts}"> ($forum[todayposts])</em><!--{/if}--></dt>
-										<!--{if empty($forum[redirect])}--><dd><em>{lang forum_threads}: <!--{echo dnumber($forum[threads])}--></em>, <em>{lang forum_posts}: <!--{echo dnumber($forum[posts])}--></em></dd><!--{/if}-->
-										<dd>
-										<!--{if $forum['permission'] == 1}-->
-											{lang private_forum}
-										<!--{else}-->
-											<!--{if $forum['redirect']}-->
-												<a href="$forumurl" class="xi2">{lang url_link}</a>
-											<!--{elseif is_array($forum['lastpost'])}-->
-												<!--{if $forumcolumns < 3}-->
-													<a href="forum.php?mod=redirect&tid=$forum[lastpost][tid]&goto=lastpost#lastpost" class="xi2"><!--{echo cutstr($forum[lastpost][subject], 30)}--></a> <cite>$forum[lastpost][dateline] <!--{if $forum['lastpost']['author']}-->$forum['lastpost']['author']<!--{else}-->$_G[setting][anonymoustext]<!--{/if}--></cite>
-												<!--{else}-->
-													<a href="forum.php?mod=redirect&tid=$forum[lastpost][tid]&goto=lastpost#lastpost">{lang forum_lastpost}: $forum[lastpost][dateline]</a>
-												<!--{/if}-->
-											<!--{else}-->
-												{lang never}
-											<!--{/if}-->
-										<!--{/if}-->
-										</dd>
+										<!--{if empty($forum[redirect])}--><dd><em>{lang forum_threads}: <!--{echo dnumber($forum[threads])}--></em> | <em>{lang forum_posts}: <!--{echo dnumber($forum[posts])}--></em>
+                    </dd><!--{/if}-->
+
 										<!--{hook/index_favforum_extra $forum[fid]}-->
 									</dl>
 								</td>
@@ -336,14 +313,6 @@
 		<!--{loop $catlist $key $cat}-->
 			<!--{hook/index_catlist $cat[fid]}-->
 			<div class="bm bmw {if $cat['forumcolumns']} flg{/if} cl">
-				<div class="bm_h cl">
-					<span class="o">
-						<img id="category_$cat[fid]_img" src="{IMGDIR}/$cat[collapseimg]" title="{lang spread}" alt="{lang spread}" onclick="toggle_collapse('category_$cat[fid]');" />
-					</span>
-					<!--{if $cat['moderators']}--><span class="y">{lang forum_category_modedby}: $cat[moderators]</span><!--{/if}-->
-					<!--{eval $caturl = !empty($cat['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$cat['domain'].'.'.$_G['setting']['domain']['root']['forum'] : '';}-->
-					<h2><a href="{if !empty($caturl)}$caturl{else}forum.php?gid=$cat[fid]{/if}" style="{if $cat[extra][namecolor]}color: {$cat[extra][namecolor]};{/if}">$cat[name]</a></h2>
-				</div>
 				<div id="category_$cat[fid]" class="bm_c" style="{echo $collapse['category_'.$cat[fid]]}">
 					<table cellspacing="0" cellpadding="0" class="fl_tb">
 						<tr>
@@ -367,24 +336,9 @@
 								</div>
 								<dl{if !empty($forum[extra][iconwidth]) && !empty($forum[icon])} style="margin-left: {$forum[extra][iconwidth]}px;"{/if}>
 									<dt><a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}{if $forum[extra][namecolor]} style="color: {$forum[extra][namecolor]};"{/if}>$forum[name]</a><!--{if $forum[todayposts] && !$forum['redirect']}--><em class="xw0 xi1" title="{lang forum_todayposts}"> ($forum[todayposts])</em><!--{/if}--></dt>
-									<!--{if empty($forum[redirect])}--><dd><em>{lang forum_threads}: <!--{echo dnumber($forum[threads])}--></em>, <em>{lang forum_posts}: <!--{echo dnumber($forum[posts])}--></em></dd><!--{/if}-->
-									<dd>
-									<!--{if $forum['permission'] == 1}-->
-										{lang private_forum}
-									<!--{else}-->
-										<!--{if $forum['redirect']}-->
-											<a href="$forumurl" class="xi2">{lang url_link}</a>
-										<!--{elseif is_array($forum['lastpost'])}-->
-											<!--{if $cat['forumcolumns'] < 3}-->
-												<a href="forum.php?mod=redirect&tid=$forum[lastpost][tid]&goto=lastpost#lastpost" class="xi2"><!--{echo cutstr($forum[lastpost][subject], 30)}--></a> <cite>$forum[lastpost][dateline] <!--{if $forum['lastpost']['author']}-->$forum['lastpost']['author']<!--{else}-->$_G[setting][anonymoustext]<!--{/if}--></cite>
-											<!--{else}-->
-												<a href="forum.php?mod=redirect&tid=$forum[lastpost][tid]&goto=lastpost#lastpost">{lang forum_lastpost}: $forum[lastpost][dateline]</a>
-											<!--{/if}-->
-										<!--{else}-->
-											{lang never}
-										<!--{/if}-->
-									<!--{/if}-->
-									</dd>
+									<!--{if empty($forum[redirect])}-->
+                  <dd><em>{lang forum_threads}: <!--{echo dnumber($forum[threads])}--></em> | <em>{lang forum_posts}: <!--{echo dnumber($forum[posts])}--></em></dd><!--{/if}-->
+
 									<!--{hook/index_forum_extra $forum[fid]}-->
 								</dl>
 							</td>
@@ -463,18 +417,8 @@
 								</div>
 								<dl>
 									<dt><a href="forum.php?mod=collection&action=view&ctid={$colletion[ctid]}">$colletion[name]</a></dt>
-									<dd><em>{lang forum_threads}: <!--{echo dnumber($colletion[threadnum])}--></em>, <em>{lang collection_commentnum}: <!--{echo dnumber($colletion[commentnum])}--></em></dd>
-									<dd>
-									<!--{if $colletion['lastpost']}-->
-										<!--{if $forumcolumns < 3}-->
-											<a href="forum.php?mod=redirect&tid=$colletion[lastpost]&goto=lastpost#lastpost" class="xi2"><!--{echo cutstr($colletion[lastsubject], 30)}--></a> <cite><!--{date($colletion[lastposttime])}--> <!--{if $colletion['lastposter']}-->$colletion['lastposter']<!--{else}-->$_G[setting][anonymoustext]<!--{/if}--></cite>
-										<!--{else}-->
-											<a href="forum.php?mod=redirect&tid=$colletion[lastpost]&goto=lastpost#lastpost">{lang forum_lastpost}: <!--{date($colletion[lastposttime])}--></a>
-										<!--{/if}-->
-									<!--{else}-->
-										{lang never}
-									<!--{/if}-->
-									</dd>
+									<dd><em>{lang forum_threads}: <!--{echo dnumber($colletion[threadnum])}--></em> | <em>{lang collection_commentnum}: <!--{echo dnumber($colletion[commentnum])}--></em></dd>
+
 									<!--{hook/index_datacollection_extra $colletion[ctid]}-->
 								</dl>
 							</td>

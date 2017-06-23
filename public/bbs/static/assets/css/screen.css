@@ -585,6 +585,8 @@ body {
     line-height: 30px;
     border: 1px #858585 solid;
     background: none; }
+  #layer_reg .rfm .p_tip {
+    width: 200px; }
 
 #layer_reginfo_b .mbw {
   width: 360px;
@@ -619,8 +621,27 @@ body {
   padding: 30px 0; }
   #nv_forum #category_1 .fl_g dl {
     margin: 0 !important;
-    padding-left: 140px; }
+    padding: 0 !important;
+    text-align: center; }
     #nv_forum #category_1 .fl_g dl dt a {
       color: #a52020;
       font-size: 18px;
       font-weight: bold; }
+
+.boardnav {
+  background-color: #fff;
+  margin: 30px 0; }
+  .boardnav .z {
+    padding-left: 20px; }
+  .boardnav .mn {
+    padding-left: 20px;
+    padding-right: 20px; }
+  .boardnav .pgb {
+    background-color: #fff; }
+    .boardnav .pgb a {
+      color: #cb2e1e; }
+
+#nv_forum .wp {
+  background-color: #fff;
+  margin-top: 30px;
+  margin-bottom: 30px; }
