@@ -4,6 +4,7 @@
 /public/bbs/data/cache
 /storage/*.key
 /vendor
+/public/bbs/config
 /.idea
 /.vagrant
 Homestead.json
