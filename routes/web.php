@@ -106,7 +106,7 @@ Route::post('/discuz/login', function(Request $request){
 
     $key = env('DISCUZ_UCKEY');
     $login_url = url('/').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode('action=synlogin&username='.$user->username.'&uid='.$user->uid.'&password='.$user->password."&time=".$timestamp, 'ENCODE', $key));
-    return ['ret'=>0,'url'=>$login_url];
+    return ['ret'=>0,'url'=>$login_url,'msg'=>''];
 });
 Route::get('/t' ,function(){
     $options = [

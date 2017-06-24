@@ -285,13 +285,13 @@
                                     <label for="rm_ck">记住我</label>
                                 </div>
                                 <div class="links">
-                                    <a href="javascript:;">忘记密码</a>
+                                    <a href="http://club.dffengguang.com.cn/bbs/member.php?mod=logging&action=login&referer=forum.php">忘记密码</a>
                                 </div>
                             </div>
                             <div class="login_b">
                                 <!-- <img src="/bbs/static/assets/imgs/login_btn.jpg" alt=""> -->
                                 <div class="login_btn_con"><a id="login_btn" href="javascript:;">登陆</a></div>
-                                <span>还没有账号？<a href="javascript:;">立即注册！</a></span>
+                                <span>还没有账号？<a href="/bbs/member.php?mod=register">立即注册！</a></span>
                             </div>
                         </div>
                     </div>
@@ -434,6 +434,7 @@
             mySwiper.slideTo(spic_index);
         });
 
+
     });
 </script>
 </div>  </div>
@@ -522,5 +523,28 @@
 <script type="text/javascript">
     var tipsinfo = '62588428|X3.3|0.6||0||0|7|1498142327|99f2ee96e705e716658714150ea443bf|2';
 </script>
-<script src="http://discuz.gtimg.cn/cloud/scripts/discuz_tips.js?v=1" type="text/javascript" charset="UTF-8"></script></body>
+<script src="http://discuz.gtimg.cn/cloud/scripts/discuz_tips.js?v=1" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery('#login_btn').on('click',function () {
+            var username = jQuery('#name').val();
+            var password = jQuery('#password').val();
+            jQuery.post('/disucz/login', {username:username, password:password},function (json) {
+                if (json.ret != 0){
+                    alert(json.msg);
+                }
+                else{
+                    jQuery.get(json.url,function () {
+                        jQuery('#login').html('');
+                    }).fail(function (xhr) {
+                        alert('登录失败，请稍候重试。');
+                    })
+                }
+            },"JSON").fail(function (xhr) {
+                alert('登录失败，请稍候重试。');
+            });
+        })
+    })
+</script>
+</body>
 </html>
