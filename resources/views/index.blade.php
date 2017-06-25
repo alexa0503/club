@@ -214,7 +214,7 @@
                                 <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=39" hidefocus="true" title="">风光360<span></span></a></li>
                                 <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=41" hidefocus="true" title="">风光330<span></span></a></li>
                                 <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=42" hidefocus="true" title="">爱车讲堂<span></span></a></li>
-                                <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=43" hidefocus="true" title="">同城会<span></span></a></li>
+                                <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=43" hidefocus="true" title="">车型测评<span></span></a></li>
                             </ul>
                         </div>
                         <div class="contentsWrap cl">
