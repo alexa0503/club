@@ -82,7 +82,7 @@ if($isfounder) {
 $headers = "'".implode("','", array_keys($topmenu))."'";
 
 echo <<<EOT
-
+<li style="visibility: visible;" class=""><em><a id="" href="/admin">商城管理</a></em></li>
 </ul>
 <div class="currentloca">
 <p id="admincpnav"></p>

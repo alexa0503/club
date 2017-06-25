@@ -9,7 +9,7 @@
                         {{ Form::open(array('url' => url('/mall/buy'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'post-form')) }}
                         <div class="form-group">
                             <label for="price" class="col-md-2 col-xs-2 control-label">市场价:</label>
-                            <div class="col-md-10 col-xs-10"><label class="" for="" style="color:red;">{{$item->point}}积分</label></div><!-- /.col -->
+                            <div class="col-md-10 col-xs-10"><label class="" for="" style="color:red;">{{$item->point}}风迷币</label></div><!-- /.col -->
                         </div><!-- /form-group -->
                         <div class="form-group" id="form-group-inventory">
                             <label for="inventory" class="col-md-2 col-xs-2 control-label">选择:</label>

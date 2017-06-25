@@ -195,5 +195,76 @@
     htmlCheckUpdate();
     <?php } ?>
   </script>
-<?php } output();?></body>
+<?php } output();?><script src="static/assets/js/public/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="static/assets/js/public/swiper-3.4.0.jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var JQ = jQuery.noConflict();
+
+JQ(function() {
+    // 底部关注的弹出
+    var _share_icons = JQ('.share_icons'),
+        _focus_wb = JQ('.focus_wb'),
+        _focus_wx = JQ('.focus_wx');
+
+    var _quick_links = JQ('.quick_links'),
+        _quick_links_con = _quick_links.find('dd');
+
+    var spic_index, _spic_con = JQ('.spic_con'),
+        _s_pic = _spic_con.find('li');
+
+    _share_icons.on('mouseover', 'a', function(e) {
+        var _this = JQ(this);
+        var index = _this.index();
+
+        if (index == 0) {
+            _focus_wb.show();
+            _focus_wx.hide();
+
+        } else if (index == 1) {
+            _focus_wb.hide();
+            _focus_wx.show();
+        }
+    });
+
+    JQ(document).on('click', function() {
+        _focus_wx.hide();
+        _focus_wb.hide();
+    });
+
+    // 底部点击出现
+    _quick_links.on('click', function() {
+        _quick_links_con.slideToggle();
+    });
+
+
+    var mySwiper = new Swiper('.swiper-container', {
+        onSlideChangeEnd: function(swiper) {
+            _s_pic.eq(swiper.activeIndex).addClass('on');
+        },
+        onSlideChangeStart: function(swiper) {
+            _s_pic.removeClass('on');
+        }
+    })
+
+    _s_pic.on('click', function(e) {
+        var _this = JQ(this);
+        spic_index = _this.index();
+        mySwiper.slideTo(spic_index);
+    });
+
+
+      var _weixin = JQ('.weixin');
+      var _weixinR = JQ('.weixin_er');
+     _weixin.on('mouseenter mouseleave',function(e){
+        if( e.type =="mouseenter" ){
+            _weixinR.show();
+        }
+        if( e.type =="mouseleave" ){
+            _weixinR.hide();
+        }
+     });
+
+});
+</script>
+</body>
 </html>

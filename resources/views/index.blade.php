@@ -3,12 +3,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{{ config('app.name', '') }}</title>
-
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="generator" content="Discuz! X3.3" />
-    <meta name="author" content="Discuz! Team and Comsenz UI Team" />
-    <meta name="copyright" content="2001-2017 Comsenz Inc." />
     <meta name="MSSmartTagsPreventParsing" content="True" />
     <meta http-equiv="MSThemeCompatible" content="Yes" />
     <link rel="stylesheet" type="text/css" href="/bbs/data/cache/style_1_common.css?Pxk" />
@@ -33,7 +27,26 @@
     <div class="head_top">
         <div class="inside">
             <div class="ht_area">
-                <p class="loginTop"><a href="/bbs/member.php?mod=logging&amp;action=login&amp;referer=forum.php" onclick="showWindow('login', this.href);return false;" class="xi2">登录</a><a href="/bbs/member.php?mod=register" class="xi2">注册</a></p>
+                @if(!Session::get('discuz.hasLogin'))
+                <p class="loginTop"><a href="/bbs/member.php?mod=logging&amp;action=login&amp;referer={{url('/')}}" onclick="showWindow('login', this.href);return false;" class="xi2">登录</a><a href="/bbs/member.php?mod=register" class="xi2">注册</a></p>
+                @else
+                    <div id="um">
+                        <p>
+                            <strong class="vwmy"><a href="/bbs/home.php?mod=space&amp;uid=1" target="_blank" title="访问我的空间">{{Session::get('discuz.user.username')}}</a></strong>
+                            <span class="pipe">|</span><a href="/bbs/home.php?mod=spacecp" id="myitem"  >我的</a>
+                            <a href="/bbs/home.php?mod=spacecp&amp;ac=credit&amp;showcredit=1" id="extcreditmenu">风迷币: {{Session::get('discuz.user.user_count.extcredits4')}}</a>
+                            <span class="pipe">|</span><a href="/bbs/home.php?mod=spacecp&amp;ac=usergroup" id="g_upmine" >用户组: {{Session::get('discuz.user.user_group.grouptitle')}}</a>
+
+
+                            <span class="pipe">|</span><a href="/bbs/home.php?mod=space&amp;do=notice" id="myprompt" class="a showmenu" onmouseover="showMenu({'ctrlid':'myprompt'});">提醒</a><span id="myprompt_check"></span>
+                            @if(Session::get('discuz.user.groupid') == 1)
+                            <span class="pipe">|</span><a href="/admin">商城管理</a>
+                            <span class="pipe">|</span><a href="/bbs/admin.php" target="_blank">管理中心</a>
+                            @endif
+                            <span class="pipe">|</span><a href="/bbs/member.php?mod=logging&amp;action=logout&amp;referer=" id="discuz-logout">退出</a>
+                        </p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -71,6 +84,9 @@
             <div id="nv">
                 <div class="btn_area">
                     <ul>
+                        <li class="a" id="mn_forum"><a href="/" hidefocus="true" title="">首页<span></span></a></li>
+                    </ul>
+                    <ul>
                         <li class="a" id="mn_forum"><a href="/bbs/forum.php" hidefocus="true" title="">车型论坛<span></span></a></li>
                     </ul>
                     <ul>
@@ -80,18 +96,16 @@
                         <li class="a" id="mn_forum"><a href="/mall" hidefocus="true" title="">积分商城<span></span></a></li>
                     </ul>
                     <ul>
-                        <li class="a" id="mn_forum"><a href="/bbs/forum.php" hidefocus="true" title="">风光官网<span></span></a></li>
+                        <li class="a" id="mn_forum"><a href="http://dffengguang.com.cn/" hidefocus="true" title="">风光官网<span></span></a></li>
                     </ul>
                 </div>
                 <div class="share_area">
                     <span>分享至</span>
-                    <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/qq_icon.png" alt=""></a>
-                    <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/wc_icon.png" alt=""></a>
-                    <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/weibo_icon.png" alt=""></a>
-                    <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/qzone_icon.png" alt=""></a>
+                    <a href="javascript:;" class="weixin"><img src="/bbs/static/assets/imgs/layout/wc_icon.png" alt=""></a>
+                    <a href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fclub.dffengguang.com.cn&amp;type=icon&amp;language=zh_cn&amp;title=%E4%B8%9C%E9%A3%8E%E9%A3%8E%E5%85%89%E8%B6%85%E7%BA%A7%E9%A3%8E%E8%BF%B7http%3A%2F%2Fclub.dffengguang.com.cn&amp;pic=http%3A%2F%2Fclub.dffengguang.com.cn%2Fbbs%2Fshare.png&amp;searchPic=false&amp;style=simple#_loginLayer_1498302954696" target="_blank"><img src="/bbs/static/assets/imgs/layout/weibo_icon.png" alt=""></a>
                 </div>
             </div>
-
+            <div class="weixin_er" style="display: none;"><img src="/bbs/static/assets/imgs/layout/focus_wx02.png"></div>
         </div>
     </div>
 </div>
@@ -269,15 +283,15 @@
                     <!-- hotpoint end -->
                 </div>
                 <div class="right">
-                    <!-- login end -->
+                    @if(!Session::get('discuz.hasLogin'))
                     <div id="login">
                         <div class="loginWrap">
-                            <h2>账号登陆</h2>
+                            <h2>账号登录</h2>
                             <div class="row">
                                 <input name="name" type="text" id="name" class="name" value="" placeholder="会员账号/手机号">
                             </div>
                             <div class="row">
-                                <input name="password" type="text" id="password" class="password" value="" placeholder="请输入密码">
+                                <input name="password" type="password" id="password" class="password" value="" placeholder="请输入密码">
                             </div>
                             <div class="row remember cl">
                                 <div class="checkboxs">
@@ -290,11 +304,12 @@
                             </div>
                             <div class="login_b">
                                 <!-- <img src="/bbs/static/assets/imgs/login_btn.jpg" alt=""> -->
-                                <div class="login_btn_con"><a id="login_btn" href="javascript:;">登陆</a></div>
+                                <div class="login_btn_con"><a id="login_btn" href="javascript:;">登录</a></div>
                                 <span>还没有账号？<a href="/bbs/member.php?mod=register">立即注册！</a></span>
                             </div>
                         </div>
                     </div>
+                    @endif
                     <!-- login end -->
                     @if(count($right_top_kv)>0)
                         <div class="showWrap">
@@ -443,42 +458,42 @@
     <div class="footer_cont cl">
         <div class="footer_nav">
             <ul>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/index">首页</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/index">首页</a></li>
             </ul>
             <ul>
                 <li><span>车型展示</span></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/page580">风光580</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/page370">风光370</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/page360">风光360</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/page360b">风光360欧洲柴油版</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/page330">风光330</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/page580">风光580</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/page370">风光370</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/page360">风光360</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/page360b">风光360欧洲柴油版</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/page330">风光330</a></li>
             </ul>
             <ul>
                 <li><span>购车支持</span></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/gczc/type/1">预约试驾</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/gczc/type/2">专营店查询</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/zxgc">在线购车</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/gczc/type/4">天猫旗舰店</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/gczc/type/5">型录索取</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/gczc/type/6">集团购车</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/1">预约试驾</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/2">专营店查询</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/zxgc">在线购车</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/4">天猫旗舰店</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/5">型录索取</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/gczc/type/6">集团购车</a></li>
             </ul>
             <ul>
                 <li><span>风光动态</span></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/1">风光资讯</a></li><li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/3">活动促销</a></li><li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/2">媒体声音</a></li>      </ul>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/1">风光资讯</a></li><li><a href="http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/3">活动促销</a></li><li><a href="http://www.dffengguang.com.cn/index.php/Index/fgdt/newstypeid/2">媒体声音</a></li>      </ul>
             <ul>
                 <li><span>关于东风风光</span></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/about/type/1">品牌介绍</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/about/type/2">精彩视频</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/about/type/3">壁纸欣赏</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/about/type/4">联系我们</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/about/type/5">经销商招募</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/1">品牌介绍</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/2">精彩视频</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/3">壁纸欣赏</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/4">联系我们</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/about/type/5">经销商招募</a></li>
             </ul>
 
             <ul>
                 <li><span>售后服务</span></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/shfw/type/1">服务承诺</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/shfw/type/2">服务站点查询</a></li>
-                <li><a href="/bbs/http://www.dffengguang.com.cn/index.php/Index/shfw/type/3">售后手册公示</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/1">服务承诺</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/2">服务站点查询</a></li>
+                <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/3">售后手册公示</a></li>
             </ul>
         </div>
         <div class="footer_tel">
@@ -489,9 +504,9 @@
         <dl class="quick_links">
             <dt>企业快速链接</dt>
             <dd>
-                <a href="/bbs/http://www.dfmc.com.cn/" target="_blank">东风公司官网</a>
-                <a href="/bbs/http://61.184.92.51/StarGPS/Login.aspx" target="_blank">东风小康GPS管理分析系统</a>
-                <a href="/bbs/http://dms.dfsk.com.cn/" target="_blank">东风小康商务平台</a>
+                <a href="http://www.dfmc.com.cn/" target="_blank">东风公司官网</a>
+                <a href="http://61.184.92.51/StarGPS/Login.aspx" target="_blank">东风小康GPS管理分析系统</a>
+                <a href="http://dms.dfsk.com.cn/" target="_blank">东风小康商务平台</a>
             </dd>
         </dl>
 
@@ -529,13 +544,15 @@
         jQuery('#login_btn').on('click',function () {
             var username = jQuery('#name').val();
             var password = jQuery('#password').val();
-            jQuery.post('/disucz/login', {username:username, password:password},function (json) {
+            var _token = '{{csrf_token()}}';
+            jQuery.post('/discuz/login', {username:username, password:password,_token:_token},function (json) {
                 if (json.ret != 0){
                     alert(json.msg);
                 }
                 else{
                     jQuery.get(json.url,function () {
-                        jQuery('#login').html('');
+                        window.location.reload();
+                        //jQuery('#login').remove();
                     }).fail(function (xhr) {
                         alert('登录失败，请稍候重试。');
                     })
@@ -544,6 +561,30 @@
                 alert('登录失败，请稍候重试。');
             });
         })
+        jQuery('#discuz-logout').on('click',function () {
+            jQuery.getJSON('/discuz/logout',function (json) {
+                if (json.ret == 0){
+                    jQuery.get(json.url,function () {
+                        window.location.reload();
+                    }).fail(function () {
+                        alert('登出失败~');
+                    })
+                }
+            }).fail(function () {
+                alert('登出失败~');
+            })
+            return false;
+        });
+        var _weixin = JQ('.weixin');
+        var _weixinR = JQ('.weixin_er');
+        _weixin.on('mouseenter mouseleave',function(e){
+            if( e.type =="mouseenter" ){
+                _weixinR.show();
+            }
+            if( e.type =="mouseleave" ){
+                _weixinR.hide();
+            }
+        });
     })
 </script>
 </body>

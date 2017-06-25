@@ -4,10 +4,12 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    font-family: "Microsoft YaHei", Simhei, Helmet, Arial, SimSun, Helvetica, sans-serif;
 }
 #top {
     background: #ebeaea;
-    height: 161px;
+    height: 144px;
+    min-width: 1100px;
 }
 #top .container,#main .container {
     min-width: 1100px;
@@ -17,12 +19,23 @@ body {
 #login {
     background: #FFFFFF;
     height: 32px;
+    min-width: 1100px;
 }
 #login .container {
     width: 1100px;
     margin: 0 auto;
     text-align: right;
     line-height: 32px;
+}
+#login .nav>li>a {
+    color: #444;
+    padding: 6px 5px 6px;
+}
+#login .nav>li>a:hover {
+    background-color: #fff;
+}
+#login li.login>a {
+    color:#bb6565;
 }
 #search .form-control,#search .btn {
     border-radius:0;
@@ -37,13 +50,15 @@ body {
 }
 #bs-navbar {
     background: #e60012;
+    height: 33px!important;
 }
 #bs-navbar .nav>li>a {
     color:#fff;
+    padding-top: 7px;
+    padding-bottom: 6px;
 }
 #bs-navbar .nav>li.active,#bs-navbar .nav>li>a:hover {
     background: #a01313;
-    font-weight: bold;
 }
 #bs-navbar .navbar-right>li {
     margin: 0;
@@ -51,8 +66,8 @@ body {
 }
 #bs-navbar .navbar-right>li>a {
     margin: 0;
-    padding: 0;
-    line-height: 48px;
+    padding: 0 10px 0 10px;
+    line-height: 33px;
 }
 #bs-navbar .navbar-right>li>a:hover {
     font-weight: normal;
@@ -223,7 +238,7 @@ footer .container {
 }
 .slick-slide {
     margin-right: 20px;
-    border:2px solid #ffffff;
+    border:none;
 }
 #item-detail .title {
     font-size: 20px;
@@ -367,4 +382,13 @@ footer .container {
 #modal-login label,#modal-address label {
     font-weight: normal;
     font-size: 12px;
+}
+.weixin {
+    position: relative;
+}
+.weixin .weixin_er {
+    position: absolute;
+    left:-25px;
+    top:-140px;
+    z-index: 1000;
 }

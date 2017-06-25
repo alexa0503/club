@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Helpers\DiscuzHelper;
 
 class DiscuzAdminAuth
 {
@@ -17,18 +18,17 @@ class DiscuzAdminAuth
     {
         $admin = \App\Admin::where('uid',1)->first();
         \Session::put('discuz.admin', $admin->toArray());
-
         /*
-        if( !isset($_COOKIE['K4Ps_2132_auth']) ){
-            return redirect('/bbs/admin.php');
+        $authcode = null;
+        if( isset($_COOKIE['K4Ps_2132_auth']) ){
+            $key = md5('85be29aDkjYOAQgU'.$_COOKIE['K4Ps_2132_saltkey']);
+            $authcode = DiscuzHelper::authcode($_COOKIE['K4Ps_2132_auth'],'DECODE',$key);
         }
-
-        $auth = explode("\t", DiscuzHelper::authcode($_COOKIE['K4Ps_2132_auth'],'DECODE'));
-
-        if( !$auth || empty($auth) ){
+        if( !$authcode || empty($authcode) ){
             return redirect('/bbs/admin.php');
         }
         else{
+            $auth = explode("\t", $authcode);
             $admin = \App\Admin::where('uid',$auth[1])->first();
             if( !$admin ){
                 return redirect('/bbs/admin.php');
@@ -36,9 +36,7 @@ class DiscuzAdminAuth
             else{
                 \Session::put('discuz.admin', $admin->toArray());
             }
-        }
-        */
-
+        }*/
         return $next($request);
     }
 }

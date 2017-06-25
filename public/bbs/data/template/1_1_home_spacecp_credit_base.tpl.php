@@ -1,11 +1,11 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('spacecp_credit_base');
 0
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header.htm', 1497517978, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_credit_header.htm', 1497517978, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/common/seccheck.htm', 1497517978, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_footer.htm', 1497517978, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header_name.htm', 1497517978, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header_name.htm', 1497517978, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_credit_header.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/common/seccheck.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_footer.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header_name.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header_name.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
 ;?><?php include template('common/header'); ?><div id="pt" class="bm cl">
 <div class="z">
 <a href="./" class="nvhm" title="首页"><?php echo $_G['setting']['bbname'];?></a> <em>&rsaquo;</em>

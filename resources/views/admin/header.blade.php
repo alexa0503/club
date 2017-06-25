@@ -13,12 +13,12 @@
                     <span class="badge badge-danger bounceIn">1</span>
                     <ul class="dropdown-menu dropdown-sm pull-right user-dropdown">
                         <li class="user-avatar">
-                            <img src="{{asset('images/profile/profile1.jpg')}}" alt="" class="img-circle">
+                            <img src="{{Session('discuz.admin.avatar')}}" alt="" class="img-circle">
                             <div class="user-content">
                                 <h5 class="no-m-bottom">{{Session('discuz.admin.username')}}</h5>
                                 <div class="m-top-xs">
-                                    <a href="{{url('/admin/profile')}}" class="m-right-sm">Profile</a>
-                                    <a href="{{url('/logout')}}">Log out</a>
+                                    <a href="{{url('/bbs/home.php?mod=spacecp')}}" class="m-right-sm">资料</a>
+                                    <a href="javascrit:;">退出</a>
                                 </div>
                             </div>
                         </li>
@@ -71,7 +71,7 @@
             <div class="pull-right m-right-sm">
                 <div class="user-block hidden-xs">
                     <a href="#" id="userToggle" data-toggle="dropdown">
-                        <img src="{{asset('images/profile/profile1.jpg')}}" alt="" class="img-circle inline-block user-profile-pic">
+                        <img src="{{Session('discuz.admin.avatar')}}" alt="" class="img-circle inline-block user-profile-pic">
                         <div class="user-detail inline-block">
                             {{Session('discuz.admin.username')}}
                             <i class="fa fa-angle-down"></i>
@@ -81,8 +81,8 @@
                         <div class="panel-body paddingTB-sm">
                             <ul>
                                 <li>
-                                    <a href="{{url('/admin/profile')}}">
-                                        <i class="fa fa-edit fa-lg"></i><span class="m-left-xs">My Profile</span>
+                                    <a href="{{url('/bbs/home.php?mod=spacecp')}}">
+                                        <i class="fa fa-edit fa-lg"></i><span class="m-left-xs">我的资料</span>
                                     </a>
                                 </li>
                                 <!--<li>
@@ -92,8 +92,8 @@
                                     </a>
                                 </li>-->
                                 <li>
-                                    <a href="{{url('/logout')}}">
-                                        <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">Sign out</span>
+                                    <a href="javascrit:;">
+                                        <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">退出</span>
                                     </a>
                                 </li>
                             </ul>

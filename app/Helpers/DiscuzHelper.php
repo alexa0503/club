@@ -65,8 +65,5 @@ class DiscuzHelper
     	}
     	return $v;
     }
-    public static function getUserByName($name)
-    {
 
-    }
 }

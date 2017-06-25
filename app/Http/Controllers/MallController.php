@@ -8,6 +8,38 @@ use App\Helpers\DiscuzHelper;
 class MallController extends Controller
 {
     //
+    public function index()
+    {
+        $features1 = \App\Item::where('feature1','>',0)->orderBy('feature1','ASC')->limit(4)->get();
+        $features2 = \App\Item::where('feature2','>',0)->orderBy('feature2','ASC')->get();
+        $page = \App\Page::find(2);
+        $feature1_kvs = $page->blocks->filter(function ($value, $key) {
+            return $value->name == 'feature1_kv';
+        })->values()->all();
+        $feature2_kvs = $page->blocks->filter(function ($value, $key) {
+            return $value->name == 'feature2_kv';
+        })->values()->all();
+
+        $kvs = $page->blocks->filter(function ($value, $key) {
+            return $value->name == 'kvs';
+        })->values()->all();
+        return view('mall.index',[
+            'features1'=>$features1,
+            'features2'=>$features2,
+            'feature1_kvs'=>$feature1_kvs,
+            'feature2_kvs'=>$feature2_kvs,
+            'kvs'=>$kvs,
+        ]);
+    }
+    public function item($id){
+        $item = \App\Item::find($id);
+        if( !$item ){
+            return redirect('/mall');
+        }
+        return view('mall.item',[
+            'item'=>$item,
+        ]);
+    }
     public function buy(\App\Http\Requests\OrderPost $request)
     {
         if( !\Session::get('discuz.user') || !\Session::get('discuz.user.uid')){

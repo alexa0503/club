@@ -1,6 +1,6 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); 
 0
-|| checktplrefresh('./template/default/common/header.htm', './template/default/common/header_common.htm', 1498131737, '1', './data/template/1_1_common_header_home_spacecp.tpl.php', './template/default', 'common/header_home_spacecp')
+|| checktplrefresh('./template/default/common/header.htm', './template/default/common/header_common.htm', 1498387560, '1', './data/template/1_1_common_header_home_spacecp.tpl.php', './template/default', 'common/header_home_spacecp')
 ;?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -122,26 +122,31 @@
             <div id="nv">
                 <div class="btn_area">
                     <ul>
+                        <li class="a" id="mn_forum"><a href="/" hidefocus="true" title="">首页<span></span></a></li>
+                    </ul>
+                    <ul>
                         <li class="a" id="mn_forum"><a href="forum.php" hidefocus="true" title="">车型论坛<span></span></a></li>
                     </ul>
                     <ul>
                         <li class="a" id="mn_forum"><a href="forum.php" hidefocus="true" title="">车主聚会<span></span></a></li>
                     </ul>
                     <ul>
-                        <li class="a" id="mn_forum"><a href="forum.php" hidefocus="true" title="">积分商城<span></span></a></li>
+                        <li class="a" id="mn_forum"><a href="/mall" hidefocus="true" title="">积分商城<span></span></a></li>
                     </ul>
                     <ul>
-                        <li class="a" id="mn_forum"><a href="forum.php" hidefocus="true" title="">风光官网<span></span></a></li>
+                        <li class="a" id="mn_forum"><a href="http://www.dffengguang.com.cn/" hidefocus="true" title="">风光官网<span></span></a></li>
                     </ul>
                 </div>
                 <div class="share_area">
                     <span>分享至</span>
-                    <a href="javascript:;"><img src="static/assets/imgs/layout/qq_icon.png" alt=""></a>
-                    <a href="javascript:;"><img src="static/assets/imgs/layout/wc_icon.png" alt=""></a>
-                    <a href="javascript:;"><img src="static/assets/imgs/layout/weibo_icon.png" alt=""></a>
-                    <a href="javascript:;"><img src="static/assets/imgs/layout/qzone_icon.png" alt=""></a>
+                   <!--  <a href="javascript:;"><img src="static/assets/imgs/layout/qq_icon.png" alt=""></a> -->
+                    <a href="javascript:;" class="weixin"><img src="static/assets/imgs/layout/wc_icon.png" alt=""></a>
+                    <a href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fclub.dffengguang.com.cn&amp;type=icon&amp;language=zh_cn&amp;title=%E4%B8%9C%E9%A3%8E%E9%A3%8E%E5%85%89%E8%B6%85%E7%BA%A7%E9%A3%8E%E8%BF%B7http%3A%2F%2Fclub.dffengguang.com.cn&amp;pic=http%3A%2F%2Fclub.dffengguang.com.cn%2Fbbs%2Fshare.png&amp;searchPic=false&amp;style=simple#_loginLayer_1498302954696" target="_blank"><img src="static/assets/imgs/layout/weibo_icon.png" alt=""></a>
+                      <!--   <a href="javascript:;"><img src="static/assets/imgs/layout/qzone_icon.png" alt=""></a> -->
                 </div>
+
             </div>
+            <div class="weixin_er"><img src="static/assets/imgs/layout/focus_wx02.png"></div>
 
         </div>
     </div>

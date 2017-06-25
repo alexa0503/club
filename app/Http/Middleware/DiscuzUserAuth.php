@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\UserCount;
 use Closure;
 use App\Helpers\DiscuzHelper;
 class DiscuzUserAuth
@@ -22,19 +23,26 @@ class DiscuzUserAuth
         }
         else{
             \Session::put('discuz.user', null);
+            \Session::put('discuz.hasLogin',null);
         }
 
         if( !$authcode || empty($authcode) ){
+            \Session::put('discuz.hasLogin',null);
             //return redirect('/bbs');
         }
         else{
             $auth = explode("\t", $authcode);
             $user = \App\User::where('uid',$auth[1])->first();
             if( !$user ){
+                \Session::put('discuz.hasLogin',null);
                 //return redirect('/bbs');
             }
             else{
+                \Session::put('discuz.hasLogin',true);
                 \Session::put('discuz.user', $user->toArray());
+                //var_dump($user->user_group);
+                \Session::put('discuz.user.user_count', $user->user_count->toArray());
+                \Session::put('discuz.user.user_group', $user->user_group->toArray());
             }
         }
         $today = strtotime(date('Y-m-d'));

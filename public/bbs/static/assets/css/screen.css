@@ -4,10 +4,10 @@
   margin: 0 auto; }
 
 body {
-  background: #fff url(../imgs/layout/bg.jpg) 50% 0 no-repeat; }
+  background: #fff url(../imgs/layout/bg.jpg) 50% 0 no-repeat;
+  font: 12px/1.4286 "Microsoft YaHei", 'Simhei', Helmet, Arial, SimSun, Helvetica, sans-serif; }
 
 #nv_portal {
-  font: 12px/1.4286 "Microsoft YaHei", 'Simhei', Helmet, Arial, SimSun, Helvetica, sans-serif;
   color: #858585; }
   #nv_portal h2 {
     font-size: 18px;
@@ -544,23 +544,23 @@ body {
 #nv_portal #activity .listWrap {
   overflow: hidden; }
 
-.new_c {
+#wp, .new_c {
   position: relative;
   margin-top: 30px;
   border-top: 5px solid #f50c0c;
   background: url(../imgs/commons/white-opacity.png) 0 0 repeat;
   padding: 0 !important; }
-  .new_c .bm {
+  #wp .bm, .new_c .bm {
     border: none;
     background: none; }
-  .new_c .bm_h {
+  #wp .bm_h, .new_c .bm_h {
     border: none !important;
     background: none;
     padding: 0 !important;
     height: 50px; }
-    .new_c .bm_h span {
+    #wp .bm_h span, .new_c .bm_h span {
       padding-right: 10px; }
-  .new_c .xs2 {
+  #wp .xs2, .new_c .xs2 {
     font-size: 20px !important;
     font-weight: bold;
     color: #fff;
@@ -568,14 +568,22 @@ body {
     height: 50px;
     background-color: #f50c0c;
     padding-left: 10px; }
-  .new_c .bbs {
+  #wp .bbs, .new_c .bbs {
     border: none !important; }
 
 #layer_reg .rfm {
-  width: 520px;
+  width: 560px;
   border: none !important; }
+  #layer_reg .rfm th {
+    width: 120px;
+    display: block; }
   #layer_reg .rfm td {
-    line-height: 30px; }
+    padding: 10px 0;
+    line-height: 30px;
+    width: 360px; }
+    #layer_reg .rfm td.tipcol {
+      width: 70px;
+      overflow: hidden; }
   #layer_reg .rfm label {
     color: #909090; }
   #layer_reg .rfm input {
@@ -585,28 +593,57 @@ body {
     line-height: 30px;
     border: 1px #858585 solid;
     background: none; }
+  #layer_reg .rfm input[name="seccodeverify"] {
+    width: 220px !important; }
   #layer_reg .rfm .p_tip {
     width: 200px; }
+  #layer_reg .rfm span img.yzcode {
+    margin-left: 8px;
+    width: auto;
+    height: 36px; }
+  #layer_reg .rfm span.tipsIconWrap img {
+    margin-left: 12px; }
 
-#layer_reginfo_b .mbw {
-  width: 360px;
-  height: 40px;
-  background-color: #f50c0c;
-  margin-left: 425px; }
-  #layer_reginfo_b .mbw label {
-    height: 30px;
+#layer_reginfo_b .rfm {
+  width: 560px;
+  border: none !important; }
+  #layer_reginfo_b .rfm th {
+    width: 120px;
+    display: block; }
+  #layer_reginfo_b .rfm td {
+    padding: 10px 0;
     line-height: 30px;
-    font-size: 14px; }
-  #layer_reginfo_b .mbw button {
-    border: none !important;
-    background: none !important;
+    width: 360px; }
+    #layer_reginfo_b .rfm td.tipcolOther {
+      width: 70px;
+      overflow: hidden; }
+  #layer_reginfo_b .rfm em {
+    display: none; }
+  #layer_reginfo_b .rfm button {
     display: block;
-    height: 40px;
-    line-height: 40px;
-    margin: 0 auto; }
+    width: 360px;
+    overflow: hidden;
+    background-color: #f50c0c;
+    border: 0;
+    outline: 0;
+    height: 36px;
+    line-height: 36px; }
+    #layer_reginfo_b .rfm button strong {
+      display: block;
+      width: 360px;
+      overflow: hidden;
+      background-color: #f50c0c;
+      border: 0;
+      outline: 0;
+      height: 36px;
+      line-height: 36px; }
 
 #ct #chart {
-  padding: 10px; }
+  padding: 10px;
+  margin-top: 10px; }
+
+.pg_post .wp #editorbox {
+  padding: 0 20px; }
 
 #nv_forum #category_1 .fl_row td {
   border-top: 1px solid #f50c0c; }
@@ -627,21 +664,129 @@ body {
       color: #a52020;
       font-size: 18px;
       font-weight: bold; }
-
-.boardnav {
-  background-color: #fff;
-  margin: 30px 0; }
-  .boardnav .z {
-    padding-left: 20px; }
-  .boardnav .mn {
-    padding-left: 20px;
-    padding-right: 20px; }
-  .boardnav .pgb {
-    background-color: #fff; }
-    .boardnav .pgb a {
-      color: #cb2e1e; }
-
 #nv_forum .wp {
   background-color: #fff;
   margin-top: 30px;
   margin-bottom: 30px; }
+  #nv_forum .wp #pt {
+    padding: 0 20px; }
+  #nv_forum .wp #ct {
+    padding-bottom: 20px; }
+    #nv_forum .wp #ct .bm {
+      padding: 0 20px; }
+#nv_forum .boardnav {
+  background-color: #fff;
+  margin: 30px 0; }
+  #nv_forum .boardnav .z {
+    padding-left: 20px; }
+  #nv_forum .boardnav .mn {
+    padding: 0 20px; }
+  #nv_forum .boardnav .pgb {
+    background-color: #fff; }
+    #nv_forum .boardnav .pgb a {
+      color: #cb2e1e;
+      border-color: #cb2e1e; }
+  #nv_forum .boardnav #threadlist {
+    margin-top: 20px; }
+  #nv_forum .boardnav #ct .mn .bm {
+    padding: 0; }
+  #nv_forum .boardnav #ct .mn #f_pst {
+    margin: 10px 0 30px 0; }
+  #nv_forum .boardnav #ct .mn #pgt {
+    margin: 0; }
+  #nv_forum .boardnav #ct .mn .pgs {
+    margin: 0; }
+  #nv_forum .boardnav #pt {
+    padding: 0; }
+
+#pgt .pg,
+#pgt .pgb {
+  margin-top: 0; }
+
+#ct {
+  margin-bottom: 30px; }
+  #ct #pgt,
+  #ct #modmenu,
+  #ct .pgs,
+  #ct #f_pst {
+    margin: 0 20px;
+    padding: 0 !important; }
+  #ct > .xi2 {
+    margin: 0 20px;
+    padding: 0 !important; }
+  #ct #pid7 .pls,
+  #ct #postlist .pls,
+  #ct #f_pst .pls {
+    background-color: #f7e0e1; }
+  #ct #f_pst .plc .pnc {
+    border: 0; }
+  #ct #postlist {
+    padding: 0 !important;
+    margin: 0 20px; }
+    #ct #postlist .ad .pls,
+    #ct #postlist .ad .plc {
+      background-color: #e6b2b4; }
+
+.login_con .rfm {
+  width: 445px;
+  border: none !important; }
+
+.login_con .classic_rfm td {
+  line-height: 30px; }
+.login_con .classic_rfm input,
+.login_con .classic_rfm select {
+  width: 350px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px #858585 solid;
+  background: none; }
+.login_con .classic_rfm select {
+  width: 248px; }
+.login_con .classic_rfm .p_tip {
+  width: 200px; }
+
+.login_con .rfm_btn button {
+  width: 247px;
+  height: 36px;
+  border: 0; }
+
+#nv_home .wp {
+  background-color: #fff;
+  margin-top: 30px; }
+  #nv_home .wp #ct {
+    border: 0; }
+
+#nv_portal .wp #pt {
+  background-color: #fff;
+  margin: 0;
+  margin-top: 30px; }
+#nv_portal .wp #ct {
+  background-color: #fff;
+  border: 0; }
+
+.xi2, .xi2 a, .xi3 a {
+  color: #bb6565; }
+
+#pt .z {
+  padding-left: 19px; }
+  #pt .z a {
+    color: #5f2927; }
+
+.pg a, .pg strong, .pgb a, .pg label {
+  color: #cb2e1e;
+  border-color: #cb2e1e; }
+
+#uhd {
+  margin: 0 20px; }
+  #uhd .h {
+    padding-left: 82px; }
+
+.weixin_er {
+  display: none;
+  position: absolute;
+  top: -7px;
+  right: 38px; }
+
+#seccheck_fastpost span > span {
+  margin-left: 10px; }

@@ -8,13 +8,29 @@ class Block extends Model
 {
     public function user()
     {
-        if($this->username){
-            return \App\UUser::where('username', $this->username)->first();
+        if($this->thread()){
+            $thread = $this->thread();
+            return \App\User::where('username', $thread->authorid)->first();
         }
         else{
             return '';
         }
         //$this->hasOne('App\UUser','username','username');
+    }
+    public function thread()
+    {
+        if(preg_match('/tid=(\d+)/i',$this->link, $matches)){
+            $thread = \App\Thread::where('tid', $matches[1])->first();
+            if($thread){
+                return $thread;
+            }
+            else{
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
     }
     public function getAvatarAttribute($value)
     {
@@ -24,15 +40,37 @@ class Block extends Model
                 ->uid.'&type=real&size=small';
         }
         else{
-            return '';
+            return url('/').'/bbs/uc_server/avatar.php?uid=1&type=real&size=small';
         }
     }
     public function getLikeNumAttribute($value)
     {
-        return rand(1,2000);
+        if($this->thread()){
+            $thread = $this->thread();
+            return $thread->views;
+        }
+        else{
+            return 0;
+        }
     }
     public function getShareNumAttribute($value)
     {
-        return rand(1,2000);
+        if($this->thread()){
+            $thread = $this->thread();
+            return $thread->replies;
+        }
+        else{
+            return 0;
+        }
+    }
+    public function getUsernameAttribute($value)
+    {
+        if($this->thread()){
+            $thread = $this->thread();
+            return $thread->author;
+        }
+        else{
+            return '超级风光';
+        }
     }
 }

@@ -1,8 +1,8 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('login');
 0
-|| checktplrefresh('./template/default/member/login.htm', './template/default/common/seccheck.htm', 1498100644, '1', './data/template/1_1_member_login.tpl.php', './template/default', 'member/login')
+|| checktplrefresh('./template/default/member/login.htm', './template/default/common/seccheck.htm', 1498382647, '1', './data/template/1_1_member_login.tpl.php', './template/default', 'member/login')
 ;?><?php include template('common/header'); $loginhash = 'L'.random(4);?><?php if(empty($_GET['infloat'])) { ?>
-<div id="ct" class="ptm wp w cl">
+<div id="ct" class="ptm wp w cl new_c">
 <div class="nfl" id="main_succeed" style="display: none">
 <div class="f_c altw">
 <div class="alert_right">
@@ -20,7 +20,7 @@
 <a href="member.php?mod=<?php echo $_G['setting']['regname'];?>" class="xi2">没有帐号？<a href="member.php?mod=<?php echo $_G['setting']['regname'];?>"><?php echo $_G['setting']['reglinkname'];?></a></a>
 </span>
 <?php if(!$secchecklogin2) { ?>
-<h3 class="xs2">登录</h3>
+<h3 class="xs2">用户登陆</h3>
 <?php } else { ?>
 <h3 class="xs2">请输入验证码后继续登录</h3>
 <?php } ?>
@@ -37,7 +37,7 @@
 <span><?php if(!empty($_GET['infloat']) && !isset($_GET['frommessage'])) { ?><a href="javascript:;" class="flbc" onclick="hideWindow('<?php echo $_GET['handlekey'];?>', 0, 1);" title="关闭">关闭</a><?php } ?></span>
 </h3>
 <?php if(!empty($_G['setting']['pluginhooks']['logging_top'])) echo $_G['setting']['pluginhooks']['logging_top'];?>
-<form method="post" autocomplete="off" name="login" id="loginform_<?php echo $loginhash;?>" class="cl" onsubmit="<?php if($this->setting['pwdsafety']) { ?>pwmd5('password3_<?php echo $loginhash;?>');<?php } ?>pwdclear = 1;ajaxpost('loginform_<?php echo $loginhash;?>', 'returnmessage_<?php echo $loginhash;?>', 'returnmessage_<?php echo $loginhash;?>', 'onerror');return false;" action="member.php?mod=logging&amp;action=login&amp;loginsubmit=yes<?php if(!empty($_GET['handlekey'])) { ?>&amp;handlekey=<?php echo $_GET['handlekey'];?><?php } if(isset($_GET['frommessage'])) { ?>&amp;frommessage<?php } ?>&amp;loginhash=<?php echo $loginhash;?>">
+<form method="post" autocomplete="off" name="login" id="loginform_<?php echo $loginhash;?>" class="cl login_con" onsubmit="<?php if($this->setting['pwdsafety']) { ?>pwmd5('password3_<?php echo $loginhash;?>');<?php } ?>pwdclear = 1;ajaxpost('loginform_<?php echo $loginhash;?>', 'returnmessage_<?php echo $loginhash;?>', 'returnmessage_<?php echo $loginhash;?>', 'onerror');return false;" action="member.php?mod=logging&amp;action=login&amp;loginsubmit=yes<?php if(!empty($_GET['handlekey'])) { ?>&amp;handlekey=<?php echo $_GET['handlekey'];?><?php } if(isset($_GET['frommessage'])) { ?>&amp;frommessage<?php } ?>&amp;loginhash=<?php echo $loginhash;?>">
 <div class="c cl">
 <input type="hidden" name="formhash" value="<?php echo FORMHASH;?>" />
 <input type="hidden" name="referer" value="<?php echo dreferer(); ?>" />
@@ -53,7 +53,7 @@
 </table>
 </div>
 <?php } if(!$auth) { ?>
-<div class="rfm">
+<div class="rfm classic_rfm">
 <table>
 <tr>
 <th>
@@ -74,7 +74,7 @@
 </tr>
 </table>
 </div>
-<div class="rfm">
+<div class="rfm classic_rfm">
 <table>
 <tr>
 <th><label for="password3_<?php echo $loginhash;?>">密码:</label></th>
@@ -84,7 +84,7 @@
 </table>
 </div>
 <?php } if(empty($_GET['auth']) || $questionexist) { ?>
-<div class="rfm">
+<div class="rfm classic_rfm">
 <table>
 <tr>
 <th>安全提问:</th>
@@ -101,7 +101,7 @@
 </tr>
 </table>
 </div>
-<div class="rfm" id="loginanswer_row_<?php echo $loginhash;?>" <?php if(!$questionexist) { ?> style="display:none"<?php } ?>>
+<div class="rfm classic_rfm" id="loginanswer_row_<?php echo $loginhash;?>" <?php if(!$questionexist) { ?> style="display:none"<?php } ?>>
 <table>
 <tr>
 <th>答案:</th>
@@ -133,16 +133,20 @@ $sectpl = str_replace("'", "\'", $sectpl);?><?php if($secqaacheck) { ?>
 </table>
 </div>
 
-<div class="rfm mbw bw0">
+<div class="rfm mbw bw0  rfm_btn">
 <table width="100%">
 <tr>
 <th>&nbsp;</th>
 <td>
 <button class="pn pnc" type="submit" name="loginsubmit" value="true" tabindex="1"><strong>登录</strong></button>
 </td>
-<td>
-<?php if($this->setting['sitemessage']['login'] && empty($_GET['infloat'])) { ?><a href="javascript:;" id="custominfo_login_<?php echo $loginhash;?>" class="y">&nbsp;<img src="<?php echo IMGDIR;?>/info_small.gif" alt="帮助" class="vm" /></a><?php } if(!$this->setting['bbclosed'] && empty($_GET['infloat'])) { ?><a href="javascript:;" onclick="ajaxget('member.php?mod=clearcookies&formhash=<?php echo FORMHASH;?>', 'returnmessage_<?php echo $loginhash;?>', 'returnmessage_<?php echo $loginhash;?>');return false;" title="清除痕迹" class="y">清除痕迹</a><?php } ?>
-</td>
+<!-- <td> -->
+<?php if($this->setting['sitemessage']['login'] && empty($_GET['infloat'])) { ?>
+               <!--  <a href="javascript:;" id="custominfo_login_<?php echo $loginhash;?>" class="y">&nbsp;<img src="<?php echo IMGDIR;?>/info_small.gif" alt="帮助" class="vm" /></a> -->
+                <?php } if(!$this->setting['bbclosed'] && empty($_GET['infloat'])) { ?>
+                <!-- <a href="javascript:;" onclick="ajaxget('member.php?mod=clearcookies&formhash=<?php echo FORMHASH;?>', 'returnmessage_<?php echo $loginhash;?>', 'returnmessage_<?php echo $loginhash;?>');return false;" title="清除痕迹" class="y">清除痕迹</a> -->
+                <?php } ?>
+<!-- </td> -->
 </tr>
 </table>
 </div>
@@ -230,7 +234,7 @@ simulateSelect('loginfield_<?php echo $loginhash;?>');
 <?php } } elseif($seccodecheck && !(empty($_GET['auth']) || $questionexist)) { ?>
 if($('loginform_<?php echo $loginhash;?>')) {
 safescript('seccodefocus', function() {$('loginform_<?php echo $loginhash;?>').seccodeverify.focus()}, 500, 10);
-}			
+}
 <?php } ?>
 }
 initinput_login();

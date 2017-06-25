@@ -16,7 +16,7 @@ return [
             'right_bottom_kv' => '右下角KV',
         ],
         '2'=>[
-            'kv' => '头部KV',
+            'kvs' => '头部KV',
             'feature1_kv' => '爆款推荐KV',
             'feature2_kv' => '车载必备KV',
         ]
