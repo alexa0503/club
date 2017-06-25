@@ -285,6 +285,18 @@ JQ(function() {
         mySwiper.slideTo(spic_index);
     });
 
+
+      var _weixin = JQ('.weixin');
+      var _weixinR = JQ('.weixin_er');
+     _weixin.on('mouseenter mouseleave',function(e){
+        if( e.type =="mouseenter" ){
+            _weixinR.show();
+        }
+        if( e.type =="mouseleave" ){
+            _weixinR.hide();
+        }
+     });
+
 });
 </script>
 </body>
