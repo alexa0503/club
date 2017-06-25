@@ -1379,3 +1379,11 @@
 <?PHP exit;?>	1498387828	admin	1	116.226.108.212	index	GET={}; POST={};
 <?PHP exit;?>	1498387828	admin	1	116.226.108.212	setting	GET={operation=basic; }; POST={};
 <?PHP exit;?>	1498387831	admin	1	116.226.108.212	setting	GET={operation=permissions; }; POST={};
+<?PHP exit;?>	1498395173	admin	1	124.79.95.233		GET={}; POST={};
+<?PHP exit;?>	1498395174	admin	1	124.79.95.233	index	GET={}; POST={};
+<?PHP exit;?>	1498395180	admin	1	124.79.95.233	moderate	GET={}; POST={};
+<?PHP exit;?>	1498395184	admin	1	124.79.95.233	nav	GET={}; POST={};
+<?PHP exit;?>	1498395192	admin	1	124.79.95.233	announce	GET={}; POST={};
+<?PHP exit;?>	1498395193	admin	1	124.79.95.233	plugins	GET={}; POST={};
+<?PHP exit;?>	1498395194	admin	1	124.79.95.233	tools	GET={operation=updatecache; }; POST={};
+<?PHP exit;?>	1498395195	admin	1	124.79.95.233	founder	GET={operation=perm; }; POST={};
