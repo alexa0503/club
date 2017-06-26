@@ -27,7 +27,7 @@ class DiscuzAdminAuth
         else{
             $auth = explode("\t", $authcode);
             $admin = \App\Admin::where('uid',$auth[1])->first();
-            if( !$admin ){
+            if( !$admin && $admin->allowadminsetting != 1 ){
                 return redirect('/bbs/admin.php');
             }
             else{
