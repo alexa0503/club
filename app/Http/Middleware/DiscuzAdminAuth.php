@@ -32,6 +32,7 @@ class DiscuzAdminAuth
             }
             else{
                 \Session::put('discuz.admin', $admin->toArray());
+                \Session::put('discuz.admin.avatar', $admin->avatar);
             }
         }
         return $next($request);
