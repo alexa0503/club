@@ -38,6 +38,7 @@ $curmod = !empty($_G['setting']['followstatus']) && (empty($_GET['diy']) && empt
 define('CURMODULE', $curmod);
 runhooks($_GET['do'] == 'profile' && $_G['inajax'] ? 'card' : $_GET['do']);
 
+
 require_once libfile('home/'.$mod, 'module');
 
 
