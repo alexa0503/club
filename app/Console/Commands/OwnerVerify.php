@@ -68,7 +68,7 @@ class OwnerVerify extends Command
                     $result = json_decode($response->out,true);
                     if($result['ret'] == 0){
 
-                        $user_count = new \App\UserCount;
+                        $user_count = \App\UserCount::where('uid',$row->uid)->first();
                         $credits1 = 300;
                         $credits4 = 300;
                         /*
@@ -76,7 +76,6 @@ class OwnerVerify extends Command
 
                         }
                         */
-
                         $user_count->extcredits1 += $credits1;
                         $user_count->extcredits4 += $credits4;
                         //更新积分
@@ -115,6 +114,7 @@ class OwnerVerify extends Command
                             ->update(['verify1' => 1]);
                         //删除验证信息
                         DB::table('discuz_common_member_verify_info')->where('verifytype',1)->where('uid', $row->uid)->delete();
+                        //发送消息
                     }
                     else{
                         DB::table('discuz_common_member_verify')
@@ -125,14 +125,11 @@ class OwnerVerify extends Command
                             ->where('verifytype',1)
                             ->where('uid', $row->uid)
                             ->update(['flag'=>-1]);
+                        //发送消息
                     }
                 }
             }
 
         }
-        /*
-
-        */
-        return $result;
     }
 }
