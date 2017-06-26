@@ -65,7 +65,8 @@
         <div class="row">
             <a href="/bbs"><img src="/images/mall/logo.jpg" /></a>
             <div class="pull-right">
-                <div style="width:200px;margin-top:40px;">
+                <div class="thread-top" style="">今日: <em>{{session('discuz.forum.todayposts')}}</em><span class="pipe">|</span>昨日: <em>{{session('discuz.forum.yesterdayposts')}}</em><span class="pipe">|</span>帖子: <em>{{session('discuz.forum.posts')}}</em><span class="pipe">|</span>会员: <em>{{session('discuz.user_count')}}</em><span class="pipe">|</span>欢迎新会员: <a href="/bbs/home.php?mod=space&uid={{session('discuz.latest_user.uid')}}&do=profile">{{session('discuz.latest_user.username')}}</a></div>
+                <div style="width:285px;margin-top:20px;float:left;">
                     <div class="input-group" id="search">
                         <input type="text" class="form-control" placeholder="搜索帖子" />
                         <div class="input-group-btn">

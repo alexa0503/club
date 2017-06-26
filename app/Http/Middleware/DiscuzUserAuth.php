@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\UserCount;
 use Closure;
 use App\Helpers\DiscuzHelper;
+use Illuminate\Support\Facades\DB;
 class DiscuzUserAuth
 {
     /**
@@ -45,24 +46,22 @@ class DiscuzUserAuth
                 \Session::put('discuz.user.user_group', $user->user_group->toArray());
             }
         }
-        $today = strtotime(date('Y-m-d'));
-        $yesterday = strtotime("-1 day",$today);
-        $count = \App\Post::where('first',1)->where('dateline','>=',$today)->count();
-        \Session::put('discuz.post.today_count', $count);
-        $count = \App\Post::where('first',1)
-            ->where('dateline','>=',$yesterday)
-            ->where('dateline','<',$today)
-            ->count();
-        \Session::put('discuz.post.yesterday_count', $count);
-        $count = \App\Post::where('first',1)->count();
-        \Session::put('discuz.post.count', $count);
+        $forum = DB::table('discuz_forum_forum')
+            ->select('status', DB::raw('SUM(todayposts) as todayposts'),DB::raw('SUM(yesterdayposts) as yesterdayposts'),DB::raw('SUM(posts) as posts'))
+            ->groupBy('status')
+            ->where('status',1)
+            ->first();
 
-        $count = \App\User::count();
-        \Session::put('discuz.user.count', $count);
+        \Session::put('discuz.forum.todayposts', $forum->todayposts);
+        \Session::put('discuz.forum.yesterdayposts', $forum->yesterdayposts);
+        \Session::put('discuz.forum.posts', $forum->posts);
 
-        $user = \App\User::orderBy('regdate','DESC')->first();
-        \Session::put('discuz.user.latest', $user->username);
 
+        $count = \App\User::where('status',0)->count();
+        \Session::put('discuz.user_count', $count);
+
+        $user = \App\User::where('status',0)->orderBy('regdate','DESC')->first();
+        \Session::put('discuz.latest_user', $user->toArray());
 
         return $next($request);
     }

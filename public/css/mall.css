@@ -39,14 +39,41 @@ body {
 }
 #search .form-control,#search .btn {
     border-radius:0;
-    background: #efedec;
+    background: #ffffff;
     border-color: #858585;
+    font-size: 14px;
 }
 #search .form-control {
     border-right:none;
+    height: 42px;
+    line-height: 38px;
 }
 #search .btn {
     border-left: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.thread-top {
+    color:#999;
+    font-size:12px;
+    width:500px;
+    float:left;
+    text-align: right;
+    margin-top: 20px;
+    line-height: 40px;
+    margin-right:10px;
+}
+.thread-top .pipe {
+    margin: 0px 5px;
+}
+.thread-top em {
+    color: #444;
+    font-style: normal;
+    font-size: 13px;
+}
+.thread-top a {
+    color: #bb6565;
+    margin: 0px 5px;
 }
 #bs-navbar {
     background: #e60012;

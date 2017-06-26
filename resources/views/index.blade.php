@@ -57,19 +57,15 @@
                 <a href="http://club.dffengguang.com.cn/"><img src="/bbs/static/assets/imgs/layout/logo_2.png" alt=""></a>
             </div>
             <div class="search_area cl">
-                <div id="scbar" class="cl">
-                    <form id="scbar_form" method="post" autocomplete="off" onsubmit="searchFocus($('scbar_txt'))" action="search.php?searchsubmit=yes" target="_blank">
-                        <input type="hidden" name="mod" id="scbar_mod" value="forum">
-                        <input type="hidden" name="formhash" value="8bfcf00b">
-                        <input type="hidden" name="srchtype" value="title">
-                        <input type="hidden" name="srhfid" value="">
-                        <input type="hidden" name="srhlocality" value="forum::index">
+                <div style="float:left;margin-top: 20px;line-height: 40px;height: 40px;margin-right:10px;"><p class="chart">今日: <em>{{session('discuz.forum.todayposts')}}</em><span class="pipe">|</span>昨日: <em>{{session('discuz.forum.yesterdayposts')}}</em><span class="pipe">|</span>帖子: <em>{{session('discuz.forum.posts')}}</em><span class="pipe">|</span>会员: <em>{{session('discuz.user_count')}}</em><span class="pipe">|</span>欢迎新会员: <a href="/bbs/home.php?mod=space&uid={{session('discuz.latest_user.uid')}}&do=profile" class="xi2">{{session('discuz.latest_user.username')}}</a></p></div>
+                <div id="scbar" class="cl" style="float:left;">
+                    <form id="scbar_form" method="get" autocomplete="off" onsubmit="searchFocus($('scbar_txt'))" action="/bbs/search.php?mod=portal&searchid=3&searchsubmit=yes&kw=" target="_blank">
                         <table cellspacing="0" cellpadding="0">
                             <tbody>
                             <tr>
                                 <!-- <td class="scbar_icon_td"></td> -->
                                 <td class="scbar_txt_td">
-                                    <input type="text" name="srchtxt" id="scbar_txt" value="搜索帖子" autocomplete="off" x-webkit-speech="" speech="" class=" xg1" placeholder="搜索帖子">
+                                    <input type="text" name="kw" id="scbar_txt" value="搜索帖子" autocomplete="off" x-webkit-speech="" speech="" class=" xg1" placeholder="搜索帖子">
                                 </td>
                                 <!-- <td class="scbar_type_td"><a href="javascript:;" id="scbar_type" class="xg1" onclick="showMenu(this.id)" hidefocus="true">帖子</a></td> -->
                                 <td class="scbar_btn_td">
