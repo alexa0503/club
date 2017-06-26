@@ -16,9 +16,6 @@ class DiscuzAdminAuth
      */
     public function handle($request, Closure $next)
     {
-        $admin = \App\Admin::where('uid',1)->first();
-        \Session::put('discuz.admin', $admin->toArray());
-        /*
         $authcode = null;
         if( isset($_COOKIE['K4Ps_2132_auth']) ){
             $key = md5('85be29aDkjYOAQgU'.$_COOKIE['K4Ps_2132_saltkey']);
@@ -36,7 +33,7 @@ class DiscuzAdminAuth
             else{
                 \Session::put('discuz.admin', $admin->toArray());
             }
-        }*/
+        }
         return $next($request);
     }
 }
