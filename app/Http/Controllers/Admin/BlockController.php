@@ -14,9 +14,16 @@ class BlockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($page)
+    public function index(\Illuminate\Http\Request $request,$page)
     {
-        $rows = \App\Block::where('page_id',$page)->orderBy('name','DESC')->orderBy('sort_id','ASC')->paginate(20);
+        $name = $request->input('name');
+        if( null == $name ){
+            $rows = \App\Block::where('page_id',$page)->orderBy('name','DESC')->orderBy('sort_id','ASC')->paginate(20);
+        }
+        else{
+            $rows = \App\Block::where('page_id',$page)->where('name',$name)->orderBy('name','DESC')->orderBy('sort_id','ASC')->paginate(20);
+        }
+
 
         return view('admin/block/index', [
             'rows' => $rows,
