@@ -101,6 +101,11 @@ class OwnerVerify extends Command
                             'text'=>'车主认证通过奖励',
                         ]);
                         //更新数据到用户信息
+                        foreach ($data as $k=>$v){
+                            if(empty($v)){
+                                unset($data);
+                            }
+                        }
                         DB::table('discuz_common_member_profile')
                             ->where('uid', $row->uid)
                             ->update($data);
@@ -110,6 +115,16 @@ class OwnerVerify extends Command
                             ->update(['verify1' => 1]);
                         //删除验证信息
                         DB::table('discuz_common_member_verify_info')->where('verifytype',1)->where('uid', $row->uid)->delete();
+                    }
+                    else{
+                        DB::table('discuz_common_member_verify')
+                            ->where('verify1', 0)
+                            ->where('uid', $row->uid)
+                            ->update(['verify1' => -1]);
+                        DB::table('discuz_common_member_verify_info')
+                            ->where('verifytype',1)
+                            ->where('uid', $row->uid)
+                            ->update(['flag'=>-1]);
                     }
                 }
             }
