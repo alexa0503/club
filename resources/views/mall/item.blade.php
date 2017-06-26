@@ -175,6 +175,13 @@
                     if (json.ret == 0){
                         $('.modal').modal('hide');
                         $('#modal-tip').find('.modal-body').html(json.msg);
+                        $('#modal-tip').find('.modal-title').html('购买成功!');
+                        $('#modal-tip').modal('show');
+                    }
+                    else{
+                        $('.modal').modal('hide');
+                        $('#modal-tip').find('.modal-body').html(json.msg);
+                        $('#modal-tip').find('.modal-title').html('购买失败!');
                         $('#modal-tip').modal('show');
                     }
 

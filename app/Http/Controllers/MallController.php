@@ -106,7 +106,7 @@ class MallController extends Controller
         $msgto = \Session::get('discuz.user.uid');
         $subject = '购买商品成功';
         $message = '您于成功购买了'.$request->quantity.'件'.$item->name.'，您的收货地址是：'.$address->detail.'，联系电话为：'.$address->mobile.'。我们于7个工作日内发货，请查收。';
-        $url = 'http://club.himyweb.com//bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=".$fromuid."&msgto=".$msgto."&subject=".$subject."&message=".$message."&time=".$timestamp, 'ENCODE', $key));
+        $url = url('/').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=".$fromuid."&msgto=".$msgto."&subject=".$subject."&message=".$message."&time=".$timestamp, 'ENCODE', $key));
         $client = new \GuzzleHttp\Client();
         $client->request('GET', $url);
         return ['ret'=>0,'msg'=>'恭喜您，购买成功'];
