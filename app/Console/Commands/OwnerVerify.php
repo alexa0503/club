@@ -38,8 +38,6 @@ class OwnerVerify extends Command
      */
     public function handle()
     {
-        var_dump(unserialize('a:1:{s:6:"system";i:1;}'));
-        return ;
         $member_verify = DB::table('discuz_common_member_verify')->where('verify1',0)->get();
         foreach($member_verify as $row){
             if($row->verify1 == 0){
