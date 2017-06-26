@@ -43,7 +43,7 @@
 
 	<!--{if $this->showregisterform}-->
 	<form method="post" autocomplete="off" name="register" id="registerform" enctype="multipart/form-data" onsubmit="checksubmit();return false;" action="member.php?mod=$regname">
-		<div id="layer_reg" class="bm_c">
+		<div id="layer_reg" class="bm_c" style="padding-bottom: 0;">
 			<input type="hidden" name="regsubmit" value="yes" />
 			<input type="hidden" name="formhash" value="{FORMHASH}" />
 			<input type="hidden" name="referer" value="$dreferer" />
@@ -226,16 +226,18 @@
 				<table width="100%">
 					<tr>
 						<th>&nbsp;</th>
-						<td>
+						<td style="padding: 0;">
 							<span id="reginfo_a_btn">
+                <!--{if $bbrules}-->
+                  <div style="margin: 10px 0;">
+                  <input type="checkbox" class="pc" name="agreebbrule" value="$bbrulehash" id="agreebbrule" checked="checked" /> <label for="agreebbrule">阅读并接受<a href="/privacy" style="color:red;margin-left: 10px;" target="_blank">阅读并接受《东风风光超级风迷车友会会员手册》</a></label>
+                  </div>
+                <!--{/if}-->
 								<!--{if $_GET[action] != 'activation'}--><em>&nbsp;</em><!--{/if}-->
 									<button class="pn pnc" id="registerformsubmit" type="submit" name="regsubmit" value="true" tabindex="1"><strong><!--{if $_GET[action] == 'activation'}-->{lang activation}<!--{else}-->{lang submit}<!--{/if}--></strong></button>
-								<!--{if $bbrules}-->
-									<input type="checkbox" class="pc" name="agreebbrule" value="$bbrulehash" id="agreebbrule" checked="checked" /> <label for="agreebbrule">{lang agree}<a href="javascript:;" onclick="showBBRule()">{lang rulemessage}</a></label>
-								<!--{/if}-->
 							</span>
 						</td>
-						<td class="tipcolOther"><!--{if $this->setting['sitemessage'][register]}--><a href="javascript:;" id="custominfo_register" class="y"><img src="{IMGDIR}/info_small.gif" alt="{lang faq}" /></a><!--{/if}--></td>
+						<td style="padding: 0;" class="tipcolOther"><!--{if $this->setting['sitemessage'][register]}--><a href="javascript:;" id="custominfo_register" class="y"><img src="{IMGDIR}/info_small.gif" alt="{lang faq}" /></a><!--{/if}--></td>
 					</tr>
 				</table>
 			</div>
