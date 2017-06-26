@@ -103,7 +103,7 @@ class OwnerVerify extends Command
                         //更新数据到用户信息
                         foreach ($data as $k=>$v){
                             if(empty($v)){
-                                unset($data);
+                                unset($data[$k]);
                             }
                         }
                         DB::table('discuz_common_member_profile')
