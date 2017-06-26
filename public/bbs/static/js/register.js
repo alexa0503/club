@@ -295,7 +295,7 @@ function checkpassword(id1, id2) {
 	}
 	if(pwlength > 0) {
 		if($(id1).value.length < pwlength) {
-			errormessage(id1, '密码太短，不得少于 '+pwlength+' 个字符');
+			errormessage(id1, '最小长度6个字符, 支持数字、大小字母和标点符号');
 			return;
 		}
 	}
