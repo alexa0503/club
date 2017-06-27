@@ -88,40 +88,7 @@ Route::get('/discuz/logout', function(){
     $url = url('/').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=synlogout&time=".$timestamp, 'ENCODE', $key));
     return ['ret'=>0,'url'=>$url];
 });
-Route::get('/discuz/verify' ,function(Request $request){
-    $options = [
-        'frame_number'=>$request->input('frame_number'),
-        'id_card'=>$request->input('id_card'),
-        'register_date'=>date('Y-m-d H:i:s'),
-        'type'=>'1',
-    ];
-    $client = new \SoapClient("http://interface.dfsk.com.cn/infodms_interface_hy/services/HY01SOAP?wsdl");
-    $options = [
-        'in'=>json_encode($options),
-    ];
-    $response = $client->__soapCall("Hy01", array($options));
-	$result = json_decode($response->out,true);
-	if($result['ret'] == 0){
-		//增加积分
-	}
-	return $result;
-});
-Route::get('/discuz/points/{id}', function(Request $request, $id){
-	$options = [
-        'frame_number'=>$request->input('frame_number'),
-        'id_card'=>$request->input('id_card'),
-    ];
-	$client = new \SoapClient("http://interface.dfsk.com.cn/infodms_interface_hy/services/HY02SOAP?wsdl");
-    $options = [
-        'in'=>json_encode($options),
-    ];
-    $response = $client->__soapCall("Hy02", array($options));
-	$result = json_decode($response->out,true);
-	if($result['ret'] == 0){
-		//增加积分
-	}
-	return $result;
-});
+
 
 Auth::routes();
 

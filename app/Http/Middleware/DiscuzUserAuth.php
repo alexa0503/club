@@ -41,6 +41,7 @@ class DiscuzUserAuth
             else{
                 \Session::put('discuz.hasLogin',true);
                 \Session::put('discuz.user', $user->toArray());
+                \Session::put('discuz.user.avatar', $user->avatar);
                 //var_dump($user->user_group);
                 \Session::put('discuz.user.user_count', $user->user_count->toArray());
                 \Session::put('discuz.user.user_group', $user->user_group->toArray());

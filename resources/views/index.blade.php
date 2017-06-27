@@ -6,10 +6,10 @@
     <meta name="MSSmartTagsPreventParsing" content="True" />
     <meta http-equiv="MSThemeCompatible" content="Yes" />
     <link rel="stylesheet" type="text/css" href="/bbs/data/cache/style_1_common.css?Pxk" />
-<script>
-    SITEURL = '{{url("/")}}';
-    charset = 'UTF-8';
-</script>
+    <script>
+        SITEURL = '{{url("/")}}';
+        charset = 'UTF-8';
+    </script>
     <script src="/bbs/static/js/common.js?Pxk" type="text/javascript"></script>
     <meta name="application-name" content="超级风迷东风风光车友会" />
     <meta name="msapplication-tooltip" content="超级风迷东风风光车友会" />
@@ -17,6 +17,35 @@
     <script src="/bbs/static/js/portal.js?Pxk" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="/bbs/static/assets/css/screen.min.css">
     <link rel="stylesheet" type="text/css" href="/bbs/static/assets/css/swiper-3.4.1.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+    <style type="text/css">
+        #login-after {
+            height: 374px;
+            background: url({{asset('/images/bkg-index-login.jpg')}}) 0 0 no-repeat #f9f8f8;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        #login-after .avatar {
+            padding-top:160px;
+        }
+        #login-after .title {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            line-height: 36px;
+            font-size:16px;
+            font-weight: bold;
+            color: #000;
+        }
+        #login-after .text {
+            line-height:24px;
+            font-size: 12px;
+            color: #828282;
+        }
+        #login-after .text .split {
+            margin: 0px 20px;
+        }
+    </style>
 
 </head>
 
@@ -31,12 +60,10 @@
                 <div class="left">
                     <!-- kv start -->
                     <div id="kv" style="height: 450px;">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                @foreach($kvs as $kv)
+                        <div class="slick">
+                            @foreach($kvs as $kv)
                                 <div class="swiper-slide"><a href="{{$kv->link}}"><img src="{{asset($kv->image)}}" alt="" height="450" width="800"></a></div>
-                                @endforeach
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <!-- kv end -->
@@ -76,8 +103,8 @@
                             </div>
                             <div id="recommend_content" class="cl">
                                 <ul>
-                            @foreach($features as $k=>$feature)
-                                @if($k>0)
+                                    @foreach($features as $k=>$feature)
+                                        @if($k>0)
                                             <li>
                                                 <div class="left">
                                                     <a href="{{$feature->link}}"><img src="/bbs/static/assets/imgs/recommend/car_pic1.png" alt=""></a>
@@ -103,8 +130,8 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                @endif
-                            @endforeach
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -127,64 +154,64 @@
                         </div>
                         <div class="contentsWrap cl">
                             @if(count($hots)>0)
-                            <div class="left">
-                                <div class="showWrap">
-                                    <a href="{{$hots[0]->link}}"><img src="{{$hots[0]->image}}" alt=""></a>
-                                </div>
-                                <div class="userWrap">
-                                    <div class="top cl">
-                                        <div class="avatar">
-                                            <img src="{{$hots[0]->avatar}}" alt="">
+                                <div class="left">
+                                    <div class="showWrap">
+                                        <a href="{{$hots[0]->link}}"><img src="{{$hots[0]->image}}" alt=""></a>
+                                    </div>
+                                    <div class="userWrap">
+                                        <div class="top cl">
+                                            <div class="avatar">
+                                                <img src="{{$hots[0]->avatar}}" alt="">
+                                            </div>
+                                            <div class="name">
+                                                <h3><a href="{{$hots[0]->link}}">{{$hots[0]->title}}</a></h3>
+                                                <span>{{$hots[0]->username}}</span>
+                                            </div>
                                         </div>
-                                        <div class="name">
-                                            <h3><a href="{{$hots[0]->link}}">{{$hots[0]->title}}</a></h3>
-                                            <span>{{$hots[0]->username}}</span>
+                                        <p>{{$hots[0]->description}}</p>
+                                        <div class="icons cl">
+                                            <div class="iconsWrap">
+                                                <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
+                                                <span>{{$hots[0]->like_num}}</span>
+                                            </div>
+                                            <div class="iconsWrap">
+                                                <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
+                                                <span>{{$hots[0]->share_num}}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <p>{{$hots[0]->description}}</p>
-                                    <div class="icons cl">
-                                        <div class="iconsWrap">
-                                            <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
-                                            <span>{{$hots[0]->like_num}}</span>
-                                        </div>
-                                        <div class="iconsWrap">
-                                            <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                            <span>{{$hots[0]->share_num}}</span>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
                             @endif
                             <div class="right">
                                 <ul class="cl">
-                                @if(count($hots)>0)
-                                @foreach($hots as $k=>$hot)
-                                    @if($k > 0)
-                                        <li>
-                                            <div class="top cl">
-                                                <div class="avatar">
-                                                    <a href="{{$hot->link}}"><img src="{{$hot->avatar}}" alt=""></a>
-                                                </div>
-                                                <div class="name">
-                                                    <h3><a href="{{$hot->link}}">{{$hot->title}}</a></h3>
-                                                    <span>{{$hot->username}}</span>
-                                                </div>
-                                            </div>
-                                            <p>{{$hot->description}}</p>
-                                            <div class="icons cl">
-                                                <div class="iconsWrap">
-                                                    <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
-                                                    <span>{{$hot->like_num}}</span>
-                                                </div>
-                                                <div class="iconsWrap">
-                                                    <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                                    <span>{{$hot->share_num}}</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        @endif
-                                @endforeach
-                                @endif
+                                    @if(count($hots)>0)
+                                        @foreach($hots as $k=>$hot)
+                                            @if($k > 0)
+                                                <li>
+                                                    <div class="top cl">
+                                                        <div class="avatar">
+                                                            <a href="{{$hot->link}}"><img src="{{$hot->avatar}}" alt=""></a>
+                                                        </div>
+                                                        <div class="name">
+                                                            <h3><a href="{{$hot->link}}">{{$hot->title}}</a></h3>
+                                                            <span>{{$hot->username}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <p>{{$hot->description}}</p>
+                                                    <div class="icons cl">
+                                                        <div class="iconsWrap">
+                                                            <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
+                                                            <span>{{$hot->like_num}}</span>
+                                                        </div>
+                                                        <div class="iconsWrap">
+                                                            <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
+                                                            <span>{{$hot->share_num}}</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -192,107 +219,118 @@
                     <!-- hotpoint end -->
                 </div>
                 <div class="right">
-                    @if(!Session::get('discuz.hasLogin'))
-                    <div id="login">
-                        <div class="loginWrap">
-                            <h2>账号登录</h2>
-                            <div class="row">
-                                <input name="name" type="text" id="name" class="name" value="" placeholder="会员账号/手机号">
-                            </div>
-                            <div class="row">
-                                <input name="password" type="password" id="password" class="password" value="" placeholder="请输入密码">
-                            </div>
-                            <div class="row remember cl">
-                                <div class="checkboxs">
-                                    <input id="rm_ck" type="checkbox" checked="checked" />
-                                    <label for="rm_ck">记住我</label>
+                    @if(!session('discuz.hasLogin'))
+                        <div id="login">
+                            <div class="loginWrap">
+                                <h2>账号登录</h2>
+                                <div class="row">
+                                    <input name="name" type="text" id="name" class="name" value="" placeholder="会员账号/手机号">
                                 </div>
-                                <div class="links">
-                                    <a href="http://club.dffengguang.com.cn/bbs/member.php?mod=logging&action=login&referer=forum.php">忘记密码</a>
+                                <div class="row">
+                                    <input name="password" type="password" id="password" class="password" value="" placeholder="请输入密码">
                                 </div>
-                            </div>
-                            <div class="login_b">
-                                <!-- <img src="/bbs/static/assets/imgs/login_btn.jpg" alt=""> -->
-                                <div class="login_btn_con"><a id="login_btn" href="javascript:;">登录</a></div>
-                                <span>还没有账号？<a href="/bbs/member.php?mod=register">立即注册！</a></span>
+                                <div class="row remember cl">
+                                    <div class="checkboxs">
+                                        <input id="rm_ck" type="checkbox" checked="checked" />
+                                        <label for="rm_ck">记住我</label>
+                                    </div>
+                                    <div class="links">
+                                        <a href="http://club.dffengguang.com.cn/bbs/member.php?mod=logging&action=login&referer=forum.php">忘记密码</a>
+                                    </div>
+                                </div>
+                                <div class="login_b">
+                                    <!-- <img src="/bbs/static/assets/imgs/login_btn.jpg" alt=""> -->
+                                    <div class="login_btn_con"><a id="login_btn" href="javascript:;">登录</a></div>
+                                    <span>还没有账号？<a href="/bbs/member.php?mod=register">立即注册！</a></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+                        <div id="login-after">
+                            <div class="avatar">
+                                <a href="{{url('/bbs/home.php?mod=spacecp&ac=profile')}}"><img src="{{session('discuz.user.avatar')}}" width="108" height="108"></a>
+                            </div>
+                            <div class="title">用户名：{{session('discuz.user.username')}}</div>
+                            <div class="text">
+                                积分：{{session('discuz.user.user_count.extcredits1')}}<span class="split">|</span>用户组：{{session('discuz.user.user_group.grouptitle')}}</div>
+
+
+                        </div>
                     @endif
-                    <!-- login end -->
+                <!-- login end -->
                     @if(count($right_top_kv)>0)
                         <div class="showWrap">
                             <a href="{{$right_top_kv[0]->link}}"><img src="{{$right_top_kv[0]->image}}" alt="{{$right_top_kv[0]->title}}"></a>
                         </div>
                     @endif
-                    <!-- activity start -->
+                <!-- activity start -->
                     <div id="activity" class="contentStyle">
                         <div class="titles">
                             <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/activity.png" alt=""></a>
                         </div>
                         <div class="content">
                             <ul>
-                        @if(count($events) > 0)
-                        @foreach($events as $k=>$event)
-                            @if($k == 0)
-                                <li class="first">
-                                    <div class="listWrap">
-                                        <div class="showWrap">
-                                            <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
-                                        </div>
-                                        <h2><a href="{{$event->link}}">{{$event->title}}</a></h2>
-                                        <div class="userWrap">
-                                            <div class="icons cl">
-                                                <div class="iconsWrap">
-                                                    <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
-                                                    <span>{{$event->like_num}}</span>
-                                                </div>
-                                                <div class="iconsWrap">
-                                                    <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                                    <span>{{$event->share_num}}</span>
-                                                </div>
-                                            </div>
-                                            <p>{{$event->description}}</p>
-                                        </div>
+                                @if(count($events) > 0)
+                                    @foreach($events as $k=>$event)
+                                        @if($k == 0)
+                                            <li class="first">
+                                                <div class="listWrap">
+                                                    <div class="showWrap">
+                                                        <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
+                                                    </div>
+                                                    <h2><a href="{{$event->link}}">{{$event->title}}</a></h2>
+                                                    <div class="userWrap">
+                                                        <div class="icons cl">
+                                                            <div class="iconsWrap">
+                                                                <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
+                                                                <span>{{$event->like_num}}</span>
+                                                            </div>
+                                                            <div class="iconsWrap">
+                                                                <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
+                                                                <span>{{$event->share_num}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <p>{{$event->description}}</p>
+                                                    </div>
 
-                                    </div>
-                                </li>
-                            @else
-                                <li>
-                                    <div class="listWrap">
-                                        <div class="left">
-                                            <div class="showWrap">
-                                                <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
-                                            </div>
-                                        </div>
-                                        <div class="right">
-                                            <h3><a href="{{$event->link}}">{{$event->title}}</a></h3>
-                                            <div class="userWrap">
-                                                <div class="icons cl">
-                                                    <div class="iconsWrap">
-                                                        <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
-                                                        <span>{{$event->like_num}}</span>
+                                                </div>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <div class="listWrap">
+                                                    <div class="left">
+                                                        <div class="showWrap">
+                                                            <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
+                                                        </div>
                                                     </div>
-                                                    <div class="iconsWrap">
-                                                        <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                                        <span>{{$event->share_num}}</span>
+                                                    <div class="right">
+                                                        <h3><a href="{{$event->link}}">{{$event->title}}</a></h3>
+                                                        <div class="userWrap">
+                                                            <div class="icons cl">
+                                                                <div class="iconsWrap">
+                                                                    <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
+                                                                    <span>{{$event->like_num}}</span>
+                                                                </div>
+                                                                <div class="iconsWrap">
+                                                                    <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
+                                                                    <span>{{$event->share_num}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            @endif
-                        @endforeach
-                        @endif
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
                     </div>
                     <!-- activity end -->
                     @if(count($right_bottom_kv)>0)
-                    <div class="showWrap">
-                        <a href="{{$right_bottom_kv[0]->link}}"><img src="{{$right_bottom_kv[0]->image}}" alt="{{$right_bottom_kv[0]->title}}"></a>
-                    </div>
+                        <div class="showWrap">
+                            <a href="{{$right_bottom_kv[0]->link}}"><img src="{{$right_bottom_kv[0]->image}}" alt="{{$right_bottom_kv[0]->title}}"></a>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -340,11 +378,6 @@
         // 底部点击出现
         _quick_links.on('click', function() {
             _quick_links_con.slideToggle();
-        });
-
-
-        var mySwiper = new Swiper('.swiper-container', {
-            autoplay: 3000
         });
 
     });
@@ -481,6 +514,17 @@
             if( e.type =="mouseleave" ){
                 _weixinR.hide();
             }
+        });
+    })
+</script>
+<script src="/js/slick.js"></script>
+<script>
+    jQuery(function () {
+        jQuery('.slick').slick({
+            'prevArrow':null,
+            'nextArrow':null,
+            'dots':true,
+            'autoplay':true
         });
     })
 </script>

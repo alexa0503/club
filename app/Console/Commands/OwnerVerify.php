@@ -70,6 +70,9 @@ class OwnerVerify extends Command
                     ];
                     $response = $client->__soapCall("Hy01", array($options));
                     $result = json_decode($response->out,true);
+                    $key = env('DISCUZ_UCKEY');
+                    $fromuid = 1;
+                    $timestamp = time();
                     if($result['ret'] == 0){
 
                         $user_count = \App\UserCount::where('uid',$row->uid)->first();
@@ -86,7 +89,7 @@ class OwnerVerify extends Command
                         $logid = DB::table('discuz_common_credit_log')->insertGetId([
                             'uid' => $row->uid,
                             'operation'=>'',
-                            'relatedid'=>0,
+                            'relatedid'=>$row->uid,
                             'dateline'=>time()+8*3600,
                             'extcredits1'=>$credits1,
                             'extcredits4'=>$credits4,
@@ -117,17 +120,16 @@ class OwnerVerify extends Command
                             ->where('uid', $row->uid)
                             ->update(['verify1' => 1]);
                         //删除验证信息
-                        DB::table('discuz_common_member_verify_info')->where('verifytype',1)->where('uid', $row->uid)->delete();
-                        $key = env('DISCUZ_UCKEY');
-                        $fromuid = 1;
-                        $msgto = $row->uid;
-                        $subject = '购买商品成功';
-                        $message = '';
-                        $timestamp = time();
-                        $url = url('/').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=".$fromuid."&msgto=".$msgto."&subject=".$subject."&message=".$message."&time=".$timestamp, 'ENCODE', $key));
-                        $client = new \GuzzleHttp\Client();
-                        $client->request('GET', $url);
+                        DB::table('discuz_common_member_verify_info')
+                            ->where('verifytype',1)
+                            ->where('uid', $row->uid)
+                            ->delete();
+
+
                         //发送消息
+                        $msgto = $row->uid;
+                        $subject = '车主验证成功';
+                        $message = '恭喜您，车主验证成功，你获取了积分与风迷币奖励。奖励入下：'.$credits1.' 积分，'.$credits4.'风迷币。';
                     }
                     else{
                         DB::table('discuz_common_member_verify')
@@ -140,7 +142,13 @@ class OwnerVerify extends Command
                             ->where('uid', $row->uid)
                             ->update(['flag'=> -1]);
                         //发送消息
+                        $msgto = $row->uid;
+                        $subject = '车主验证失败。';
+                        $message = '抱歉，您的车主验证失败，请仔细检查所填项。';
                     }
+                    $url = env('APP_URL').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=".$fromuid."&msgto=".$msgto."&subject=".$subject."&message=".$message."&time=".$timestamp, 'ENCODE', $key));
+                    $client = new \GuzzleHttp\Client();
+                    $client->request('GET', $url);
                 }
             }
 
