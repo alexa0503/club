@@ -7,7 +7,7 @@
 <?PHP exit;?>	1497422817	admin	1	112.64.140.130	moderate	GET={}; POST={};
 <?PHP exit;?>	1497422818	admin	1	112.64.140.130	nav	GET={}; POST={};
 <?PHP exit;?>	1497422818	admin	1	112.64.140.130	setting	GET={operation=basic; }; POST={};
-<?PHP exit;?>	1497422918	admin	1	112.64.140.130	setting	GET={edit=yes; operation=basic; settingnew={bbname=Discuz! Board; sitename=Comsenz Inc.; siteurl=http://bbs.himyweb.com/; adminemail=wanga503@outlook.com; }; settingsubmit=提交; }; POST={operation=basic; settingnew={bbname=Discuz! Board; sitename=Comsenz Inc.; siteurl=http://bbs.himyweb.com/; adminemail=wanga503@outlook.com; }; settingsubmit=提交; };
+<?PHP exit;?>	1497422918	admin	1	112.64.140.130	setting	GET={edit=yes; operation=basic; settingnew={bbname=Discuz! Board; sitename=Comsenz Inc.; siteurl=http://club.dffengguang.com.cn/bbs/; adminemail=wanga503@outlook.com; }; settingsubmit=提交; }; POST={operation=basic; settingnew={bbname=Discuz! Board; sitename=Comsenz Inc.; siteurl=http://club.dffengguang.com.cn/bbs/; adminemail=wanga503@outlook.com; }; settingsubmit=提交; };
 <?PHP exit;?>	1497422920	admin	1	112.64.140.130	nav	GET={}; POST={};
 <?PHP exit;?>	1497422924	admin	1	112.64.140.130	nav	GET={operation=topnav; }; POST={};
 <?PHP exit;?>	1497422925	admin	1	112.64.140.130	portalcategory	GET={}; POST={};

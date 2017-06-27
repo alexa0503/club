@@ -109,7 +109,6 @@
 @yield('content')
 <footer>
     <div class="container">
-
         <div class="pull-right" id="footer-services">
             <div class="rows">
                 <h4>24小时关怀热线</h4>

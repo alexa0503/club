@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\OwnerVerify::class
+        Commands\OwnerVerify::class,
+        Commands\PointsUpdate::class,
     ];
 
     /**
@@ -27,7 +28,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('owner:verify')
-            ->everyFiveMinutes();
+            ->everyMinute();
+        $schedule->command('points:update')
+            ->hourly();
     }
 
     /**

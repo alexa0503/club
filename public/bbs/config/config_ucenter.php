@@ -13,7 +13,7 @@ define('UC_DBCONNECT', 0);
 
 define('UC_CHARSET', 'utf-8');
 define('UC_KEY', 'S6X872P1jdB0Y832YaC8Hct8q7keUeVeZfg6p1l2H8E1Ue19v9z564S0h712W0E0');
-define('UC_API', 'http://bbs.himyweb.com/uc_server');
+define('UC_API', 'http://club.himyweb.com/bbs/uc_server');
 define('UC_APPID', '1');
 define('UC_IP', '');
 define('UC_PPP', 20);
