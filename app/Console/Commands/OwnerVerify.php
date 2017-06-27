@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\DiscuzHelper;
 
 class OwnerVerify extends Command
 {
@@ -117,6 +118,15 @@ class OwnerVerify extends Command
                             ->update(['verify1' => 1]);
                         //删除验证信息
                         DB::table('discuz_common_member_verify_info')->where('verifytype',1)->where('uid', $row->uid)->delete();
+                        $key = env('DISCUZ_UCKEY');
+                        $fromuid = 1;
+                        $msgto = $row->uid;
+                        $subject = '购买商品成功';
+                        $message = '';
+                        $timestamp = time();
+                        $url = url('/').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=".$fromuid."&msgto=".$msgto."&subject=".$subject."&message=".$message."&time=".$timestamp, 'ENCODE', $key));
+                        $client = new \GuzzleHttp\Client();
+                        $client->request('GET', $url);
                         //发送消息
                     }
                     else{

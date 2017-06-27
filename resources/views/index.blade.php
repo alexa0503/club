@@ -54,10 +54,10 @@
                         </div>
                         <div class="contentsWrap">
                             <div id="recommend_hot" class="cl">
-                                <div class="left"><img src="/bbs/static/assets/imgs/recommend/recommend_t_pic.jpg" alt=""></div>
+                                <div class="left"><a href="{{$features[0]->link}}"><img src="{{$features[0]->image}}" alt=""></a></div>
                                 <div class="right">
                                     <div class="content">
-                                        <h2>{{$features[0]->title}}</h2>
+                                        <h2><a href="{{$features[0]->link}}">{{$features[0]->title}}</a></h2>
                                         <p>{!! $features[0]->description !!}</p>
                                     </div>
                                     <div class="userWrap">
@@ -87,7 +87,7 @@
                                 @if($k>0)
                                             <li>
                                                 <div class="left">
-                                                    <img src="/bbs/static/assets/imgs/recommend/car_pic1.png" alt="">
+                                                    <a href="{{$feature->link}}"><img src="/bbs/static/assets/imgs/recommend/car_pic1.png" alt=""></a>
                                                 </div>
                                                 <div class="right">
                                                     <h2><a href="{{$feature->link}}">{{$feature->title}}</a></h2>
@@ -136,7 +136,7 @@
                             @if(count($hots)>0)
                             <div class="left">
                                 <div class="showWrap">
-                                    <img src="{{$hots[0]->image}}" alt="">
+                                    <a href="{{$hots[0]->link}}"><img src="{{$hots[0]->image}}" alt=""></a>
                                 </div>
                                 <div class="userWrap">
                                     <div class="top cl">
@@ -144,7 +144,7 @@
                                             <img src="{{$hots[0]->avatar}}" alt="">
                                         </div>
                                         <div class="name">
-                                            <h3>{{$hots[0]->title}}</h3>
+                                            <h3><a href="{{$hots[0]->link}}">{{$hots[0]->title}}</a></h3>
                                             <span>{{$hots[0]->username}}</span>
                                         </div>
                                     </div>
@@ -170,7 +170,7 @@
                                         <li>
                                             <div class="top cl">
                                                 <div class="avatar">
-                                                    <img src="{{$hot->avatar}}" alt="">
+                                                    <a href="{{$hot->link}}"><img src="{{$hot->avatar}}" alt=""></a>
                                                 </div>
                                                 <div class="name">
                                                     <h3><a href="{{$hot->link}}">{{$hot->title}}</a></h3>
@@ -245,7 +245,7 @@
                                 <li class="first">
                                     <div class="listWrap">
                                         <div class="showWrap">
-                                            <img src="{{$event->image}}" alt="">
+                                            <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
                                         </div>
                                         <h2><a href="{{$event->link}}">{{$event->title}}</a></h2>
                                         <div class="userWrap">
@@ -269,7 +269,7 @@
                                     <div class="listWrap">
                                         <div class="left">
                                             <div class="showWrap">
-                                                <img src="{{$event->image}}" alt="">
+                                                <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
                                             </div>
                                         </div>
                                         <div class="right">
