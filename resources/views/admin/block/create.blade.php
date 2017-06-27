@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <!-- End .form-group  -->
-                                
+
                                 <div class="form-group">
                                     <label for="" class="col-lg-2 col-md-3 control-label">是否发布</label>
                                     <div class="col-lg-10 col-md-9">

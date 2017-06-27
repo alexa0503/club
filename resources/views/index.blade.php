@@ -216,7 +216,7 @@
                 </div>
                 <div class="right">
                     @if(!session('discuz.hasLogin'))
-                        <div id="login">
+                        <div id="login" style="height: 370px;">
                             <div class="loginWrap">
                                 <h2>账号登录</h2>
                                 <div class="row">

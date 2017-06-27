@@ -76,7 +76,7 @@ class BlockController extends Controller
             DB::rollBack();
             return response(['gallery[]' => $e->getMessage()], 422);
         }
-        return response(['ret'=>0,'url'=>route('page.block.index',['page'=>$page])]);
+        return response(['ret'=>0,'url'=>route('page.block.index',['page'=>$page,'name'=>$request->input('name')])]);
     }
 
     /**
@@ -137,7 +137,7 @@ class BlockController extends Controller
             DB::rollBack();
             return response(['gallery[]' => $e->getMessage()], 422);
         }
-        return response(['ret'=>0,'url'=>route('page.block.index',['page'=>$page])]);
+        return response(['ret'=>0,'url'=>route('page.block.index',['page'=>$page,'name'=>$request->input('name')])]);
 
     }
 
