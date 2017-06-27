@@ -32,7 +32,7 @@ class User extends Model
 
     public function getAvatarAttribute($value)
     {
-        return url('/').'/bbs/uc_server/avatar.php?uid='.$this->uid.'&type=real&size=middle&_='.time();
+        return url('/').'/bbs/uc_server/avatar.php?uid='.$this->uid.'&size=middle&_='.time();
     }
 
 }
