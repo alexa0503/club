@@ -19,7 +19,7 @@ class OwnerVerify extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'verify owner';
 
     /**
      * Create a new command instance.
@@ -41,7 +41,10 @@ class OwnerVerify extends Command
         $member_verify = DB::table('discuz_common_member_verify')->where('verify1',0)->get();
         foreach($member_verify as $row){
             if($row->verify1 == 0){
-                $info = DB::table('discuz_common_member_verify_info')->where('verifytype',1)->where('uid', $row->uid)->first();
+                $info = DB::table('discuz_common_member_verify_info')
+                    ->where('verifytype',1)
+                    ->where('uid', $row->uid)
+                    ->first();
                 if( $info->flag == 0 ){
                     $data = @unserialize($info->field);
                     if( !$data || !isset($data['field1']) || !$data['field3']){
@@ -121,10 +124,11 @@ class OwnerVerify extends Command
                             ->where('verify1', 0)
                             ->where('uid', $row->uid)
                             ->update(['verify1' => -1]);
+
                         DB::table('discuz_common_member_verify_info')
                             ->where('verifytype',1)
                             ->where('uid', $row->uid)
-                            ->update(['flag'=>-1]);
+                            ->update(['flag'=> -1]);
                         //发送消息
                     }
                 }
