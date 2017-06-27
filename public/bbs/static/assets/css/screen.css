@@ -306,7 +306,7 @@ body {
   border-top: 5px solid #f50c0c;
   background: url(../imgs/commons/white-opacity.png) 0 0 repeat; }
 #nv_portal .contentsWrap {
-  padding: 15px 25px 25px 25px; }
+  padding: 15px 25px 25px 5px; }
 #nv_portal #recommend_hot h2 {
   color: #000;
   font-size: 18px; }
@@ -367,26 +367,26 @@ body {
   #nv_portal #recommend_content .name {
     float: left;
     line-height: 23px;
-    margin-left: 10px; }
+    margin-left: 0; }
   #nv_portal #recommend_content .iconsWrap {
     float: left;
     line-height: 23px;
     margin-left: 15px; }
   #nv_portal #recommend_content li {
     float: left;
-    width: 340px;
+    width: 345px;
     padding-bottom: 15px;
     margin-bottom: 15px;
     padding-right: 30px;
     border-bottom: 1px solid #d99288; }
     #nv_portal #recommend_content li .left {
       float: left;
-      width: 75px;
+      width: 60px;
       height: auto; }
       #nv_portal #recommend_content li .left img {
         display: block; }
     #nv_portal #recommend_content li .right {
-      margin-left: 90px; }
+      margin-left: 64px; }
 #nv_portal #hotpoint .menus {
   border-bottom: 1px solid #fdc3c3;
   margin-top: -30px; }
@@ -431,9 +431,9 @@ body {
     margin-left: -20px; }
     #nv_portal #hotpoint .contentsWrap .right ul li {
       float: left;
-      width: 175px;
-      border-bottom: 1px solid #dbdbdb;
-      margin-bottom: 20px;
+      width: 385px;
+      border-bottom: 1px solid #d99288;
+      margin-bottom: 25px;
       padding-bottom: 5px;
       margin-left: 20px; }
       #nv_portal #hotpoint .contentsWrap .right ul li h3 {

@@ -29,6 +29,9 @@
         #login-after .avatar {
             padding-top:160px;
         }
+        #login-after .avatar img{
+            border-radius:50%
+        }
         #login-after .title {
             padding-top: 10px;
             padding-bottom: 10px;
@@ -107,15 +110,11 @@
                                         @if($k>0)
                                             <li>
                                                 <div class="left">
-                                                    <a href="{{$feature->link}}"><img src="/bbs/static/assets/imgs/recommend/car_pic1.png" alt=""></a>
+                                                    <a href="{{$feature->link}}"><img src="{{$feature->avatar}}" alt="" width="48" height="48"></a>
                                                 </div>
                                                 <div class="right">
                                                     <h2><a href="{{$feature->link}}">{{$feature->title}}</a></h2>
-                                                    <p>{{$feature->description}}</p>
                                                     <div class="userWrap">
-                                                        <div class="avatar">
-                                                            <img src="{{$feature->avatar}}" alt="">
-                                                        </div>
                                                         <div class="name">
                                                             <span>{{$feature->username}}</span>
                                                         </div>
@@ -186,28 +185,25 @@
                                 <ul class="cl">
                                     @if(count($hots)>0)
                                         @foreach($hots as $k=>$hot)
-                                            @if($k > 0)
+                                            @if($k > 0 && $k < 5)
                                                 <li>
                                                     <div class="top cl">
                                                         <div class="avatar">
-                                                            <a href="{{$hot->link}}"><img src="{{$hot->avatar}}" alt=""></a>
+                                                            <a href="{{$hot->link}}"><img width="48" height="48" src="{{$hot->avatar}}" alt=""></a>
                                                         </div>
                                                         <div class="name">
                                                             <h3><a href="{{$hot->link}}">{{$hot->title}}</a></h3>
-                                                            <span>{{$hot->username}}</span>
+                                                            <div style="padding-top: 5px;">
+                                                                <span>{{$hot->username}}</span>
+                                                                <span style="margin-left: 10px;"><img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt=""></span>
+                                                                <span>{{$hot->like_num}}</span>
+                                                                <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
+                                                                <span>{{$hot->share_num}}</span>
+                                                            </div>
+
                                                         </div>
                                                     </div>
-                                                    <p>{{$hot->description}}</p>
-                                                    <div class="icons cl">
-                                                        <div class="iconsWrap">
-                                                            <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
-                                                            <span>{{$hot->like_num}}</span>
-                                                        </div>
-                                                        <div class="iconsWrap">
-                                                            <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                                            <span>{{$hot->share_num}}</span>
-                                                        </div>
-                                                    </div>
+
                                                 </li>
                                             @endif
                                         @endforeach
@@ -264,7 +260,7 @@
                         </div>
                     @endif
                 <!-- activity start -->
-                    <div id="activity" class="contentStyle">
+                    <div id="activity" class="contentStyle" style="height:885px;">
                         <div class="titles">
                             <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/activity.png" alt=""></a>
                         </div>
@@ -272,52 +268,13 @@
                             <ul>
                                 @if(count($events) > 0)
                                     @foreach($events as $k=>$event)
-                                        @if($k == 0)
-                                            <li class="first">
-                                                <div class="listWrap">
-                                                    <div class="showWrap">
-                                                        <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
-                                                    </div>
-                                                    <h2><a href="{{$event->link}}">{{$event->title}}</a></h2>
-                                                    <div class="userWrap">
-                                                        <div class="icons cl">
-                                                            <div class="iconsWrap">
-                                                                <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
-                                                                <span>{{$event->like_num}}</span>
-                                                            </div>
-                                                            <div class="iconsWrap">
-                                                                <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                                                <span>{{$event->share_num}}</span>
-                                                            </div>
-                                                        </div>
-                                                        <p>{{$event->description}}</p>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                        @else
+                                        @if($k < 3)
                                             <li>
                                                 <div class="listWrap">
-                                                    <div class="left">
-                                                        <div class="showWrap">
-                                                            <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right">
-                                                        <h3><a href="{{$event->link}}">{{$event->title}}</a></h3>
-                                                        <div class="userWrap">
-                                                            <div class="icons cl">
-                                                                <div class="iconsWrap">
-                                                                    <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
-                                                                    <span>{{$event->like_num}}</span>
-                                                                </div>
-                                                                <div class="iconsWrap">
-                                                                    <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                                                    <span>{{$event->share_num}}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <a href="{{$event->link}}"><img src="{{$event->image}}" width="242" height="129" alt=""></a>
+                                                    <h2><a href="{{$event->link}}">{{$event->title}}</a></h2>
+                                                    <p>{!! $event->description !!}</p>
+
                                                 </div>
                                             </li>
                                         @endif
@@ -327,11 +284,6 @@
                         </div>
                     </div>
                     <!-- activity end -->
-                    @if(count($right_bottom_kv)>0)
-                        <div class="showWrap">
-                            <a href="{{$right_bottom_kv[0]->link}}"><img src="{{$right_bottom_kv[0]->image}}" alt="{{$right_bottom_kv[0]->title}}"></a>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
