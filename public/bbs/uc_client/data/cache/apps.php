@@ -1,11 +1,11 @@
 <?php
 $_CACHE['apps'] = array (
-  1 => 
+  1 =>
   array (
     'appid' => '1',
     'type' => 'DISCUZX',
     'name' => 'Discuz! Board',
-    'url' => 'http://bbs.himyweb.com',
+    'url' => 'http://club.dffengguang.com.cn/bbs',
     'ip' => '',
     'viewprourl' => '',
     'apifilename' => 'uc.php',
