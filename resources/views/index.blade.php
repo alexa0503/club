@@ -34,7 +34,7 @@
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 @foreach($kvs as $kv)
-                                <div class="swiper-slide"><img src="{{asset($kv->image)}}" alt="" height="450" width="800"></div>
+                                <div class="swiper-slide"><a href="{{$kv->link}}"><img src="{{asset($kv->image)}}" alt="" height="450" width="800"></a></div>
                                 @endforeach
                             </div>
                         </div>
