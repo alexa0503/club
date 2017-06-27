@@ -12,5 +12,4 @@ npm-debug.log
 .env
 /public/bbs/data/log
 /public/bbs/data/cache
-/public/bbs/config/config_global.php
-/public/bbs/config/config_ucenter.php
+/public/bbs/config
