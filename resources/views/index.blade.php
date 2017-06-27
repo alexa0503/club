@@ -271,7 +271,7 @@
                                         @if($k < 3)
                                             <li>
                                                 <div class="listWrap">
-                                                    <a href="{{$event->link}}"><img src="{{$event->image}}" width="242" height="129" alt=""></a>
+                                                    <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
                                                     <h2><a href="{{$event->link}}" title="{{$event->title}}">{{ str_limit($event->title,40,'…')}}</a></h2>
                                                     <p>{!! $event->description !!}</p>
 
