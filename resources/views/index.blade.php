@@ -80,7 +80,7 @@
                                 <div class="left"><a href="{{$features[0]->link}}"><img src="{{$features[0]->image}}" alt=""></a></div>
                                 <div class="right">
                                     <div class="content">
-                                        <h2><a href="{{$features[0]->link}}">{{$features[0]->title}}</a></h2>
+                                        <h2><a href="{{$features[0]->link}}" title="{{$features[0]->title}}">{{ str_limit($features[0]->title,40,'…')}}</a></h2>
                                         <p>{!! $features[0]->description !!}</p>
                                     </div>
                                     <div class="userWrap">
@@ -113,7 +113,7 @@
                                                     <a href="{{$feature->link}}"><img src="{{$feature->avatar}}" alt="" width="48" height="48"></a>
                                                 </div>
                                                 <div class="right">
-                                                    <h2><a href="{{$feature->link}}">{{$feature->title}}</a></h2>
+                                                    <h2><a href="{{$feature->link}}" title="{{$feature->title}}">{{ str_limit($feature->title,40,'…')}}</a></h2>
                                                     <div class="userWrap">
                                                         <div class="name">
                                                             <span>{{$feature->username}}</span>
@@ -160,10 +160,10 @@
                                     <div class="userWrap">
                                         <div class="top cl">
                                             <div class="avatar">
-                                                <img src="{{$hots[0]->avatar}}" alt="">
+                                                <img src="{{$hots[0]->avatar}}" alt="" width="48" height="48">
                                             </div>
                                             <div class="name">
-                                                <h3><a href="{{$hots[0]->link}}">{{$hots[0]->title}}</a></h3>
+                                                <h3><a href="{{$hots[0]->link}}" title="{{$hots[0]->title}}">{{ str_limit($hots[0]->title,40,'…')}}</a></h3>
                                                 <span>{{$hots[0]->username}}</span>
                                             </div>
                                         </div>
@@ -192,7 +192,7 @@
                                                             <a href="{{$hot->link}}"><img width="48" height="48" src="{{$hot->avatar}}" alt=""></a>
                                                         </div>
                                                         <div class="name">
-                                                            <h3><a href="{{$hot->link}}">{{$hot->title}}</a></h3>
+                                                            <h3><a href="{{$hot->link}}" title="{{$hot->title}}">{{ str_limit($hot->title,40,'…')}}</a></h3>
                                                             <div style="padding-top: 5px;">
                                                                 <span>{{$hot->username}}</span>
                                                                 <span style="margin-left: 10px;"><img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt=""></span>
@@ -272,7 +272,7 @@
                                             <li>
                                                 <div class="listWrap">
                                                     <a href="{{$event->link}}"><img src="{{$event->image}}" width="242" height="129" alt=""></a>
-                                                    <h2><a href="{{$event->link}}">{{$event->title}}</a></h2>
+                                                    <h2><a href="{{$event->link}}" title="{{$event->title}}">{{ str_limit($event->title,40,'…')}}</a></h2>
                                                     <p>{!! $event->description !!}</p>
 
                                                 </div>
