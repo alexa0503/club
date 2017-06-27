@@ -85,7 +85,7 @@ class OwnerVerify extends Command
                         */
                         $user_count->extcredits1 += $credits1;
                         $user_count->extcredits4 += $credits4;
-                        $$user_count->save();
+                        $user_count->save();
                         //更新积分
                         $logid = DB::table('discuz_common_credit_log')->insertGetId([
                             'uid' => $row->uid,
