@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\DiscuzHelper;
+use Illuminate\Support\Facades\DB;
 
 class MallController extends Controller
 {
@@ -98,6 +99,25 @@ class MallController extends Controller
             ['extcredits4'=>$user_count->point - $amount]
         );
         //订单提交
+        $logid = DB::table('discuz_common_credit_log')->insertGetId([
+            'uid' => $uid,
+            'operation'=>'',
+            'relatedid'=>$uid,
+            'dateline'=>time()+8*3600,
+            'extcredits1'=>0,
+            'extcredits4'=>$amount*-1,
+            'extcredits2'=>0,
+            'extcredits3'=>0,
+            'extcredits5'=>0,
+            'extcredits6'=>0,
+            'extcredits7'=>0,
+            'extcredits8'=>0,
+        ]);
+        DB::table('discuz_common_credit_log_field')->insert([
+            'logid'=>$logid,
+            'title'=>'商城购买',
+            'text'=>'购买商品消耗风迷币',
+        ]);
 
 
         $timestamp = time();
