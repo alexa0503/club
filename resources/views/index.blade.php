@@ -90,7 +90,7 @@
                                                     <img src="/bbs/static/assets/imgs/recommend/car_pic1.png" alt="">
                                                 </div>
                                                 <div class="right">
-                                                    <h2>{{$feature->title}}</h2>
+                                                    <h2><a href="{{$feature->link}}">{{$feature->title}}</a></h2>
                                                     <p>{{$feature->description}}</p>
                                                     <div class="userWrap">
                                                         <div class="avatar">
@@ -173,7 +173,7 @@
                                                     <img src="{{$hot->avatar}}" alt="">
                                                 </div>
                                                 <div class="name">
-                                                    <h3>{{$hot->title}}</h3>
+                                                    <h3><a href="{{$hot->link}}">{{$hot->title}}</a></h3>
                                                     <span>{{$hot->username}}</span>
                                                 </div>
                                             </div>
@@ -247,7 +247,7 @@
                                         <div class="showWrap">
                                             <img src="{{$event->image}}" alt="">
                                         </div>
-                                        <h2>{{$event->title}}</h2>
+                                        <h2><a href="{{$event->link}}">{{$event->title}}</a></h2>
                                         <div class="userWrap">
                                             <div class="icons cl">
                                                 <div class="iconsWrap">
@@ -273,7 +273,7 @@
                                             </div>
                                         </div>
                                         <div class="right">
-                                            <h3>{{$event->title}}</h3>
+                                            <h3><a href="{{$event->link}}">{{$event->title}}</a></h3>
                                             <div class="userWrap">
                                                 <div class="icons cl">
                                                     <div class="iconsWrap">
