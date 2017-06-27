@@ -86,7 +86,7 @@ class OwnerVerify extends Command
                         $user_count->extcredits1 += $credits1;
                         $user_count->extcredits4 += $credits4;
                         DB::table('discuz_common_member_count')->where('uid',$row->uid)->update([
-                            'credits1' => $user_count->extcredits1,
+                            'extcredits1' => $user_count->extcredits1,
                             'extcredits4' => $user_count->extcredits4,
                         ]);
                         //$user_count->save();
