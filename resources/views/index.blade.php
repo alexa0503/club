@@ -344,20 +344,8 @@
 
 
         var mySwiper = new Swiper('.swiper-container', {
-            onSlideChangeEnd: function(swiper) {
-                _s_pic.eq(swiper.activeIndex).addClass('on');
-            },
-            onSlideChangeStart: function(swiper) {
-                _s_pic.removeClass('on');
-            }
-        })
-
-        _s_pic.on('click', function(e) {
-            var _this = JQ(this);
-            spic_index = _this.index();
-            mySwiper.slideTo(spic_index);
+            autoplay: 3000
         });
-
 
     });
 </script>
