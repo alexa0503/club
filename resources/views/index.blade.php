@@ -163,7 +163,7 @@
                                                 <img src="{{$hots[0]->avatar}}" alt="" width="48" height="48">
                                             </div>
                                             <div class="name">
-                                                <h3><a href="{{$hots[0]->link}}" title="{{$hots[0]->title}}">{{ str_limit($hots[0]->title,40,'…')}}</a></h3>
+                                                <h3><a href="{{$hots[0]->link}}" title="{{$hots[0]->title}}">{{$hots[0]->title}}</a></h3>
                                                 <span>{{$hots[0]->username}}</span>
                                             </div>
                                         </div>
