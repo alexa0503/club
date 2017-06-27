@@ -73,7 +73,8 @@ function checkPwdComplexity(firstObj, secondObj, modify) {
 		if(firstObj.value == '') {
 			var pwmsg = !modifypwd ? '请填写密码' : profileTips;
 			if(pwlength > 0) {
-				pwmsg += ', 最小长度为 '+pwlength+' 个字符';
+				//pwmsg += ', 最小长度为 '+pwlength+' 个字符';
+				pwmsg = '最小长度6个字符, 支持数字、大小字母和标点符号';
 			}
 			errormessage(firstObj.id, pwmsg);
 		}else{
