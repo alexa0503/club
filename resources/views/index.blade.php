@@ -30,7 +30,7 @@
             <div class="inside cl">
                 <div class="left">
                     <!-- kv start -->
-                    <div id="kv">
+                    <div id="kv" style="height: 450px;">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 @foreach($kvs as $kv)
@@ -38,13 +38,6 @@
                                 @endforeach
                             </div>
                         </div>
-                        <ul class="spic_con">
-                            @foreach($kvs as $key=>$kv)
-                            <li @if($key == 0)class="on"@endif>
-                                    <a href="javascript:;"><img src="{{asset($kv->thumb)}}" width="145" height="100" alt=""></a>
-                            </li>
-                            @endforeach
-                        </ul>
                     </div>
                     <!-- kv end -->
                     <!-- Recommend start -->
