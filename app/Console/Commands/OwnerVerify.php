@@ -129,18 +129,19 @@ class OwnerVerify extends Command
                         //发送消息
                         $msgto = $row->uid;
                         $subject = '车主验证成功';
-                        $message = '恭喜您，车主验证成功，你获取了积分与风迷币奖励。奖励入下：'.$credits1.' 积分，'.$credits4.'风迷币。';
+                        $message = '恭喜您，车主验证成功，你获取了积分与风迷币奖励。奖励如下：'.$credits1.' 积分，'.$credits4.'风迷币。';
                     }
                     else{
-                        DB::table('discuz_common_member_verify')
-                            ->where('verify1', 0)
-                            ->where('uid', $row->uid)
-                            ->update(['verify1' => -1]);
 
                         DB::table('discuz_common_member_verify_info')
                             ->where('verifytype',1)
                             ->where('uid', $row->uid)
                             ->update(['flag'=> -1]);
+
+                        DB::table('discuz_common_member_verify')
+                            ->where('verify1', 0)
+                            ->where('uid', $row->uid)
+                            ->update(['verify1' => -1]);
                         //发送消息
                         $msgto = $row->uid;
                         $subject = '车主验证失败。';
