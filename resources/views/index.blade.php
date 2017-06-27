@@ -80,7 +80,7 @@
                                 <div class="left"><a href="{{$features[0]->link}}"><img src="{{$features[0]->image}}" alt=""></a></div>
                                 <div class="right">
                                     <div class="content">
-                                        <h2><a href="{{$features[0]->link}}" title="{{$features[0]->title}}">{{ str_limit($features[0]->title,40,'…')}}</a></h2>
+                                        <h2><a href="{{$features[0]->link}}" title="{{$features[0]->title}}">{{ $features[0]->title}}</a></h2>
                                         <p>{!! $features[0]->description !!}</p>
                                     </div>
                                     <div class="userWrap">
@@ -272,7 +272,7 @@
                                             <li>
                                                 <div class="listWrap">
                                                     <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
-                                                    <h2><a href="{{$event->link}}" title="{{$event->title}}">{{ str_limit($event->title,40,'…')}}</a></h2>
+                                                    <h2><a href="{{$event->link}}" title="{{$event->title}}">{{ $event->title }}</a></h2>
                                                     <p>{!! $event->description !!}</p>
 
                                                 </div>
