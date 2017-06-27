@@ -87,9 +87,9 @@
                     <li>
                         <a href="/bbs" >车型论坛</a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="/bbs" >车主聚会</a>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="/mall" >积分商城</a>
                     </li>
