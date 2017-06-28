@@ -122,7 +122,7 @@ class OwnerVerify extends Command
                     ->where('uid', $row->uid)
                     ->update($data);
                 //更新验证状态
-                DB::table('discuz_common_member_verify')->where('verify1', '<=', 0)
+                DB::table('discuz_common_member_verify')
                     ->where('uid', $row->uid)
                     ->update(['verify1' => 1]);
 
@@ -145,7 +145,6 @@ class OwnerVerify extends Command
                     ->update(['flag'=> -1]);
 
                 DB::table('discuz_common_member_verify')
-                    ->where('verify1', 0)
                     ->where('uid', $row->uid)
                     ->update(['verify1' => -1]);
                 //发送消息
