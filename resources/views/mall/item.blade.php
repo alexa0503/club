@@ -199,6 +199,14 @@
                     });
                 }
             });
+            $.getJSON('{{url("/address")}}', function (json) {
+                if (json.return == 0){
+                    $.each(function (index,value) {
+                        $('#'+index).val(value);
+                    })
+
+                }
+            })
         })
     </script>
 @endsection

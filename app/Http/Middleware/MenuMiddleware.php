@@ -35,6 +35,7 @@ class MenuMiddleware
             $menu2 = $menu->add('产品管理', ['url'=>route('item.index'),'class'=>'openable bg-palette3']);
             $menu2->add('查看', ['url'=>route('item.index'),'class'=>'bg-palette3']);
             $menu2->add('新增', ['url'=>route('item.create'),'class'=>'bg-palette3']);
+            $menu->add('订单管理', ['url'=>route('order.index'),'class'=>'bg-palette4']);
         });
         return $next($request);
     }

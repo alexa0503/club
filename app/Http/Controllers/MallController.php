@@ -37,6 +37,7 @@ class MallController extends Controller
         if( !$item ){
             return redirect('/mall');
         }
+
         return view('mall.item',[
             'item'=>$item,
         ]);
@@ -93,6 +94,11 @@ class MallController extends Controller
         $order->color = $color;
         $order->quantity = $request->quantity;
         $order->point = $item->point;
+
+        $order->receiver = $address->receiver;
+        $order->mobile = $address->mobile;
+        $order->telephone = $address->telephone;
+        $order->address = $address->detail;
         $order->save();
 
         \App\UserCount::where('uid', $uid)->update(
@@ -130,5 +136,21 @@ class MallController extends Controller
         $client = new \GuzzleHttp\Client();
         $client->request('GET', $url);
         return ['ret'=>0,'msg'=>'恭喜您，购买成功'];
+    }
+    public function defaultAddress()
+    {
+        if(\Session::get('discuz.user.uid')){
+            $address = \App\DeliveryAddress::where('uid', \Session::get('discuz.user.uid'))->first();
+        }
+        else{
+            $address = null;
+        }
+        if( $address ){
+            return ['ret'=>0, 'address'=>$address->toArray()];
+        }
+        else{
+            return ['ret'=>1001];
+        }
+
     }
 }

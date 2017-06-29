@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth.discuz.admin','menu'],'prefix'=>'admin','na
     Route::get('item/{id}/restore', 'ItemController@restore')->name('item.restore');
     Route::resource('item', 'ItemController');
     Route::resource('page.block', 'BlockController');
+    Route::resource('order', 'OrderController');
 });
 Route::group(['middleware' => ['auth.discuz.user']], function () {
 
@@ -58,6 +59,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
     Route::get('/mall/item/{id}', 'MallController@item');
     Route::post('/mall/buy', 'MallController@buy');
     Route::post('/mall/address', 'MallController@address');
+    Route::post('/mall/address/default', 'MallController@defaultAddress');
 });
 use App\Helpers\DiscuzHelper;
 use Illuminate\Http\Request;
