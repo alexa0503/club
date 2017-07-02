@@ -32,7 +32,7 @@ if($_GET['op'] == 'base') {
             $havecredit = false;
             $maxid = $minid = 0;
             foreach($_G['setting']['extcredits'] as $id => $credit) {
-                if($log['extcredits'.$id]) {
+                if($log['extcredits'.$id] && $id == 4) {
                     $havecredit = true;
                     if($log['operation'] == 'RPZ') {
                         $credits[] = $credit['title'].lang('spacecp', 'credit_update_reward_clean');
@@ -70,7 +70,7 @@ if($_GET['op'] == 'base') {
 
     }
 
-    $navtitle = lang('core', 'title_credit');
+    $navtitle = lang('core', 'title_credit4');
     $creditsformulaexp = str_replace('*', 'X', $_G['setting']['creditsformulaexp']);
 
 } elseif ($_GET['op'] == 'buy') {

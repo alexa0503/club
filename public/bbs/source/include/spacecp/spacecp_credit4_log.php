@@ -78,7 +78,7 @@ if($_GET['suboperation'] == 'creditrulelog') {
             $havecredit = false;
             $maxid = $minid = 0;
             foreach($_G['setting']['extcredits'] as $id => $credit) {
-                if($log['extcredits'.$id]) {
+                if($log['extcredits'.$id] && $id == 4) {
                     $havecredit = true;
                     if($log['operation'] == 'RPZ') {
                         $credits[] = $credit['title'].lang('spacecp', 'credit_update_reward_clean');
@@ -128,5 +128,5 @@ foreach($optypes as $type) {
     $optypehtml .= '<option value="'.$type.'"'.($type == $_GET['optype'] ? ' selected="selected"' : '').'>'.lang('spacecp', 'logs_credit_update_'.$type).'</option>';
 }
 $optypehtml .= '</select>';
-include template('home/spacecp_credit_log');
+include template('home/spacecp_credit4_log');
 ?>
