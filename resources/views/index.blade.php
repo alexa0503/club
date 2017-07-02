@@ -33,21 +33,78 @@
             border-radius:50%
         }
         #login-after .title {
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             line-height: 36px;
             font-size:16px;
             font-weight: bold;
             color: #000;
         }
-        #login-after .text {
-            line-height:24px;
+        #login-after .text1 {
+            line-height:20px;
             font-size: 12px;
             color: #828282;
+            padding-bottom: 10px;
         }
-        #login-after .text .split {
+        #login-after .text2 {
+            line-height:16px;
+            font-size: 11px;
+            color: #828282;
+        }
+        #login-after .text2 .split {
             margin: 0px 20px;
         }
+        #login-after .icon {
+            display: inline-block;
+            font-style: normal;
+            font-weight: 400;
+            height: 25px;
+            line-height: 1;
+            position: relative;
+            top: 6px;
+            width: 25px;
+        }
+        #login-after .icon-medal-10 {
+            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-medal-02.png')}}") no-repeat scroll 0 0 / contain;
+            left:10px;
+        }
+        #login-after .icon-medal-11 {
+            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-medal-02.png')}}") no-repeat scroll 0 0 / contain;
+            left:10px;
+        }
+        #login-after .icon-medal-12 {
+            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-medal-03.png')}}") no-repeat scroll 0 0 / contain;
+            left:10px;
+        }
+        #login-after .icon-medal-13 {
+            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-medal-04.png')}}") no-repeat scroll 0 0 / contain;
+            left:10px;
+        }
+        #login-after .icon-medal-14 {
+            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-medal-05.png')}}") no-repeat scroll 0 0 / contain;
+            left:10px;
+        }
+        #login-after .icon-verify-01 {
+            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-verify-01.png')}}") no-repeat scroll 0 0 / contain;
+            width: 19px;
+            height: 19px;
+            top:5px;
+            right:8px;
+        }
+        #login-after .icon-verify-02 {
+            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-verify-02.png')}}") no-repeat scroll 0 0 / contain;
+            width: 19px;
+            height: 19px;
+            top:5px;
+            right:8px;
+        }
+        #login-after .verify-01 {
+            background: #cc412e;
+            color: #fff;
+            padding: 0 10px;
+            margin-left: 18px;
+        }
+
     </style>
 
 </head>
@@ -246,9 +303,18 @@
                             <div class="avatar">
                                 <a href="{{url('/bbs/home.php?mod=spacecp&ac=profile')}}"><img src="{{session('discuz.user.avatar')}}" width="108" height="108"></a>
                             </div>
-                            <div class="title">用户名：{{session('discuz.user.username')}}</div>
-                            <div class="text">
-                                积分：{{session('discuz.user.user_count.extcredits1')}}<span class="split">|</span>用户组：{{session('discuz.user.user_group.grouptitle')}}</div>
+                            <div class="title" title="用户组:{{session('discuz.user.user_group.grouptitle')}}">用户名：{{session('discuz.user.username')}}@if(session('discuz.user.user_group.groupid')>10)<i class="icon icon-medal-{{session('discuz.user.user_group.groupid')}}"></i>@endif</div>
+                            <div class="text1">
+                            @if(session('discuz.user.hasVerified'))
+                                <i class="icon icon-verify-02"></i>认证车主
+                            @else
+                                <i class="icon icon-verify-01"></i>普通用户
+                                <a href="/bbs/home.php?mod=spacecp&ac=profile&op=verify" class="verify-01">申请车主认证</a>
+                            @endif
+                            </div>
+                            <div class="text2">
+                                积分：{{session('discuz.user.user_count.extcredits1')}}<span class="split">|</span>风迷币：{{session('discuz.user.user_count.extcredits4')}}
+                            </div>
 
 
                         </div>

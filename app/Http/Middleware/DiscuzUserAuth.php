@@ -26,6 +26,9 @@ class DiscuzUserAuth
             \Session::put('discuz.user', null);
             \Session::put('discuz.hasLogin',null);
         }
+        if(env('APP_ENV') == 'local'){
+            $authcode = "x\t2";
+        }
 
         if( !$authcode || empty($authcode) ){
             \Session::put('discuz.hasLogin',null);
@@ -45,6 +48,16 @@ class DiscuzUserAuth
                 //var_dump($user->user_group);
                 \Session::put('discuz.user.user_count', $user->user_count->toArray());
                 \Session::put('discuz.user.user_group', $user->user_group->toArray());
+                $verify_count = DB::table('discuz_common_member_verify')
+                    ->where('uid', $auth[1])
+                    ->where('verify1',1)
+                    ->count();
+                if( $verify_count > 0){
+                    \Session::put('discuz.user.hasVerified', true);
+                }
+                else{
+                    \Session::put('discuz.user.hasVerified', null);
+                }
             }
         }
         $forum = DB::table('discuz_forum_forum')
