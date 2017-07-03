@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\DiscuzHelper;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class MallController extends Controller
 {
@@ -152,5 +153,46 @@ class MallController extends Controller
             return ['ret'=>1001];
         }
 
+    }
+    public function cart()
+    {
+        $uid = session('discuz.user.uid');
+        $carts = \App\Cart::where('uid', $uid)->get();
+        return view('mall.cart',[
+            'carts' => $carts,
+        ]);
+    }
+    public function add2Cart(Request $request)
+    {
+        $messages = [
+            'quantity.required' => '请选择数量',
+            'quantity.numeric' => '商品数量必须为整数',
+            'quantity.min' => '商品数量不能小于:min',
+            'quantity.max' => '商品数量不能大于:max',
+            'item_id.*' => '商品必须存在哦~'
+        ];
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required|numeric|min:1|max:100',
+            'item_id' => 'required|exists:items',
+        ], $messages);
+        $validator->after(function ($validator) use ($request) {
+            $item = \App\Item::find($request->item_id);
+            if( null == $item
+                || !isset($item->inventories[$request->inventory])
+                || $item->inventories[$request->inventory]['quantity'] < $request->quantity){
+                $validator->errors()->add('item_id', '商品库存不足');
+            }
+        });
+        if ($validator->fails()) {
+            return response($validator->errors(),422);
+        }
+
+        $cart = new \App\Cart;
+        $cart->quantity = $request->quantity;
+        $cart->item_id = $request->item_id;
+        $cart->color = $request->color;
+        $cart->uid = session('discuz.user.uid');
+        $cart->save();
+        return ['ret'=>0];
     }
 }
