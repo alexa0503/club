@@ -10,7 +10,7 @@ class Block extends Model
     {
         if($this->thread()){
             $thread = $this->thread();
-            return \App\User::where('username', $thread->authorid)->first();
+            return \App\User::where('uid', $thread->authorid)->first();
         }
         else{
             return '';
