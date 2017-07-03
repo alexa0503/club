@@ -17,6 +17,7 @@ $lang = array (
   'debate_square' => '正方',
   'thread_poll' => '投票',
   'credits' => '积分',
+  'credits4' => '风迷币',
   'login' => '登录',
   'active_email' => '接收邮箱',
   'active_email_comment' => '必填，用来接收邀请码的邮箱地址',
