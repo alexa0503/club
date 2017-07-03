@@ -303,7 +303,7 @@
                                         @if($k < 3)
                                             <li>
                                                 <div class="listWrap">
-                                                    <a href="{{$event->link}}"><img src="{{$event->image}}" alt=""></a>
+                                                    <a href="{{$event->link}}"><img src="{{$event->image}}" alt="" width="260" height="160"></a>
                                                     <h2><a href="{{$event->link}}" title="{{$event->title}}">{{ $event->title }}</a></h2>
                                                     <p>{!! $event->description !!}</p>
 
