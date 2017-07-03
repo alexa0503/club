@@ -34,12 +34,12 @@ class Block extends Model
     }
     public function getAvatarAttribute($value)
     {
-        if( $this->user() ){
-            $user = $this->user();
-            return url('/').'/bbs/uc_server/avatar.php?uid='.$user
-                ->uid.'&type=real&size=small';
+        if( $this->thread() ){
+            $thread = $this->thread();
+            return url('/').'/bbs/uc_server/avatar.php?uid='.$thread->authorid.'&size=middle&_='.time();
         }
         else{
+
             return url('/').'/bbs/uc_server/avatar.php?uid=1&type=real&size=small';
         }
     }
