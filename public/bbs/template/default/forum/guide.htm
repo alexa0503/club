@@ -17,9 +17,9 @@
 			<div class="bm bml pbn">
 				<div class="bm_h cl">
 					<!--{if $view != 'index' && $view != 'my'}-->
-					<span class="y">
+					<!--<span class="y">
 						<a href="forum.php?mod=guide&view=$view&rss=1" class="fa_rss" target="_blank" title="RSS">{lang rss_subscribe_this}</a>
-					</span>
+					</span>-->
 					<!--{/if}-->
 					<h1 class="xs2">
 						$lang['guide_'.$view]
@@ -40,11 +40,11 @@
 			</div>
 			<!--{/if}-->
 			<ul id="thread_types" class="ttp bm cl">
-				<li $currentview['hot']><a href="forum.php?mod=guide&view=hot">{lang guide_hot}</a></li>
+				<!--<li $currentview['hot']><a href="forum.php?mod=guide&view=hot">{lang guide_hot}</a></li>
 				<li $currentview['digest']><a href="forum.php?mod=guide&view=digest">{lang guide_digest}</a></li>
 				<li $currentview['new']><a href="forum.php?mod=guide&view=new">{lang guide_new}</a></li>
 				<li $currentview['newthread']><a href="forum.php?mod=guide&view=newthread">{lang guide_newthread}</a></li>
-				<li $currentview['sofa']><a href="forum.php?mod=guide&view=sofa">{lang guide_sofa}</a></li>
+				<li $currentview['sofa']><a href="forum.php?mod=guide&view=sofa">{lang guide_sofa}</a></li>-->
 				<li $currentview['my']><a id="filter_special" href="forum.php?mod=guide&view=my">{lang guide_my}</a></li>
 				<!--{hook/guide_nav_extra}-->
 			</ul>
