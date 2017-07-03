@@ -254,7 +254,7 @@
                                         <label for="rm_ck">记住我</label>
                                     </div>
                                     <div class="links">
-                                        <a href="http://club.dffengguang.com.cn/bbs/member.php?mod=logging&action=login&referer=forum.php">忘记密码</a>
+                                        <a href="/bbs/member.php?mod=logging&action=login&referer=forum.php">忘记密码</a>
                                     </div>
                                 </div>
                                 <div class="login_b">
