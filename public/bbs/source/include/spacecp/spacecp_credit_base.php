@@ -32,7 +32,7 @@ if($_GET['op'] == 'base') {
 			$havecredit = false;
 			$maxid = $minid = 0;
 			foreach($_G['setting']['extcredits'] as $id => $credit) {
-				if($log['extcredits'.$id]) {
+				if($log['extcredits'.$id] && $id != 4) {
 					$havecredit = true;
 					if($log['operation'] == 'RPZ') {
 						$credits[] = $credit['title'].lang('spacecp', 'credit_update_reward_clean');

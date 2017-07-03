@@ -14,7 +14,7 @@
 				<!--{/if}-->
 			<!--{/if}-->
 			<!--{loop $_G['setting']['extcredits'] $id $credit}-->
-				<!--{if $id!=$creditid}-->
+				<!--{if $id!=$creditid and $id!=4}-->
 				<li><em><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: </em><!--{echo getuserprofile('extcredits'.$id);}--> {$credit[unit]}</li>
 				<!--{/if}-->
 			<!--{/loop}-->
@@ -328,7 +328,9 @@
 					<th class="xw1">{lang cycle_range}</th>
 					<th class="xw1">{lang max_award_per_week}</th>
 					<!--{loop $_G['setting']['extcredits'] $key $value}-->
+					<!--{if $key!=4}-->
 					<th class="xw1">$value[title]</th>
+					<!--{/if}-->
 					<!--{/loop}-->
 				</tr>
 				<!--{eval $i = 0;}-->
@@ -340,7 +342,9 @@
 					<td><!--{if $value[rewardnum]}-->$value[rewardnum]<!--{else}-->{lang unlimited_time}<!--{/if}--></td>
 					<!--{loop $_G['setting']['extcredits'] $key $credit}-->
 					<!--{eval $creditkey = 'extcredits'.$key;}-->
+					<!--{if $key!=4}-->
 					<td><!--{if $value[$creditkey] > 0}-->+$value[$creditkey]<!--{elseif $value[$creditkey] < 0}-->$value[$creditkey]<!--{else}-->0<!--{/if}--></td>
+					<!--{/if}-->
 					<!--{/loop}-->
 				</tr>
 				<!--{/loop}-->

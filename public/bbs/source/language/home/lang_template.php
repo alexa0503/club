@@ -1026,6 +1026,7 @@ $lang = array (
   'memcp_credits_log' => '积分记录',
   'memcp_credits4_log' => '风迷币记录',
   'memcp_credits_log_none' => '目前没有积分交易记录',
+  'memcp_credits4_log_none' => '目前没有风迷币交易记录',
   'memcp_credits_log_transaction' => '转账与兑换',
   'memcp_credits_transfer_min_balance' => '转账后最低余额',
   'mode_of_payment' => '支付方式',
