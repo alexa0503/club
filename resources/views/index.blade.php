@@ -106,13 +106,12 @@
         }
         .digest {
             padding:20px 26px 0;
-            height: 410px;
         }
         .digest ul li {
             border-bottom: 1px solid #fcaaaa;
             line-height: 20px;
             height: 20px;
-            padding: 15px 0;
+            padding: 10px 0;
             position: relative;
         }
         .digest ul li:last-child {
@@ -223,7 +222,7 @@
                         <div class="titles">
                             <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/hotpoint.png" alt=""></a>
                         </div>
-                        <div class="slick" style="overflow: hidden;height: 430px;">
+                        <div class="slick" style="overflow: hidden;height: 403px;">
                             @foreach($forums as $forum)
                                 <div class="digest">
                                     <ul>
