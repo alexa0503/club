@@ -65,7 +65,7 @@
             width: 25px;
         }
         #login-after .icon-medal-10 {
-            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-medal-02.png')}}") no-repeat scroll 0 0 / contain;
+            background: rgba(0, 0, 0, 0) url("{{asset('/bbs/static/assets/imgs/layout/icon-medal-01.png')}}") no-repeat scroll 0 0 / contain;
             left:10px;
         }
         #login-after .icon-medal-11 {
@@ -269,7 +269,7 @@
                             <div class="avatar">
                                 <a href="{{url('/bbs/home.php?mod=spacecp&ac=profile')}}"><img src="{{session('discuz.user.avatar')}}" width="108" height="108"></a>
                             </div>
-                            <div class="title" title="用户组:{{session('discuz.user.user_group.grouptitle')}}">用户名：{{session('discuz.user.username')}}@if(session('discuz.user.user_group.groupid')>10)<i class="icon icon-medal-{{session('discuz.user.user_group.groupid')}}"></i>@endif</div>
+                            <div class="title" title="用户组:{{session('discuz.user.user_group.grouptitle')}}">用户名：{{session('discuz.user.username')}}@if(session('discuz.user.user_group.groupid')>9)<i class="icon icon-medal-{{session('discuz.user.user_group.groupid')}}"></i>@endif</div>
                             <div class="text1">
                             @if(session('discuz.user.hasVerified'))
                                 <i class="icon icon-verify-02"></i>认证车主
