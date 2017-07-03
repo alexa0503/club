@@ -45,7 +45,7 @@
             <li><a href="/bbs/home.php?mod=space&amp;uid=1" target="_blank" title="访问我的空间">{{Session::get('discuz.user.username')}}</a></li>
             <li>|</li>
             <li><a href="/bbs/home.php?mod=spacecp">我的</a></li>
-            <li><a href="/bbs/home.php?mod=spacecp&amp;ac=credit&amp;showcredit=1">风迷币: {{Session::get('discuz.user.user_count.extcredits4')}}</a></li>
+            <li><a href="/bbs/home.php?mod=spacecp&amp;ac=credit4&amp;showcredit=1">风迷币: {{Session::get('discuz.user.user_count.extcredits4')}}</a></li>
             <li><a href="/bbs/home.php?mod=spacecp&amp;ac=usergroup">用户组: {{Session::get('discuz.user.user_group.grouptitle')}}</a></li>
             <li><a href="/bbs/home.php?mod=space&amp;do=notice" id="myprompt" class="a showmenu" onmouseover="showMenu({'ctrlid':'myprompt'});">提醒</a></li>
             <li>|</li>

@@ -9,7 +9,7 @@
                         <p>
                             <strong class="vwmy"><a href="/bbs/home.php?mod=space&amp;uid=1" target="_blank" title="访问我的空间">{{Session::get('discuz.user.username')}}</a></strong>
                             <span class="pipe">|</span><a href="/bbs/home.php?mod=spacecp" id="myitem"  >我的</a>
-                            <a href="/bbs/home.php?mod=spacecp&amp;ac=credit&amp;showcredit=1" id="extcreditmenu">风迷币: {{Session::get('discuz.user.user_count.extcredits4')}}</a>
+                            <a href="/bbs/home.php?mod=spacecp&amp;ac=credit4&amp;showcredit=1" id="extcreditmenu">风迷币: {{Session::get('discuz.user.user_count.extcredits4')}}</a>
                             <span class="pipe">|</span><a href="/bbs/home.php?mod=spacecp&amp;ac=usergroup" id="g_upmine" >用户组: {{Session::get('discuz.user.user_group.grouptitle')}}</a>
 
 
