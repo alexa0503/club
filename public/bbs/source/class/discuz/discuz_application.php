@@ -171,7 +171,7 @@ class discuz_application extends discuz_base{
 				'interactive' => array('poke','friend','wall','comment','click','sharenotice'),
 				'system' => array('system','myapp','credit','group','verify','magic','task','show','group','pusearticle','mod_member','blog','article'),
 				'manage' => array('mod_member','report','pmreport'),
-				'app' => array(),
+				//'app' => array(),
 			),
 			'mobiletpl' => array('1' => 'mobile', '2' => 'touch', '3' => 'wml', 'yes' => 'mobile'),
 		);
