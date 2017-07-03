@@ -43,7 +43,18 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         $right_bottom_kv = $page->blocks->filter(function ($value, $key) {
             return $value->name == 'right_bottom_kv';
         })->values()->all();
-
+        $rows = \DB::table('discuz_forum_forum')->where('status',1)->get();
+        $forums = [];
+        foreach($rows as $forum){
+            $threads = \DB::table('discuz_forum_thread')
+                ->where('digest',1)
+                ->where('fid',$forum->fid)
+                ->get();
+            $forums[] = [
+                'base' => $forum,
+                'threads' => $threads,
+            ];
+        }
         return view('index',[
             'kvs'=>$kvs,
             'features'=>$features,
@@ -51,6 +62,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
             'events'=>$events,
             'right_top_kv'=>$right_top_kv,
             'right_bottom_kv'=>$right_bottom_kv,
+            'forums' => $forums,
         ]);
     });
 

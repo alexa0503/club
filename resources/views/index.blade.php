@@ -104,6 +104,31 @@
             padding: 0 10px;
             margin-left: 18px;
         }
+        .digest {
+            padding:20px 26px 0;
+            height: 410px;
+        }
+        .digest ul li {
+            border-bottom: 1px solid #fcaaaa;
+            line-height: 20px;
+            height: 20px;
+            padding: 15px 0;
+            position: relative;
+        }
+        .digest ul li:last-child {
+            border-bottom: none;
+        }
+        .digest ul li a {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .digest ul li i {
+            margin-left: 34px;
+        }
+        .digest ul li span {
+            position: absolute;
+            right: 0;
+        }
 
     </style>
 
@@ -198,76 +223,18 @@
                         <div class="titles">
                             <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/hotpoint.png" alt=""></a>
                         </div>
-                        <div class="menus cl">
-                            <ul class="cl">
-                                <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=38" hidefocus="true" title="">风光580<span></span></a></li>
-                                <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=40" hidefocus="true" title="">风光370<span></span></a></li>
-                                <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=39" hidefocus="true" title="">风光360<span></span></a></li>
-                                <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=41" hidefocus="true" title="">风光330<span></span></a></li>
-                                <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=42" hidefocus="true" title="">爱车讲堂<span></span></a></li>
-                                <li class="a" id="mn_forum"><a href="/bbs/forum.php?mod=forumdisplay&fid=43" hidefocus="true" title="">车型测评<span></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="contentsWrap cl">
-                            @if(count($hots)>0)
-                                <div class="left">
-                                    <div class="showWrap">
-                                        <a href="{{$hots[0]->link}}"><img src="{{$hots[0]->image}}" alt=""></a>
-                                    </div>
-                                    <div class="userWrap">
-                                        <div class="top cl">
-                                            <div class="avatar">
-                                                <img src="{{$hots[0]->avatar}}" alt="" width="48" height="48">
-                                            </div>
-                                            <div class="name">
-                                                <h3><a href="{{$hots[0]->link}}" title="{{$hots[0]->title}}">{{$hots[0]->title}}</a></h3>
-                                                <span>{{$hots[0]->username}}</span>
-                                            </div>
-                                        </div>
-                                        <p>{{$hots[0]->description}}</p>
-                                        <div class="icons cl">
-                                            <div class="iconsWrap">
-                                                <img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt="">
-                                                <span>{{$hots[0]->like_num}}</span>
-                                            </div>
-                                            <div class="iconsWrap">
-                                                <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                                <span>{{$hots[0]->share_num}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                            <div class="right">
-                                <ul class="cl">
-                                    @if(count($hots)>0)
-                                        @foreach($hots as $k=>$hot)
-                                            @if($k > 0 && $k < 5)
-                                                <li>
-                                                    <div class="top cl">
-                                                        <div class="avatar">
-                                                            <a href="{{$hot->link}}"><img width="48" height="48" src="{{$hot->avatar}}" alt=""></a>
-                                                        </div>
-                                                        <div class="name">
-                                                            <h3><a href="{{$hot->link}}" title="{{$hot->title}}">{{ str_limit($hot->title,40,'…')}}</a></h3>
-                                                            <div style="padding-top: 5px;">
-                                                                <span>{{$hot->username}}</span>
-                                                                <span style="margin-left: 10px;"><img src="/bbs/static/assets/imgs/recommend/like_pic.png" alt=""></span>
-                                                                <span>{{$hot->like_num}}</span>
-                                                                <img src="/bbs/static/assets/imgs/recommend/share_pic.png" alt="">
-                                                                <span>{{$hot->share_num}}</span>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                </li>
-                                            @endif
+                        <div class="slick" style="overflow: hidden;height: 430px;">
+                            @foreach($forums as $forum)
+                                <div class="digest">
+                                    <ul>
+                                        @foreach($forum['threads'] as $thread)
+                                        <li><a href="/bbs/forum.php?mod=viewthread&tid={{$thread->tid}}&fromuid={{$thread->fid}}" title="{{$thread->subject}}">{{ str_limit($thread->subject,40,'…')}}</a><i>{{$forum['base']->name}}</i><span>{{\App\Helpers\DiscuzHelper::formatTime($thread->dateline)}}</span></li>
                                         @endforeach
-                                    @endif
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
+                            @endforeach
                         </div>
+
                     </div>
                     <!-- hotpoint end -->
                 </div>

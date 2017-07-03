@@ -65,5 +65,24 @@ class DiscuzHelper
     	}
     	return $v;
     }
+    public static function formatTime($timestamp)
+    {
+        $timestamp += 8*3600;
+        $now = time();
+        $diff_time = $now - $timestamp;
+        if($diff_time < 60){
+            return $diff_time.'秒前';
+        }
+        elseif($diff_time < 60*60){
+            return floor($diff_time/60).'分前';
+        }
+        elseif($diff_time < 60*60*24){
+            $min = floor(($diff_time - floor($diff_time/3600)*3600)/60);
+            return floor($diff_time/3600).'时'.$min.'分前';
+        }
+        else{
+            return date('Y-m-d H:i:s',$timestamp);
+        }
+    }
 
 }
