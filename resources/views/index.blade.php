@@ -228,7 +228,7 @@
                                 <div class="digest">
                                     <ul>
                                         @foreach($forum['threads'] as $thread)
-                                        <li><a href="/bbs/forum.php?mod=viewthread&tid={{$thread->tid}}&fromuid={{$thread->fid}}" title="{{$thread->subject}}">{{ str_limit($thread->subject,40,'…')}}</a><i>{{$forum['base']->name}}</i><span>{{\App\Helpers\DiscuzHelper::formatTime($thread->dateline)}}</span></li>
+                                        <li><a href="/bbs/forum.php?mod=viewthread&tid={{$thread->tid}}&fromuid={{$thread->fid}}" title="{{$thread->subject}}">{{ str_limit($thread->subject,70,'…')}}</a><i>{{$forum['base']->name}}</i><span>{{\App\Helpers\DiscuzHelper::formatTime($thread->dateline)}}</span></li>
                                         @endforeach
                                     </ul>
                                 </div>

@@ -43,12 +43,18 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         $right_bottom_kv = $page->blocks->filter(function ($value, $key) {
             return $value->name == 'right_bottom_kv';
         })->values()->all();
-        $rows = \DB::table('discuz_forum_forum')->where('status',1)->get();
+        $rows = \DB::table('discuz_forum_forum')
+            ->where('status',1)
+            ->where('fup','!=',0)
+            ->get();
         $forums = [];
         foreach($rows as $forum){
             $threads = \DB::table('discuz_forum_thread')
                 ->where('digest',1)
                 ->where('fid',$forum->fid)
+                ->orderBy('dateline', 'DESC')
+                ->offset(0)
+                ->limit(7)
                 ->get();
             $forums[] = [
                 'base' => $forum,
