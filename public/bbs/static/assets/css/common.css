@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+/* 底部  */
+.footer{background-color:#262626;height: 350px;padding-top:60px;position: relative;}
+.footer a:hover{text-decoration: none;}
+.footer_cont{width:1100px;margin:0 auto;}
+.footer_nav{overflow:hidden;width: 800px;float: left;}
+.footer_nav a{ color:#6f6f6f;}
+.footer_nav>ul{float:left;margin: 0 30px;}
+.footer_nav>ul>li{line-height:24px;font-size:12px;}
+.footer_nav>ul>li:first-child{padding:15px 0;color:#fff;}
+.footer_nav>ul>li:first-child a{color:#fff;}
+.footer_nav>ul>li.er{list-style: initial;}
+.footer_nav>ul>li.er a{color:#c0c0c0;}
+
+.footer_tel{float:right;color: #888888;margin-top: 15px;}
+.footer_tel p{/*text-align:right;*/font-size:12px;margin: 3px;}
+
+.footer_share{float: left;width:100%;height: 50px;border-top:1px solid #6f6f6f;border-bottom:1px solid #6f6f6f;margin-top: 24px;position:relative;}
+.logo_b{float:left;margin-top: 8px;margin-left: 4px;}
+.share_icons{float:right;}
+.share_icons a{display:block;margin-top: 12px;margin-left: 12px;float:left;}
+.sanjiao{position:absolute;top: -28px;left: 50%;margin-left: -28px;}
+
+.focus_wb{position:absolute;width:180px;height:113px;background:url(../imgs/layout/focus_wb.png) no-repeat center;  right: -22px; top: -104px;display:none;}
+.focus_wb>div{margin-top:67px;margin-left:50px;}
+.focus_wx{position:absolute;width:100px;height:142px;right: 15px;top: -133px;display:none;}
+
+.quick_links {
+  position: relative;
+  line-height: 30px;
+  margin-top: 135px;
+  float: right;
+  width: 180px;
+  color: #fff;
+}
+.quick_links dt {
+  height: 30px;
+  padding-left: 10px;
+
+  background: url(../imgs/layout/ico_dsj.png) 158px center no-repeat #434343;
+  color: #a7a7a7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.quick_links dd {
+  display: none;
+  position: absolute;
+  font-size: 12px;
+  left: 0;
+  bottom: 30px;
+  padding: 3px 0;
+  background: #111414;
+}
+.quick_links dd a:hover{
+  background-color:#BD0100;
+}
+.quick_links dd a {
+  display: block;
+  width: 170px;
+  padding-left: 10px;
+  font-size: 12px;
+  color: #a7a7a7;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}

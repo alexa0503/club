@@ -1,0 +1,66 @@
+/*
+Error: File to import not found or unreadable: libs/_resetHtml5.
+       Load paths:
+         E:/websites/roewe/RX5/rx5/assets/sass
+         d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets
+         d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-blueprint-1.0.0/framework/blueprint/stylesheets
+         d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-normalize-1.5/stylesheets
+         Compass::SpriteImporter
+        on line 3 of E:/websites/roewe/RX5/rx5/assets/sass/reset.scss
+
+1: @charset 'utf-8';
+2: // @import "normalize";
+3: @import "libs/_resetHtml5";
+4: @import "libs/_clearfix";
+5: @import "libs/_common";
+6: 
+7: body {
+8:   font: 16px/1.4286  'Simhei', Helmet ,Arial, SimSun, Helvetica, sans-serif;
+
+Backtrace:
+E:/websites/roewe/RX5/rx5/assets/sass/reset.scss:3
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/import_node.rb:67:in `rescue in import'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/import_node.rb:45:in `import'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/import_node.rb:28:in `imported_file'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/import_node.rb:37:in `css_import?'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:313:in `visit_import'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `map'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:159:in `visit'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:8:in `visit'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:36:in `css_tree'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:20:in `render'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/engine.rb:281:in `render'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:494:in `update_stylesheet'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `each'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/lib/compass/sass_compiler.rb:40:in `compile!'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/lib/compass/commands/update_project.rb:49:in `perform'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/lib/compass/commands/base.rb:18:in `execute'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/lib/compass/commands/project_base.rb:19:in `execute'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/bin/compass:30:in `block in <top (required)>'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/bin/compass:44:in `call'
+d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-1.0.3/bin/compass:44:in `<top (required)>'
+d:/Ruby21-x64/bin/compass:23:in `load'
+d:/Ruby21-x64/bin/compass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: libs/_resetHtml5.\A        Load paths:\A          E:/websites/roewe/RX5/rx5/assets/sass\A          d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets\A          d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-blueprint-1.0.0/framework/blueprint/stylesheets\A          d:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-normalize-1.5/stylesheets\A          Compass::SpriteImporter\A         on line 3 of E:/websites/roewe/RX5/rx5/assets/sass/reset.scss\A \A 1: @charset 'utf-8';\A 2: // @import \"normalize\";\A 3: @import \"libs/_resetHtml5\";\A 4: @import \"libs/_clearfix\";\A 5: @import \"libs/_common\";\A 6: \A 7: body {\A 8:   font: 16px/1.4286  'Simhei', Helmet ,Arial, SimSun, Helvetica, sans-serif;"; }
