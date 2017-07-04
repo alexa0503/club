@@ -250,6 +250,7 @@
                             $('#modal-tip').find('.modal-body').html(json.msg);
                             $('#modal-tip').find('.modal-title').html('恭喜');
                             $('#modal-tip').modal('show');
+                            $('.shangpin').remove();
                         }
                         else{
                             alert(json.msg);
