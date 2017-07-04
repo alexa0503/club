@@ -1,0 +1,213 @@
+/*
+* @Author: Marte
+* @Date:   2017-07-03 15:42:08
+* @Last Modified by:   Marte
+* @Last Modified time: 2017-07-03 20:20:57
+*/
+
+#main .container {
+    width: 1090px;
+    min-height: 200px;
+    background: #fff;
+    margin: 10px auto;
+}
+
+#main .container .addr {
+    padding: 15px 0;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+#main .container .addr .addrList {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    margin-left: 15px;
+    padding: 0;
+}
+
+#main .container .addr .addrList li {
+    margin: 5px 0;
+}
+
+#main .container .addr .addrList li .userAddr {
+    display: inline-block;
+    width: 93%;
+    line-height: 22px;
+    position: relative;
+}
+
+#main .container .addr .addrList li .nowAddr {
+    background: #fffcf4;
+    border: 1px solid #888;
+}
+
+#main .container .addr .addrList .upAddr {
+    color: red;
+    display: block;
+    float: right;
+    margin-right: 60px;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+}
+
+#main .container .addr .addrList .delAddr {
+    color: red;
+    display: block;
+    float: right;
+    margin-right: 20px;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+}
+
+#main .container .shangpinbox {
+    margin-top: -31px;
+}
+
+#main .container .shangpinbox .shangpin {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#main .container .shangpinbox .shangpin li {
+    border-top: 1px solid #ccc;
+    height: 190px;
+    width: 100%;
+    padding: 20px 0px;
+}
+
+#main .container .shangpinbox .shangpin .shopChek {
+    position: absolute;
+    top: 40%;
+}
+
+#main .container .shangpinbox .shangpin .shopImg {
+    position: absolute;
+    width: 124px;
+    height: 124px;
+    left: 35px;
+    top: 36px;
+}
+
+#main .container .shangpinbox .shangpin .shopTitle {
+    position: absolute;
+    left: 180px;
+    top: 32px;
+    height: 124px;
+    width: 350px;
+    overflow: hidden;
+}
+
+#main .container .shangpinbox .shangpin .toolbox {
+    position: absolute;
+    height: 32px;
+    left: 653px;
+    top: 40%;
+    width: 389px;
+}
+
+#main .container .shangpinbox .shangpin .toolbox .add {
+    height: 32px;
+    width: 32px;
+    border: 1px solid #ccc;
+    line-height: 32px;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+}
+
+#main .container .shangpinbox .shangpin .toolbox .text input {
+    height: 32px;
+    width: 52px;
+    line-height: 32px;
+    text-align: center;
+    border: 1px solid #ccc;
+    float: left;
+    margin: 0 3px;
+}
+
+#main .container .shangpinbox .shangpin .toolbox .sub {
+    height: 32px;
+    width: 32px;
+    border: 1px solid #ccc;
+    line-height: 32px;
+    text-align: center;
+    background: #f0f0f0;
+    float: left;
+    cursor: pointer;
+}
+
+#main .container .shangpinbox .shangpin .toolbox .jinbi {
+
+    color: red;
+    width: 100px;
+    height: 32px;
+    float: left;
+    line-height: 32px;
+    margin-left: 73px;
+}
+
+#main .container .shangpinbox .shangpin .toolbox .remove {
+    display: block;
+    float: left;
+    line-height: 32px;
+    margin-left: 66px;
+    text-decoration: none;
+    color: #3f3f3f;
+
+}
+
+#main .container .shangpinbox .shopDi {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    background: #fff8e6;
+}
+
+#main .container .shangpinbox .shopDi .dibox {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+}
+
+#main .container .shangpinbox .shopDi .dibox .allSe {
+    float: left;
+}
+
+#main .container .shangpinbox .shopDi .dibox .allSeT {
+    float: left;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+#main .container .shangpinbox .shopDi .dibox .removeAll {
+    float: left;
+    margin-left: 25px;
+    color: #666;
+    cursor: pointer;
+}
+
+#main .container .shangpinbox .shopDi .dibox .shopSum {
+    float: left;
+    margin-left: 573px;
+}
+
+#main .container .shangpinbox .shopDi .dibox .Total {
+    float: left;
+}
+
+#main .container .shangpinbox .shopDi .jiesuan {
+    border: none;
+    float: right;
+    width: 157px;
+    height: 70px;
+    background: red;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+}

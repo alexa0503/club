@@ -10,8 +10,4 @@ class Order extends Model
     {
         return \App\User::where('uid', $this->uid)->first();
     }
-    public function item()
-    {
-        return $this->belongsTo('App\Item');
-    }
 }

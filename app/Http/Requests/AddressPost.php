@@ -43,6 +43,7 @@ class AddressPost extends FormRequest
             'name.max'=>'收货人姓名不能超过20个字符',
             'detail.required'=>'请输入地址',
             'mobile.required'=>'请输入手机号码',
+            'mobile.regex'=>'手机号格式不正确',
             'telephone.max'=>'固定不能超过20位',
             //'email.email'=>'必须是有效的邮箱地址',
         ];

@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/mall.css">
+    <link rel="stylesheet" type="text/css" href="/css/shopcar.css">
     <!-- Jquery -->
     <script src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/slick.js"></script>
@@ -223,6 +224,58 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
+<div class="modal fade" id="modal-address" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="">收货人信息</h4>
+            </div>
+            <div class="modal-body">
+                {{ Form::open(array('url' => url('/mall/address'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'address-form')) }}
+                <div class="form-group" id="form-group-name">
+                    <label for="name" class="col-md-2 col-xs-2 control-label">* 收货人:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <input class="form-control" type="text" value="" id="username" name="name">
+                        <label class="help-block" for="name" id="help-name"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group" id="form-group-detail">
+                    <label for="detail" class="col-md-2 col-xs-2 control-label">* 详细地址:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <input class="form-control" type="text" value="" id="detail" name="detail">
+                        <label class="help-block" for="detail" id="help-detail"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group" id="form-group-mobile">
+                    <label for="mobile" class="col-md-2 col-xs-2 control-label">* 手机号码:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <input class="form-control" type="text" value="" id="mobile" name="mobile">
+                        <label class="help-block" for="mobile" id="help-mobile"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group" id="form-group-telephone">
+                    <label for="telephone" class="col-md-2 col-xs-2 control-label">固定电话:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <input class="form-control" type="text" value="" id="telephone" name="telephone">
+                        <label class="help-block" for="telephone" id="help-telephone"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+                <input type="hidden" name="id" value="">
+                <div class="form-group">
+                    <div class="col-md-10 col-xs-10 col-md-offset-2 col-xs-offset-2">
+                        <button type="submit" class="btn btn-custom">确 认</button>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+                {{ Form::close() }}
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 <script src="{{asset('js/jquery.form.js')}}"></script>
 <script>
     $().ready(function () {
@@ -265,6 +318,39 @@
             error: function(xhr){
                 //$('#form-group-password').addClass('has-error');
                 $('#help-password').html('<span class="text-danger">服务器发生错误，请稍候重试。</span>');
+            }
+        });
+        $('#address-form').ajaxForm({
+            dataType: 'json',
+            success: function(json) {
+                $('.help-block').html('');
+                $('.form-group').removeClass('has-error');
+                if (json.ret == 0){
+                    $('.modal').modal('hide');
+                    //$('#modal-tip').find('.modal-body').html(json.msg);
+                    //$('#modal-tip').find('.modal-title').html('恭喜');
+                    window.location.reload();
+                    //$('#modal-tip').modal('show');
+                }
+                else{
+                    $('.modal').modal('hide');
+                    $('#modal-tip').find('.modal-body').html(json.msg);
+                    $('#modal-tip').find('.modal-title').html('抱歉');
+                    $('#modal-tip').modal('show');
+                }
+
+            },
+            error: function(xhr){
+                $('.help-block').html('');
+                $('.form-group').removeClass('has-error');
+                var json = jQuery.parseJSON(xhr.responseText);
+                if (xhr.status == 200){
+                    $('#post-form').modal('hide');
+                }
+                $.each(json, function(index,value){
+                    $('#form-group-'+index).addClass('has-error');
+                    $('#help-'+index).html(value);
+                });
             }
         });
         $('.weixin').on('mouseenter',function () {
