@@ -78,6 +78,12 @@
                     </div>
                 </div>
             </div>
+            <div class="btnShopCar"><a style="height: 100%;width:100%;text-decoration: none;color: #a8a8a8;" href="javascript:;"><img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车<span id="cart-count">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;></a></div>
+            <div class="btnShopCarP" style="display:none;">
+                <ul class="carbox">
+                </ul>
+                <button class="btnBuy">查看购物车</button>
+            </div>
         </div>
         <div class="row">
             <nav id="bs-navbar" class="collapse navbar-collapse">
@@ -278,7 +284,67 @@
 </div>
 <script src="{{asset('js/jquery.form.js')}}"></script>
 <script>
+    @if( Request::url() == url('/mall/cart') )
+    var is_cart = true;
+    @else
+    var is_cart = false;
+    @endif
     $().ready(function () {
+        $.getJSON('{{url("/mall/cart")}}',function (json) {
+            if (json && json.ret == 0 ){
+                var html = '';
+                var count = 0;
+                $.each(json.data,function (index,cart) {
+                    count += cart.quantity;
+                    html += '<li class="shop">'
+                        +'<div class="shopImgmg"><img src="'+cart.item.images[0]+'" width="51" height="51" /> </div>'
+                        +'<div class="shopTitle">'+cart.item.name+'</div>'
+                        +'<div class="shopBox"></div>'
+                        +'<div class="shopJiage">'+cart.item.point+'风迷币 X '+cart.quantity+'</div>'
+                        +'<a class="removeSp" href="javascript:;" data-id="'+cart.id+'">删除</a></li>';
+                });
+                $('#cart-count').text(count);
+                $('.carbox').html(html).find('.removeSp').click(function(){
+                    var url = '{{url("/mall/cart")}}/'+$(this).attr('data-id');
+                    var obj = $(this).parent();
+                    $.ajax(url, {
+                        dataType: 'json',
+                        type: 'delete',
+                        data: {_token:window.Laravel.csrfToken},
+                        success: function(json){
+                            if(json.ret == 0){
+                                if (is_cart){
+                                    window.location.reload();
+                                }
+                                else{
+                                    obj.remove();
+                                }
+                            }
+                            else{
+                                alert(json.msg);
+                            }
+                        },
+                        error: function(){
+                            alert('请求失败~');
+                        }
+                    });
+                });;
+            }
+        });
+        $('.btnBuy').click(function () {
+            window.location.href = '{{url("/mall/cart")}}';
+        })
+        $('.btnShopCar').mouseover(function(event) {
+            $('.btnShopCarP').show();
+            $(this).css({"box-shadow":"0px 2px 5px #ccc"});
+        });
+        $(document).click(function(event) {
+            $('.btnShopCarP').hide();
+            $('.btnShopCar').css({"box-shadow":""});
+        });
+        $('.btnShopCarP').click(function(){
+            return false;
+        });
         $('#logout').on('click',function () {
             $.getJSON('/discuz/logout',function (json) {
                 if (json.ret == 0){

@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         Route::delete('/mall/cart/{id}', 'MallController@deleteCart');
         Route::post('/mall/cart', 'MallController@add2Cart');
         Route::post('/mall/order', 'MallController@order');
+        Route::get('/mall/order', 'MallController@orderIndex');
     });
 
 });

@@ -148,9 +148,8 @@ class MallController extends Controller
 */
     public function order(Request $request)
     {
-
         $uid = session('discuz.user.uid');
-        $user_count = \App\UserCount::where('uid', $uid)->first();
+        $user_count = DB::table('discuz_common_member_count')->where('uid',$uid)->first();
         $carts = \App\Cart::where('uid', $uid)->get();
         if(count($carts) <= 0){
             return ['ret' => 1004, 'msg' => '抱歉，您的购物车没有商品哦'];
@@ -158,17 +157,24 @@ class MallController extends Controller
         $amount = 0;
         $amount_quantity = 0;
         $amount_point = 0;
-
+        $items = [];
         foreach($carts as $cart){
-            $amount = $cart->item->point * $cart->quantity;
             $amount_quantity += $cart->quantity;
+            $amount_point += $cart->item->point * $cart->quantity;
             $inventory = \App\Helpers\Helper::getInventory($cart->item->inventories, $cart->color);
 
             if ( $inventory < $cart->quantity ) {
                 return ['ret' => 1002, 'msg' => '抱歉，'.$cart->item->name.'商品库存不足'];
             }
+            $items[] = [
+                'name'=>$cart->item->name,
+                'quantity'=>$cart->quantity,
+                'color'=>$cart->color,
+                'image'=>$cart->item->images[0],
+                'point'=>$cart->item->point,
+            ];
         }
-        if ($user_count->extcredits4 < $amount || $amount <= 0) {
+        if ($user_count->extcredits4 < $amount_point || $amount_point <= 0) {
             return ['ret' => 1001, 'msg' => '抱歉，您的积分不够'];
         }
         $address = \App\DeliveryAddress::find($request->input('address_id'));
@@ -177,15 +183,15 @@ class MallController extends Controller
         $order->uid = $uid;
         $order->quantity = $amount_quantity;
         $order->point = $amount;
-        $order->items = serialize($carts->toArray());
+        $order->items = $items;
         $order->receiver = $address->name;
         $order->mobile = $address->mobile;
         $order->telephone = $address->telephone;
         $order->address = $address->detail;
         $order->save();
+        $item_name = [];
         foreach($carts as $cart){
-            $amount_quantity += $cart->quantity;
-            $amount_point += $cart->point * $cart->quantity;
+            $item_name[] = $cart->item->name;
             $order_item = new \App\OrderItem();
             $order_item->item_id = $cart->item_id;
             $order_item->quantity = $cart->quantity;
@@ -208,9 +214,9 @@ class MallController extends Controller
         }
 
 
-        \App\UserCount::where('uid', $uid)->update(
-            ['extcredits4' => $user_count->extcredits4 - $amount]
-        );
+        DB::table('discuz_common_member_count')->where('uid',$uid)->update([
+            'extcredits4' => $user_count->extcredits4 - $amount,
+        ]);
         //订单提交
         $logid = DB::table('discuz_common_credit_log')->insertGetId([
             'uid' => $uid,
@@ -233,32 +239,36 @@ class MallController extends Controller
         ]);
 
 
-        /*
+
         $timestamp = time();
         $key = env('DISCUZ_UCKEY');
         $fromuid = 1;
-        $msgto = \Session::get('discuz.user.uid');
+        $msgto = $uid;
         $subject = '购买商品成功';
-        $message = '您于成功购买了' . $request->quantity . '件' . $item->name . '，您的收货地址是：' . $address->detail . '，联系电话为：' . $address->mobile . '。我们于7个工作日内发货，请查收。';
+        $message = '您于成功购买了' . $amount_quantity . '件' . implode(',', $item_name) . '，您的收货地址是：' . $address->detail . '，联系电话为：' . $address->mobile . '。我们于7个工作日内发货，请查收。';
         $url = url('/') . '/bbs/api/uc.php?time=' . $timestamp . '&code=' . urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=" . $fromuid . "&msgto=" . $msgto . "&subject=" . $subject . "&message=" . $message . "&time=" . $timestamp, 'ENCODE', $key));
         $client = new \GuzzleHttp\Client();
         $client->request('GET', $url);
-        */
-        return ['ret' => 0, 'msg' => '恭喜您，购买成功'];
 
-
+        return ['ret' => 0, 'msg' => '订单提交成功，将尽快安排物流配送！'];
         //
     }
     //购物车相关功能
-    public function cart()
+    public function cart(Request $request)
     {
         $uid = session('discuz.user.uid');
-        $carts = \App\Cart::where('uid', $uid)->get();
+        $carts = \App\Cart::where('uid', $uid)->with('item')->get();
         $addresses = \App\DeliveryAddress::where('uid', $uid)->get();
-        return view('mall.cart', [
-            'carts' => $carts,
-            'addresses' => $addresses,
-        ]);
+        if($request->ajax()){
+            return ['ret'=>0,'data'=>$carts];
+        }
+        else{
+            return view('mall.cart', [
+                'carts' => $carts,
+                'addresses' => $addresses,
+            ]);
+        }
+
     }
     public function deleteCart(Request $request,$id)
     {
@@ -382,5 +392,16 @@ class MallController extends Controller
         }
 
         return ['ret' => 0, 'msg' => '操作成功'];
+    }
+    //订单页面
+    public function orderIndex()
+    {
+        $uid = session('discuz.user.uid');
+        $orders = \App\Order::where('uid', $uid)->get();
+        $order_statuses = config('custom.order.statuses');
+        return view('mall.order',[
+            'orders'=>$orders,
+            'order_statuses' => $order_statuses,
+        ]);
     }
 }

@@ -2,8 +2,131 @@
 * @Author: Marte
 * @Date:   2017-07-03 15:42:08
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-07-03 20:20:57
+* @Last Modified time: 2017-07-04 17:49:36
 */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+header .container .row {
+    position: relative;
+}
+header .container .btnShopCar {
+    position: absolute;
+    right: 0px;
+    top: 67px;
+    width: 162px;
+    height: 43px;
+    line-height: 43px;
+    text-align: center;
+    background: #fff;
+}
+
+header .container .btnShopCarP {
+    box-shadow: 0px 2px 5px #ccc;
+    position: absolute;
+    left: 785px;
+    top: 110px;
+    width: 315px;
+    background: #fff;
+    z-index: 900;
+}
+
+header .container .btnShopCarP .carbox {
+    list-style: none;
+    padding: 20px;
+}
+
+header .container .btnShopCarP .carbox .shop {
+    position: relative;
+    margin: 10px 0;
+    border-bottom: 1px #ccc solid;
+    height: 51px;
+    width: 275px;
+    margin: 30px 0px;
+}
+
+header .container .btnShopCarP .carbox .shopImgmg {
+    position: absolute;
+    height: 51px;
+    width: 51px;
+    background: #000;
+    top: -15px;
+    left: 0;
+}
+
+header .container .btnShopCarP .carbox .shopTitle {
+    position: absolute;
+    width: 140px;
+    font-size: 12px;
+    top: -15px;
+    left: 67px;
+    overflow: hidden;
+}
+
+header .container .btnShopCarP .carbox .shopBox {
+    position: absolute;
+    left: 67px;
+    top: 18px;
+}
+
+header .container .btnShopCarP .carbox .shopBox .shopSub {
+    height: 18px;
+    width: 18px;
+    background: #e4e4e4;
+    text-align: center;
+    line-height: 18px;
+    float: left;
+    cursor: pointer;
+}
+
+header .container .btnShopCarP .carbox .shopBox .shopNum {
+    float: left;
+    height: 18px;
+    width: 25px;
+    background: #e4e4e4;
+    text-align: center;
+    line-height: 18px;
+}
+
+header .container .btnShopCarP .carbox .shopBox .shopAdd {
+    height: 18px;
+    width: 18px;
+    background: #e4e4e4;
+    text-align: center;
+    line-height: 18px;
+    float: left;
+    cursor: pointer;
+}
+
+header .container .btnShopCarP .carbox .shopJiage {
+    position: absolute;
+    right: 10px;
+    top: -15px;
+    font-size: 12px;
+    color: red;
+}
+
+header .container .btnShopCarP .carbox .removeSp {
+    display: block;
+    position: absolute;
+    left: 235px;
+    top: 6px;
+}
+
+.btnBuy {
+    position: relative;
+    width: 128px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    background: #e60012;
+    color: #fff;
+    left: 167px;
+    bottom: 30px;
+    border: none;
+}
 
 #main .container {
     width: 1090px;
@@ -46,9 +169,9 @@
     color: red;
     display: block;
     float: right;
-    margin-right: 60px;
+    margin-right: 70px;
     position: absolute;
-    z-index: 1000;
+    z-index: 10;
     top: 0;
     right: 0;
 }
@@ -59,11 +182,10 @@
     float: right;
     margin-right: 20px;
     position: absolute;
-    z-index: 1000;
+    z-index: 10;
     top: 0;
     right: 0;
 }
-
 #main .container .shangpinbox {
     margin-top: -31px;
 }

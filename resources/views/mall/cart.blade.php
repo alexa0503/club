@@ -9,8 +9,8 @@
                 <ul class="addrList">
                     @foreach($addresses as $k=>$address)
                     <li>
-                        <input value="{{$address->id}}" type="radio" style="margin:0 10px;" name="address" @if($k==0)checked="checked"@endif  />
-                        <div class="userAddr nowAddr">{{$address->detail}}（{{$address->name}}收）{{$address->mobile}}<a href="javascript:;" class="upAddr" data-url="{{url('/mall/address/'.$address->id)}}">修改地址</a><a href="javascript:;" class="delAddr" data-url="{{url('/mall/address/'.$address->id)}}">删除</a>
+                        <input value="{{$address->id}}" type="radio" style="margin:0 10px;" name="address" @if($k==0)checked="checked"@endif id="address{{$k}}"  />
+                        <div class="userAddr {{$k == 0 ?'nowAddr':''}}"><label style="margin: 0px;font-weight: normal" for="address{{$k}}">{{$address->detail}}（{{$address->name}}收）{{$address->mobile}}</label><a href="javascript:;" class="upAddr" data-url="{{url('/mall/address/'.$address->id)}}">修改地址</a><a href="javascript:;" class="delAddr" data-url="{{url('/mall/address/'.$address->id)}}">删除</a>
                         </div>
                     </li>
                     @endforeach
@@ -203,8 +203,8 @@
                     data: {_token:window.Laravel.csrfToken},
                     success: function(json){
                         if(json.ret == 0){
+                            //obj.remove();
                             window.location.reload();
-                            obj.remove();
                         }
                         else{
                             alert(json.msg);
@@ -246,7 +246,10 @@
                     data: {_token:window.Laravel.csrfToken,address_id:address_id},
                     success: function(json){
                         if(json.ret == 0){
-                            alert(json.msg);
+                            //alert(json.msg);
+                            $('#modal-tip').find('.modal-body').html(json.msg);
+                            $('#modal-tip').find('.modal-title').html('恭喜');
+                            $('#modal-tip').modal('show');
                         }
                         else{
                             alert(json.msg);
