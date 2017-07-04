@@ -4,9 +4,9 @@ return [
     'blocks' => [
         '1'=>[
             'kvs' => '头部KV',
-            'features' => '版主推荐',
-            'events' => '论坛活动',
-            'hots-default' => '论坛热点',
+            'features' => '每日精选',
+            'events' => '风迷活动',
+            //'hots-default' => '论坛热点',
             //'hots-580' => '论坛热点-风光580',
             //'hots-370' => '论坛热点-风光370',
             //'hots-330' => '论坛热点-风光330',

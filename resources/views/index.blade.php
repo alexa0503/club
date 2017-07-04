@@ -222,7 +222,7 @@
                         <div class="titles">
                             <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/hotpoint.png" alt=""></a>
                         </div>
-                        <div class="slick" style="overflow: hidden;height: 403px;">
+                        <div class="slick" style="overflow: hidden;height: 407px;">
                             @foreach($forums as $forum)
                                 <div class="digest">
                                     <ul>
