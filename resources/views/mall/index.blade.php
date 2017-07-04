@@ -18,7 +18,7 @@
                     <span>爆款推荐</span>
                 </div>
                 <div class="caret"></div>
-                <div class="content">
+                <div class="content" style="min-height: 300px;">
                     <div class="pull-right" style="width: 800px;">
                         <div class="rows">
                             @foreach($features1 as $k=>$item)
@@ -47,7 +47,7 @@
                     <span>车载必备</span>
                 </div>
                 <div class="caret"></div>
-                <div class="content">
+                <div class="content" style="min-height: 300px;">
                     <div class="pull-right" style="width: 800px;">
                         <div class="rows">
                             @foreach($features2 as $k=>$item)

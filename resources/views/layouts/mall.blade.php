@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/mall.css">
+    <link rel="stylesheet" type="text/css" href="/css/shopcar.css">
     <!-- Jquery -->
     <script src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/slick.js"></script>
@@ -76,6 +77,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="btnShopCar"><a style="height: 100%;width:100%;text-decoration: none;color: #a8a8a8;" href="javascript:;"><img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车<span id="cart-count">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;></a></div>
+            <div class="btnShopCarP" style="display:none;">
+                <ul class="carbox">
+                </ul>
+                <button class="btnBuy">查看购物车</button>
             </div>
         </div>
         <div class="row">
@@ -223,9 +230,121 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
+<div class="modal fade" id="modal-address" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="">收货人信息</h4>
+            </div>
+            <div class="modal-body">
+                {{ Form::open(array('url' => url('/mall/address'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'address-form')) }}
+                <div class="form-group" id="form-group-name">
+                    <label for="name" class="col-md-2 col-xs-2 control-label">* 收货人:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <input class="form-control" type="text" value="" id="username" name="name">
+                        <label class="help-block" for="name" id="help-name"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group" id="form-group-detail">
+                    <label for="detail" class="col-md-2 col-xs-2 control-label">* 详细地址:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <input class="form-control" type="text" value="" id="detail" name="detail">
+                        <label class="help-block" for="detail" id="help-detail"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group" id="form-group-mobile">
+                    <label for="mobile" class="col-md-2 col-xs-2 control-label">* 手机号码:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <input class="form-control" type="text" value="" id="mobile" name="mobile">
+                        <label class="help-block" for="mobile" id="help-mobile"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group" id="form-group-telephone">
+                    <label for="telephone" class="col-md-2 col-xs-2 control-label">固定电话:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <input class="form-control" type="text" value="" id="telephone" name="telephone">
+                        <label class="help-block" for="telephone" id="help-telephone"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+                <input type="hidden" name="id" value="">
+                <div class="form-group">
+                    <div class="col-md-10 col-xs-10 col-md-offset-2 col-xs-offset-2">
+                        <button type="submit" class="btn btn-custom">确 认</button>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+                {{ Form::close() }}
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 <script src="{{asset('js/jquery.form.js')}}"></script>
 <script>
+    @if( Request::url() == url('/mall/cart') )
+    var is_cart = true;
+    @else
+    var is_cart = false;
+    @endif
     $().ready(function () {
+        $.getJSON('{{url("/mall/cart")}}',function (json) {
+            if (json && json.ret == 0 ){
+                var html = '';
+                var count = 0;
+                $.each(json.data,function (index,cart) {
+                    count += cart.quantity;
+                    html += '<li class="shop">'
+                        +'<div class="shopImgmg"><img src="'+cart.item.images[0]+'" width="51" height="51" /> </div>'
+                        +'<div class="shopTitle">'+cart.item.name+'</div>'
+                        +'<div class="shopBox"></div>'
+                        +'<div class="shopJiage">'+cart.item.point+'风迷币 X '+cart.quantity+'</div>'
+                        +'<a class="removeSp" href="javascript:;" data-id="'+cart.id+'">删除</a></li>';
+                });
+                $('#cart-count').text(count);
+                $('.carbox').html(html).find('.removeSp').click(function(){
+                    var url = '{{url("/mall/cart")}}/'+$(this).attr('data-id');
+                    var obj = $(this).parent();
+                    $.ajax(url, {
+                        dataType: 'json',
+                        type: 'delete',
+                        data: {_token:window.Laravel.csrfToken},
+                        success: function(json){
+                            if(json.ret == 0){
+                                if (is_cart){
+                                    window.location.reload();
+                                }
+                                else{
+                                    obj.remove();
+                                }
+                            }
+                            else{
+                                alert(json.msg);
+                            }
+                        },
+                        error: function(){
+                            alert('请求失败~');
+                        }
+                    });
+                });;
+            }
+        });
+        $('.btnBuy').click(function () {
+            window.location.href = '{{url("/mall/cart")}}';
+        })
+        $('.btnShopCar').mouseover(function(event) {
+            $('.btnShopCarP').show();
+            $(this).css({"box-shadow":"0px 2px 5px #ccc"});
+        });
+        $(document).click(function(event) {
+            $('.btnShopCarP').hide();
+            $('.btnShopCar').css({"box-shadow":""});
+        });
+        $('.btnShopCarP').click(function(){
+            return false;
+        });
         $('#logout').on('click',function () {
             $.getJSON('/discuz/logout',function (json) {
                 if (json.ret == 0){
@@ -248,7 +367,7 @@
                 if (json.ret == 0){
                     $.get(json.url,function () {
                         $('#modal-login').modal('hide');
-                        $('#modal-address').modal('show');
+                        window.location.reload();
                     }).fail(function () {
                         $('#help-password').html('<span class="text-danger">服务器发生错误，请稍候重试。</span>');
                     });
@@ -265,6 +384,39 @@
             error: function(xhr){
                 //$('#form-group-password').addClass('has-error');
                 $('#help-password').html('<span class="text-danger">服务器发生错误，请稍候重试。</span>');
+            }
+        });
+        $('#address-form').ajaxForm({
+            dataType: 'json',
+            success: function(json) {
+                $('.help-block').html('');
+                $('.form-group').removeClass('has-error');
+                if (json.ret == 0){
+                    $('.modal').modal('hide');
+                    //$('#modal-tip').find('.modal-body').html(json.msg);
+                    //$('#modal-tip').find('.modal-title').html('恭喜');
+                    window.location.reload();
+                    //$('#modal-tip').modal('show');
+                }
+                else{
+                    $('.modal').modal('hide');
+                    $('#modal-tip').find('.modal-body').html(json.msg);
+                    $('#modal-tip').find('.modal-title').html('抱歉');
+                    $('#modal-tip').modal('show');
+                }
+
+            },
+            error: function(xhr){
+                $('.help-block').html('');
+                $('.form-group').removeClass('has-error');
+                var json = jQuery.parseJSON(xhr.responseText);
+                if (xhr.status == 200){
+                    $('#post-form').modal('hide');
+                }
+                $.each(json, function(index,value){
+                    $('#form-group-'+index).addClass('has-error');
+                    $('#help-'+index).html(value);
+                });
             }
         });
         $('.weixin').on('mouseenter',function () {

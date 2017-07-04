@@ -11,14 +11,19 @@
 |
 */
 
-Route::group(['middleware' => ['auth.discuz.admin','menu'],'prefix'=>'admin','namespace' => 'Admin'], function () {
-	Route::get('/', function () {
-	   return redirect('/admin/dashboard');
-   });
+use App\Helpers\DiscuzHelper;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+Route::group(['middleware' => ['auth.discuz.admin', 'menu'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/', function () {
+        return redirect('/admin/dashboard');
+    });
     Route::get('/dashboard', 'IndexController@index');
     Route::get('item/{id}/restore', 'ItemController@restore')->name('item.restore');
     Route::resource('item', 'ItemController');
     Route::resource('page.block', 'BlockController');
+    Route::resource('order', 'OrderController');
 });
 Route::group(['middleware' => ['auth.discuz.user']], function () {
 
@@ -74,50 +79,61 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
 
     Route::get('/mall', 'MallController@index');
     Route::get('/mall/item/{id}', 'MallController@item');
-    Route::post('/mall/buy', 'MallController@buy');
-    Route::post('/mall/address', 'MallController@address');
+    Route::group(['middleware' => ['auth.discuz.must']], function () {
+        //Route::post('/mall/buy', 'MallController@buy');
+        Route::post('/mall/address', 'MallController@postAddress');
+        //Route::post('/mall/address/default', 'MallController@defaultAddress');
+        Route::get('/mall/cart', 'MallController@cart');
+        Route::delete('/mall/address/{id}', 'MallController@deleteAddress');
+        Route::get('/mall/address/{id}', 'MallController@showAddress');
+        Route::put('/mall/cart/{id}', 'MallController@updateCart');
+        Route::delete('/mall/cart/{id}', 'MallController@deleteCart');
+        Route::post('/mall/cart', 'MallController@add2Cart');
+        Route::post('/mall/order', 'MallController@order');
+        Route::get('/mall/order', 'MallController@order');
+    });
+
 });
-use App\Helpers\DiscuzHelper;
-use Illuminate\Http\Request;
-Route::post('/discuz/login', function(Request $request){
+
+Route::post('/discuz/login', function (Request $request) {
     $password = $request->input('password');
     $username = $request->input('username');
-    $user = \App\UUser::where('username',$username)->first();
-    if( null == $user ){
-        return ['ret'=>1001,'msg'=>'不存在的用户名'];
+    $user = \App\UUser::where('username', $username)->first();
+    if (null == $user) {
+        return ['ret' => 1001, 'msg' => '不存在的用户名'];
     }
     $timestamp = time();
     $passwordmd5 = preg_match('/^\w{32}$/', $password) ? $password : md5($password);
-    if( md5($passwordmd5.$user->salt) != $user->password ){
-        return ['ret'=>1002,'msg'=>'用户名与密码不匹配'];
+    if (md5($passwordmd5 . $user->salt) != $user->password) {
+        return ['ret' => 1002, 'msg' => '用户名与密码不匹配'];
     }
 
     $key = env('DISCUZ_UCKEY');
-    $login_url = url('/').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode('action=synlogin&username='.$user->username.'&uid='.$user->uid.'&password='.$user->password."&time=".$timestamp, 'ENCODE', $key));
-    return ['ret'=>0,'url'=>$login_url,'msg'=>''];
+    $login_url = url('/') . '/bbs/api/uc.php?time=' . $timestamp . '&code=' . urlencode(DiscuzHelper::authcode('action=synlogin&username=' . $user->username . '&uid=' . $user->uid . '&password=' . $user->password . "&time=" . $timestamp, 'ENCODE', $key));
+    return ['ret' => 0, 'url' => $login_url, 'msg' => ''];
 });
-Route::get('/privacy', function(){
-    return view('privacy',[
+Route::get('/privacy', function () {
+    return view('privacy', [
     ]);
 });
-Route::get('/discuz/logout', function(){
+Route::get('/discuz/logout', function () {
     $timestamp = time();
     $key = env('DISCUZ_UCKEY');
-    $url = url('/').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=synlogout&time=".$timestamp, 'ENCODE', $key));
-    return ['ret'=>0,'url'=>$url];
+    $url = url('/') . '/bbs/api/uc.php?time=' . $timestamp . '&code=' . urlencode(DiscuzHelper::authcode("action=synlogout&time=" . $timestamp, 'ENCODE', $key));
+    return ['ret' => 0, 'url' => $url];
 });
 
 
 Auth::routes();
 
-Route::get('/login', function(){
-	return redirect('/bbs/forum.php');
+Route::get('/login', function () {
+    return redirect('/bbs/forum.php');
 });
-Route::post('/login', function(){
+Route::post('/login', function () {
 
 });
-Route::get('/logout', function(){
-	return redirect('/bbs/forum.php');
+Route::get('/logout', function () {
+    return redirect('/bbs/forum.php');
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');

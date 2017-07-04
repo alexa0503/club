@@ -26,9 +26,7 @@ class DiscuzUserAuth
             \Session::put('discuz.user', null);
             \Session::put('discuz.hasLogin',null);
         }
-        if(env('APP_ENV') == 'local'){
-            $authcode = "x\t2";
-        }
+
 
         if( !$authcode || empty($authcode) ){
             \Session::put('discuz.hasLogin',null);

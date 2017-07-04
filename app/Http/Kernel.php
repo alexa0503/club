@@ -58,6 +58,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'auth.discuz.admin' => \App\Http\Middleware\DiscuzAdminAuth::class,
         'auth.discuz.user' => \App\Http\Middleware\DiscuzUserAuth::class,
+        'auth.discuz.must' => \App\Http\Middleware\DiscuzMustLogin::class,
         'menu' => \App\Http\Middleware\MenuMiddleware::class,
     ];
 }
