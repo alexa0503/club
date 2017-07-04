@@ -249,8 +249,10 @@
                             //alert(json.msg);
                             $('#modal-tip').find('.modal-body').html(json.msg);
                             $('#modal-tip').find('.modal-title').html('恭喜');
-                            $('#modal-tip').modal('show');
-                            $('.shangpin').remove();
+                            $('#modal-tip').modal('show').on('hidden.bs.modal', function () {
+                                // do something…
+                                window.location.href = '{{url("/mall/order")}}';
+                            });
                         }
                         else{
                             alert(json.msg);

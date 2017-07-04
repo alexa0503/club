@@ -161,7 +161,7 @@ class MallController extends Controller
         $items = [];
         foreach($carts as $cart){
             $amount_quantity += $cart->quantity;
-            $amount_point += $cart->item->point * $cart->quantity;
+            $amount_point += ($cart->item->point * $cart->quantity);
             $inventory = \App\Helpers\Helper::getInventory($cart->item->inventories, $cart->color);
 
             if ( $inventory < $cart->quantity ) {
