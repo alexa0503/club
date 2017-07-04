@@ -183,7 +183,7 @@ class MallController extends Controller
         $order = new \App\Order();
         $order->uid = $uid;
         $order->quantity = $amount_quantity;
-        $order->point = $amount;
+        $order->point = $amount_point;
         $order->items = $items;
         $order->receiver = $address->name;
         $order->mobile = $address->mobile;
