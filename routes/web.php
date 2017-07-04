@@ -84,13 +84,14 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         Route::post('/mall/address', 'MallController@postAddress');
         //Route::post('/mall/address/default', 'MallController@defaultAddress');
         Route::get('/mall/cart', 'MallController@cart');
+        Route::get('/mall/ajax/cart', 'MallController@cart');
         Route::delete('/mall/address/{id}', 'MallController@deleteAddress');
         Route::get('/mall/address/{id}', 'MallController@showAddress');
         Route::put('/mall/cart/{id}', 'MallController@updateCart');
         Route::delete('/mall/cart/{id}', 'MallController@deleteCart');
         Route::post('/mall/cart', 'MallController@add2Cart');
         Route::post('/mall/order', 'MallController@order');
-        Route::get('/mall/order', 'MallController@order');
+        Route::get('/mall/order', 'MallController@orderIndex');
     });
 
 });

@@ -43,13 +43,20 @@
             <li class="login"><a href="/bbs/member.php?mod=logging&amp;action=login&amp;referer={{url('/mall')}}">登录</a></li>
             <li class="login"><a href="/bbs/member.php?mod=register">注册</a></li>
             @else
-            <li><a href="/bbs/home.php?mod=space&amp;uid=1" target="_blank" title="访问我的空间">{{Session::get('discuz.user.username')}}</a></li>
-            <li>|</li>
+            <li style="padding-left:12px;background: url(/bbs/static/image/common/user_online.gif) no-repeat 0px 10px"><a href="/bbs/home.php?mod=space&amp;uid=1" target="_blank" title="访问我的空间">{{Session::get('discuz.user.username')}}</a></li>
+            <li class="split">|</li>
             <li><a href="/bbs/home.php?mod=spacecp">我的</a></li>
+            <li class="split">|</li>
+            <li><a href="/mall/order">订单</a></li>
+                <li class="split">|</li>
+            <li><a href="/bbs/home.php?mod=spacecp">设置</a></li>
+                <li class="split">|</li>
+            <li><a href="/bbs/home.php?mod=space&do=pm">消息</a></li>
             <li><a href="/bbs/home.php?mod=spacecp&amp;ac=credit4&amp;showcredit=1">风迷币: {{Session::get('discuz.user.user_count.extcredits4')}}</a></li>
             <li><a href="/bbs/home.php?mod=spacecp&amp;ac=usergroup">用户组: {{Session::get('discuz.user.user_group.grouptitle')}}</a></li>
+            <li class="split">|</li>
             <li><a href="/bbs/home.php?mod=space&amp;do=notice" id="myprompt" class="a showmenu" onmouseover="showMenu({'ctrlid':'myprompt'});">提醒</a></li>
-            <li>|</li>
+            <li class="split">|</li>
             @if(Session::get('discuz.user.groupid') == 1)
             <li><a href="/admin">商城管理</a></li>
             <li><a href="/bbs/admin.php" target="_blank">管理中心</a></li>
@@ -290,7 +297,7 @@
     var is_cart = false;
     @endif
     $().ready(function () {
-        $.getJSON('{{url("/mall/cart")}}',function (json) {
+        $.getJSON('{{url("/mall/ajax/cart")}}',function (json) {
             if (json && json.ret == 0 ){
                 var html = '';
                 var count = 0;

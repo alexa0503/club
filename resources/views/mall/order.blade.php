@@ -4,6 +4,9 @@
         <div class="container" style="padding-bottom: 40px;">
             <h4>我的订单</h4>
             <div style="width:100%;height:5px;background:red;margin:30px 0;z-index:1;"></div>
+            @if(count($orders) <= 0)
+                <div class="dingdanbox" style="margin-top: 10px;">您还没有任何订单信息</div>
+            @endif
             @foreach($orders as $order)
             <div class="dingdanbox" style="margin-top: 10px;">
                 <table class="table" style="width:100%;border:#ccc solid 1px;margin-bottom: 0px; " cellpadding="0" cellspacing="0" border="1">

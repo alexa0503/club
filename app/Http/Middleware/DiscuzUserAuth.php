@@ -17,6 +17,23 @@ class DiscuzUserAuth
      */
     public function handle($request, Closure $next)
     {
+        if( env('APP_ENV') == 'local'){
+            $user = \App\User::where('uid',1)->first();
+            if( !$user ){
+                \Session::put('discuz.hasLogin',null);
+                //return redirect('/bbs');
+            }
+            else{
+                \Session::put('discuz.hasLogin',true);
+                \Session::put('discuz.user', $user->toArray());
+                \Session::put('discuz.user.avatar', $user->avatar);
+                //var_dump($user->user_group);
+                \Session::put('discuz.user.user_count', $user->user_count->toArray());
+                \Session::put('discuz.user.user_group', $user->user_group->toArray());
+            }
+            return $next($request);
+        }
+
         $authcode = null;
         if( isset($_COOKIE['K4Ps_2132_auth']) ){
             $key = md5('85be29aDkjYOAQgU'.$_COOKIE['K4Ps_2132_saltkey']);

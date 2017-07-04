@@ -27,6 +27,9 @@ body {
     text-align: right;
     line-height: 32px;
 }
+#login .nav {
+    font-size: 12px;
+}
 #login .nav>li>a {
     color: #444;
     padding: 6px 5px 6px;
@@ -36,6 +39,9 @@ body {
 }
 #login li.login>a {
     color:#bb6565;
+}
+#login li.split {
+    color: #ccc;
 }
 #search .form-control,#search .btn {
     border-radius:0;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Request;
 use App\Helpers\DiscuzHelper;
 use Illuminate\Support\Facades\DB;
 use Validator;
