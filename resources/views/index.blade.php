@@ -132,7 +132,8 @@
             color: #000;
         }
         .digest table tr td {
-            height: 40px;
+            height: 45px;
+            vertical-align: middle;
         }
         .digest table tr td.forumtitle{
             font-weight: bold;
