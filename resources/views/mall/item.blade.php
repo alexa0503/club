@@ -116,14 +116,13 @@
                             else{
                                 window.location.href = '{{url("/mall/cart")}}';
                             }
-
+                            ajaxCart();
                         }
                         else{
                             $('#modal-tip').find('.modal-body').html(json.msg);
                             $('#modal-tip').find('.modal-title').html('抱歉');
                             $('#modal-tip').modal('show');
                         }
-
                     },
                     error: function(xhr){
                         var json = jQuery.parseJSON(xhr.responseText);
@@ -137,8 +136,6 @@
                     }
                 });
             })
-
-
         })
     </script>
 @endsection

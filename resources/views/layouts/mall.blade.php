@@ -291,12 +291,8 @@
 </div>
 <script src="{{asset('js/jquery.form.js')}}"></script>
 <script>
-    @if( Request::url() == url('/mall/cart') )
-    var is_cart = true;
-    @else
-    var is_cart = false;
-    @endif
-    $().ready(function () {
+    function ajaxCart()
+    {
         $.getJSON('{{url("/mall/ajax/cart")}}',function (json) {
             if (json && json.ret == 0 ){
                 var html = '';
@@ -338,6 +334,14 @@
                 });;
             }
         });
+    }
+    @if( Request::url() == url('/mall/cart') )
+    var is_cart = true;
+    @else
+    var is_cart = false;
+    @endif
+    $().ready(function () {
+        ajaxCart();
         $('.btnBuy').click(function () {
             window.location.href = '{{url("/mall/cart")}}';
         })
