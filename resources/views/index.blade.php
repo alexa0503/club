@@ -405,7 +405,7 @@
                                 @foreach($member as $n=>$v)
                                 <tr>
                                     <td class="order"><i{!! $n>=3?' class="no-bg"':'' !!}>{{$n+1}}</i></td>
-                                    <td class="avatar"><img src="/bbs/uc_server/avatar.php?uid={{$v->uid}}&size=middle&_={{time()}}" width="30" height="30"/> </td>
+                                    <td class="avatar"><a href="/bbs/home.php?mod=space&uid={{$v->uid}}"><img src="/bbs/uc_server/avatar.php?uid={{$v->uid}}&size=middle&_={{time()}}" width="30" height="30"/></a> </td>
                                     <td class="username"><a href="/bbs/home.php?mod=space&uid={{$v->uid}}">{{$v->username}}</a></td>
                                     <td class="number">{{$k=='digest'?$v->digestposts:$v->posts}}帖</td>
                                 </tr>
