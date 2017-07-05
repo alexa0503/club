@@ -398,7 +398,7 @@ class MallController extends Controller
     public function orderIndex()
     {
         $uid = session('discuz.user.uid');
-        $orders = \App\Order::where('uid', $uid)->get();
+        $orders = \App\Order::where('uid', $uid)->orderBy('created_at','DESC')->get();
         $order_statuses = config('custom.order.statuses');
         return view('mall.order',[
             'orders'=>$orders,
