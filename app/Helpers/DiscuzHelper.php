@@ -65,7 +65,7 @@ class DiscuzHelper
     	}
     	return $v;
     }
-    public static function formatTime($timestamp)
+    public static function formatTime($timestamp, $format = null)
     {
         $timestamp += 8*3600;
         $now = time();
@@ -80,8 +80,17 @@ class DiscuzHelper
             $min = floor(($diff_time - floor($diff_time/3600)*3600)/60);
             return floor($diff_time/3600).'时'.$min.'分前';
         }
+        elseif($diff_time < 30*60*60*24){
+            $day = floor($diff_time/(60*60*24));
+            $hour = floor(($diff_time-$day*60*60*24)/3600);
+            $min = floor(($diff_time - floor($diff_time/3600)*3600)/60);
+            return $day.'天'.$hour.'时'.$min.'分前';
+        }
         else{
-            return date('Y-m-d H:i:s',$timestamp);
+            if( $format ){
+                return date($format,$timestamp);
+            }
+            return date('y/m/d H:i:s',$timestamp);
         }
     }
 

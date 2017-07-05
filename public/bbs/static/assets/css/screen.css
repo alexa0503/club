@@ -546,8 +546,9 @@ body {
 }
 
 #nv_portal #hotpoint .menus {
-  margin-top: -30px;
-  border-bottom: 1px solid #fdc3c3
+  margin-top:-30px;
+  height:40px;
+  border-bottom:1px solid #fdc3c3
 }
 
 #nv_portal #hotpoint .menus ul {
@@ -569,7 +570,7 @@ body {
   color: #fff
 }
 
-#nv_portal #hotpoint .menus ul li a:hover {
+#nv_portal #hotpoint .menus ul li a:hover,#nv_portal #hotpoint .menus ul li a.active {
   background-color: #f50c0c;
   background-image: none
 }

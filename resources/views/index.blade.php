@@ -108,7 +108,6 @@
             padding:20px 26px 0;
         }
         .digest ul li {
-            border-bottom: 1px solid #fcaaaa;
             line-height: 20px;
             height: 20px;
             padding: 10px 0;
@@ -127,6 +126,98 @@
         .digest ul li span {
             position: absolute;
             right: 0;
+        }
+        .digest table {
+            width: 100%;
+            color: #000;
+        }
+        .digest table tr td {
+            height: 40px;
+        }
+        .digest table tr td.forumtitle{
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .digest table tr td.username {
+            width: 80px;
+        }
+        .digest table tr td.forumname {
+            width: 60px;
+        }
+        .digest table tr td.dateline {
+            width: 160px;
+        }
+        .digest a:hover {
+            text-decoration: underline!important;
+        }
+        .digest i {
+            color: #858585;
+        }
+        #boards {
+            background: #FFF;
+            padding-bottom: 10px;
+        }
+        #boards .tab ul {
+            height: 40px;
+            width: 100%;
+            list-style: none;
+        }
+        #boards .tab ul li {
+            float: left;
+            width: 50%;
+            margin: 0;
+        }
+        #boards .tab ul li a {
+            display: block;
+            width: 100%;
+            height: 40px;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 40px;
+            text-align: center;
+            background: #000;
+            color: #ffffff;
+        }
+        #boards .tab ul li a:hover,#boards .tab ul li a.active {
+            background: darkred;
+        }
+        #boards .content {
+            margin: 5px 5px;
+        }
+        #boards .content table {
+            width: 100%;
+        }
+        #boards .content table:last-child{
+            display: none;
+        }
+        #boards .content table tr td {
+            height: 40px;
+            vertical-align: middle;
+        }
+        #boards .content table tr td.order {
+            width: 36px;
+        }
+        #boards .content table tr td.order i {
+            background: red;
+            color: #ffffff;
+            padding: 2px 8px;
+        }
+        #boards .content table tr td.order i.no-bg {
+            background: #fff;
+            color: #000;
+        }
+        #boards .content table tr td.avatar {
+            width: 48px;
+        }
+        #boards .content table tr td.avatar img {
+            width: 32px;
+            height: 32px;
+        }
+        #boards .content table tr td.username {
+            width: 120px;
+        }
+        #boards .content table tr td.number {
+
         }
 
     </style>
@@ -222,14 +313,27 @@
                         <div class="titles">
                             <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/hotpoint.png" alt=""></a>
                         </div>
-                        <div class="slick" style="overflow: hidden;height: 407px;">
-                            @foreach($forums as $forum)
-                                <div class="digest">
-                                    <ul>
-                                        @foreach($forum['threads'] as $thread)
-                                        <li><a href="/bbs/forum.php?mod=viewthread&tid={{$thread->tid}}&fromuid={{$thread->fid}}" title="{{$thread->subject}}">{{ str_limit($thread->subject,70,'…')}}</a><i>{{$forum['base']->name}}</i><span>{{\App\Helpers\DiscuzHelper::formatTime($thread->dateline)}}</span></li>
+                        <div class="menus">
+                            <ul>
+                                <li><a data-target="digest-digest" href="javascript:;" class="active">最新精华</a></li>
+                                <li><a data-target="digest-hotreply" href="javascript:;">热门回复</a></li>
+                            </ul>
+                        </div>
+                        <div style="width:100%;overflow: hidden;height: 516px;">
+                            @foreach($forums as $k=>$forum)
+                                <div id="digest-{{$k}}" class="digest" {!! $k!='digest'?' style="display: none;"':'' !!}>
+                                    <table>
+                                        <tbody>
+                                        @foreach($forum as $thread)
+                                        <tr>
+                                            <td class="forumtitle"><a href="/bbs/forum.php?mod=viewthread&tid={{$thread->tid}}&fromuid={{$thread->fid}}" title="{{$thread->subject}}">{{ str_limit($thread->subject,60,'…')}}</td>
+                                            <td class="username"><a href="/bbs/home.php?mod=space&uid={{$thread->authorid}}">{{$thread->author}}</a></td>
+                                            <td class="forumname"><a href="/bbs/forum.php?mod=forumdisplay&fid={{$thread->fid}}">{{$thread->name}}</a></td>
+                                            <td class="dateline">@if($k=='hotreply')最新回复: <i>{{\App\Helpers\DiscuzHelper::formatTime($thread->lastpost,'m/d H:i')}}</i>@else发布时间: <i>{{\App\Helpers\DiscuzHelper::formatTime($thread->dateline)}}</i>@endif</td>
+                                        </tr>
                                         @endforeach
-                                    </ul>
+                                        </tbody>
+                                    </table>
                                 </div>
                             @endforeach
                         </div>
@@ -239,8 +343,8 @@
                 </div>
                 <div class="right">
                     @if(!session('discuz.hasLogin'))
-                        <div id="login" style="height: 370px;">
-                            <div class="loginWrap">
+                        <div id="login">
+                            <div class="loginWrap" style="height: 310px;">
                                 <h2>账号登录</h2>
                                 <div class="row">
                                     <input name="name" type="text" id="name" class="name" value="" placeholder="会员账号/手机号">
@@ -286,11 +390,32 @@
                         </div>
                     @endif
                 <!-- login end -->
-                    @if(count($right_top_kv)>0)
-                        <div class="showWrap">
-                            <a href="{{$right_top_kv[0]->link}}"><img src="{{$right_top_kv[0]->image}}" alt="{{$right_top_kv[0]->title}}"></a>
+                    <div class="showWrap" id="boards">
+                        <div class="tab">
+                            <ul>
+                                <li><a class="active" href="javascrit:;" data-target="boards-digest">精华风迷</a></li>
+                                <li><a href="javascrit:;" data-target="boards-diligent">勤奋风迷</a></li>
+                            </ul>
                         </div>
-                    @endif
+                        <div class="content">
+                            @foreach($members as $k=>$member)
+                            <table id="boards-{{$k}}">
+                                <tbody>
+                                @if(count($member)>0)
+                                @foreach($member as $n=>$v)
+                                <tr>
+                                    <td class="order"><i{!! $n>=3?' class="no-bg"':'' !!}>{{$n+1}}</i></td>
+                                    <td class="avatar"><img src="/bbs/uc_server/avatar.php?uid={{$v->uid}}&size=middle&_={{time()}}" width="30" height="30"/> </td>
+                                    <td class="username">{{$v->username}}</td>
+                                    <td class="number">{{$k=='digest'?$v->digestposts:$v->posts}}帖</td>
+                                </tr>
+                                @endforeach
+                                @endif
+                                </tbody>
+                            </table>
+                            @endforeach
+                        </div>
+                    </div>
                 <!-- activity start -->
                     <div id="activity" class="contentStyle" style="height:885px;">
                         <div class="titles">
@@ -510,6 +635,20 @@
             'dots':true,
             'autoplay':true
         });
+        jQuery('.menus ul li a').click(function () {
+            jQuery('.menus ul li a').removeClass('active');
+            jQuery(this).addClass('active');
+            var id = jQuery(this).attr('data-target');
+            jQuery('.digest').hide();
+            jQuery('#'+id).show();
+        })
+        jQuery('#boards .tab ul li a').click(function () {
+            jQuery('#boards .tab ul li a').removeClass('active');
+            jQuery(this).addClass('active');
+            var id = jQuery(this).attr('data-target');
+            jQuery('#boards .content table').hide();
+            jQuery('#'+id).show();
+        })
     })
 </script>
 </body>

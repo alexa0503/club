@@ -48,24 +48,41 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         $right_bottom_kv = $page->blocks->filter(function ($value, $key) {
             return $value->name == 'right_bottom_kv';
         })->values()->all();
-        $rows = \DB::table('discuz_forum_forum')
-            ->where('status',1)
-            ->where('fup','!=',0)
+
+        $forums['digest'] = \DB::table('discuz_forum_thread')
+            ->join('discuz_forum_forum', 'discuz_forum_thread.fid', '=', 'discuz_forum_forum.fid')
+            ->where('discuz_forum_thread.digest',1)
+            ->orderBy('discuz_forum_thread.dateline', 'DESC')
+            ->select('discuz_forum_thread.*', 'discuz_forum_forum.name')
+            ->offset(0)
+            ->limit(10)
             ->get();
-        $forums = [];
-        foreach($rows as $forum){
-            $threads = \DB::table('discuz_forum_thread')
-                ->where('digest',1)
-                ->where('fid',$forum->fid)
-                ->orderBy('dateline', 'DESC')
-                ->offset(0)
-                ->limit(7)
-                ->get();
-            $forums[] = [
-                'base' => $forum,
-                'threads' => $threads,
-            ];
-        }
+
+        $forums['hotreply'] = \DB::table('discuz_forum_thread')
+            ->join('discuz_forum_forum', 'discuz_forum_thread.fid', '=', 'discuz_forum_forum.fid')
+            ->orderBy('discuz_forum_thread.replies', 'DESC')
+            ->select('discuz_forum_thread.*', 'discuz_forum_forum.name')
+            ->offset(0)
+            ->limit(10)
+            ->get();
+
+        $members['digest'] = \DB::table('discuz_common_member_count')
+            ->join('discuz_common_member', 'discuz_common_member.uid', '=', 'discuz_common_member_count.uid')
+            ->orderBy('discuz_common_member_count.digestposts', 'DESC')
+            ->select('discuz_common_member_count.*', 'discuz_common_member.username')
+            ->offset(0)
+            ->limit(5)
+            ->get();
+        $members['diligent'] = \DB::table('discuz_common_member_count')
+            ->join('discuz_common_member', 'discuz_common_member.uid', '=', 'discuz_common_member_count.uid')
+            ->orderBy('discuz_common_member_count.posts', 'DESC')
+            ->select('discuz_common_member_count.*', 'discuz_common_member.username')
+            ->offset(0)
+            ->limit(5)
+            ->get();
+
+
+
         return view('index',[
             'kvs'=>$kvs,
             'features'=>$features,
@@ -74,6 +91,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
             'right_top_kv'=>$right_top_kv,
             'right_bottom_kv'=>$right_bottom_kv,
             'forums' => $forums,
+            'members' => $members,
         ]);
     });
 
