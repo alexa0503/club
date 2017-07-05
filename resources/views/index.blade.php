@@ -237,7 +237,7 @@
                     <div id="kv" style="height: 450px;">
                         <div class="slick">
                             @foreach($kvs as $kv)
-                                <div class="swiper-slide"><a href="{{$kv->link}}"><img src="{{asset($kv->image)}}" alt="" height="450" width="800"></a></div>
+                                <div class="swiper-slide"><a href="{{$kv->link}}" target="_blank"><img src="{{asset($kv->image)}}" alt="" height="450" width="800"></a></div>
                             @endforeach
                         </div>
                     </div>

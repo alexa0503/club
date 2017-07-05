@@ -108,7 +108,7 @@
                         <a href="/mall" >积分商城</a>
                     </li>
                     <li>
-                        <a href="http://dffengguang.com.cn/" >风光官网</a>
+                        <a href="http://dffengguang.com.cn/" target="_blank" >风光官网</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin-right:0;">

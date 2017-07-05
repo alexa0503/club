@@ -67,7 +67,7 @@
                         <li class="a" id="mn_forum"><a href="/mall" hidefocus="true" title="">积分商城<span></span></a></li>
                     </ul>
                     <ul>
-                        <li class="a" id="mn_forum"><a href="http://dffengguang.com.cn/" hidefocus="true" title="">风光官网<span></span></a></li>
+                        <li class="a" id="mn_forum"><a href="http://dffengguang.com.cn/" hidefocus="true" title="" target="_blank">风光官网<span></span></a></li>
                     </ul>
                 </div>
                 <div class="share_area">
