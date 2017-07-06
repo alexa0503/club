@@ -1,8 +1,8 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('space_pm');
 0
-|| checktplrefresh('./template/default/home/space_pm.htm', './template/default/home/space_pm_node.htm', 1498393437, 'diy', './data/template/1_diy_home_space_pm.tpl.php', './template/default', 'home/space_pm')
-|| checktplrefresh('./template/default/home/space_pm.htm', './template/default/common/seditor.htm', 1498393437, 'diy', './data/template/1_diy_home_space_pm.tpl.php', './template/default', 'home/space_pm')
-|| checktplrefresh('./template/default/home/space_pm.htm', './template/default/home/space_prompt_nav.htm', 1498393437, 'diy', './data/template/1_diy_home_space_pm.tpl.php', './template/default', 'home/space_pm')
+|| checktplrefresh('./template/default/home/space_pm.htm', './template/default/home/space_pm_node.htm', 1499301029, 'diy', './data/template/1_diy_home_space_pm.tpl.php', './template/default', 'home/space_pm')
+|| checktplrefresh('./template/default/home/space_pm.htm', './template/default/common/seditor.htm', 1499301029, 'diy', './data/template/1_diy_home_space_pm.tpl.php', './template/default', 'home/space_pm')
+|| checktplrefresh('./template/default/home/space_pm.htm', './template/default/home/space_prompt_nav.htm', 1499301029, 'diy', './data/template/1_diy_home_space_pm.tpl.php', './template/default', 'home/space_pm')
 ;?>
 <?php $_G['home_tpl_titles'] = array('短消息');?><?php include template('common/header'); ?><div id="pt" class="bm cl">
 <div class="z">

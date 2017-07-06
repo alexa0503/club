@@ -1,8 +1,8 @@
 <?php 
 define('UC_DBHOST', 'localhost');
-define('UC_DBUSER', 'discuz');
-define('UC_DBPW', 'krZ72SEtKbTW5dhD');
-define('UC_DBNAME', 'discuz');
+define('UC_DBUSER', 'club');
+define('UC_DBPW', '1JDkSF3f');
+define('UC_DBNAME', 'club');
 define('UC_DBCHARSET', 'utf8');
 define('UC_DBTABLEPRE', 'discuz_ucenter_');
 define('UC_COOKIEPATH', '/');

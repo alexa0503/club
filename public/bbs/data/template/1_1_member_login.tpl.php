@@ -1,6 +1,6 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('login');
 0
-|| checktplrefresh('./template/default/member/login.htm', './template/default/common/seccheck.htm', 1498382647, '1', './data/template/1_1_member_login.tpl.php', './template/default', 'member/login')
+|| checktplrefresh('./template/default/member/login.htm', './template/default/common/seccheck.htm', 1499248847, '1', './data/template/1_1_member_login.tpl.php', './template/default', 'member/login')
 ;?><?php include template('common/header'); $loginhash = 'L'.random(4);?><?php if(empty($_GET['infloat'])) { ?>
 <div id="ct" class="ptm wp w cl new_c">
 <div class="nfl" id="main_succeed" style="display: none">
@@ -20,7 +20,7 @@
 <a href="member.php?mod=<?php echo $_G['setting']['regname'];?>" class="xi2">没有帐号？<a href="member.php?mod=<?php echo $_G['setting']['regname'];?>"><?php echo $_G['setting']['reglinkname'];?></a></a>
 </span>
 <?php if(!$secchecklogin2) { ?>
-<h3 class="xs2">用户登陆</h3>
+<h3 class="xs2">用户登录</h3>
 <?php } else { ?>
 <h3 class="xs2">请输入验证码后继续登录</h3>
 <?php } ?>

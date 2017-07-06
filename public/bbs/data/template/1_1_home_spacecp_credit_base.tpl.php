@@ -1,11 +1,11 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('spacecp_credit_base');
 0
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_credit_header.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/common/seccheck.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_footer.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header_name.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
-|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header_name.htm', 1498387907, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header.htm', 1499301170, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_credit_header.htm', 1499301170, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/common/seccheck.htm', 1499301170, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_footer.htm', 1499301170, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header_name.htm', 1499301170, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
+|| checktplrefresh('./template/default/home/spacecp_credit_base.htm', './template/default/home/spacecp_header_name.htm', 1499301170, '1', './data/template/1_1_home_spacecp_credit_base.tpl.php', './template/default', 'home/spacecp_credit_base')
 ;?><?php include template('common/header'); ?><div id="pt" class="bm cl">
 <div class="z">
 <a href="./" class="nvhm" title="首页"><?php echo $_G['setting']['bbname'];?></a> <em>&rsaquo;</em>
@@ -64,7 +64,7 @@
 <?php } if($_G['setting']['exchangestatus']) { ?>
 <li <?php echo $opactives['exchange'];?>><a href="home.php?mod=spacecp&amp;ac=credit&amp;op=exchange">兑换</a></li>
 <?php } ?>
-<li <?php echo $opactives['log'];?>><a href="home.php?mod=spacecp&amp;ac=credit&amp;op=log">积分记录</a></li>
+<!--<li <?php echo $opactives['log'];?>><a href="home.php?mod=spacecp&amp;ac=credit&amp;op=log">积分记录</a></li>-->
 <li <?php echo $opactives['rule'];?>><a href="home.php?mod=spacecp&amp;ac=credit&amp;op=rule">积分规则</a></li>
 <?php if(!empty($_G['setting']['plugins']['spacecp_credit'])) { if(is_array($_G['setting']['plugins']['spacecp_credit'])) foreach($_G['setting']['plugins']['spacecp_credit'] as $id => $module) { if(!$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])) { ?><li<?php if($_GET['id'] == $id) { ?> class="a"<?php } ?>><a href="home.php?mod=spacecp&amp;ac=plugin&amp;op=credit&amp;id=<?php echo $id;?>"><?php echo $module['name'];?></a></li><?php } } } if($op == 'rule') { ?>
 <li class="y">
@@ -73,7 +73,7 @@
 <?php } ?>
 </ul><?php if(in_array($_GET['op'], array('base', 'buy', 'transfer', 'exchange'))) { ?>
 <ul class="creditl mtm bbda cl"><?php $creditid=0;?><?php if($_GET['op'] == 'base' && $_G['setting']['creditstrans']) { $creditid=$_G['setting']['creditstrans'];?><?php if($_G['setting']['extcredits'][$creditid]) { $credit=$_G['setting']['extcredits'][$creditid];?><li class="xi1 cl"><em><?php if($credit['img']) { ?> <?php echo $credit['img'];?><?php } ?> <?php echo $credit['title'];?>: </em><?php echo getuserprofile('extcredits'.$creditid);; ?> <?php echo $credit['unit'];?> &nbsp; <?php if(($_G['setting']['ec_ratio'] && ($_G['setting']['ec_tenpay_opentrans_chnid'] || $_G['setting']['ec_tenpay_bargainor'] || $_G['setting']['ec_account'])) || $_G['setting']['card']['open']) { ?><a href="home.php?mod=spacecp&amp;ac=credit&amp;op=buy" class="xi2">立即充值&raquo;</a><?php } ?></li>
-<?php } } if(is_array($_G['setting']['extcredits'])) foreach($_G['setting']['extcredits'] as $id => $credit) { if($id!=$creditid) { ?>
+<?php } } if(is_array($_G['setting']['extcredits'])) foreach($_G['setting']['extcredits'] as $id => $credit) { if($id!=$creditid and $id!=4) { ?>
 <li><em><?php if($credit['img']) { ?> <?php echo $credit['img'];?><?php } ?> <?php echo $credit['title'];?>: </em><?php echo getuserprofile('extcredits'.$id);; ?> <?php echo $credit['unit'];?></li>
 <?php } } if($_GET['op'] == 'base') { ?>
 <li class="cl"><em>积分: </em><?php echo $_G['member']['credits'];?> <span class="xg1">( <?php echo $creditsformulaexp;?> )</span></li>
@@ -163,24 +163,24 @@ appendscript('http://union.tenpay.com/bankList/bank.js', '');
 $sectpl = <<<EOF
 <table id="card_box_sec" style="
 EOF;
- if($_G['setting']['card']['open'] && $ecchecked) {
+ if($_G['setting']['card']['open'] && $ecchecked) { 
 $sectpl .= <<<EOF
 display:;
 EOF;
- } else {
+ } else { 
 $sectpl .= <<<EOF
 display:none;
 EOF;
- }
+ } 
 $sectpl .= <<<EOF
 " cellspacing="0" cellpadding="0" class="tfm mtn"><tr><th><sec></th><td colspan="2"><span id="sec<hash>" onclick="showMenu({'ctrlid':this.id,'win':'{$_GET['handlekey']}'})"><sec></span><div id="sec<hash>_menu" class="p_pop p_opt" style="display:none"><sec></div></td></tr></table>
 EOF;
 ?><?php $sechash = !isset($sechash) ? 'S'.($_G['inajax'] ? 'A' : '').$_G['sid'] : $sechash.random(3);
 $sectpl = str_replace("'", "\'", $sectpl);?><?php if($secqaacheck) { ?>
-<span id="secqaa_q<?php echo $sechash;?>"></span>
+<span id="secqaa_q<?php echo $sechash;?>"></span>		
 <script type="text/javascript" reload="1">updatesecqaa('q<?php echo $sechash;?>', '<?php echo $sectpl;?>', '<?php echo $_G['basescript'];?>::<?php echo CURMODULE;?>');</script>
 <?php } if($seccodecheck) { ?>
-<span id="seccode_c<?php echo $sechash;?>"></span>
+<span id="seccode_c<?php echo $sechash;?>"></span>		
 <script type="text/javascript" reload="1">updateseccode('c<?php echo $sechash;?>', '<?php echo $sectpl;?>', '<?php echo $_G['basescript'];?>::<?php echo CURMODULE;?>');</script>
 <?php } ?><table cellspacing="0" cellpadding="0" class="tfm mtn">
 <?php } } ?>
@@ -360,13 +360,15 @@ exchangecalcredit();
 <tr>
 <th class="xw1">动作名称</th>
 <th class="xw1">周期范围</th>
-<th class="xw1">周期内最多奖励次数</th><?php if(is_array($_G['setting']['extcredits'])) foreach($_G['setting']['extcredits'] as $key => $value) { ?><th class="xw1"><?php echo $value['title'];?></th>
-<?php } ?>
+<th class="xw1">周期内最多奖励次数</th><?php if(is_array($_G['setting']['extcredits'])) foreach($_G['setting']['extcredits'] as $key => $value) { if($key!=4) { ?>
+<th class="xw1"><?php echo $value['title'];?></th>
+<?php } } ?>
 </tr><?php $i = 0;?><?php if(is_array($list)) foreach($list as $key => $value) { $i++;?><tr<?php if($i % 2 == 0) { ?> class="alt"<?php } ?>>
 <td><?php echo $value['rulename'];?></td>
 <td><?php echo $_TPL['cycletype'][$value['cycletype']];?></td>
-<td><?php if($value['rewardnum']) { ?><?php echo $value['rewardnum'];?><?php } else { ?>不限次数<?php } ?></td><?php if(is_array($_G['setting']['extcredits'])) foreach($_G['setting']['extcredits'] as $key => $credit) { $creditkey = 'extcredits'.$key;?><td><?php if($value[$creditkey] > 0) { ?>+<?php echo $value[$creditkey];?><?php } elseif($value[$creditkey] < 0) { ?><?php echo $value[$creditkey];?><?php } else { ?>0<?php } ?></td>
-<?php } ?>
+<td><?php if($value['rewardnum']) { ?><?php echo $value['rewardnum'];?><?php } else { ?>不限次数<?php } ?></td><?php if(is_array($_G['setting']['extcredits'])) foreach($_G['setting']['extcredits'] as $key => $credit) { $creditkey = 'extcredits'.$key;?><?php if($key!=4) { ?>
+<td><?php if($value[$creditkey] > 0) { ?>+<?php echo $value[$creditkey];?><?php } elseif($value[$creditkey] < 0) { ?><?php echo $value[$creditkey];?><?php } else { ?>0<?php } ?></td>
+<?php } } ?>
 </tr>
 <?php } ?>
 </table>
@@ -383,6 +385,7 @@ exchangecalcredit();
 <li<?php echo $actives['verify'];?>><a href="<?php if($_G['setting']['verify']['enabled']) { ?>home.php?mod=spacecp&ac=profile&op=verify<?php } else { ?>home.php?mod=spacecp&ac=videophoto<?php } ?>">认证</a></li>
 <?php } ?>
 <li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">积分</a></li>
+<li<?php echo $actives['credit4'];?>><a href="home.php?mod=spacecp&amp;ac=credit4">风迷币</a></li>
 <li<?php echo $actives['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">用户组</a></li>
 <li<?php echo $actives['privacy'];?>><a href="home.php?mod=spacecp&amp;ac=privacy">隐私筛选</a></li>
 
@@ -393,5 +396,6 @@ exchangecalcredit();
 <li<?php echo $actives['promotion'];?>><a href="home.php?mod=spacecp&amp;ac=promotion">访问推广</a></li>
 <?php } if(!empty($_G['setting']['plugins']['spacecp'])) { if(is_array($_G['setting']['plugins']['spacecp'])) foreach($_G['setting']['plugins']['spacecp'] as $id => $module) { if(!$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])) { ?><li<?php if($_GET['id'] == $id) { ?> class="a"<?php } ?>><a href="home.php?mod=spacecp&amp;ac=plugin&amp;id=<?php echo $id;?>"><?php echo $module['name'];?></a></li><?php } } } ?>
 </ul>
-</div></div>
+</div>
+</div>
 </div><?php include template('common/footer'); ?>

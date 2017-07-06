@@ -1,20 +1,20 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('spacecp_usergroup');
 0
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1498387756, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
 ;?><?php include template('common/header'); if(in_array($do, array('buy', 'exit'))) { ?>
 <div class="f_c">
 <h3 class="flb">
@@ -174,7 +174,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li class="y<?php echo $activegs['admin'];?> showmenu"id="gadmin" onmouseover="showMenu(this.id)"><a>站点管理组</a></li>
 <?php } ?>
 <li<?php echo $activeus['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">我的用户组</a></li>
-<li<?php echo $activeus['list'];?> <?php echo $activeus['expiry'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=list">购买用户组</a></li>
+<!--<li<?php echo $activeus['list'];?> <?php echo $activeus['expiry'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=list">购买用户组</a></li>-->
 <li<?php echo $activeus['forum'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=forum">我的<?php echo $_G['setting']['navs']['2']['navname'];?>权限</a></li>
 </ul><table cellpadding="0" cellspacing="0" class="tdat ftb mtm mbm">
 <tr class="alt">
@@ -211,6 +211,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li<?php echo $actives['verify'];?>><a href="<?php if($_G['setting']['verify']['enabled']) { ?>home.php?mod=spacecp&ac=profile&op=verify<?php } else { ?>home.php?mod=spacecp&ac=videophoto<?php } ?>">认证</a></li>
 <?php } ?>
 <li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">积分</a></li>
+<li<?php echo $actives['credit4'];?>><a href="home.php?mod=spacecp&amp;ac=credit4">风迷币</a></li>
 <li<?php echo $actives['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">用户组</a></li>
 <li<?php echo $actives['privacy'];?>><a href="home.php?mod=spacecp&amp;ac=privacy">隐私筛选</a></li>
 
@@ -221,7 +222,8 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li<?php echo $actives['promotion'];?>><a href="home.php?mod=spacecp&amp;ac=promotion">访问推广</a></li>
 <?php } if(!empty($_G['setting']['plugins']['spacecp'])) { if(is_array($_G['setting']['plugins']['spacecp'])) foreach($_G['setting']['plugins']['spacecp'] as $id => $module) { if(!$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])) { ?><li<?php if($_GET['id'] == $id) { ?> class="a"<?php } ?>><a href="home.php?mod=spacecp&amp;ac=plugin&amp;id=<?php echo $id;?>"><?php echo $module['name'];?></a></li><?php } } } ?>
 </ul>
-</div></div>
+</div>
+</div>
 </div>
 <?php } elseif($do == 'expiry' || $do == 'list') { ?><div id="pt" class="bm cl">
 <div class="z">
@@ -280,7 +282,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li class="y<?php echo $activegs['admin'];?> showmenu"id="gadmin" onmouseover="showMenu(this.id)"><a>站点管理组</a></li>
 <?php } ?>
 <li<?php echo $activeus['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">我的用户组</a></li>
-<li<?php echo $activeus['list'];?> <?php echo $activeus['expiry'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=list">购买用户组</a></li>
+<!--<li<?php echo $activeus['list'];?> <?php echo $activeus['expiry'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=list">购买用户组</a></li>-->
 <li<?php echo $activeus['forum'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=forum">我的<?php echo $_G['setting']['navs']['2']['navname'];?>权限</a></li>
 </ul><p class="tbmu"><span class="y">
 您目前有 <span class="xi1"> <?php echo $usermoney;?> <?php echo $_G['setting']['extcredits'][$_G['setting']['creditstrans']]['unit'];?><?php echo $_G['setting']['extcredits'][$_G['setting']['creditstrans']]['title'];?></span></span>
@@ -346,6 +348,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li<?php echo $actives['verify'];?>><a href="<?php if($_G['setting']['verify']['enabled']) { ?>home.php?mod=spacecp&ac=profile&op=verify<?php } else { ?>home.php?mod=spacecp&ac=videophoto<?php } ?>">认证</a></li>
 <?php } ?>
 <li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">积分</a></li>
+<li<?php echo $actives['credit4'];?>><a href="home.php?mod=spacecp&amp;ac=credit4">风迷币</a></li>
 <li<?php echo $actives['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">用户组</a></li>
 <li<?php echo $actives['privacy'];?>><a href="home.php?mod=spacecp&amp;ac=privacy">隐私筛选</a></li>
 
@@ -356,7 +359,8 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li<?php echo $actives['promotion'];?>><a href="home.php?mod=spacecp&amp;ac=promotion">访问推广</a></li>
 <?php } if(!empty($_G['setting']['plugins']['spacecp'])) { if(is_array($_G['setting']['plugins']['spacecp'])) foreach($_G['setting']['plugins']['spacecp'] as $id => $module) { if(!$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])) { ?><li<?php if($_GET['id'] == $id) { ?> class="a"<?php } ?>><a href="home.php?mod=spacecp&amp;ac=plugin&amp;id=<?php echo $id;?>"><?php echo $module['name'];?></a></li><?php } } } ?>
 </ul>
-</div></div>
+</div>
+</div>
 </div>
 <?php } else { ?><div id="pt" class="bm cl">
 <div class="z">
@@ -415,7 +419,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li class="y<?php echo $activegs['admin'];?> showmenu"id="gadmin" onmouseover="showMenu(this.id)"><a>站点管理组</a></li>
 <?php } ?>
 <li<?php echo $activeus['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">我的用户组</a></li>
-<li<?php echo $activeus['list'];?> <?php echo $activeus['expiry'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=list">购买用户组</a></li>
+<!--<li<?php echo $activeus['list'];?> <?php echo $activeus['expiry'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=list">购买用户组</a></li>-->
 <li<?php echo $activeus['forum'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;do=forum">我的<?php echo $_G['setting']['navs']['2']['navname'];?>权限</a></li>
 </ul><?php $permtype = array(0 => '普通权限', 1 => '管理权限');?><div class="tdats">
 <table cellpadding="0" cellspacing="0" class="tdat">
@@ -509,6 +513,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li<?php echo $actives['verify'];?>><a href="<?php if($_G['setting']['verify']['enabled']) { ?>home.php?mod=spacecp&ac=profile&op=verify<?php } else { ?>home.php?mod=spacecp&ac=videophoto<?php } ?>">认证</a></li>
 <?php } ?>
 <li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">积分</a></li>
+<li<?php echo $actives['credit4'];?>><a href="home.php?mod=spacecp&amp;ac=credit4">风迷币</a></li>
 <li<?php echo $actives['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">用户组</a></li>
 <li<?php echo $actives['privacy'];?>><a href="home.php?mod=spacecp&amp;ac=privacy">隐私筛选</a></li>
 
@@ -519,7 +524,8 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <li<?php echo $actives['promotion'];?>><a href="home.php?mod=spacecp&amp;ac=promotion">访问推广</a></li>
 <?php } if(!empty($_G['setting']['plugins']['spacecp'])) { if(is_array($_G['setting']['plugins']['spacecp'])) foreach($_G['setting']['plugins']['spacecp'] as $id => $module) { if(!$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])) { ?><li<?php if($_GET['id'] == $id) { ?> class="a"<?php } ?>><a href="home.php?mod=spacecp&amp;ac=plugin&amp;id=<?php echo $id;?>"><?php echo $module['name'];?></a></li><?php } } } ?>
 </ul>
-</div></div>
+</div>
+</div>
 </div>
 <?php } function permtbody($maingroup) {
 global $_G, $bperms, $pperms, $sperms, $aperms;?><tr><td><?php echo showstars($_G['cache']['usergroups'][$maingroup['groupid']]['stars']);; ?></td></tr>
