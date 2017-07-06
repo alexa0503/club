@@ -12,12 +12,16 @@ class OwnerController extends Controller
     public function verify(Request $request)
     {
         $messages = [
-            'frame_number.required' => '必须填写车架号',
+            'frame_number.*' => '请填写17位数字加英文车架号',
             'frame_number.unique' => '该车架号已经被使用过了',
             'id_card.required' => '必须填写身份证号',
         ];
         $validator = Validator::make($request->all(), [
-            'frame_number' => 'required|unique:verifies,frame_number',
+            'frame_number' => [
+                'required',
+                'unique:verifies,frame_number',
+                'regex:/^[a-z0-9A-Z]{17}$/'
+            ],
             'id_card' => 'required',
         ], $messages);
 
@@ -46,7 +50,7 @@ class OwnerController extends Controller
         $response = $client->__soapCall("Hy01", array($options));
         $result = json_decode($response->out,true);
         if( !$result || $result['ret']!= 0){
-            return response(['ret'=>1001,'msg'=>'车架号与身份证不匹配']);
+            return response(['ret'=>1001,'msg'=>'车架号或身份证输入错误，请重新填写。']);
         }
 
         $uid = session('discuz.user.uid');
