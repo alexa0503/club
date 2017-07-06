@@ -65,7 +65,7 @@ class OwnerVerify extends Command
                 'register_date'=>date('Y-m-d H:i:s'),
                 'type'=>'1',
             ];
-            $client = new \SoapClient("http://interface.dfsk.com.cn/infodms_interface_hy/services/HY01SOAP?wsdl");
+            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY01SOAP?wsdl");
             $options = [
                 'in'=>json_encode($options),
             ];
