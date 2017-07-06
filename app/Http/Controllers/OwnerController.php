@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\DiscuzHelper;
 use DB;
+use Validator;
 
 class OwnerController extends Controller
 {
