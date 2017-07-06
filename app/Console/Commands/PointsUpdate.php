@@ -47,7 +47,7 @@ class PointsUpdate extends Command
             'Start_date'=>date('Y-m-d', strtotime('-1000 days')),
             'End_date'=>date('Y-m-d', strtotime('+1 days')),
         ];
-        $client = new \SoapClient("http://interface.dfsk.com.cn/infodms_interface_hy/services/HY02SOAP?wsdl");
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl");
         $options = [
             'in'=>json_encode($options),
         ];
