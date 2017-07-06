@@ -13,3 +13,5 @@ npm-debug.log
 /public/bbs/data/log
 /public/bbs/data/cache
 /public/bbs/config
+/public/bbs/data/attachment/
+/public/bbs/uc_server/data/avatar
