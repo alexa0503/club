@@ -63,9 +63,7 @@ class DiscuzUserAuth
                 //var_dump($user->user_group);
                 \Session::put('discuz.user.user_count', $user->user_count->toArray());
                 \Session::put('discuz.user.user_group', $user->user_group->toArray());
-                $verify_count = DB::table('discuz_common_member_verify')
-                    ->where('uid', $auth[1])
-                    ->where('verify1',1)
+                $verify_count = \App\Verify::where('uid', $auth[1])
                     ->count();
                 if( $verify_count > 0){
                     \Session::put('discuz.user.hasVerified', true);

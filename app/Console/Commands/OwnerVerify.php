@@ -39,6 +39,24 @@ class OwnerVerify extends Command
      */
     public function handle()
     {
+        //$car_model = $string['field4'];//汽车型号
+        $frame_number = 'LVZMN2595EA575190';
+        $id_card = '612112198706081063';
+        //LVZMN2595EA575190 612112198706081063
+        $options = [
+            'frame_number'=>$frame_number,
+            'id_card'=>$id_card,
+            'register_date'=>date('Y-m-d H:i:s'),
+            'type'=>'1',
+        ];
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY01SOAP?wsdl");
+        $options = [
+            'in'=>json_encode($options),
+        ];
+        $response = $client->__soapCall("Hy01", array($options));
+        $result = json_decode($response->out,true);
+        var_dump($result);
+        return;
         $member_verify = DB::table('discuz_common_member_verify')->where('verify1','<=',0)->get();
         foreach($member_verify as $row){
             $info = DB::table('discuz_common_member_verify_info')

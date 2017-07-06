@@ -95,9 +95,17 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         ]);
     });
 
+
     Route::get('/mall', 'MallController@index');
     Route::get('/mall/item/{id}', 'MallController@item');
     Route::group(['middleware' => ['auth.discuz.must']], function () {
+
+        Route::get('/verify', function(){
+            return view('mall.verify');
+        });
+        Route::get('/verify/logs', 'OwnerController@verifyLogs');
+        Route::post('/verify', 'OwnerController@verify');
+        Route::get('/points/update', 'OwnerController@update');
         //Route::post('/mall/buy', 'MallController@buy');
         Route::post('/mall/address', 'MallController@postAddress');
         //Route::post('/mall/address/default', 'MallController@defaultAddress');
@@ -113,7 +121,30 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
     });
 
 });
-
+//省市数据
+Route::get('/districts', function(){
+    $provinces = \App\District::whereNull('parent_id')->get()->map(function($item){
+        $cities = $item->children->map(function($item){
+            $districts = $item->children->map(function($item){
+                return [
+                    'id' => $item->id,
+                    'name' => $item->name.$item->suffix,
+                ];
+            });
+            return [
+                'id' => $item->id,
+                'name' => $item->name.$item->suffix,
+                'districts' => $districts,
+            ];
+        });
+        return [
+            'id' => $item->id,
+            'name'=>$item->name.$item->suffix,
+            'cities' => $cities,
+        ];
+    });
+    return $provinces;
+});
 Route::post('/discuz/login', function (Request $request) {
     $password = $request->input('password');
     $username = $request->input('username');

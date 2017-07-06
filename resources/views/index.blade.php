@@ -380,7 +380,7 @@
                                 <i class="icon icon-verify-02"></i>认证车主
                             @else
                                 <i class="icon icon-verify-01"></i>普通用户
-                                <a href="/bbs/home.php?mod=spacecp&ac=profile&op=verify" class="verify-01">申请车主认证</a>
+                                <a href="{{url('/verify')}}" class="verify-01">申请车主认证</a>
                             @endif
                             </div>
                             <div class="text2">
