@@ -384,7 +384,7 @@
                             @endif
                             </div>
                             <div class="text2">
-                                积分：{{session('discuz.user.user_count.extcredits1')}}<span class="split">|</span>风迷币：{{session('discuz.user.user_count.extcredits4')}}
+                                评级积分：{{session('discuz.user.user_count.extcredits1')}}<span class="split">|</span>风迷币：{{session('discuz.user.user_count.extcredits4')}}
                             </div>
 
 
