@@ -435,6 +435,7 @@
         }).on('mouseleave',function () {
             $('.weixin_er').hide();
         })
+        $.ajax('/points/update',function () {})
     })
 
 </script>

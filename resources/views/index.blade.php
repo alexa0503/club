@@ -650,6 +650,7 @@
             jQuery('#boards .content table').hide();
             jQuery('#'+id).show();
         })
+        jQuery.ajax('/points/update',function () {})
     })
 </script>
 </body>
