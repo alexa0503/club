@@ -1,11 +1,11 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('space_thread');
 0
-|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/home/space_header.htm', 1498394259, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
-|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/common/userabout.htm', 1498394259, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
-|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/home/space_userabout.htm', 1498394259, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
-|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/common/header_common.htm', 1498394259, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
-|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/home/space_diy.htm', 1498394259, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
-|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/home/space_header_personalnv.htm', 1498394259, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
+|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/home/space_header.htm', 1499301085, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
+|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/common/userabout.htm', 1499301085, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
+|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/home/space_userabout.htm', 1499301085, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
+|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/common/header_common.htm', 1499301085, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
+|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/home/space_diy.htm', 1499301085, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
+|| checktplrefresh('./template/default/home/space_thread.htm', './template/default/home/space_header_personalnv.htm', 1499301085, 'diy', './data/template/1_diy_home_space_thread.tpl.php', './template/default', 'home/space_thread')
 ;?>
 <?php $filter = array( 'common' => '已发表', 'save' => '草稿箱', 'close' => '已关闭', 'aduit' => '待审核', 'ignored' => '已忽略', 'recyclebin' => '回收站');
 $_G[home_tpl_spacemenus][] = "<a href=\"home.php?mod=space&amp;uid=$space[uid]&amp;do=thread&amp;view=me\">TA 的所有帖子</a>";?><?php if($diymode) { if($_G['setting']['homepagestyle']) { $_G[cookie][extstyle] = false;?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,7 +13,7 @@ $_G[home_tpl_spacemenus][] = "<a href=\"home.php?mod=space&amp;uid=$space[uid]&a
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET;?>" />
 <?php if($_G['config']['output']['iecompatible']) { ?><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE<?php echo $_G['config']['output']['iecompatible'];?>" /><?php } ?>
-<title><?php if(!empty($navtitle)) { ?><?php echo $navtitle;?> - <?php } if(empty($nobbname)) { ?> <?php echo $_G['setting']['bbname'];?> - <?php } ?> Powered by Discuz!</title>
+<title><?php if(!empty($navtitle)) { ?><?php echo $navtitle;?> - <?php echo $_G['setting']['bbname'];?> <?php } if(empty($nobbname)) { ?> <?php echo $_G['setting']['bbname'];?> - <?php } ?></title>
 <?php echo $_G['setting']['seohead'];?>
 
 <meta name="keywords" content="<?php if(!empty($metakeywords)) { echo dhtmlspecialchars($metakeywords); } ?>" />
@@ -23,6 +23,7 @@ $_G[home_tpl_spacemenus][] = "<a href=\"home.php?mod=space&amp;uid=$space[uid]&a
 <meta name="copyright" content="2001-2017 Comsenz Inc." />
 <meta name="MSSmartTagsPreventParsing" content="True" />
 <meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="stylesheet" type="text/css" href="static/assets/css/screen.min.css">
 <base href="<?php echo $_G['siteurl'];?>" /><link rel="stylesheet" type="text/css" href="data/cache/style_1_common.css?<?php echo VERHASH;?>" /><link rel="stylesheet" type="text/css" href="data/cache/style_1_home_space.css?<?php echo VERHASH;?>" /><?php if($_G['uid'] && isset($_G['cookie']['extstyle']) && strpos($_G['cookie']['extstyle'], TPLDIR) !== false) { ?><link rel="stylesheet" id="css_extstyle" type="text/css" href="<?php echo $_G['cookie']['extstyle'];?>/style.css" /><?php } elseif($_G['style']['defaultextstyle']) { ?><link rel="stylesheet" id="css_extstyle" type="text/css" href="<?php echo $_G['style']['defaultextstyle'];?>/style.css" /><?php } ?><script type="text/javascript">var STYLEID = '<?php echo STYLEID;?>', STATICURL = '<?php echo STATICURL;?>', IMGDIR = '<?php echo IMGDIR;?>', VERHASH = '<?php echo VERHASH;?>', charset = '<?php echo CHARSET;?>', discuz_uid = '<?php echo $_G['uid'];?>', cookiepre = '<?php echo $_G['config']['cookie']['cookiepre'];?>', cookiedomain = '<?php echo $_G['config']['cookie']['cookiedomain'];?>', cookiepath = '<?php echo $_G['config']['cookie']['cookiepath'];?>', showusercard = '<?php echo $_G['setting']['showusercard'];?>', attackevasive = '<?php echo $_G['config']['security']['attackevasive'];?>', disallowfloat = '<?php echo $_G['setting']['disallowfloat'];?>', creditnotice = '<?php if($_G['setting']['creditnotice']) { ?><?php echo $_G['setting']['creditnames'];?><?php } ?>', defaultstyle = '<?php echo $_G['style']['defaultextstyle'];?>', REPORTURL = '<?php echo $_G['currenturl_encode'];?>', SITEURL = '<?php echo $_G['siteurl'];?>', JSPATH = '<?php echo $_G['setting']['jspath'];?>', CSSPATH = '<?php echo $_G['setting']['csspath'];?>', DYNAMICURL = '<?php echo $_G['dynamicurl'];?>';</script>
 <script src="<?php echo $_G['setting']['jspath'];?>common.js?<?php echo VERHASH;?>" type="text/javascript"></script>
 <?php if(empty($_GET['diy'])) { $_GET['diy'] = '';?><?php } if(!isset($topic)) { $topic = array();?><?php } ?>
