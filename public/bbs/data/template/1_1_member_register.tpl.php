@@ -1,6 +1,6 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('register');
 0
-|| checktplrefresh('./template/default/member/register.htm', './template/default/common/seccheck.htm', 1498382574, '1', './data/template/1_1_member_register.tpl.php', './template/default', 'member/register')
+|| checktplrefresh('./template/default/member/register.htm', './template/default/common/seccheck.htm', 1499140717, '1', './data/template/1_1_member_register.tpl.php', './template/default', 'member/register')
 ;?><?php include template('common/header'); ?><script type="text/javascript">
 var strongpw = new Array();
 <?php if($_G['setting']['strongpw']) { if(is_array($_G['setting']['strongpw'])) foreach($_G['setting']['strongpw'] as $key => $val) { ?>strongpw[<?php echo $key;?>] = <?php echo $val;?>;
@@ -30,7 +30,7 @@ var pwlength = <?php if($_G['setting']['pwlength']) { ?><?php echo $_G['setting'
 <?php if($_GET['action'] == 'activation') { ?>
 放弃激活，现在<a href="member.php?mod=<?php echo $_G['setting']['regname'];?>"><?php echo $_G['setting']['reglinkname'];?></a>
 <?php } else { ?>
-<a href="member.php?mod=logging&amp;action=login&amp;referer=<?php echo rawurlencode($dreferer); ?>" onclick="showWindow('login', this.href);return false;" class="xi2">已有帐号？现在登录</a>
+<a href="member.php?mod=logging&amp;action=login&amp;referer=forum.php" class="xi2">已有帐号？现在登录</a>
 <?php } ?>
 </span>
 <h3 id="layer_reginfo_t" class="xs2">
@@ -42,7 +42,7 @@ var pwlength = <?php if($_G['setting']['pwlength']) { ?><?php echo $_G['setting'
 
 <?php if($this->showregisterform) { ?>
 <form method="post" autocomplete="off" name="register" id="registerform" enctype="multipart/form-data" onsubmit="checksubmit();return false;" action="member.php?mod=<?php echo $regname;?>">
-<div id="layer_reg" class="bm_c">
+<div id="layer_reg" class="bm_c" style="padding-bottom: 0;">
 <input type="hidden" name="regsubmit" value="yes" />
 <input type="hidden" name="formhash" value="<?php echo FORMHASH;?>" />
 <input type="hidden" name="referer" value="<?php echo $dreferer;?>" />
@@ -62,7 +62,7 @@ var pwlength = <?php if($_G['setting']['pwlength']) { ?><?php echo $_G['setting'
 <input type="text" id="<?php echo $this->setting['reginput']['email'];?>" name="<?php echo $this->setting['reginput']['email'];?>" autocomplete="off" size="25" tabindex="1" class="px" required /><br /><em id="emailmore">&nbsp;</em>
 <input type="hidden" name="handlekey" value="sendregister"/>
 </td>
-<td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['email'];?>" class="p_tip">请输入正确的邮箱地址</i><kbd id="chk_<?php echo $this->setting['reginput']['email'];?>" class="p_chk"></kbd></td>
+<td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['email'];?>" class="p_tip">请填写正确的邮箱地址，以便于找回您的账号和密码</i><kbd id="chk_<?php echo $this->setting['reginput']['email'];?>" class="p_chk"></kbd></td>
 </tr>
 </table>
 <table>
@@ -121,7 +121,7 @@ showDialog(msg, 'notice');
 <tr>
 <th><span class="rq">*</span><label for="<?php echo $this->setting['reginput']['password'];?>">密码:</label></th>
 <td><input type="password" id="<?php echo $this->setting['reginput']['password'];?>" name="" size="25" tabindex="1" class="px" required /></td>
-<td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['password'];?>" class="p_tip">请填写密码<?php if($_G['setting']['pwlength']) { ?>, 最小长度为 <?php echo $_G['setting']['pwlength'];?> 个字符<?php } ?></i><kbd id="chk_<?php echo $this->setting['reginput']['password'];?>" class="p_chk"></kbd></td>
+<td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['password'];?>" class="p_tip">最小长度6个字符, 支持数字、大小字母和标点符号</i><kbd id="chk_<?php echo $this->setting['reginput']['password'];?>" class="p_chk"></kbd></td>
 </tr>
 </table>
 </div>
@@ -141,7 +141,7 @@ showDialog(msg, 'notice');
 <tr>
 <th><?php if(!$_G['setting']['forgeemail']) { ?><span class="rq">*</span><?php } ?><label for="<?php echo $this->setting['reginput']['email'];?>">Email:</label></th>
 <td><input type="text" id="<?php echo $this->setting['reginput']['email'];?>" name="" autocomplete="off" size="25" tabindex="1" class="px" value="<?php echo $hash['0'];?>" <?php if(!$_G['setting']['forgeemail']) { ?>required<?php } ?> /><br /><em id="emailmore">&nbsp;</em></td>
-<td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['email'];?>" class="p_tip">请输入正确的邮箱地址</i><kbd id="chk_<?php echo $this->setting['reginput']['email'];?>" class="p_chk"></kbd></td>
+<td class="tipcol"><i id="tip_<?php echo $this->setting['reginput']['email'];?>" class="p_tip">请填写正确的邮箱地址，以便于找回您的账号和密码</i><kbd id="chk_<?php echo $this->setting['reginput']['email'];?>" class="p_chk"></kbd></td>
 </tr>
 </table>
 </div>
@@ -191,10 +191,10 @@ $sectpl = <<<EOF
 EOF;
 ?><?php $sechash = !isset($sechash) ? 'S'.($_G['inajax'] ? 'A' : '').$_G['sid'] : $sechash.random(3);
 $sectpl = str_replace("'", "\'", $sectpl);?><?php if($secqaacheck) { ?>
-<span id="secqaa_q<?php echo $sechash;?>"></span>		
+<span id="secqaa_q<?php echo $sechash;?>"></span>
 <script type="text/javascript" reload="1">updatesecqaa('q<?php echo $sechash;?>', '<?php echo $sectpl;?>', '<?php echo $_G['basescript'];?>::<?php echo CURMODULE;?>');</script>
 <?php } if($seccodecheck) { ?>
-<span id="seccode_c<?php echo $sechash;?>"></span>		
+<span id="seccode_c<?php echo $sechash;?>"></span>
 <script type="text/javascript" reload="1">updateseccode('c<?php echo $sechash;?>', '<?php echo $sectpl;?>', '<?php echo $_G['basescript'];?>::<?php echo CURMODULE;?>');</script>
 <?php } } ?>
 
@@ -209,16 +209,17 @@ $sectpl = str_replace("'", "\'", $sectpl);?><?php if($secqaacheck) { ?>
 <table width="100%">
 <tr>
 <th>&nbsp;</th>
-<td>
+<td style="padding: 0;">
 <span id="reginfo_a_btn">
-<?php if($_GET['action'] != 'activation') { ?><em>&nbsp;</em><?php } ?>
+                <?php if($bbrules) { ?>
+                  <div style="margin: 10px 0;">
+                  <input type="checkbox" class="pc" name="agreebbrule" value="<?php echo $bbrulehash;?>" id="agreebbrule" checked="checked" /> <label for="agreebbrule">阅读并接受<a href="/privacy" style="color:red;margin-left: 10px;" target="_blank">《东风风光超级风迷车友会会员手册》</a></label>
+                  </div>
+                <?php } if($_GET['action'] != 'activation') { ?><em>&nbsp;</em><?php } ?>
 <button class="pn pnc" id="registerformsubmit" type="submit" name="regsubmit" value="true" tabindex="1"><strong><?php if($_GET['action'] == 'activation') { ?>激活<?php } else { ?>提交<?php } ?></strong></button>
-<?php if($bbrules) { ?>
-<input type="checkbox" class="pc" name="agreebbrule" value="<?php echo $bbrulehash;?>" id="agreebbrule" checked="checked" /> <label for="agreebbrule">同意<a href="javascript:;" onclick="showBBRule()">网站服务条款</a></label>
-<?php } ?>
 </span>
 </td>
-<td class="tipcolOther"><?php if($this->setting['sitemessage']['register']) { ?><a href="javascript:;" id="custominfo_register" class="y"><img src="<?php echo IMGDIR;?>/info_small.gif" alt="帮助" /></a><?php } ?></td>
+<td style="padding: 0;" class="tipcolOther"><?php if($this->setting['sitemessage']['register']) { ?><a href="javascript:;" id="custominfo_register" class="y"><img src="<?php echo IMGDIR;?>/info_small.gif" alt="帮助" /></a><?php } ?></td>
 </tr>
 </table>
 </div>

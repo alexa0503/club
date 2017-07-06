@@ -110,7 +110,7 @@ function addMailEvent(mailObj) {
 	};
 	mailObj.onblur = function () {
 		if(mailObj.value == '') {
-			errormessage(mailObj.id, '请输入邮箱地址');
+			errormessage(mailObj.id, '请填写正确的邮箱地址，以便于找回您的账号和密码');
 		}
 		emailMenuOp(3, null, mailObj.id);
 	};
