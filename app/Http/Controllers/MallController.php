@@ -315,7 +315,6 @@ class MallController extends Controller
 
         });
         if ($validator->fails()) {
-            //return ['ret'=>1001, 'msg'=>$validator->errors()];
             return response($validator->errors(), 422);
         }
         $uid = session('discuz.user.uid');
@@ -376,7 +375,6 @@ class MallController extends Controller
     }
     public function postAddress(\App\Http\Requests\AddressPost $request)
     {
-
         $uid = session('discuz.user.uid');
         $data = [
             'uid' => $uid,
@@ -385,6 +383,9 @@ class MallController extends Controller
             'detail' => $request->input('detail'),
             'mobile' => $request->input('mobile'),
             'telephone' => $request->input('telephone'),
+            'province' => $request->input('province'),
+            'city' => $request->input('city'),
+            'district' => $request->input('district'),
             'email' => '',
             'alias' => 'default',
         ];

@@ -10,7 +10,7 @@
                     @foreach($addresses as $k=>$address)
                     <li>
                         <input value="{{$address->id}}" type="radio" style="margin:0 10px;" name="address" @if($k==0)checked="checked"@endif id="address{{$k}}"  />
-                        <div class="userAddr {{$k == 0 ?'nowAddr':''}}"><label style="margin: 0px;font-weight: normal" for="address{{$k}}">{{$address->detail}}（{{$address->name}}收）{{$address->mobile}}</label><a href="javascript:;" class="upAddr" data-url="{{url('/mall/address/'.$address->id)}}">修改地址</a><a href="javascript:;" class="delAddr" data-url="{{url('/mall/address/'.$address->id)}}">删除</a>
+                        <div class="userAddr {{$k == 0 ?'nowAddr':''}}"><label style="margin: 0px;font-weight: normal" for="address{{$k}}">{{$address->province}} {{$address->city}} {{$address->district}}{{$address->detail}}（{{$address->name}}收）{{$address->mobile}}</label><a href="javascript:;" class="upAddr" data-url="{{url('/mall/address/'.$address->id)}}">修改地址</a><a href="javascript:;" class="delAddr" data-url="{{url('/mall/address/'.$address->id)}}">删除</a>
                         </div>
                     </li>
                     @endforeach
@@ -92,6 +92,15 @@
                         $('#address-form').find('input[name=detail]').val(json.data.detail);
                         $('#address-form').find('input[name=telphone]').val(json.data.telphone);
                         $('#address-form').find('input[name=id]').val(json.data.id);
+                        //province_id = json.data.province_id;
+                        //city_id = json.data.city_id;
+                        //district_id = json.data.district_id;
+                        $('#province').val(json.data.province).trigger("change");
+                        $('#city').val(json.data.city).trigger("change");
+                        $('#district').val(json.data.district).trigger("change");
+
+
+
                         $('#modal-address').modal('show');
                     }
                     else{

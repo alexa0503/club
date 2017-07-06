@@ -254,6 +254,32 @@
                         <label class="help-block" for="name" id="help-name"></label>
                     </div><!-- /.col -->
                 </div><!-- /form-group -->
+                <div class="form-group" id="form-group-name">
+                    <label for="district" class="col-md-2 col-xs-2 control-label">* 地区:</label>
+                    <div class="col-md-10 col-xs-10">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <select class="form-control" id="province" name="province">
+                                    <option value="">请选择</option>
+                                </select>
+                                <label class="help-block" for="province" id="help-province"></label>
+                            </div>
+                            <div class="col-lg-4 col-md-4 hidden">
+                                <select class="form-control" id="city" name="city">
+                                    <option value="">请选择</option>
+                                </select>
+                                <label class="help-block" for="city" id="help-city"></label>
+                            </div>
+                            <div class="col-lg-4 col-md-4 hidden">
+                                <select class="form-control" id="district" name="district">
+                                    <option value="">请选择</option>
+                                </select>
+                                <label class="help-block" for="district" id="help-district"></label>
+                            </div>
+                        </div>
+
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
 
                 <div class="form-group" id="form-group-detail">
                     <label for="detail" class="col-md-2 col-xs-2 control-label">* 详细地址:</label>
@@ -291,6 +317,10 @@
 </div>
 <script src="{{asset('js/jquery.form.js')}}"></script>
 <script>
+    var mall_districts = {};
+    var province_id = null;
+    var city_id = null;
+    var district_id = null;
     function ajaxCart()
     {
         $.getJSON('{{url("/mall/ajax/cart")}}',function (json) {
@@ -335,12 +365,73 @@
             }
         });
     }
+
+    function initProvinces(province)
+    {
+        var html = '<option value="">请选择</option>';
+        $.each(mall_districts,function (index,value) {
+            html += '<option value="'+value.name+'" data-id="'+index+'">'+value.name+'</option>'
+        })
+        $('#province').html(html).parent('div').removeClass('hidden');
+        $('#city').html('<option value="">请选择</option>').parent('div').addClass('hidden');
+        $('#district').html('<option value="">请选择</option>').parent('div').addClass('hidden');
+    }
+    function initCities()
+    {
+        var html = '<option value="">请选择</option>';
+        if ( province_id ){
+            var _c = mall_districts[province_id].cities;
+            if (_c.length > 0 ){
+                $.each(_c,  function (index,value) {
+                    html += '<option value="'+value.name+'" data-id="'+index+'">'+value.name+'</option>'
+                });
+                $('#city').html(html).parent('div').removeClass('hidden');
+            }
+        }
+        else{
+            $('#city').html('<option value="">请选择</option>');
+        }
+        $('#district').html('<option value="">请选择</option>').parent('div').addClass('hidden');
+    }
+    function initDistricts() {
+        var html = '<option value="">请选择</option>';
+        if (province_id && city_id ){
+            var _d = mall_districts[province_id].cities[city_id].districts;
+            if ( _d.length > 0 ){
+                $.each(_d,  function (index,value) {
+                    html += '<option value="'+value.name+'" data-id="'+index+'">'+value.name+'</option>'
+                });
+                $('#district').html(html).parent('div').removeClass('hidden');
+            }
+        }
+        else{
+            $('#district').html('<option value="">请选择</option>');
+        }
+    }
     @if( Request::url() == url('/mall/cart') )
     var is_cart = true;
     @else
     var is_cart = false;
     @endif
     $().ready(function () {
+        $.getJSON('{{url("/districts")}}', function (districts) {
+            mall_districts = districts;
+            initProvinces();
+        });
+        $('#province').on('change', function () {
+            var element = $(this).find('option:selected');
+            province_id = element.attr('data-id');
+            initCities();
+        });
+        $('#city').on('change', function () {
+            var element = $(this).find('option:selected');
+            city_id = element.attr('data-id');
+            initDistricts();
+        });
+        $('#district').on('change', function () {
+            var element = $(this).find('option:selected');
+            district_id = element.attr('data-id');
+        })
         ajaxCart();
         $('.btnBuy').click(function () {
             window.location.href = '{{url("/mall/cart")}}';

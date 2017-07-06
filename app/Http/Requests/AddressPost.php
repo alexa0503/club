@@ -26,8 +26,10 @@ class AddressPost extends FormRequest
         return [
             'name' => 'required|max:20',
             'detail' => 'required|max:60',
-            'mobile' => ['required','regex:/^1\d{10}/'],
+            'mobile' => ['required','regex:/^1\d{10}$/'],
             'telephone' => 'max:20',
+            'province' => 'required|regex:/^.+/',
+            'city' => 'required|regex:/^.+/',
             //'email' => 'email',
         ];
     }
@@ -44,7 +46,9 @@ class AddressPost extends FormRequest
             'detail.required'=>'请输入地址',
             'mobile.required'=>'请输入手机号码',
             'mobile.regex'=>'手机号格式不正确',
-            'telephone.max'=>'固定不能超过20位',
+            'telephone.max'=>'固定电话不能超过20位',
+            'province.*'=>'省分/城市不能为空',
+            'city.*'=>'城市/地区不能为空',
             //'email.email'=>'必须是有效的邮箱地址',
         ];
     }
