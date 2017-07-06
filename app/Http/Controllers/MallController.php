@@ -149,6 +149,9 @@ class MallController extends Controller
 */
     public function order(Request $request)
     {
+        if( null == $request->input('address_id')){
+            return ['ret' => 1005, 'msg' => '必须选择一个收货地址'];
+        }
         $uid = session('discuz.user.uid');
         $user_count = DB::table('discuz_common_member_count')->where('uid',$uid)->first();
         $carts = \App\Cart::where('uid', $uid)->get();

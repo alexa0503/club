@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="btnShopCar"><a style="height: 100%;width:100%;text-decoration: none;color: #a8a8a8;" href="javascript:;"><img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车<span id="cart-count">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;></a></div>
+            <div class="btnShopCar"><a style="height: 100%;width:100%;text-decoration: none;color: #a8a8a8;" href="{{url('/mall/cart')}}"><img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车<span id="cart-count">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;></a></div>
             <div class="btnShopCarP" style="display:none;">
                 <ul class="carbox">
                 </ul>
