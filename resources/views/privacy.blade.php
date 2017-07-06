@@ -210,19 +210,23 @@ body {
                         </p>
                     </td>
                     <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:bottom; width:74.25pt">
-                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">银卡</span>
+                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">铜牌</span>
+                        </p>
+                    </td>
+                    <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:bottom; width:74.25pt">
+                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">银牌</span>
                         </p>
                     </td>
                     <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:bottom; width:67.15pt">
-                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">金卡</span>
+                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">金牌</span>
                         </p>
                     </td>
                     <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:bottom; width:59.6pt">
-                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">铂</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">金</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">卡</span>
+                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">铂</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">金</span>
                         </p>
                     </td>
                     <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:bottom; width:62.3pt">
-                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">钻石卡</span>
+                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">钻石</span>
                         </p>
                     </td>
                 </tr>
@@ -233,6 +237,10 @@ body {
                     </td>
                     <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:bottom; width:74.25pt">
                         <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">注册入会即可</span>
+                        </p>
+                    </td>
+                    <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:bottom; width:67.15pt">
+                        <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">1000</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">分</span>
                         </p>
                     </td>
                     <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:bottom; width:67.15pt">
