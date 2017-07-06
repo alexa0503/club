@@ -3,15 +3,15 @@
     <div id="main">
         <div class="container" style="padding-top: 40px;padding-bottom: 40px;">
             <div class="row">
-                <div class="col-md-2 col-xs-2">
+                <div class="col-md- col-xs-2">
                     <div class="list-group">
                         <a href="/bbs/home.php?mod=spacecp&ac=avatar" class="list-group-item">修改头像</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=profile" class="list-group-item">个人资料</a>
-                        <a href="javascript:;" class="list-group-item list-group-item-danger ">
+                        <a href="{{url('/verify')}}" class="list-group-item">
                             车主认证
                         </a>
                         <a href="{{url('/verify/logs')}}" class="list-group-item">认证历史</a>
-                        <a href="{{url('/reference')}}" class="list-group-item">推荐购车</a>
+                        <a href="{{url('/reference')}}" class="list-group-item list-group-item-danger">推荐购车</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=credit" class="list-group-item">积分</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=credit4" class="list-group-item">风迷币</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=usergroup" class="list-group-item">用户组</a>
@@ -20,8 +20,8 @@
                         <a href="/bbs/home.php?mod=spacecp&ac=promotion" class="list-group-item">访问推广</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-6">
-                    {{ Form::open(array('url' => url('/verify'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'verify-form')) }}
+                <div class="col-md-8 col-xs-8">
+                    {{ Form::open(array('url' => url('/reference'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'verify-form')) }}
                     <div class="form-group" id="form-group-frame_number">
                         <label for="frame_number" class="col-md-2 col-xs-2 control-label">车架号:</label>
                         <div class="col-md-10 col-xs-10">
@@ -29,11 +29,11 @@
                             <label class="help-block" for="frame_number" id="help-frame_number"></label>
                         </div><!-- /.col -->
                     </div><!-- /form-group -->
-                    <div class="form-group" id="form-group-id_card">
-                        <label for="id_card" class="col-md-2 col-xs-2 control-label">身份证:</label>
+                    <div class="form-group" id="form-group-username">
+                        <label for="username" class="col-md-2 col-xs-2 control-label">推荐用户名:</label>
                         <div class="col-md-10 col-xs-10">
-                            <input class="form-control" type="text" value="" id="id_card" name="id_card" placeholder="输入身份证">
-                            <label class="help-block" for="id_card" id="help-id_card"></label>
+                            <input class="form-control" type="text" value="" id="username" name="username" placeholder="输入推荐用户名">
+                            <label class="help-block" for="username" id="help-username"></label>
                         </div><!-- /.col -->
                     </div><!-- /form-group -->
                     <div class="form-group">

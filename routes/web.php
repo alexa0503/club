@@ -106,6 +106,10 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         Route::get('/verify/logs', 'OwnerController@verifyLogs');
         Route::post('/verify', 'OwnerController@verify');
         Route::get('/points/update', 'OwnerController@update');
+        Route::get('/reference', function(){
+            return view('mall.reference');
+        });
+        Route::post('/reference', 'OwnerController@reference');
         //Route::post('/mall/buy', 'MallController@buy');
         Route::post('/mall/address', 'MallController@postAddress');
         //Route::post('/mall/address/default', 'MallController@defaultAddress');

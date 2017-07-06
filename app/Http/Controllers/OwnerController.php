@@ -12,7 +12,8 @@ class OwnerController extends Controller
     public function verify(Request $request)
     {
         $messages = [
-            'frame_number.*' => '请填写17位数字加英文车架号',
+            'frame_number.required' => '请填写17位数字加英文车架号',
+            'frame_number.regex' => '请填写17位数字加英文车架号',
             'frame_number.unique' => '该车架号已经被使用过了',
             'id_card.required' => '必须填写身份证号',
         ];
@@ -266,5 +267,34 @@ class OwnerController extends Controller
             }
         }
         return [];
+    }
+    public function reference(Request $request)
+    {
+        $messages = [
+            'frame_number.required' => '请填写17位数字加英文车架号',
+            'frame_number.regex' => '请填写17位数字加英文车架号',
+            'frame_number.unique' => '该车架号已经推荐过了',
+            'username.required' => '必须填写推荐用户名',
+            'username.exists' => '推荐的用户名不存在哦',
+        ];
+        $validator = Validator::make($request->all(), [
+            'frame_number' => [
+                'required',
+                'unique:references,frame_number',
+                'regex:/^[a-z0-9A-Z]{17}$/'
+            ],
+            'username' => 'required|exists:discuz_common_member,username',
+        ], $messages);
+
+
+        if ($validator->fails()) {
+            return response($validator->errors(), 422);
+        }
+        $reference = new \App\Reference;
+        $reference->frame_number = $request->frame_number;
+        $reference->username = $request->username;
+        $reference->uid = session('discuz.user.uid');
+        $reference->save();
+        return ['ret'=>0, 'msg'=>'信息提交成功，我们会在审核后通知您~'];
     }
 }
