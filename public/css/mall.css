@@ -110,6 +110,9 @@ body {
     margin: 15px 0 0;
     position: relative;
 }
+#main .container #kv {
+    margin-top: 0;
+}
 #main .container #item-top {
     margin-top:0;
     background: #FFFFFF;
