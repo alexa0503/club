@@ -158,7 +158,6 @@ class MallController extends Controller
         if(count($carts) <= 0){
             return ['ret' => 1004, 'msg' => '抱歉，您的购物车没有商品哦'];
         }
-        $amount = 0;
         $amount_quantity = 0;
         $amount_point = 0;
         $items = [];
@@ -212,6 +211,7 @@ class MallController extends Controller
                 }
             }
             $item->inventories = $inventories;
+            $item->sold_quantity += $cart->quantity;//已售
             $item->save();
             //删除购物车
             $cart->delete();
@@ -219,7 +219,7 @@ class MallController extends Controller
 
 
         DB::table('discuz_common_member_count')->where('uid',$uid)->update([
-            'extcredits4' => $user_count->extcredits4 - $amount,
+            'extcredits4' => $user_count->extcredits4 - $amount_point,
         ]);
         //订单提交
         $logid = DB::table('discuz_common_credit_log')->insertGetId([
@@ -228,7 +228,7 @@ class MallController extends Controller
             'relatedid' => $uid,
             'dateline' => time() + 8 * 3600,
             'extcredits1' => 0,
-            'extcredits4' => $amount * -1,
+            'extcredits4' => $amount_point * -1,
             'extcredits2' => 0,
             'extcredits3' => 0,
             'extcredits5' => 0,
@@ -241,7 +241,6 @@ class MallController extends Controller
             'title' => '商城购买',
             'text' => '购买商品消耗风迷币',
         ]);
-
 
 
         $timestamp = time();
