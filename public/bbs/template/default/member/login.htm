@@ -255,6 +255,9 @@
 	display('layer_lostpw_$loginhash');
 	$('lostpw_email').focus();
 <!--{/if}-->
+<!--{if $_GET['_']=='forgotpasswd'}-->
+display('layer_login_$loginhash');display('layer_lostpw_$loginhash');
+<!--{/if}-->
 </script>
 
 <!--{eval updatesession();}-->
