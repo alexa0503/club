@@ -71,7 +71,6 @@
 <header class="navbar navbar-static-top bs-docs-nav" id="top">
     <div class="container">
         <div class="row">
-            <a href="/bbs"><img src="/images/mall/logo.jpg" /></a>
             <div class="pull-right">
                 <div class="thread-top" style="">今日: <em>{{session('discuz.forum.todayposts')}}</em><span class="pipe">|</span>昨日: <em>{{session('discuz.forum.yesterdayposts')}}</em><span class="pipe">|</span>帖子: <em>{{session('discuz.forum.posts')}}</em><span class="pipe">|</span>会员: <em>{{session('discuz.user_count')}}</em><span class="pipe">|</span>欢迎新会员: <a href="/bbs/home.php?mod=space&uid={{session('discuz.latest_user.uid')}}&do=profile">{{session('discuz.latest_user.username')}}</a></div>
                 <div style="width:285px;margin-top:20px;float:left;">
@@ -85,6 +84,10 @@
                     </div>
                 </div>
             </div>
+            <div style="height:132px;">
+                <a href="http://www.dffengguang.com.cn/"><img src="/bbs/static/assets/imgs/layout/logo_1.png" alt=""></a>
+                <a href="http://club.dffengguang.com.cn/"><img src="/bbs/static/assets/imgs/layout/logo_2.png" alt=""></a></div>
+
             <div class="btnShopCar"><a style="height: 100%;width:100%;text-decoration: none;color: #a8a8a8;" href="{{url('/mall/cart')}}"><img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车<span id="cart-count">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;></a></div>
             <div class="btnShopCarP" style="display:none;">
                 <ul class="carbox">
