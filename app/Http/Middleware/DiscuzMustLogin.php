@@ -20,7 +20,7 @@ class DiscuzMustLogin
                 return response(['ret'=>1100,'msg'=>'必须登录'],200);
             }
             else{
-                return redirect(url('/mall'));
+                return redirect('/bbs/member.php?mod=logging&action=login&referer='.url('/mall'));
             }
         }
         return $next($request);
