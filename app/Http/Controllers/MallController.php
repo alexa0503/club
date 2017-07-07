@@ -191,7 +191,7 @@ class MallController extends Controller
         $order->receiver = $address->name;
         $order->mobile = $address->mobile;
         $order->telephone = $address->telephone;
-        $order->address = $address->detail;
+        $order->address = $address->province.$address->city.$address->district.$address->detail;
         $order->save();
         $item_name = [];
         foreach($carts as $cart){
