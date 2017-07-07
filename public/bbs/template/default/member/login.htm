@@ -20,7 +20,11 @@
 					<a href="member.php?mod={$_G[setting][regname]}" class="xi2">{lang login_guest}</a>
 				</span>
 				<!--{if !$secchecklogin2}-->
+				<!--{if $_GET['_']=='forgotpasswd'}-->
+				<h3 class="xs2">{lang getpassword}</h3>
+				<!--{else}-->
 					<h3 class="xs2">用户登录</h3>
+				<!--{/if}-->
 				<!--{else}-->
 					<h3 class="xs2">{lang login_seccheck2}</h3>
 				<!--{/if}-->
@@ -170,7 +174,7 @@
 		<script type="text/javascript" src="{$_G['setting']['jspath']}md5.js?{VERHASH}" reload="1"></script>
 	<!--{/if}-->
 	<div id="layer_lostpw_$loginhash" style="display: none;">
-		<h3 class="flb">
+		<h3 class="flb" style="display: none;">
 			<em id="returnmessage3_$loginhash">{lang getpassword}</em>
 			<span><!--{if !empty($_GET['infloat']) && !isset($_GET['frommessage'])}--><a href="javascript:;" class="flbc" onclick="hideWindow('login')" title="{lang close}">{lang close}</a><!--{/if}--></span>
 		</h3>
