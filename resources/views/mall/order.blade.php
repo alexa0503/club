@@ -12,7 +12,7 @@
                 <table class="table" style="width:100%;border:#ccc solid 1px;margin-bottom: 0px; " cellpadding="0" cellspacing="0" border="1">
                     <thead>
                     <tr style="background: #f5f5f5;">
-                        <th width="400">{{$order->created_at}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：{{date('YmdH')}}{{$order->id}}</th>
+                        <th width="400">{{$order->created_at}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：{{date('YmdHi',strtotime($order->created_at))}}{{$order->id}}</th>
                         <th>数量</th>
                         <th>地址</th>
                         <th>联系方式</th>
