@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth.discuz.admin', 'menu'], 'prefix' => 'admin'
     Route::resource('item', 'ItemController');
     Route::resource('page.block', 'BlockController');
     Route::resource('order', 'OrderController');
+    Route::resource('verify', 'VerifyController');
+    Route::resource('reference', 'ReferenceController');
 });
 Route::group(['middleware' => ['auth.discuz.user']], function () {
 

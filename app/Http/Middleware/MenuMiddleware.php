@@ -36,6 +36,8 @@ class MenuMiddleware
             $menu2->add('查看', ['url'=>route('item.index'),'class'=>'bg-palette3']);
             $menu2->add('新增', ['url'=>route('item.create'),'class'=>'bg-palette3']);
             $menu->add('订单管理', ['url'=>route('order.index'),'class'=>'bg-palette4']);
+            $menu->add('认证记录', ['url'=>route('verify.index'),'class'=>'bg-palette5']);
+            $menu->add('推荐购车', ['url'=>route('reference.index'),'class'=>'bg-palette6']);
         });
         return $next($request);
     }

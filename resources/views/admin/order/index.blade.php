@@ -1,39 +1,68 @@
 @extends('layouts.admin')
 @section('content')
     <div class="smart-widget">
+        <div class="smart-widget-header">
+            Striped rows
+        </div>
         <div class="smart-widget-inner">
             <div class="smart-widget-body">
-                <table class="table table-striped">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>用户</th>
-                        <th>商品</th>
-                        <th>颜色</th>
-                        <th>数量</th>
-                        <th>风迷币</th>
-                        <th>收货人</th>
-                        <th>手机/固定电话</th>
-                        <th>详细地址</th>
-                        <th>提交时间</th>
+                        <th>ps.点击订单状态可操作</th>
+                        <th>用户名</th>
+                        <th>总量</th>
+                        <th>总风迷币</th>
+                        <th>收货信息</th>
                     </tr>
                     </thead>
-                    <tbody>
                     @foreach($items as $item)
+                        <tbody>
                         <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->user->username}}</td>
-                            <td>{{$item->item->name}}</td>
-                            <td>{{$item->color}}</td>
-                            <td>{{$item->quantity}}</td>
-                            <td>{{$item->point}}</td>
-                            <td>{{$item->receiver}}</td>
-                            <td>{{$item->mobile}}/{{$item->telephone?:'--'}}</td>
-                            <td>{{$item->address}}</td>
-                            <td>{{$item->created_at}}</td>
+                            <td colspan="5" style="background: #f5f5f5;">订单时间:{{$item->created_at}}<span style="margin-left: 20px;">订单号:{{date('YmdHi',strtotime($item->created_at))}}{{$item->id}}</span>
+                                <a href="javascript:;" title="点击发货" class="label label-info" style="margin-left: 20px;">{{$order_statuses[$item->status]}}</a>
+                            </td>
                         </tr>
+                        <tr>
+                            <td width="400">
+                                <div style="position: relative;">
+                                    <div class="pull-right" style="width: 280px;">
+                                        <h5>{{$item->items[0]['name']}}</h5>
+                                        <p>{{$item->items[0]['color']}}</p>
+                                        <p>x{{$item->items[0]['quantity']}}，{{$item->items[0]['point']}}风迷币</p>
+                                    </div>
+                                    <div style="width: 100px;">
+                                        <img src="{{$item->items[0]['image']}}" width="100"/>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td rowspan="{{count($item->items)}}}">{{$item->user->username}}</td>
+                            <td rowspan="{{count($item->items)}}}">{{$item->quantity}}</td>
+                            <td rowspan="{{count($item->items)}}}">{{$item->point}}</td>
+                            <td rowspan="{{count($item->items)}}}">{{$item->receiver}} {{$item->mobile}}/{{$item->telephone?:'--'}} {{$item->address}}</td>
+                        </tr>
+                        @foreach($item->items as $k=>$_item)
+                        @if($k>0)
+                        <tr>
+                            <td width="400">
+                                <div style="position: relative;">
+                                    <div class="pull-right" style="width: 280px;">
+                                        <h5>{{$_item['name']}}</h5>
+                                        <p>{{$_item['color']}}</p>
+                                        <p>x{{$_item['quantity']}}，{{$_item['point']}}风迷币</p>
+                                    </div>
+                                    <div style="width: 100px;">
+                                        <img src="{{$_item['image']}}" width="100"/>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                        </tbody>
                     @endforeach
-                    </tbody>
                 </table>
                 {!! $items->links() !!}
             </div>

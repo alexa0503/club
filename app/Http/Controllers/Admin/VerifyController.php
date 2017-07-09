@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class OrderController extends Controller
+class VerifyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $items = \App\Order::paginate(20);
-        $order_statuses = config('custom.order.statuses');
-        return view('admin.order.index',[
+        $items = \App\Verify::paginate(20);
+        return view('admin.verify.index',[
             'items' => $items,
-            'order_statuses' => $order_statuses,
         ]);
     }
 
