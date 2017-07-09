@@ -13,5 +13,9 @@ class Order extends Model
     {
         return \App\User::where('uid', $this->uid)->first();
     }
+    public function getNumberAttribute()
+    {
+        return date('YmdHi', strtotime($this->created_at)).$this->id;
+    }
 
 }

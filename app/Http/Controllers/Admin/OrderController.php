@@ -51,7 +51,6 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -62,7 +61,10 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = \App\Order::find($id);
+        return view('admin.order.edit',[
+            'order'=>$order,
+        ]);
     }
 
     /**
@@ -74,7 +76,33 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'logistics_name.*' => '请输入物流名称~',
+            'logistics_code.*' => '请输入物流编号~'
+        ];
+        $validator = \Validator::make($request->all(), [
+            'logistics_name' => 'required',
+            'logistics_code' => 'required',
+        ], $messages);
+        $validator->after(function ($validator) use ($request) {
+            if( $request->color ){
+                $item = \App\Item::find($request->item_id);
+                $inventory = \App\Helpers\Helper::getInventory($item->inventories, $request->color);
+                if ( $inventory < $request->quantity ) {
+                    $validator->errors()->add('quantity', '商品库存不足');
+                }
+            }
+
+        });
+        if ($validator->fails()) {
+            return response($validator->errors(), 422);
+        }
+        $order = \App\Order::find($id);
+        $order->logistics_name = $request->logistics_name;
+        $order->logistics_code = $request->logistics_code;
+        $order->status = 1;
+        $order->save();
+        return response(['ret'=>0,'url'=>route('order.index')]);
     }
 
     /**

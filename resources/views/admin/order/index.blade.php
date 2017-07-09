@@ -19,8 +19,8 @@
                     @foreach($items as $item)
                         <tbody>
                         <tr>
-                            <td colspan="5" style="background: #f5f5f5;">订单时间:{{$item->created_at}}<span style="margin-left: 20px;">订单号:{{date('YmdHi',strtotime($item->created_at))}}{{$item->id}}</span>
-                                <a href="javascript:;" title="点击发货" class="label label-info" style="margin-left: 20px;">{{$order_statuses[$item->status]}}</a>
+                            <td colspan="5" style="background: #f5f5f5;">订单时间:{{$item->created_at}}<span style="margin-left: 20px;">订单号:{{$item->number}}</span>
+                                <a data-url="{{route('order.edit',['id'=>$item->id])}}" href="javascript:;" title="点击发货" class="label label-info click-send" style="margin-left: 20px;">{{$order_statuses[$item->status]}}</a>
                             </td>
                         </tr>
                         <tr>
@@ -69,9 +69,57 @@
         </div><!-- ./smart-widget-inner -->
     </div>
 @endsection
+
+@section('popup')
+    <div class="modal fade" id="modal-verify" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+@endsection
 @section('scripts')
+    <script src="{{asset('js/jquery.form.js')}}"></script>
     <script>
         $().ready(function () {
+            $('.click-send').click(function () {
+                var url = $(this).attr('data-url');
+                $.ajax({
+                    method:'GET',
+                    url:url,
+                    dataType:'html'
+                }).done(function (html) {
+                    $('#modal-verify').modal('show');
+                    $('#modal-verify .modal-content').html(html).find('#form-order').ajaxForm({
+                        dataType: 'json',
+                        success: function (json) {
+                            $('#modal-verify').modal('hide');
+                            location.href = json.url;
+                        },
+                        error: function (xhr) {
+                            var json = jQuery.parseJSON(xhr.responseText);
+                            if (xhr.status == 200) {
+                                $('#modal-verify').modal('hide');
+                                location.href = json.url;
+                            }
+                            $('.help-block').html('');
+                            $.each(json, function (index, value) {
+                                $('#' + index).parents('.form-group').addClass('has-error');
+                                $('#help-' + index).html(value);
+                                //$('#'+index).next('.help-block').html(value);
+                            });
+                        }
+                    });
+                }).fail(function (jqXHR, textStatus) {
+                    alert('请求失败');
+                }).always(function() {
+                    //alert( "complete" );
+                });
+
+                return false;
+            })
+
             $('.destroy').click(function(){
                 var url = $(this).attr('href');
                 var obj = $(this).parents('td').parent('tr');
