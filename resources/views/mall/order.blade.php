@@ -37,7 +37,7 @@
                     <tr>
                         <td style="position:relative;height:90px;">
                             <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$item['image']}}" alt="">
-                            <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}}</div>
+                            <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}}@if($item['color']!='default')<br/>{{$item['color']}}@endif @if(isset($item['code']))<br/>{!! str_replace(',','<br/>',$item['code']) !!}@endif</div>
                         </td>
                         <td>{{$item['quantity']}}</td>
                         @endif

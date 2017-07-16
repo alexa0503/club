@@ -75,6 +75,7 @@ class MallController extends Controller
                 'color'=>$cart->color,
                 'image'=>$cart->item->images[0],
                 'point'=>$cart->item->point,
+                'type'=>$cart->item->type,
             ];
             //优惠券
             if($cart->item->type == 1){
