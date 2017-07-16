@@ -24,7 +24,7 @@
                     <tr>
                         <td style="position:relative;height:90px;">
                             <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$order->items[0]['image']}}" alt="">
-                            <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$order->items[0]['name']}}<br/>{{$order->items[0]['color']}}</div>
+                            <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$order->items[0]['name']}}@if($order->items[0]['color']!='default')<br/>{{$order->items[0]['color']}}@endif @if(isset($order->items[0]['code']))<br/>{!! str_replace(',','<br/>',$order->items[0]['code']) !!}@endif</div>
                         </td>
                         <td>{{$order->quantity}}</td>
                         <td rowspan="{{count($order->items)}}">{{$order->address}}</td>

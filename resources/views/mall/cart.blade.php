@@ -29,7 +29,7 @@
                             <img style="width:100%;height:100%;" src="{{asset($cart->item->images[0])}}" alt="" />
                             @endif
                         </div>
-                        <div class="shopTitle">{{$cart->item->name}}<br/><span style="background: red;color: #fff;padding: 0px 5px;">{{$cart->color}}</span></div>
+                        <div class="shopTitle">{{$cart->item->name}}@if($cart->color!='default')<br/><span style="background: red;color: #fff;padding: 0px 5px;">{{$cart->color}}</span>@endif</div>
                         <div class="toolbox">
                             <div class="sub" data-url="{{url('/mall/cart/'.$cart->id)}}">-</div>
                             <div class="text"><input type="text" data-url="{{url('/mall/cart/'.$cart->id)}}"value="{{$cart->quantity}}" name="quantity[]" /></div>
