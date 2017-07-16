@@ -237,6 +237,9 @@
             </div>
             <div class="modal-body">
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-custom" data-dismiss="modal">确定</button>
+            </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>

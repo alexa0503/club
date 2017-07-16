@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\OwnerVerify::class,
         Commands\PointsUpdate::class,
+        Commands\SendCoupons::class,
     ];
 
     /**
@@ -28,6 +29,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('owner:verify')
+            ->everyMinute();
+        $schedule->command('send:coupons')
             ->everyMinute();
         $schedule->command('points:update')
             ->hourly();

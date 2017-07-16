@@ -61,6 +61,7 @@ class MallController extends Controller
         $amount_quantity = 0;
         $amount_point = 0;
         $items = [];
+        $has_coupon = false;
         foreach($carts as $k=>$cart){
             $amount_quantity += $cart->quantity;
             $amount_point += ($cart->item->point * $cart->quantity);
@@ -79,10 +80,16 @@ class MallController extends Controller
             ];
             //优惠券
             if($cart->item->type == 1){
+                $has_coupon = true;
                 $code = [];
                 for ($i=0; $i<$cart->quantity ;$i++){
                     $bytes = random_bytes(6);
-                    $code[] = $uid.substr(bin2hex($bytes), 0, 13).date('Ymd');
+                    $coupon = new \App\Coupon();
+                    $coupon->uid = $uid;
+                    $coupon->value = $cart->color;
+                    $coupon->valid_date = $cart->item->valid_date;
+                    $code[] = $coupon->code = $uid.substr(bin2hex($bytes), 0, 13).date('Ymd');
+                    $coupon->save();
                 }
                 $_item['code'] = implode($code,',');
             }
@@ -129,7 +136,6 @@ class MallController extends Controller
             $cart->delete();
         }
 
-
         DB::table('discuz_common_member_count')->where('uid',$uid)->update([
             'extcredits4' => $user_count->extcredits4 - $amount_point,
         ]);
@@ -165,7 +171,8 @@ class MallController extends Controller
         $client = new \GuzzleHttp\Client();
         $client->request('GET', $url);
 
-        return ['ret' => 0, 'msg' => '订单提交成功，将尽快安排物流配送！'];
+        $msg = $has_coupon ? '订单提交成功，请在我的订单中查看券码！' : '订单提交成功，将尽快安排物流配送！';
+        return ['ret' => 0, 'msg' => $msg];
         //
     }
     //购物车相关功能

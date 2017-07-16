@@ -48,6 +48,7 @@ class OwnerVerify extends Command
             'type'=>'1',
         ];
         $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY01SOAP?wsdl");
+        var_dump($client->__getFunctions());
         $options = [
             'in'=>json_encode($options),
         ];
