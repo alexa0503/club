@@ -73,6 +73,10 @@
                                     <td>认证时间</td>
                                     <td>{{$verify->created_at}}</td>
                                 </tr>
+                                <tr>
+                                    <td>认证状态</td>
+                                    <td>{{$verify->status == -1 ? '已退车失效' : '正常'}}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

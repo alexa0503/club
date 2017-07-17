@@ -161,6 +161,7 @@ class OwnerController extends Controller
                 $member_level = '铜牌';
                 $multiple = 1;
         }
+
         foreach($verifies as $verify){
             $frame_number = $verify->frame_number;//车架号
             //$id_card = $verify->id_card;//身份证号
@@ -195,18 +196,19 @@ class OwnerController extends Controller
             if($result && $result['ret'] == 0){
                 foreach ($result['data'] as $data){
                     $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
-                    $count = \App\OwnerLog::where('dealer', $data['Dealer'])
-                        ->where('uid', $uid)
-                        ->where('spent_at', $spent_at)
+                    $count = \App\OwnerLog::where('uid', $uid)
+                        //->where('spent_at', $spent_at)
+                        //->where('type', $data['Type'])
+                        //->where('reason', $data['Reason'])
+                        ->where('score_id', $data['SCORE_ID'])
                         ->count();
 
                     $point = $data['Point'];
                     $coin = $data['Coin'];
 
                     if( $data['Type'] == 1){
-                        $credits1 = $point*$multiple;
-                        $credits4 = $coin*$multiple;
-
+                        $credits1 = $point;
+                        $credits4 = $coin;
                     }
                     else{
                         switch ($user->groupid){
@@ -248,6 +250,7 @@ class OwnerController extends Controller
                     $log->dealer = $data['Dealer'];
                     $log->type = $data['Type'];
                     $log->spent_at = $spent_at;
+                    $log->score_id = $data['SCORE_ID'];
                     $log->save();
 
                     /*

@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\OwnerVerify::class,
         Commands\PointsUpdate::class,
         Commands\SendCoupons::class,
+        Commands\CarsRefund::class,
     ];
 
     /**

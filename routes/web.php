@@ -125,7 +125,6 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         Route::post('/mall/order', 'MallController@order');
         Route::get('/mall/order', 'MallController@orderIndex');
     });
-
 });
 //省市数据
 Route::get('/districts', function(){

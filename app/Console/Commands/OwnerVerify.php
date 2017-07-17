@@ -39,6 +39,7 @@ class OwnerVerify extends Command
      */
     public function handle()
     {
+        return;
         $frame_number = 'LVZA53P94GC578465';
         $id_card = '450305197012070019';
         $options = [
@@ -72,8 +73,6 @@ class OwnerVerify extends Command
         var_dump($result);
 
 
-
-
         $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
         $options = [
             'json'=>json_encode([
@@ -85,9 +84,6 @@ class OwnerVerify extends Command
         $response = $client->__soapCall("addMemberLevelInfo", array($options));
         //$result = json_decode($response->addMemberLevelInfoReturn,true);
         var_dump($response);
-
-
-
 
 
         $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY04?wsdl");
@@ -102,9 +98,6 @@ class OwnerVerify extends Command
         $response = $client->__soapCall("addElectronicVouchersInfo", array($options));
         $result = json_decode($response->addElectronicVouchersInfoReturn,true);
         var_dump($response);
-
-
-
 
 
         $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY05SOAP?wsdl");
@@ -143,7 +136,6 @@ class OwnerVerify extends Command
 
         $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY08SOAP?wsdl");
         $options = [
-
         ];
 
         $response = $client->__soapCall("QueryModelCodeInfo", array($options));
