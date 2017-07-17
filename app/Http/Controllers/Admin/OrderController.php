@@ -12,9 +12,19 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = \App\Order::paginate(20);
+        $model = \App\Order::orderBy('created_at', 'DESC');
+        if($request->status !== null){
+            $model->where('status', $request->status);
+        }
+        if($request->username != null ){
+            $uids = \App\User::where('username', 'LIKE', '%'.$request->username.'%')->get()->map(function($item){
+                return $item->uid;
+            })->toArray();
+            $model->whereIn('uid', $uids);
+        }
+        $items = $model->paginate(20);
         $order_statuses = config('custom.order.statuses');
         return view('admin.order.index',[
             'items' => $items,

@@ -2,7 +2,12 @@
 @section('content')
     <div class="smart-widget">
         <div class="smart-widget-header">
-            Striped rows
+            <form class="form-inline" action="/admin/order">
+                <!--<div class="form-group"><input class="form-control" name="keywords" /></div>-->
+                <div class="form-group"><input class="form-control" name="username" placeholder="输入用户名" value="{{Request::input('username')}}" /></div>
+                <div class="form-group"><select class="form-control" name="status"><option value="">选择订单状态/全部</option><option value="0">待发货</option><option value="1">待配送</option><option value="2">已完成</option></select></div>
+                <div class="form-group"><button type="submit" class="btn btn-primary">查询</button></div>
+            </form>
         </div>
         <div class="smart-widget-inner">
             <div class="smart-widget-body">
@@ -29,6 +34,7 @@
                                     <div class="pull-right" style="width: 280px;">
                                         <h5>{{$item->items[0]['name']}}</h5>
                                         <p>{{$item->items[0]['color']}}</p>
+                                        @if(isset($item->items[0]['code']))<p>{!! str_replace(',',"<br/>",$item->items[0]['code']) !!}</p>@endif
                                         <p>x{{$item->items[0]['quantity']}}，{{$item->items[0]['point']}}风迷币</p>
                                     </div>
                                     <div style="width: 100px;">
@@ -51,6 +57,7 @@
                                         <h5>{{$_item['name']}}</h5>
                                         <p>{{$_item['color']}}</p>
                                         <p>x{{$_item['quantity']}}，{{$_item['point']}}风迷币</p>
+                                        @if(isset($_item['code']))<p>{!! str_replace(',',"<br/>",$_item['code']) !!}</p>@endif
                                     </div>
                                     <div style="width: 100px;">
                                         <img src="{{$_item['image']}}" width="100"/>
@@ -83,6 +90,7 @@
     <script src="{{asset('js/jquery.form.js')}}"></script>
     <script>
         $().ready(function () {
+            $('select[name="status"]').val('{{Request::input("status")}}');
             $('.click-send').click(function () {
                 var url = $(this).attr('data-url');
                 $.ajax({

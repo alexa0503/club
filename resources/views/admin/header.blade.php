@@ -58,7 +58,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <ul class="nav-notification">
+            <!--<ul class="nav-notification">
                 <li class="search-list">
                     <div class="search-input-wrapper">
                         <div class="search-input">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul>-->
             <div class="pull-right m-right-sm">
                 <div class="user-block hidden-xs">
                     <a href="#" id="userToggle" data-toggle="dropdown">

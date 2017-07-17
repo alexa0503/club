@@ -7,7 +7,9 @@
 	      		<thead>
 	        		<tr>
 			        	<th>ID</th>
+                        <th>缩略图</th>
 			          	<th>产品名</th>
+                        <th>产品分类</th>
 			          	<th>已售</th>
 			          	<th>市场价</th>
 			          	<th>风迷币</th>
@@ -22,7 +24,9 @@
                     @foreach($items as $item)
 		        	<tr>
 			          	<td>{{$item->id}}</td>
+                        <td><img src="{{$item->thumb}}" class="img-thumbnail" style="max-width: 200px;max-height: 200px;" /></td>
 			          	<td>{{$item->name}}</td>
+                        <td>{{$item->type==1?'优惠券':'普通商品'}}</td>
 			          	<td>{{$item->sold_quantity}}</td>
 			          	<td>{{$item->price}}</td>
 			          	<td>{{$item->point}}</td>

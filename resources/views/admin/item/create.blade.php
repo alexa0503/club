@@ -15,8 +15,24 @@
                 <div class="form-group">
                     <label for="subtitle" class="col-lg-2 control-label">副标题</label>
                     <div class="col-lg-10">
-                        <input value="" name="subtitle" type="text" class="form-control" id="subtitle" placeholder="请输入副标题">
+                        <input value="" name="subtitle" type="text" class="form-control" id="subtitle" placeholder="">
                         <label class="help-block" for="" id="help-subtitle"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group">
+                    <label for="type" class="col-lg-2 control-label">商品分类</label>
+                    <div class="col-lg-10">
+                        <select name="type" class="form-control" id="type"><option value="0">普通商品</option><option value="1">优惠券</option></select>
+                        <label class="help-block" for="" id="help-type"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group">
+                    <label for="valid_date" class="col-lg-2 control-label">有效期[仅优惠券有效]</label>
+                    <div class="col-lg-10">
+                        <input value="" name="valid_date" type="text" class="form-control" id="valid_date" placeholder="">
+                        <label class="help-block" for="" id="help-valid_date"></label>
                     </div><!-- /.col -->
                 </div><!-- /form-group -->
 

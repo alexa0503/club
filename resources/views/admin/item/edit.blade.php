@@ -21,6 +21,22 @@
                 </div><!-- /form-group -->
 
                 <div class="form-group">
+                    <label for="type" class="col-lg-2 control-label">商品分类</label>
+                    <div class="col-lg-10">
+                        <select name="type" class="form-control" id="type"><option value="0">普通商品</option><option value="1" {{$item->type==1 ? 'selected="selected"':''}}>优惠券</option></select>
+                        <label class="help-block" for="" id="help-type"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group">
+                    <label for="valid_date" class="col-lg-2 control-label">有效期[仅优惠券有效]</label>
+                    <div class="col-lg-10">
+                        <input value="{{$item->valid_date}}" name="valid_date" type="text" class="form-control" id="valid_date" placeholder="">
+                        <label class="help-block" for="" id="help-valid_date"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group">
                     <label for="feature1" class="col-lg-2 control-label">爆款推荐[大于0整数为推荐]</label>
                     <div class="col-lg-10">
                         <input value="{{$item->feature1}}" name="feature1" type="text" class="form-control" id="name" placeholder="请输入产品名">
