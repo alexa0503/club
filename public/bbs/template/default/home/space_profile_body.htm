@@ -173,7 +173,7 @@
 		<!--{if $space[sellercredit]}-->
 		<li><em>{lang eccredit_buyerinfo}</em><a href="home.php?mod=space&uid=$space[uid]&do=trade&view=eccredit#buyercredit" target="_blank">$space[sellercredit] <img src="{STATICURL}image/traderank/seller/$space[sellerrank].gif" border="0" class="vm" /></a></li>
 		<!--{/if}-->
-		<li><em>{lang credits}</em>$space[credits]</li>
+		<!--<li><em>{lang credits}</em>$space[credits]</li>-->
 		<!--{loop $_G[setting][extcredits] $key $value}-->
 		<!--{if $value[title]}-->
 		<li><em>$value[title]</em>{$space["extcredits$key"]} $value[unit]</li>
