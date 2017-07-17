@@ -3,7 +3,7 @@
     <div id="main">
         <div class="container" style="padding-top: 40px;padding-bottom: 40px;">
             <div class="row">
-                <div class="col-md- col-xs-2">
+                <div class="col-md-2 col-xs-2">
                     <div class="list-group">
                         <a href="/bbs/home.php?mod=spacecp&ac=avatar" class="list-group-item">修改头像</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=profile" class="list-group-item">个人资料</a>
@@ -11,7 +11,7 @@
                             车主认证
                         </a>
                         <a href="{{url('/verify/logs')}}" class="list-group-item">认证历史</a>
-                        <a href="{{url('/reference')}}" class="list-group-item list-group-item-danger">推荐购车</a>
+                        <a href="{{url('/reference')}}" class="list-group-item active">推荐购车</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=credit" class="list-group-item">评级积分</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=credit4" class="list-group-item">风迷币</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=usergroup" class="list-group-item">用户组</a>

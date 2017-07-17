@@ -431,3 +431,32 @@ footer .container {
     top:-140px;
     z-index: 1000;
 }
+#main .list-group {
+    border-radius:0;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+}
+#main .list-group-item {
+    background: #e8f0f7;
+    padding:6px 10px;
+    border: 1px dashed #CDCDCD;
+    border-left: none;
+    border-right: none;
+}
+#main .list-group .active {
+    background: #fff;
+    text-shadow:none;
+    color: #333;
+    border: none;
+    border-top: 1px solid #CDCDCD;
+    border-bottom: 1px solid #CDCDCD;
+}
+#main .list-group-item:first-child {
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+    border-top: none;
+}
+#main .list-group-item:last-child {
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
+}

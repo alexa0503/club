@@ -7,7 +7,7 @@
                     <div class="list-group">
                         <a href="/bbs/home.php?mod=spacecp&ac=avatar" class="list-group-item">修改头像</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=profile" class="list-group-item">个人资料</a>
-                        <a href="javascript:;" class="list-group-item list-group-item-danger ">
+                        <a href="javascript:;" class="list-group-item active ">
                             车主认证
                         </a>
                         <a href="{{url('/verify/logs')}}" class="list-group-item">认证历史</a>

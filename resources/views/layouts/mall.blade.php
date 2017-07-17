@@ -88,12 +88,14 @@
                 <a href="http://www.dffengguang.com.cn/"><img src="/bbs/static/assets/imgs/layout/logo_1.png" alt=""></a>
                 <a href="http://club.dffengguang.com.cn/"><img src="/bbs/static/assets/imgs/layout/logo_2.png" alt=""></a></div>
 
+            @if(Request::segment(1) == 'mall')
             <div class="btnShopCar"><a style="height: 100%;width:100%;text-decoration: none;color: #a8a8a8;" href="{{url('/mall/cart')}}"><img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车<span id="cart-count">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;></a></div>
             <div class="btnShopCarP" style="display:none;">
                 <ul class="carbox">
                 </ul>
                 <button class="btnBuy">查看购物车</button>
             </div>
+                @endif
         </div>
         <div class="row">
             <nav id="bs-navbar" class="collapse navbar-collapse">
