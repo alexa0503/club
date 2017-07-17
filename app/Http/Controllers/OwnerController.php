@@ -139,14 +139,23 @@ class OwnerController extends Controller
     {
         $uid = session('discuz.user.uid');
         $verifies = \App\Verify::where('uid',$uid)->get();
+        $user = \App\User::where('uid', $uid)->first();
         foreach($verifies as $verify){
             $frame_number = $verify->frame_number;//车架号
             $id_card = $verify->id_card;//身份证号
+            /*
             $options = [
                 'frame_number'=>$frame_number,
                 'id_card'=>$id_card,
                 'Start_date'=>'2000-01-01',
                 'End_date'=>date('Y-m-d'),
+            ];
+            */
+            $options = [
+                'frame_number'=>$frame_number,
+                'id_card'=>$id_card,
+                'register_date'=>date('Y-m-d H:i:s', $user->regdate),
+                'type'=>'1',
             ];
 
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl");
