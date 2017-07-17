@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label for="feature1" class="col-lg-2 control-label">爆款推荐[大于0整数为推荐]</label>
                     <div class="col-lg-10">
-                        <input value="{{$item->feature1}}" name="feature1" type="text" class="form-control" id="name" placeholder="请输入产品名">
+                        <input value="{{$item->feature1}}" name="feature1" type="text" class="form-control" id="feature1" placeholder="">
                         <label class="help-block" for="" id="help-feature1"></label>
                     </div><!-- /.col -->
                 </div><!-- /form-group -->
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label for="feature2" class="col-lg-2 control-label">车载必备[大于0整数为推荐]</label>
                     <div class="col-lg-10">
-                        <input value="{{$item->feature2}}" name="feature2" type="text" class="form-control" id="name" placeholder="请输入产品名">
+                        <input value="{{$item->feature2}}" name="feature2" type="text" class="form-control" id="feature2" placeholder="">
                         <label class="help-block" for="" id="help-feature2"></label>
                     </div><!-- /.col -->
                 </div><!-- /form-group -->
