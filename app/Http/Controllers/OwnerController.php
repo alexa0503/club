@@ -140,22 +140,47 @@ class OwnerController extends Controller
         $uid = session('discuz.user.uid');
         $verifies = \App\Verify::where('uid',$uid)->get();
         $user = \App\User::where('uid', $uid)->first();
+        switch ($user->groupid){
+            case 11:
+                $member_level = '银牌';
+                $multiple = 1;
+                break;
+            case 12:
+                $member_level = '金牌';
+                $multiple = 1.2;
+                break;
+            case 13:
+                $member_level = '铂金';
+                $multiple = 1.5;
+                break;
+            case 14:
+                $member_level = '钻石';
+                $multiple = 2;
+                break;
+            default:
+                $member_level = '铜牌';
+                $multiple = 1;
+        }
         foreach($verifies as $verify){
             $frame_number = $verify->frame_number;//车架号
-            $id_card = $verify->id_card;//身份证号
-            /*
+            //$id_card = $verify->id_card;//身份证号
+
+            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
             $options = [
-                'frame_number'=>$frame_number,
-                'id_card'=>$id_card,
-                'Start_date'=>'2000-01-01',
-                'End_date'=>date('Y-m-d'),
+                'json'=>json_encode([
+                    'vin'=>$frame_number,
+                    'member_level'=>$member_level,
+                    'multiple'=>$multiple,
+                ])
             ];
-            */
+            $response = $client->__soapCall("addMemberLevelInfo", array($options));
+            $result = json_decode($response->addMemberLevelInfoReturn,true);
+            //var_dump($result);
+           if( !$result || $result['ret'] != 0){
+               continue;
+           }
             $options = [
                 'frame_number'=>$frame_number,
-                'id_card'=>$id_card,
-                'register_date'=>date('Y-m-d H:i:s', $user->regdate),
-                'type'=>'1',
             ];
 
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl");
@@ -164,9 +189,9 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));
             $result = json_decode($response->out,true);
+            //var_dump($result);
 
             $first_upkeep = true;
-            $user = \App\User::where('uid',$uid)->first();
             if($result && $result['ret'] == 0){
                 foreach ($result['data'] as $data){
                     $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
@@ -179,23 +204,9 @@ class OwnerController extends Controller
                     $coin = $data['Coin'];
 
                     if( $data['Type'] == 1){
-                        switch ($user->groupid){
-                            case 12:
-                                $credits1 = $point*1.2;
-                                $credits4 = $coin*1.2;
-                                break;
-                            case 13:
-                                $credits1 = $point*1.5;
-                                $credits4 = $coin*1.5;
-                                break;
-                            case 14:
-                                $credits1 = $point*2;
-                                $credits4 = $coin*2;
-                                break;
-                            default:
-                                $credits1 = $point;
-                                $credits4 = $coin;
-                        }
+                        $credits1 = $point*$multiple;
+                        $credits4 = $coin*$multiple;
+
                     }
                     else{
                         switch ($user->groupid){

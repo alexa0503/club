@@ -82,7 +82,7 @@ class OwnerVerify extends Command
                 'multiple'=>"1.3"
             ])
         ];
-        //$response = $client->__soapCall("addMemberLevelInfo", array($options));
+        $response = $client->__soapCall("addMemberLevelInfo", array($options));
         //$result = json_decode($response->addMemberLevelInfoReturn,true);
         var_dump($response);
 
