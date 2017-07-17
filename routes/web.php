@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
 
         $forums['hotreply'] = \DB::table('discuz_forum_thread')
             ->join('discuz_forum_forum', 'discuz_forum_thread.fid', '=', 'discuz_forum_forum.fid')
+            ->where('discuz_forum_thread.status', '0')
             ->orderBy('discuz_forum_thread.replies', 'DESC')
             ->select('discuz_forum_thread.*', 'discuz_forum_forum.name')
             ->offset(0)

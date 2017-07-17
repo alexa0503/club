@@ -67,7 +67,7 @@ class DiscuzHelper
     }
     public static function formatTime($timestamp, $format = null)
     {
-        $timestamp += 8*3600;
+        //$timestamp += 8*3600;
         $now = time();
         $diff_time = $now - $timestamp;
         if($diff_time < 60){
