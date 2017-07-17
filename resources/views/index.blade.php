@@ -286,7 +286,7 @@
                                                     <a href="{{$feature->link}}"><img src="{{$feature->avatar}}" alt="" width="48" height="48"></a>
                                                 </div>
                                                 <div class="right">
-                                                    <h2><a href="{{$feature->link}}" title="{{$feature->title}}">{{ str_limit($feature->title,40,'…')}}</a></h2>
+                                                    <h2><a href="{{$feature->link}}" title="{{$feature->title}}">{{ str_limit($feature->title,34,'…')}}</a></h2>
                                                     <div class="userWrap">
                                                         <div class="name">
                                                             <span>{{$feature->username}}</span>
