@@ -30,7 +30,7 @@
                         <td rowspan="{{count($order->items)}}">{{$order->address}}</td>
                         <td rowspan="{{count($order->items)}}">{{$order->receiver}}<br />{{$order->mobile}}</td>
                         <td rowspan="{{count($order->items)}}">{{$order->point}}风迷币</td>
-                        <td rowspan="{{count($order->items)}}">{{$order_statuses[$order->status]}}</td>
+                        <td rowspan="{{count($order->items)}}">@if(isset($order->items[0]['code'])){{ '完成'  }}@else{{$order_statuses[$order->status]}}@endif</td>
                     </tr>
                     @foreach($order->items as $k=>$item)
                         @if($k>0)
