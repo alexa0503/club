@@ -48,11 +48,11 @@ body {
         <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">三、</span><span style="font:7.0pt 'Times New Roman'">&#xa0; </span><span style="font-family:微软雅黑; font-size:9pt">联系我们：</span><span style="font-family:微软雅黑; font-size:9pt">东风风光官方网站： </span><a style="color:#67afbd"
             href="http://www.dffengguang.com.cn/"><span style="color:#67afbd; font-family:微软雅黑; font-size:9pt; text-decoration:underline">http://www.dffengguang.com.cn/</span></a>
         </p>
-        <p style="margin:0pt; text-indent:114pt"><span style="font-family:微软雅黑; font-size:9pt">东风风光用户之家：DFSK2003</span>
+        <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">东风风光用户之家：DFSK2003</span>
         </p>
-        <p style="margin:0pt; text-indent:114pt"><span style="font-family:微软雅黑; font-size:9pt">东风风光</span><span style="font-family:微软雅黑; font-size:9pt">订阅号</span><span style="font-family:微软雅黑; font-size:9pt">：</span><span style="font-family:微软雅黑; font-size:9pt">dfsk2013</span>
+        <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">东风风光</span><span style="font-family:微软雅黑; font-size:9pt">订阅号</span><span style="font-family:微软雅黑; font-size:9pt">：</span><span style="font-family:微软雅黑; font-size:9pt">dfsk2013</span>
         </p>
-        <p style="margin:0pt; text-indent:114pt"><span style="font-family:微软雅黑; font-size:9pt">官方客服热线： 4008875551</span>
+        <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">官方客服热线： 4008875551</span>
         </p>
         <p style="margin:0pt; text-indent:114pt"><span style="font-family:微软雅黑; font-size:9pt">&#xa0;</span>
         </p>
@@ -977,7 +977,7 @@ body {
                             </p>
                         </td>
                         <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:114.8pt">
-                            <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">消费原厂纯正备件</span><span style="font-family:微软雅黑; font-size:9pt">，不同级别乘以不同倍数</span>
+                            <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">例：如结算时原厂配件价格为100元，则银卡用户送100个风迷币，其他级别会员分别乘以相应倍数</span>
                             </p>
                         </td>
                     </tr>
@@ -1333,11 +1333,11 @@ body {
                             <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">推荐购车车系</span>
                             </p>
                         </td>
-                        <td style="background-color:#e60012; border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:131pt">
+                        <td style="background-color:#e60012; border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:131pt">
                             <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">风迷币</span>
                             </p>
                         </td>
-                        <td style="background-color:#e60012; border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:131pt">
+                        <td style="background-color:#e60012; border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:131pt">
                             <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">评级积分</span>
                             </p>
                         </td>
