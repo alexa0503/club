@@ -104,9 +104,13 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
     Route::group(['middleware' => ['auth.discuz.must']], function () {
 
         Route::get('/verify', function(){
-            return view('mall.verify');
+            $uid = session('discuz.user.uid');
+            $verifies = \App\Verify::where('uid', $uid)->get();
+            return view('mall.verify',[
+                'verifies'=>$verifies
+            ]);
         });
-        Route::get('/verify/logs', 'OwnerController@verifyLogs');
+        //Route::get('/verify/logs', 'OwnerController@verifyLogs');
         Route::post('/verify', 'OwnerController@verify');
         Route::get('/points/update', 'OwnerController@update');
         Route::get('/reference', function(){
