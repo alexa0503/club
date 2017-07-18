@@ -190,9 +190,9 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));
             $result = json_decode($response->out,true);
-            //var_dump($result);
+            //var_dump($result,$frame_number);
 
-            $first_upkeep = true;
+            //$first_upkeep = true;
             if($result && $result['ret'] == 0){
                 foreach ($result['data'] as $data){
                     $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
@@ -203,9 +203,10 @@ class OwnerController extends Controller
                         ->where('score_id', $data['SCORE_ID'])
                         ->count();
 
-                    $point = $data['Point'];
-                    $coin = $data['Coin'];
+                    $credits1 = $data['Point'];
+                    $credits4 = $data['Coin'];
 
+                    /*
                     if( $data['Type'] == 1){
                         $credits1 = $point;
                         $credits4 = $coin;
@@ -236,6 +237,7 @@ class OwnerController extends Controller
                             $first_upkeep = false;
                         }
                     }
+                */
 
                     if( $count > 0 ){
                         continue;
@@ -283,7 +285,7 @@ class OwnerController extends Controller
                     //插入日志
                     DB::table('discuz_common_credit_log_field')->insert([
                         'logid'=>$logid,
-                        'title'=>'车主购买奖励',
+                        'title'=>'车主奖励',
                         'text'=>$data['Reason'],
                     ]);
                 }
