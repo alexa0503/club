@@ -977,7 +977,7 @@ body {
                             </p>
                         </td>
                         <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:114.8pt">
-                            <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">例：如结算时原厂配件价格为100元，则银卡用户送100个风迷币，其他级别会员分别乘以相应倍数</span>
+                            <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">消费原厂纯正备件，可兑换相应风迷币，例：如结算时原厂配件价格为100元，则银卡用户送100个风迷币，其他级别会员分别乘以相应倍数</span>
                             </p>
                         </td>
                     </tr>
