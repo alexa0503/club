@@ -50,9 +50,9 @@ body {
         </p>
         <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">东风风光用户之家：DFSK2003</span>
         </p>
-        <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">东风风光</span><span style="font-family:微软雅黑; font-size:9pt">订阅号</span><span style="font-family:微软雅黑; font-size:9pt">：</span><span style="font-family:微软雅黑; font-size:9pt">dfsk2013</span>
+        <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">东风风光</span><span style="font-family:微软雅黑; font-size:9pt">订阅号</span><span style="font-family:微软雅黑; font-size:9pt">：</span><span style="font-family:微软雅黑; font-size:9pt;margin-left:16px;">dfsk2013</span>
         </p>
-        <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">官方客服热线： 4008875551</span>
+    <p style="margin:0pt 0pt 0pt 42pt; text-indent:-21pt"><span style="font-family:微软雅黑; font-size:9pt">官方客服热线： </span><span style="font-family:微软雅黑; font-size:9pt;margin-left:9px;">4008875551</span>
         </p>
         <p style="margin:0pt; text-indent:114pt"><span style="font-family:微软雅黑; font-size:9pt">&#xa0;</span>
         </p>
