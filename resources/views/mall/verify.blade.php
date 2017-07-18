@@ -11,7 +11,7 @@
                             车主认证
                         </a>
                         <a href="{{url('/verify/logs')}}" class="list-group-item">认证历史</a>
-                        <a href="{{url('/reference')}}" class="list-group-item">推荐购车</a>
+                        <!--<a href="{{url('/reference')}}" class="list-group-item">推荐购车</a>-->
                         <a href="/bbs/home.php?mod=spacecp&ac=credit" class="list-group-item">评级积分</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=credit4" class="list-group-item">风迷币</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=usergroup" class="list-group-item">用户组</a>
