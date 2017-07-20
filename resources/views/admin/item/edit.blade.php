@@ -154,9 +154,6 @@
                 language: "zh-CN",
                 placeholder: "请输入",
             });
-
-
-
             $('#post-form').ajaxForm({
                 dataType: 'json',
                 success: function(json) {

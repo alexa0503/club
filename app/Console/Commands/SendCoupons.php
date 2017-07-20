@@ -50,7 +50,7 @@ class SendCoupons extends Command
                 'json'=>json_encode([
                     'vin'=>implode(',', $frame_number),
                     'coup_num'=>$coupon->code,
-                    'face_amount'=>$coupon->value,
+                    'face_amount'=>str_replace('元','',$coupon->value),
                     'valid_date'=>$coupon->valid_date,
                 ])
             ];
