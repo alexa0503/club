@@ -1,11 +1,11 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('spacecp_credit4_base');
 0
-|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_header.htm', 1499301525, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
-|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_credit4_header.htm', 1499301525, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
-|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/common/seccheck.htm', 1499301525, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
-|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_footer.htm', 1499301525, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
-|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_header_name.htm', 1499301525, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
-|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_header_name.htm', 1499301525, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
+|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_header.htm', 1500434994, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
+|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_credit4_header.htm', 1500434994, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
+|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/common/seccheck.htm', 1500434994, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
+|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_footer.htm', 1500434994, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
+|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_header_name.htm', 1500434994, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
+|| checktplrefresh('./template/default/home/spacecp_credit4_base.htm', './template/default/home/spacecp_header_name.htm', 1500434994, '1', './data/template/1_1_home_spacecp_credit4_base.tpl.php', './template/default', 'home/spacecp_credit4_base')
 ;?><?php include template('common/header'); ?><div id="pt" class="bm cl">
 <div class="z">
 <a href="./" class="nvhm" title="首页"><?php echo $_G['setting']['bbname'];?></a> <em>&rsaquo;</em>
@@ -16,7 +16,7 @@
 <?php } elseif($actives['avatar']) { ?>
 修改头像
 <?php } elseif($actives['credit']) { ?>
-积分
+评级积分
 <?php } elseif($actives['usergroup']) { ?>
 用户组
 <?php } elseif($actives['privacy']) { ?>
@@ -41,7 +41,7 @@
 <?php } elseif($actives['avatar']) { ?>
 修改头像
 <?php } elseif($actives['credit']) { ?>
-积分
+评级积分
 <?php } elseif($actives['usergroup']) { ?>
 用户组
 <?php } elseif($actives['privacy']) { ?>
@@ -67,9 +67,9 @@
 <!--<li <?php echo $opactives['log'];?>><a href="home.php?mod=spacecp&amp;ac=credit4&amp;op=log">风迷币记录</a></li>-->
 <li <?php echo $opactives['rule'];?>><a href="home.php?mod=spacecp&amp;ac=credit4&amp;op=rule">风迷币规则</a></li>
 <?php if(!empty($_G['setting']['plugins']['spacecp_credit'])) { if(is_array($_G['setting']['plugins']['spacecp_credit'])) foreach($_G['setting']['plugins']['spacecp_credit'] as $id => $module) { if(!$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])) { ?><li<?php if($_GET['id'] == $id) { ?> class="a"<?php } ?>><a href="home.php?mod=spacecp&amp;ac=plugin&amp;op=credit4&amp;id=<?php echo $id;?>"><?php echo $module['name'];?></a></li><?php } } } if($op == 'rule') { ?>
-<li class="y">
+<!--<li class="y">
 <select onchange="location.href='home.php?mod=spacecp&ac=credit&op=rule&fid='+this.value"><option value="">全局规则</option><?php echo $select;?></select>
-</li>
+</li>-->
 <?php } ?>
 </ul><?php if(in_array($_GET['op'], array('base', 'buy', 'transfer', 'exchange'))) { ?>
 
@@ -356,77 +356,506 @@ exchangecalcredit();
 会员通过指定的消费或参加指定会员活动获得的可用于兑换消费的奖励。
 </p>
 <h4>2. 风迷币来源</h4>
-<p style="margin-bottom: 20px;">购指定新车、再购指定新车、推荐购车、购买原厂备件、维修保养等指定消费及参加公司指定的会员活动。</p>
+<p style="margin-bottom: 20px;">推荐购车、购买原厂配件、维修保养等指定消费及参加公司指定的会员活动。</p>
 <h4>3. 风迷币使用</h4>
-<p style="margin-bottom: 20px;">会员可使用风迷币在车友会官方网上商城兑换礼品、精品配件及电子抵用券（可用于在经销商处消费）。风迷币不得转让、兑现。</p>
+<p style="margin-bottom: 20px;">网上商城兑换礼品、精品配件及电子抵用卷（可用于在经销商处消费）。风迷币不得转让、兑现。</p>
 <h4>4. 风迷币有效期</h4>
 <p style="margin-bottom: 20px;">在获取当年及下一个自然年内有效</p>
 <h4>5. 风迷币奖励规则</h4>
-<p style="margin-top: 10px;">5.1已购车入会奖励明细表</p>
-<table cellspacing="0" cellpadding="0" class="dt valt">
-<tr>
-<th class="xw1">已购车型</th>
-<th class="xw1">风迷币</th>
-</tr>
-<tr>
-<td>风格330</td>
-<td>--</td>
-</tr>
-<tr>
-<td>风格370系列</td>
-<td>--</td>
-</tr>
-<tr>
-<td>风格580系列</td>
-<td>1000</td>
-</tr>
-</table>
-<p style="margin-top: 20px;">5.2再购新车奖励明细表</p>
-<table cellspacing="0" cellpadding="0" class="dt valt">
-<tr>
-<th class="xw1">已购车型</th>
-<th class="xw1">风迷币</th>
-</tr>
-<tr>
-<td>微车</td>
-<td>--</td>
-</tr>
-<tr>
-<td>风格330</td>
-<td>--</td>
-</tr>
-<tr>
-<td>风格370系列</td>
-<td>--</td>
-</tr>
-<tr>
-<td>风格580系列</td>
-<td>4000</td>
-</tr>
-</table>
-<p style="margin-top: 20px;">5.3推荐购车奖励明细表</p>
-<table cellspacing="0" cellpadding="0" class="dt valt">
-<tr>
-<th class="xw1">已购车型</th>
-<th class="xw1">风迷币</th>
-</tr>
-<tr>
-<td>微车</td>
-<td>300</td>
-</tr>
-<tr>
-<td>风格330</td>
-<td>500</td>
-</tr>
-<tr>
-<td>风格370系列</td>
-<td>1000</td>
-</tr>
-<tr>
-<td>风格580系列</td>
-<td>2000</td>
-</tr>
-</table>
+<p>会员通过指定消费或参加车友会会员活动可获取相应风迷币，具体项目详见如下：</p>
+<p style="margin-top: 10px;">5.1奖励获取详表</p>
+                <table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" width="" style="border-collapse:collapse;border:none">
+                    <thead>
+                    <tr style="height:1.0cm">
+                        <td width="36" rowspan="2" style="width:35.65pt;border:solid black 1.0pt;
+   background:#E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">行为类别</span></b></p>
+                        </td>
+                        <td width="67" rowspan="2" style="width:66.95pt;border:solid black 1.0pt;
+   border-left:none;background:#E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">具体项目</span></b></p>
+                        </td>
+                        <td width="156" colspan="4" style="width:155.6pt;border:solid black 1.0pt;
+   border-left:none;background:#E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">会员类别</span></b></p>
+                        </td>
+                        <td width="39" rowspan="2" style="width:38.9pt;border:solid black 1.0pt;
+   border-left:none;background:#E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">风迷币</span></b></p>
+                        </td>
+                        <td width="126" rowspan="2" style="width:125.6pt;border:solid black 1.0pt;
+   border-left:none;background:#E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">积分标准</span></b></p>
+                        </td>
+                    </tr>
+                    <tr style="height:1.0cm">
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;
+   border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+   #E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">银牌</span></b></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;
+   border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+   #E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">金牌</span></b></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;
+   border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+   #E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">铂金</span></b></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;
+   border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+   #E60012;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+   char"><b><span style="font-size:9.0pt;font-family:微软雅黑;color:white">钻石</span></b></p>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody><tr style="height:1.0cm">
+                        <td width="36" style="width:35.65pt;border-top:none;border-left:solid black 1.0pt;
+  border-bottom:solid windowtext 1.0pt;border-right:solid black 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">入会类</span></p>
+                        </td>
+                        <td width="67" style="width:66.95pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid black 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">已购车注册或认证</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">○</span></p>
+                        </td>
+                        <td width="126" style="width:125.6pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">有机会获得奖励</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:1.0cm">
+                        <td width="36" rowspan="4" style="width:35.65pt;border:solid black 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">指定消费类</span></p>
+                        </td>
+                        <td width="67" style="width:66.95pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">再购新车</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">○</span></p>
+                        </td>
+                        <td width="126" style="width:125.6pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">有机会获得奖励</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:1.0cm">
+                        <td width="67" style="width:66.95pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">推荐购车</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="126" style="width:125.6pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">详见5.2《推荐购车奖励明细表》</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:1.0cm">
+                        <td width="67" style="width:66.95pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">消费原厂备件</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">1</span><span style="font-size:9.0pt;font-family:微软雅黑">倍</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">1.2</span><span style="font-size:9.0pt;font-family:微软雅黑">倍</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">1.5</span><span style="font-size:9.0pt;font-family:微软雅黑">倍</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">2</span><span style="font-size:9.0pt;font-family:微软雅黑">倍</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="126" style="width:125.6pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">消费原厂纯正备件，可兑换相应风迷币，例：如结算时原厂配件价格为<span lang="EN-US">100</span>元，则银卡用户送<span lang="EN-US">100</span>个风迷币，其他级别会员分别乘以相应倍数</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:1.0cm">
+                        <td width="67" style="width:66.95pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">例行保养</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">100</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">150</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">200</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">300</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="126" style="width:125.6pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">首保除外</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:1.0cm">
+                        <td width="36" rowspan="2" style="width:35.65pt;border:solid black 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">车友会会员活动</span></p>
+                        </td>
+                        <td width="67" style="width:66.95pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">当季车友会主题活动</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">○</span></p>
+                        </td>
+                        <td width="126" style="width:125.6pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">当期确定</span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:1.0cm">
+                        <td width="67" style="width:66.95pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">在指定论坛发正面帖</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span></p>
+                        </td>
+                        <td width="39" style="width:38.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">○</span></p>
+                        </td>
+                        <td width="126" style="width:125.6pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center;layout-grid-mode:
+  char"><span style="font-size:9.0pt;font-family:微软雅黑">评级积分：普通<span lang="EN-US">50</span>分<span lang="EN-US">/</span>次 ，精华<span lang="EN-US">500</span>分<span lang="EN-US">/</span>次；
+  </span></p>
+                        </td>
+                    </tr>
+                    <tr style="height:1.0cm">
+                        <td width="423" colspan="8" style="width:422.7pt;border:solid black 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:1.0cm">
+                            <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:9.0pt;font-family:微软雅黑">●</span><span style="font-size:9.0pt;
+  font-family:微软雅黑">：表示可以参加获取奖励的项目<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ○</span>：表示有机会获得奖励的项目。</span></p>
+                        </td>
+                    </tr>
+                    </tbody></table>
+<p style="margin-top: 20px;">5.2推荐购车奖励明细表</p>
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" width="284" style="border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+ mso-border-alt:solid black .5pt;mso-border-themecolor:text1;mso-yfti-tbllook:
+ 1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+ <thead>
+  <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;height:22.7pt">
+   <td width="142" style="width:141.7pt;border:solid black 1.0pt;mso-border-themecolor:
+   text1;mso-border-alt:solid black .5pt;mso-border-themecolor:text1;
+   background:#E60012;padding:0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+   <p class="MsoNormal" align="center" style="text-align:center"><b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;
+   mso-bidi-font-size:10.5pt;font-family:微软雅黑;mso-bidi-font-family:Arial;
+   color:white;mso-themecolor:background1;mso-font-kerning:0pt">推荐购车车系<span lang="EN-US"><o:p></o:p></span></span></b></p>
+   </td>
+   <td width="142" style="width:141.8pt;border:solid black 1.0pt;mso-border-themecolor:
+   text1;border-left:none;mso-border-left-alt:solid black .5pt;mso-border-left-themecolor:
+   text1;mso-border-alt:solid black .5pt;mso-border-themecolor:text1;
+   background:#E60012;padding:0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+   <p class="MsoNormal" align="center" style="text-align:center"><b style="mso-bidi-font-weight:normal"><span style="font-size:10.0pt;
+   mso-bidi-font-size:10.5pt;font-family:微软雅黑;mso-bidi-font-family:Arial;
+   color:white;mso-themecolor:background1;mso-font-kerning:0pt">风迷币<span lang="EN-US"><o:p></o:p></span></span></b></p>
+   </td>
+  </tr>
+ </thead>
+ <tbody><tr style="mso-yfti-irow:1;height:22.7pt">
+  <td width="142" style="width:141.7pt;border:solid black 1.0pt;mso-border-themecolor:
+  text1;border-top:none;mso-border-top-alt:solid black .5pt;mso-border-top-themecolor:
+  text1;mso-border-alt:solid black .5pt;mso-border-themecolor:text1;padding:
+  0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:微软雅黑;
+  mso-bidi-font-family:Arial;mso-font-kerning:0pt">小康系列微车<b style="mso-bidi-font-weight:
+  normal"><span lang="EN-US"><o:p></o:p></span></b></span></p>
+  </td>
+  <td width="142" style="width:141.8pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;mso-border-bottom-themecolor:text1;
+  border-right:solid black 1.0pt;mso-border-right-themecolor:text1;mso-border-top-alt:
+  solid black .5pt;mso-border-top-themecolor:text1;mso-border-left-alt:solid black .5pt;
+  mso-border-left-themecolor:text1;mso-border-alt:solid black .5pt;mso-border-themecolor:
+  text1;padding:0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:微软雅黑;
+  mso-bidi-font-family:Arial;mso-font-kerning:0pt">300<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:2;height:22.7pt">
+  <td width="142" style="width:141.7pt;border:solid black 1.0pt;mso-border-themecolor:
+  text1;border-top:none;mso-border-top-alt:solid black .5pt;mso-border-top-themecolor:
+  text1;mso-border-alt:solid black .5pt;mso-border-themecolor:text1;padding:
+  0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:微软雅黑;
+  mso-bidi-font-family:Arial;mso-font-kerning:0pt">风光<span lang="EN-US">330<o:p></o:p></span></span></p>
+  </td>
+  <td width="142" style="width:141.8pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;mso-border-bottom-themecolor:text1;
+  border-right:solid black 1.0pt;mso-border-right-themecolor:text1;mso-border-top-alt:
+  solid black .5pt;mso-border-top-themecolor:text1;mso-border-left-alt:solid black .5pt;
+  mso-border-left-themecolor:text1;mso-border-alt:solid black .5pt;mso-border-themecolor:
+  text1;padding:0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:微软雅黑;
+  mso-bidi-font-family:Arial;mso-font-kerning:0pt">500<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:3;height:22.7pt">
+  <td width="142" style="width:141.7pt;border:solid black 1.0pt;mso-border-themecolor:
+  text1;border-top:none;mso-border-top-alt:solid black .5pt;mso-border-top-themecolor:
+  text1;mso-border-alt:solid black .5pt;mso-border-themecolor:text1;padding:
+  0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:微软雅黑;
+  mso-bidi-font-family:Arial;mso-font-kerning:0pt">风光<span lang="EN-US">360/370</span>系列<span lang="EN-US"><o:p></o:p></span></span></p>
+  </td>
+  <td width="142" style="width:141.8pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;mso-border-bottom-themecolor:text1;
+  border-right:solid black 1.0pt;mso-border-right-themecolor:text1;mso-border-top-alt:
+  solid black .5pt;mso-border-top-themecolor:text1;mso-border-left-alt:solid black .5pt;
+  mso-border-left-themecolor:text1;mso-border-alt:solid black .5pt;mso-border-themecolor:
+  text1;padding:0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:微软雅黑;
+  mso-bidi-font-family:Arial;mso-font-kerning:0pt">1000<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:4;mso-yfti-lastrow:yes;height:22.7pt">
+  <td width="142" style="width:141.7pt;border:solid black 1.0pt;mso-border-themecolor:
+  text1;border-top:none;mso-border-top-alt:solid black .5pt;mso-border-top-themecolor:
+  text1;mso-border-alt:solid black .5pt;mso-border-themecolor:text1;padding:
+  0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:微软雅黑;
+  mso-bidi-font-family:Arial;mso-font-kerning:0pt">风光<span lang="EN-US">580</span>系列<span lang="EN-US"><o:p></o:p></span></span></p>
+  </td>
+  <td width="142" style="width:141.8pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;mso-border-bottom-themecolor:text1;
+  border-right:solid black 1.0pt;mso-border-right-themecolor:text1;mso-border-top-alt:
+  solid black .5pt;mso-border-top-themecolor:text1;mso-border-left-alt:solid black .5pt;
+  mso-border-left-themecolor:text1;mso-border-alt:solid black .5pt;mso-border-themecolor:
+  text1;padding:0cm 5.4pt 0cm 5.4pt;height:22.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:微软雅黑;
+  mso-bidi-font-family:Arial;mso-font-kerning:0pt">2000<o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table>
+<p style="margin-top: 20px;">示例：当用户注册入会后，推荐他人购买一辆风光580新车可以获得2000风迷币。</p>
+<p style="margin-top: 20px;">备注</p>
+<p>1)车友会有权根据实际情况实时调整会员奖励项目及分值，请以官方通知为准。</p>
+<p>2)会员如有风迷币遗漏可向车友会400专属客服申报并申请补录，补录时限为30天内，超期将无法补录。</p>
+<p>3)会员因个人原因不再拥有东风风光车辆时，其账户风迷币自动清零。</p>
 </div>
 <?php } ?>
 <?php if(!empty($_G['setting']['pluginhooks']['spacecp_credit_bottom'])) echo $_G['setting']['pluginhooks']['spacecp_credit_bottom'];?>
@@ -437,10 +866,12 @@ exchangecalcredit();
 <ul>
 <li<?php echo $actives['avatar'];?>><a href="home.php?mod=spacecp&amp;ac=avatar">修改头像</a></li>
 <li<?php echo $actives['profile'];?>><a href="home.php?mod=spacecp&amp;ac=profile">个人资料</a></li>
+<li><a href="/verify">车主认证</a></li>
+<!--<li><a href="/reference">推荐购车</a></li>-->
 <?php if($_G['setting']['verify']['enabled'] && allowverify() || $_G['setting']['my_app_status'] && $_G['setting']['videophoto']) { ?>
 <li<?php echo $actives['verify'];?>><a href="<?php if($_G['setting']['verify']['enabled']) { ?>home.php?mod=spacecp&ac=profile&op=verify<?php } else { ?>home.php?mod=spacecp&ac=videophoto<?php } ?>">认证</a></li>
 <?php } ?>
-<li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">积分</a></li>
+<li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">评级积分</a></li>
 <li<?php echo $actives['credit4'];?>><a href="home.php?mod=spacecp&amp;ac=credit4">风迷币</a></li>
 <li<?php echo $actives['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">用户组</a></li>
 <li<?php echo $actives['privacy'];?>><a href="home.php?mod=spacecp&amp;ac=privacy">隐私筛选</a></li>

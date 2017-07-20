@@ -1,20 +1,20 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('spacecp_usergroup');
 0
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
-|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1499301551, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_usergroup_header.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_footer.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
+|| checktplrefresh('./template/default/home/spacecp_usergroup.htm', './template/default/home/spacecp_header_name.htm', 1500453222, '1', './data/template/1_1_home_spacecp_usergroup.tpl.php', './template/default', 'home/spacecp_usergroup')
 ;?><?php include template('common/header'); if(in_array($do, array('buy', 'exit'))) { ?>
 <div class="f_c">
 <h3 class="flb">
@@ -58,9 +58,9 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <tr>
 <td colspan="2">说明:
 <?php if($join) { ?>
-本组是收费用户组，您可以根据日价格按天购买，<br/>但是不能少于 <?php echo $group['minspan'];?> 天。请注意，购买后不能退款 
+本组是收费用户组，您可以根据日价格按天购买，<br/>但是不能少于 <?php echo $group['minspan'];?> 天。请注意，购买后不能退款
 <?php } else { ?>
-本操作不可恢复，您退出收费用户组后，如需再次加入，将重新支付相应的费用，因此请在提交前仔细确定是否退出本组 
+本操作不可恢复，您退出收费用户组后，如需再次加入，将重新支付相应的费用，因此请在提交前仔细确定是否退出本组
 <?php } ?>
 </td>
 </tr>
@@ -74,9 +74,9 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <?php if($group['type'] != 'special' || $group['system']=='private') { ?>
 注意: 该组不是开放用户组，一旦您退出，只有管理员才能将您重新加入进来
 <?php } elseif($group['dailyprice']) { ?>
-本操作不可恢复，您退出收费用户组后，如需再次加入，将重新支付相应的费用，因此请在提交前仔细确定是否退出本组 
+本操作不可恢复，您退出收费用户组后，如需再次加入，将重新支付相应的费用，因此请在提交前仔细确定是否退出本组
 <?php } else { ?>
-该组是开放的用户组，您退出后，可以随时加入进来 
+该组是开放的用户组，您退出后，可以随时加入进来
 <?php } ?>
 </td>
 </tr>
@@ -127,7 +127,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <?php } elseif($actives['avatar']) { ?>
 修改头像
 <?php } elseif($actives['credit']) { ?>
-积分
+评级积分
 <?php } elseif($actives['usergroup']) { ?>
 用户组
 <?php } elseif($actives['privacy']) { ?>
@@ -152,7 +152,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <?php } elseif($actives['avatar']) { ?>
 修改头像
 <?php } elseif($actives['credit']) { ?>
-积分
+评级积分
 <?php } elseif($actives['usergroup']) { ?>
 用户组
 <?php } elseif($actives['privacy']) { ?>
@@ -207,10 +207,12 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <ul>
 <li<?php echo $actives['avatar'];?>><a href="home.php?mod=spacecp&amp;ac=avatar">修改头像</a></li>
 <li<?php echo $actives['profile'];?>><a href="home.php?mod=spacecp&amp;ac=profile">个人资料</a></li>
+<li><a href="/verify">车主认证</a></li>
+<!--<li><a href="/reference">推荐购车</a></li>-->
 <?php if($_G['setting']['verify']['enabled'] && allowverify() || $_G['setting']['my_app_status'] && $_G['setting']['videophoto']) { ?>
 <li<?php echo $actives['verify'];?>><a href="<?php if($_G['setting']['verify']['enabled']) { ?>home.php?mod=spacecp&ac=profile&op=verify<?php } else { ?>home.php?mod=spacecp&ac=videophoto<?php } ?>">认证</a></li>
 <?php } ?>
-<li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">积分</a></li>
+<li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">评级积分</a></li>
 <li<?php echo $actives['credit4'];?>><a href="home.php?mod=spacecp&amp;ac=credit4">风迷币</a></li>
 <li<?php echo $actives['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">用户组</a></li>
 <li<?php echo $actives['privacy'];?>><a href="home.php?mod=spacecp&amp;ac=privacy">隐私筛选</a></li>
@@ -235,7 +237,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <?php } elseif($actives['avatar']) { ?>
 修改头像
 <?php } elseif($actives['credit']) { ?>
-积分
+评级积分
 <?php } elseif($actives['usergroup']) { ?>
 用户组
 <?php } elseif($actives['privacy']) { ?>
@@ -260,7 +262,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <?php } elseif($actives['avatar']) { ?>
 修改头像
 <?php } elseif($actives['credit']) { ?>
-积分
+评级积分
 <?php } elseif($actives['usergroup']) { ?>
 用户组
 <?php } elseif($actives['privacy']) { ?>
@@ -344,10 +346,12 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <ul>
 <li<?php echo $actives['avatar'];?>><a href="home.php?mod=spacecp&amp;ac=avatar">修改头像</a></li>
 <li<?php echo $actives['profile'];?>><a href="home.php?mod=spacecp&amp;ac=profile">个人资料</a></li>
+<li><a href="/verify">车主认证</a></li>
+<!--<li><a href="/reference">推荐购车</a></li>-->
 <?php if($_G['setting']['verify']['enabled'] && allowverify() || $_G['setting']['my_app_status'] && $_G['setting']['videophoto']) { ?>
 <li<?php echo $actives['verify'];?>><a href="<?php if($_G['setting']['verify']['enabled']) { ?>home.php?mod=spacecp&ac=profile&op=verify<?php } else { ?>home.php?mod=spacecp&ac=videophoto<?php } ?>">认证</a></li>
 <?php } ?>
-<li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">积分</a></li>
+<li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">评级积分</a></li>
 <li<?php echo $actives['credit4'];?>><a href="home.php?mod=spacecp&amp;ac=credit4">风迷币</a></li>
 <li<?php echo $actives['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">用户组</a></li>
 <li<?php echo $actives['privacy'];?>><a href="home.php?mod=spacecp&amp;ac=privacy">隐私筛选</a></li>
@@ -372,7 +376,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <?php } elseif($actives['avatar']) { ?>
 修改头像
 <?php } elseif($actives['credit']) { ?>
-积分
+评级积分
 <?php } elseif($actives['usergroup']) { ?>
 用户组
 <?php } elseif($actives['privacy']) { ?>
@@ -397,7 +401,7 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <?php } elseif($actives['avatar']) { ?>
 修改头像
 <?php } elseif($actives['credit']) { ?>
-积分
+评级积分
 <?php } elseif($actives['usergroup']) { ?>
 用户组
 <?php } elseif($actives['privacy']) { ?>
@@ -462,10 +466,10 @@ change_credits_need(<?php echo $group['minspan'];?>);
 </table>
 <table cellpadding="0" cellspacing="0" class="tdat tfx<?php if(!$group) { ?>f<?php } ?>">
 <tr>
-<th class="c0"><h4>我的主用户组 - <?php echo $maingroup['grouptitle'];?></h4></th>
+<th class="c0"><h4>我的主用户组 - <span id="fontupdate"><?php echo $maingroup['grouptitle'];?></span></h4></th>
 </tr>
 <tr>
-<th class="alt"><span class="notice">积分: <?php echo $space['credits'];?></span></th>
+<th class="alt"><span class="notice">评级积分: <?php echo $space['credits'];?></span></th>
 </tr><?php echo permtbody($maingroup); ?></table>
 <?php if($group) { if($switchtype == 'user') { $cid = 1;$tlang = '普通用户组';?><?php } if($switchtype == 'upgrade') { $cid = 2;$tlang = '晋级用户组';?><?php } if($switchtype == 'admin') { $cid = 3;$tlang = '站点管理组';?><?php } ?>
 <ul id="tba" class="tb c<?php echo $cid;?>">
@@ -509,10 +513,12 @@ change_credits_need(<?php echo $group['minspan'];?>);
 <ul>
 <li<?php echo $actives['avatar'];?>><a href="home.php?mod=spacecp&amp;ac=avatar">修改头像</a></li>
 <li<?php echo $actives['profile'];?>><a href="home.php?mod=spacecp&amp;ac=profile">个人资料</a></li>
+<li><a href="/verify">车主认证</a></li>
+<!--<li><a href="/reference">推荐购车</a></li>-->
 <?php if($_G['setting']['verify']['enabled'] && allowverify() || $_G['setting']['my_app_status'] && $_G['setting']['videophoto']) { ?>
 <li<?php echo $actives['verify'];?>><a href="<?php if($_G['setting']['verify']['enabled']) { ?>home.php?mod=spacecp&ac=profile&op=verify<?php } else { ?>home.php?mod=spacecp&ac=videophoto<?php } ?>">认证</a></li>
 <?php } ?>
-<li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">积分</a></li>
+<li<?php echo $actives['credit'];?>><a href="home.php?mod=spacecp&amp;ac=credit">评级积分</a></li>
 <li<?php echo $actives['credit4'];?>><a href="home.php?mod=spacecp&amp;ac=credit4">风迷币</a></li>
 <li<?php echo $actives['usergroup'];?>><a href="home.php?mod=spacecp&amp;ac=usergroup">用户组</a></li>
 <li<?php echo $actives['privacy'];?>><a href="home.php?mod=spacecp&amp;ac=privacy">隐私筛选</a></li>
@@ -572,4 +578,11 @@ global $_G, $bperms, $pperms, $sperms, $aperms;?><tr><td><?php echo showstars($_
 </td>
 </tr>
 <?php } ?>
+<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"></script>
+<script>
+    var fontup = $("#fontupdate").children('font');
+    if(fontup.attr("color")=="#333333"){
+        fontup.attr("color","#fff");
+    }
+</script>
 </tbody><?php }?><?php include template('common/footer'); ?>
