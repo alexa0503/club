@@ -138,7 +138,7 @@ class OwnerController extends Controller
     public function update()
     {
         $uid = session('discuz.user.uid');
-        $verifies = \App\Verify::where('uid',$uid)->get();
+        $verifies = \App\Verify::where('uid',$uid)->where('status',0)->get();
         $user = \App\User::where('uid', $uid)->first();
         switch ($user->groupid){
             case 11:
