@@ -196,7 +196,7 @@ class OwnerController extends Controller
                     $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
                     $count = \App\OwnerLog::where('uid', $uid)
                         //->where('spent_at', $spent_at)
-                        ->where('type', $data['Type'])
+                        ->where('generate_way', 1)
                         //->where('reason', $data['Reason'])
                         ->where('score_id', $data['SCORE_ID'])
                         ->count();
@@ -206,6 +206,7 @@ class OwnerController extends Controller
                     }
 
                     $data['title'] = '车主奖励';
+                    $data['generate_way'] = 1;
                     $this->updateLog($uid,$data);
                 }
             }
@@ -224,7 +225,7 @@ class OwnerController extends Controller
                     $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
                     $count = \App\OwnerLog::where('uid', $uid)
                         //->where('spent_at', $spent_at)
-                        ->where('type', $data['Type'])
+                        ->where('generate_way', 2)
                         //->where('reason', $data['Reason'])
                         ->where('score_id', $data['SCORE_ID'])
                         ->count();
@@ -233,10 +234,11 @@ class OwnerController extends Controller
                         continue;
                     }
                     $data['title'] = '车主工单取消';
+                    $data['generate_way'] = 2;
                     $this->updateLog($uid,$data);
                 }
             }
-            
+
             $verify->status = 1;
             $verify->save();
         }
@@ -256,6 +258,7 @@ class OwnerController extends Controller
         $log->type = $data['Type'];
         $log->spent_at = $spent_at;
         $log->score_id = $data['SCORE_ID'];
+        $log->generate_way = $data['generate_way'];
         $log->save();
 
         /*

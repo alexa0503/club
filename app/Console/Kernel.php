@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\PointsUpdate::class,
         Commands\SendCoupons::class,
         Commands\CarsRefund::class,
+        Commands\ObtainCoupons::class,
     ];
 
     /**
@@ -29,14 +30,15 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('owner:verify')
-            ->everyMinute();
+        //$schedule->command('owner:verify')
+        //    ->everyMinute();
         $schedule->command('send:coupons')
+            ->everyMinute();
+        $schedule->command('obtain:coupons')
             ->everyMinute();
         $schedule->command('cars:refund')
             ->hourly();
-        $schedule->command('obtain:coupons')
-            ->hourly();
+
     }
 
     /**

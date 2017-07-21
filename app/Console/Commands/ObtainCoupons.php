@@ -37,30 +37,22 @@ class ObtainCoupons extends Command
      */
     public function handle()
     {
-        $coupons = \App\Coupon::where('status',1)->get();
-        foreach($coupons as $coupon){
-            /*
-            $frame_number = \App\Verify::where('uid',$coupon->uid)->get()->map(function($item){
-                return $item->frame_number;
-            })->toArray();
-            if( empty($frame_number) ){
-                continue;
-            }
-            */
-            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY04?wsdl");
-            $options = [
-                'in'=>json_encode([
-                    'coup_num'=>$coupon->code,
-                ])
-            ];
-            $response = $client->__soapCall("getElectronicVouchersUseInfo", array($options));
-            $result = json_decode($response->getElectronicVouchersUseInfoReturn,true);
-            if($result['ret'] == 0){
-                $coupon->status = 2;
-                $coupon->spent_at = $result['usd_date'];
-                $coupon->spent_frame_number = $result['hyid'];
-                $coupon->save();
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY07?wsdl");
+
+        $response = $client->__soapCall("getElectronicVouchersUseInfo", []);
+        $result = json_decode($response->getElectronicVouchersUseInfoReturn,true);
+
+        if($result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
+            foreach($result['data'] as $data){
+                $coupon = \App\Coupon::where('code', $data['coup_num'])->first();
+                if( null != $coupon ){
+                    $coupon->status = 2;
+                    $coupon->spent_at = $data['use_date'];
+                    $coupon->spent_frame_number = $data['hyid'];
+                    $coupon->save();
+                }
             }
         }
+
     }
 }

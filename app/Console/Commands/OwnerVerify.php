@@ -39,6 +39,7 @@ class OwnerVerify extends Command
      */
     public function handle()
     {
+        //return;
         $frame_number = 'LVZA53P94GC578465';
         $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY07?wsdl");
         $options = [
@@ -46,8 +47,8 @@ class OwnerVerify extends Command
                 'frame_number'=>$frame_number,
             ])
         ];
-        //var_dump($client->__getFunctions());
-        $response = $client->__soapCall("getElectronicVouchersUseInfo", array($options));
+        var_dump($client->__getFunctions());
+        $response = $client->__soapCall("getElectronicVouchersUseInfo",[]);
         var_dump($response);
         return;
         $frame_number = 'LVZA53P94GC578465';
