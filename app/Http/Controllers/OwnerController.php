@@ -138,7 +138,7 @@ class OwnerController extends Controller
     public function update()
     {
         $uid = session('discuz.user.uid');
-        $verifies = \App\Verify::where('uid',$uid)->where('status',0)->get();
+        $verifies = \App\Verify::where('uid',$uid)->where('status','>=',0)->get();
         $user = \App\User::where('uid', $uid)->first();
         switch ($user->groupid){
             case 11:
@@ -164,8 +164,6 @@ class OwnerController extends Controller
 
         foreach($verifies as $verify){
             $frame_number = $verify->frame_number;//车架号
-            //$id_card = $verify->id_card;//身份证号
-
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
             $options = [
                 'json'=>json_encode([
@@ -176,7 +174,6 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("addMemberLevelInfo", array($options));
             $result = json_decode($response->addMemberLevelInfoReturn,true);
-            //var_dump($result);
            if( !$result || $result['ret'] != 0){
                continue;
            }
@@ -193,7 +190,6 @@ class OwnerController extends Controller
 
             if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
                 foreach ($result['data'] as $data){
-                    $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
                     $count = \App\OwnerLog::where('uid', $uid)
                         //->where('spent_at', $spent_at)
                         ->where('generate_way', 1)
@@ -207,6 +203,7 @@ class OwnerController extends Controller
 
                     $data['title'] = '车主奖励';
                     $data['generate_way'] = 1;
+                    $data['verify_id'] = $verify->id;
                     $this->updateLog($uid,$data);
                 }
             }
@@ -220,9 +217,10 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("CancelOrderAccount", array($options));
             $result1 = json_decode($response->out,true);
+            //var_dump($result1);
             if($result1 && $result1['ret'] == 0 && isset($result1['data']) && is_array($result1['data'])){
                 foreach ($result1['data'] as $data){
-                    $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
+
                     $count = \App\OwnerLog::where('uid', $uid)
                         //->where('spent_at', $spent_at)
                         ->where('generate_way', 2)
@@ -235,21 +233,29 @@ class OwnerController extends Controller
                     }
                     $data['title'] = '车主工单取消';
                     $data['generate_way'] = 2;
+                    $data['verify_id'] = $verify->id;
                     $this->updateLog($uid,$data);
                 }
             }
-
-            $verify->status = 1;
-            $verify->save();
+            //$verify->status = 1;
+            //$verify->save();
         }
         return response('',200);
     }
     protected function updateLog($uid,$data)
     {
-        $credits1 = $data['Point'];
-        $credits4 = $data['Coin'];
+        $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
+        if( $data['generate_way'] == 2 ){
+            $credits1 = -1*$data['Point'];
+            $credits4 = -1*$data['Coin'];
+        }
+        else{
+            $credits1 = $data['Point'];
+            $credits4 = $data['Coin'];
+        }
+
         $log = new \App\OwnerLog();
-        $log->verify_id = $verify->id;
+        $log->verify_id = $data['verify_id'];
         $log->uid = $uid;
         $log->reason = $data['Reason'];
         $log->point = $credits1;

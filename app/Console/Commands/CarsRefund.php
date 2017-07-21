@@ -47,6 +47,7 @@ class CarsRefund extends Command
             ];
             $response = $client->__soapCall("QueryVehicleReturnInfo", array($options));
             $result = json_decode($response->out,true);
+            //var_dump($verify->frame_number,$result);
             if( $result && $result['ret'] == 0 && $result['return_type'] == 2){
                 $verify->status = -1;
                 $verify->save();
@@ -54,7 +55,7 @@ class CarsRefund extends Command
 
                 $user_count = \App\UserCount::where('uid',$uid)->first();
 
-                switch (strtoupper($result['modelCode'])){
+                switch (strtoupper($verify->model_code)){
                     case 'F507':
                         $credits1 = -4000;
                         $credits4 = 0;
@@ -74,13 +75,13 @@ class CarsRefund extends Command
                 $user_count->extcredits1 += $credits1;
                 $user_count->extcredits4 += $credits4;
                 //更新积分
-                DB::table('discuz_common_member_count')
+                \DB::table('discuz_common_member_count')
                     ->where('uid',$uid)
                     ->update([
                         'extcredits1' => $user_count->extcredits1,
                         'extcredits4' => $user_count->extcredits4,
                     ]);
-                $logid = DB::table('discuz_common_credit_log')->insertGetId([
+                $logid = \DB::table('discuz_common_credit_log')->insertGetId([
                     'uid' => $uid,
                     'operation'=>'',
                     'relatedid'=>$uid,
@@ -95,7 +96,7 @@ class CarsRefund extends Command
                     'extcredits8'=>0,
                 ]);
                 //插入日志
-                DB::table('discuz_common_credit_log_field')->insert([
+                \DB::table('discuz_common_credit_log_field')->insert([
                     'logid'=>$logid,
                     'title'=>'车主退车',
                     'text'=>'车主退车扣除奖励',
