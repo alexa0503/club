@@ -39,6 +39,7 @@ class PointsUpdate extends Command
      */
     public function handle()
     {
+        return;
         $frame_number = 'LVZA53P94GC578465';//车架号
         $id_card = '450305197012070019';//身份证号
         $options = [

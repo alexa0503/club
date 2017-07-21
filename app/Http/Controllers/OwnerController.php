@@ -180,118 +180,117 @@ class OwnerController extends Controller
            if( !$result || $result['ret'] != 0){
                continue;
            }
-            $options = [
-                'frame_number'=>$frame_number,
-            ];
 
+            //新增积分
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl");
             $options = [
-                'in'=>json_encode($options),
+                'in'=>json_encode([
+                    'frame_number'=>$frame_number,
+                ])
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));
             $result = json_decode($response->out,true);
-            //var_dump($result,$frame_number);
 
-            //$first_upkeep = true;
             if($result && $result['ret'] == 0){
                 foreach ($result['data'] as $data){
                     $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
                     $count = \App\OwnerLog::where('uid', $uid)
                         //->where('spent_at', $spent_at)
-                        //->where('type', $data['Type'])
+                        ->where('type', $data['Type'])
                         //->where('reason', $data['Reason'])
                         ->where('score_id', $data['SCORE_ID'])
                         ->count();
-
-                    $credits1 = $data['Point'];
-                    $credits4 = $data['Coin'];
-
-                    /*
-                    if( $data['Type'] == 1){
-                        $credits1 = $point;
-                        $credits4 = $coin;
-                    }
-                    else{
-                        switch ($user->groupid){
-                            case 12:
-                                $credits1 = 150;
-                                $credits4 = 150;
-                                break;
-                            case 13:
-                                $credits1 = 200;
-                                $credits4 = 200;
-                                break;
-                            case 14:
-                                $credits1 = 300;
-                                $credits4 = 300;
-                                break;
-                            default:
-                                $credits1 = 100;
-                                $credits4 = 100;
-                        }
-
-                        //第一次保养
-                        if( $first_upkeep == true ){
-                            $credits1 = 0;
-                            $credits4 = 0;
-                            $first_upkeep = false;
-                        }
-                    }
-                */
 
                     if( $count > 0 ){
                         continue;
                     }
 
-                    $log = new \App\OwnerLog();
-                    $log->verify_id = $verify->id;
-                    $log->uid = $uid;
-                    $log->reason = $data['Reason'];
-                    $log->point = $credits1;
-                    $log->coin = $credits4;
-                    $log->dealer = $data['Dealer'];
-                    $log->type = $data['Type'];
-                    $log->spent_at = $spent_at;
-                    $log->score_id = $data['SCORE_ID'];
-                    $log->save();
-
-                    /*
-                    if($credits1 == 0 && $credits4 == 0){
-                        continue;
-                    }
-                    */
-                    $user_count = \App\UserCount::where('uid',$uid)->first();
-                    $user_count->extcredits1 += $credits1;
-                    $user_count->extcredits4 += $credits4;
-                    //更新积分
-                    DB::table('discuz_common_member_count')->where('uid',$uid)->update([
-                        'extcredits1' => $user_count->extcredits1,
-                        'extcredits4' => $user_count->extcredits4,
-                    ]);
-                    $logid = DB::table('discuz_common_credit_log')->insertGetId([
-                        'uid' => $uid,
-                        'operation'=>'',
-                        'relatedid'=>$uid,
-                        'dateline'=>time(),
-                        'extcredits1'=>$credits1,
-                        'extcredits4'=>$credits4,
-                        'extcredits2'=>0,
-                        'extcredits3'=>0,
-                        'extcredits5'=>0,
-                        'extcredits6'=>0,
-                        'extcredits7'=>0,
-                        'extcredits8'=>0,
-                    ]);
-                    //插入日志
-                    DB::table('discuz_common_credit_log_field')->insert([
-                        'logid'=>$logid,
-                        'title'=>'车主奖励',
-                        'text'=>$data['Reason'],
-                    ]);
+                    $data['title'] = '车主奖励';
+                    $this->updateLog($uid,$data);
                 }
             }
+
+            //工单取消
+            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY05SOAP?wsdl");
+            $options = [
+                'in'=>json_encode([
+                    'frame_number'=>$frame_number,
+                ])
+            ];
+            $response = $client->__soapCall("CancelOrderAccount", array($options));
+            $result1 = json_decode($response->out,true);
+            if($result1 && $result1['ret'] == 0){
+                foreach ($result1['data'] as $data){
+                    $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
+                    $count = \App\OwnerLog::where('uid', $uid)
+                        //->where('spent_at', $spent_at)
+                        ->where('type', $data['Type'])
+                        //->where('reason', $data['Reason'])
+                        ->where('score_id', $data['SCORE_ID'])
+                        ->count();
+
+                    if( $count > 0 ){
+                        continue;
+                    }
+                    $data['title'] = '车主工单取消';
+                    $this->updateLog($uid,$data);
+                }
+            }
+            
+            $verify->status = 1;
+            $verify->save();
         }
-        return [];
+        return response('',200);
+    }
+    protected function updateLog($uid,$data)
+    {
+        $credits1 = $data['Point'];
+        $credits4 = $data['Coin'];
+        $log = new \App\OwnerLog();
+        $log->verify_id = $verify->id;
+        $log->uid = $uid;
+        $log->reason = $data['Reason'];
+        $log->point = $credits1;
+        $log->coin = $credits4;
+        $log->dealer = $data['Dealer'];
+        $log->type = $data['Type'];
+        $log->spent_at = $spent_at;
+        $log->score_id = $data['SCORE_ID'];
+        $log->save();
+
+        /*
+        if($credits1 == 0 && $credits4 == 0){
+            continue;
+        }
+        */
+        $user_count = \App\UserCount::where('uid',$uid)->first();
+        $user_count->extcredits1 += $credits1;
+        $user_count->extcredits4 += $credits4;
+        //更新积分
+        DB::table('discuz_common_member_count')->where('uid',$uid)->update([
+            'extcredits1' => $user_count->extcredits1,
+            'extcredits4' => $user_count->extcredits4,
+        ]);
+        $logid = DB::table('discuz_common_credit_log')->insertGetId([
+            'uid' => $uid,
+            'operation'=>'',
+            'relatedid'=>$uid,
+            'dateline'=>time(),
+            'extcredits1'=>$credits1,
+            'extcredits4'=>$credits4,
+            'extcredits2'=>0,
+            'extcredits3'=>0,
+            'extcredits5'=>0,
+            'extcredits6'=>0,
+            'extcredits7'=>0,
+            'extcredits8'=>0,
+        ]);
+        //插入日志
+        DB::table('discuz_common_credit_log_field')->insert([
+            'logid'=>$logid,
+            'title'=>$data['title'],
+            'text'=>$data['Reason'],
+        ]);
     }
     public function reference(Request $request)
     {

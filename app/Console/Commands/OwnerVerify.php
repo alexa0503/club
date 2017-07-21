@@ -39,6 +39,16 @@ class OwnerVerify extends Command
      */
     public function handle()
     {
+        $frame_number = 'LVZA53P94GC578465';
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY07?wsdl");
+        $options = [
+            'in'=>json_encode([
+                'frame_number'=>$frame_number,
+            ])
+        ];
+        //var_dump($client->__getFunctions());
+        $response = $client->__soapCall("getElectronicVouchersUseInfo", array($options));
+        var_dump($response);
         return;
         $frame_number = 'LVZA53P94GC578465';
         $id_card = '450305197012070019';

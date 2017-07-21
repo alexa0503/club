@@ -37,7 +37,7 @@ class CarsRefund extends Command
      */
     public function handle()
     {
-        $verifies = \App\Verify::where('status', 0)->get();
+        $verifies = \App\Verify::where('status','>=', 0)->get();
         foreach($verifies as $verify){
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY06SOAP?wsdl");
             $options = [
