@@ -191,7 +191,7 @@ class OwnerController extends Controller
             $response = $client->__soapCall("queryPartsInfo", array($options));
             $result = json_decode($response->out,true);
 
-            if($result && $result['ret'] == 0){
+            if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
                 foreach ($result['data'] as $data){
                     $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
                     $count = \App\OwnerLog::where('uid', $uid)
@@ -220,7 +220,7 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("CancelOrderAccount", array($options));
             $result1 = json_decode($response->out,true);
-            if($result1 && $result1['ret'] == 0){
+            if($result1 && $result1['ret'] == 0 && isset($result1['data']) && is_array($result1['data'])){
                 foreach ($result1['data'] as $data){
                     $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
                     $count = \App\OwnerLog::where('uid', $uid)
