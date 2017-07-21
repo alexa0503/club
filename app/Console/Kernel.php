@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('obtain:coupons')
             ->everyMinute();
         $schedule->command('cars:refund')
-            ->hourly();
+            ->everyMinute();
 
     }
 
