@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                         @foreach($order->items as $k=>$item)
-                        @if($item['type']==1)
+                        @if(isset($item['type']) AND $item['type']==1)
                         @for($i=0;$i<$item['quantity'];$i++)
                         <tr>
                             <td style="position:relative;height:90px;">
