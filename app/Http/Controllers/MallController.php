@@ -323,7 +323,7 @@ class MallController extends Controller
         $orders = \App\Order::where('uid', $uid)->orderBy('created_at','DESC')->get()->map(function($order){
             $_items = [];
             foreach($order->items as $item){
-                if($item['type'] == 1 && isset($item['code'])){
+                if(isset($item['type']) && $item['type'] == 1 && isset($item['code'])){
                     $code = explode(',', $item['code']);
                     $coupon = \App\Coupon::whereIn('code', $code)->get()->toArray();
                     $item['coupon'] = $coupon;
