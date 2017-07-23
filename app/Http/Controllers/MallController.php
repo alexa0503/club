@@ -52,9 +52,13 @@ class MallController extends Controller
         if( null == $request->input('address_id')){
             return ['ret' => 1005, 'msg' => '必须选择一个收货地址'];
         }
+        elseif( null == $request->input('id')){
+            return ['ret' => 1006, 'msg' => '请选择一个商品'];
+        }
         $uid = session('discuz.user.uid');
         $user_count = DB::table('discuz_common_member_count')->where('uid',$uid)->first();
-        $carts = \App\Cart::where('uid', $uid)->get();
+
+        $carts = \App\Cart::where('uid', $uid)->whereIn('id',$request->input('id'))->get();
         if(count($carts) <= 0){
             return ['ret' => 1004, 'msg' => '抱歉，您的购物车没有商品哦'];
         }

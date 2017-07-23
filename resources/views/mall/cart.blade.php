@@ -23,7 +23,7 @@
                 <ul class="shangpin">
                     @foreach($carts as $cart)
                     <li class="shoplist" style="position: relative;">
-                        <input type="checkbox" class="shopChek" name="id[]" checked="checked" />
+                        <input type="checkbox" value="{{$cart->id}}" class="shopChek" name="id[]" checked="checked" />
                         <div class="shopImg">
                             @if($cart->item->images > 0)
                             <img style="width:100%;height:100%;" src="{{asset($cart->item->images[0])}}" alt="" />
@@ -249,10 +249,16 @@
             $('.jiesuan').on('click',function () {
                 var url = '{{url("/mall/order")}}';
                 var address_id = $('input[name="address"]:checked').val();
+                //var id = $('input[name="id[]"]:checked').val();
+                var id = new Array;
+                $('input[name="id[]"]:checked').each(function(e){
+                    id.push($(this).val());
+                })
+                //console.log(id);
                 $.ajax(url, {
                     dataType: 'json',
                     type: 'post',
-                    data: {_token:window.Laravel.csrfToken,address_id:address_id},
+                    data: {_token:window.Laravel.csrfToken,address_id:address_id,id:id},
                     success: function(json){
                         if(json.ret == 0){
                             //alert(json.msg);
