@@ -8,8 +8,11 @@
                 <div class="dingdanbox" style="margin-top: 10px;">您还没有任何订单信息</div>
             @endif
             @foreach($orders as $order)
+            @php
+            $has_address = false;
+            @endphp
             <div class="dingdanbox" style="margin-top: 10px;">
-                <table class="table" style="width:100%;border:#ccc solid 1px;margin-bottom: 0px; " cellpadding="0" cellspacing="0" border="1">
+                <table class="table table-bordered">
                     <thead>
                     <tr style="background: #f5f5f5;">
                         <th width="400">{{$order->created_at}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：{{date('YmdHi',strtotime($order->created_at))}}{{$order->id}}</th>
@@ -21,28 +24,47 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="position:relative;height:90px;">
-                            <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$order->items[0]['image']}}" alt="">
-                            <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$order->items[0]['name']}}@if($order->items[0]['color']!='default')<br/>{{$order->items[0]['color']}}@endif @if(isset($order->items[0]['code']))<br/>{!! str_replace(',','<br/>',$order->items[0]['code']) !!}@endif</div>
-                        </td>
-                        <td>{{$order->quantity}}</td>
-                        <td rowspan="{{count($order->items)}}">{{$order->address}}</td>
-                        <td rowspan="{{count($order->items)}}">{{$order->receiver}}<br />{{$order->mobile}}</td>
-                        <td rowspan="{{count($order->items)}}">{{$order->point}}风迷币</td>
-                        <td rowspan="{{count($order->items)}}">@if(isset($order->items[0]['code'])){{ '完成'  }}@else{{$order_statuses[$order->status]}}@endif</td>
-                    </tr>
-                    @foreach($order->items as $k=>$item)
-                        @if($k>0)
-                    <tr>
-                        <td style="position:relative;height:90px;">
-                            <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$item['image']}}" alt="">
-                            <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}}@if($item['color']!='default')<br/>{{$item['color']}}@endif @if(isset($item['code']))<br/>{!! str_replace(',','<br/>',$item['code']) !!}@endif</div>
-                        </td>
-                        <td>{{$item['quantity']}}</td>
+                        @foreach($order->items as $k=>$item)
+                        @if($item['type']==1)
+                        @for($i=0;$i<$item['quantity'];$i++)
+                        <tr>
+                            <td style="position:relative;height:90px;">
+                                <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$item['image']}}" alt="">
+                                <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}} {{$item['color']}}
+                                    <br/>
+                                    @if(isset($item['coupon'])){{$item['coupon'][$i]['code']}}<br/><span style="font-size:12px;color:#999;">使用期限：{{$item['coupon'][$i]['valid_date']}}</span>@endif
+                                </div>
+                            </td>
+                            <td>1</td>
+                            <td colspan="2"></td>
+                            <td>{{$item['point']}}</td>
+                            <td>@if(isset($item['coupon'])){{ $item['coupon'][$i]['status']==2 ? '已使用': '未使用'}}@endif</td>
+                        </tr>
+                        @endfor
+                        @php
+                        $has_address = false;
+                        @endphp
+                        @else
+                        <tr>
+                            <td style="position:relative;height:90px;">
+                                <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$item['image']}}" alt="">
+                                <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}}@if($item['color']!='default')<br/>{{$item['color']}}@endif @if(isset($item['code']))<br/>{!! str_replace(',','<br/>',$item['code']) !!}@endif</div>
+                            </td>
+                            <td>{{$item['quantity']}}</td>
+                            @if($has_address == true)
+                            <td colspan="4"></td>
+                            @else
+                            <td>{{$order->address}}</td>
+                            <td>{{$order->receiver}}<br />{{$order->mobile}}</td>
+                            <td>{{$order->point}}风迷币</td>
+                            <td>{{$order_statuses[$order->status]}}</td>
+                            @php
+                            $has_address = true;
+                            @endphp
+                            @endif
+                        </tr>
                         @endif
-                    </tr>
-                    @endforeach
+                        @endforeach
                     </tbody>
                 </table>
             </div>

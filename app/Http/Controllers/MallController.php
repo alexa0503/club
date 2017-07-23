@@ -320,7 +320,20 @@ class MallController extends Controller
     public function orderIndex()
     {
         $uid = session('discuz.user.uid');
-        $orders = \App\Order::where('uid', $uid)->orderBy('created_at','DESC')->get();
+        $orders = \App\Order::where('uid', $uid)->orderBy('created_at','DESC')->get()->map(function($order){
+            $_items = [];
+            foreach($order->items as $item){
+                if($item['type'] == 1 && isset($item['code'])){
+                    $code = explode(',', $item['code']);
+                    $coupon = \App\Coupon::whereIn('code', $code)->get()->toArray();
+                    $item['coupon'] = $coupon;
+                }
+                $_items[] = $item;
+            }
+            $order->items = $_items;
+            return $order;
+        });
+
         $order_statuses = config('custom.order.statuses');
         return view('mall.order',[
             'orders'=>$orders,
