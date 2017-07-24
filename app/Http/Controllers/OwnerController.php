@@ -255,7 +255,7 @@ class OwnerController extends Controller
         $log = new \App\OwnerLog();
         $log->verify_id = $data['verify_id'];
         $log->uid = $uid;
-        $log->reason = $data['Reason'];
+        $log->reason = \App\Helpers\Helper::replaceCarModel($data['Reason']);
         $log->point = $credits1;
         $log->coin = $credits4;
         $log->dealer = $data['Dealer'];
@@ -296,7 +296,7 @@ class OwnerController extends Controller
         DB::table('discuz_common_credit_log_field')->insert([
             'logid'=>$logid,
             'title'=>$data['title'],
-            'text'=>$data['Reason'],
+            'text'=>\App\Helpers\Helper::replaceCarModel($data['Reason']),
         ]);
     }
     public function reference(Request $request)

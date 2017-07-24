@@ -164,16 +164,17 @@ class MallController extends Controller
             'text' => '购买商品消耗风迷币',
         ]);
 
-
-        $timestamp = time();
-        $key = env('DISCUZ_UCKEY');
-        $fromuid = 1;
-        $msgto = $uid;
-        $subject = '购买商品成功';
-        $message = '您于成功购买了' . $amount_quantity . '件' . implode(',', $item_name) . '，您的收货地址是：' . $address->detail . '，联系电话为：' . $address->mobile . '。我们于7个工作日内发货，请查收。';
-        $url = url('/') . '/bbs/api/uc.php?time=' . $timestamp . '&code=' . urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=" . $fromuid . "&msgto=" . $msgto . "&subject=" . $subject . "&message=" . $message . "&time=" . $timestamp, 'ENCODE', $key));
-        $client = new \GuzzleHttp\Client();
-        $client->request('GET', $url);
+        if( env('APP_ENV') != 'local'){
+            $timestamp = time();
+            $key = env('DISCUZ_UCKEY');
+            $fromuid = 1;
+            $msgto = $uid;
+            $subject = '购买商品成功';
+            $message = '您于成功购买了' . $amount_quantity . '件' . implode(',', $item_name) . '，您的收货地址是：' . $address->detail . '，联系电话为：' . $address->mobile . '。我们于7个工作日内发货，请查收。';
+            $url = url('/') . '/bbs/api/uc.php?time=' . $timestamp . '&code=' . urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=" . $fromuid . "&msgto=" . $msgto . "&subject=" . $subject . "&message=" . $message . "&time=" . $timestamp, 'ENCODE', $key));
+            $client = new \GuzzleHttp\Client();
+            $client->request('GET', $url);
+        }
 
         $msg = $has_coupon ? '订单提交成功，请在我的订单中查看券码！' : '订单提交成功，将尽快安排物流配送！';
         return ['ret' => 0, 'msg' => $msg];
