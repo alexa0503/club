@@ -57,19 +57,17 @@ class CarsRefund extends Command
 
                 switch (strtoupper($verify->model_code)){
                     case 'F507':
+                    case 'F507S':
                         $credits1 = -4000;
                         $credits4 = 0;
                         break;
-                    case 'F370':
+                    case 'F506':
+                    case 'F506S':
                         $credits1 = -2000;
                         $credits4 = 0;
                         break;
-                    case 'F330':
-                        $credits1 = -1000;
-                        $credits4 = 0;
-                        break;
                     default:
-                        $credits1 = -1000;
+                        $credits1 = -500;
                         $credits4 = 0;
                 }
                 $user_count->extcredits1 += $credits1;
