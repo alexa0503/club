@@ -27,6 +27,7 @@
                         @foreach($order->items as $k=>$item)
                         @if(isset($item['type']) AND $item['type']==1)
                         @for($i=0;$i<$item['quantity'];$i++)
+                        @if(isset($item['coupon'][$i]))
                         <tr>
                             <td style="position:relative;height:90px;">
                                 <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$item['image']}}" alt="">
@@ -40,6 +41,7 @@
                             <td>{{$item['point']}}</td>
                             <td>@if(isset($item['coupon'])){{ $item['coupon'][$i]['status']==2 ? '已使用': '未使用'}}@endif</td>
                         </tr>
+                        @endif
                         @endfor
                         @php
                         $has_address = false;
