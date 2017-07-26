@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth.discuz.admin', 'menu'], 'prefix' => 'admin'
     Route::resource('order', 'OrderController');
     Route::resource('verify', 'VerifyController');
     Route::resource('reference', 'ReferenceController');
+    Route::resource('credit', 'CreditController');
 });
 Route::group(['middleware' => ['auth.discuz.user']], function () {
 

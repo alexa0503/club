@@ -38,6 +38,10 @@ class MenuMiddleware
             $menu->add('订单管理', ['url'=>route('order.index'),'class'=>'bg-palette4']);
             $menu->add('认证记录', ['url'=>route('verify.index'),'class'=>'bg-palette5']);
             $menu->add('推荐购车', ['url'=>route('reference.index'),'class'=>'bg-palette6']);
+
+            $menu3 = $menu->add('会员积分', ['url'=>route('credit.index'),'class'=>'openable bg-palette7']);
+            $menu3->add('查看', ['url'=>route('credit.index'),'class'=>'bg-palette3']);
+            $menu3->add('新增', ['url'=>route('credit.create'),'class'=>'bg-palette3']);
         });
         return $next($request);
     }
