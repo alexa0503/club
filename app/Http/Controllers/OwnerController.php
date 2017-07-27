@@ -172,9 +172,10 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("addMemberLevelInfo", array($options));
             $result = json_decode($response->addMemberLevelInfoReturn,true);
-           if( !$result || $result['ret'] != 0){
-               continue;
-           }
+            var_dump($result);
+            if( !$result || $result['ret'] != 0){
+                continue;
+            }
 
             //新增积分
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl");
@@ -198,7 +199,6 @@ class OwnerController extends Controller
                     if( $count > 0 ){
                         continue;
                     }
-
                     $data['title'] = '车主奖励';
                     $data['generate_way'] = 1;
                     $data['verify_id'] = $verify->id;
@@ -215,7 +215,7 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("CancelOrderAccount", array($options));
             $result1 = json_decode($response->out,true);
-            //var_dump($result1);
+            var_dump($result1);
             if($result1 && $result1['ret'] == 0 && isset($result1['data']) && is_array($result1['data'])){
                 foreach ($result1['data'] as $data){
 
@@ -229,10 +229,17 @@ class OwnerController extends Controller
                     if( $count > 0 ){
                         continue;
                     }
+                    /*
+                    \App\OwnerLog::where('uid', $uid)
+                        ->where('generate_way', 2)
+                        ->where('rono', $data['Rono'])
+                        ->delete();
+                    */
                     $data['title'] = '车主工单取消';
                     $data['generate_way'] = 2;
                     $data['verify_id'] = $verify->id;
                     $this->updateLog($uid,$data);
+                    \App\OwnerLog::where('rono', $data['Rono'])->where('generate_way','1')->delete();
                 }
             }
             //$verify->status = 1;
@@ -260,6 +267,7 @@ class OwnerController extends Controller
         $log->coin = $credits4;
         $log->dealer = $data['Dealer'];
         $log->type = $data['Type'];
+        $log->rono = $data['Rono'];
         $log->spent_at = $spent_at;
         $log->score_id = $data['SCORE_ID'];
         $log->generate_way = $data['generate_way'];
