@@ -39,15 +39,22 @@ class CarsRefund extends Command
     {
         $verifies = \App\Verify::where('status','>=', 0)->get();
         foreach($verifies as $verify){
-            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY06SOAP?wsdl");
-            $options = [
-                'in'=>json_encode([
-                    'frame_number'=>$verify->frame_number,
-                ])
-            ];
-            $response = $client->__soapCall("QueryVehicleReturnInfo", array($options));
-            $result = json_decode($response->out,true);
-            //var_dump($verify->frame_number,$result);
+            if( env('APP_ENV') == 'local'){
+                $result = [
+                    'ret'=>0,
+                    'return_type'=>2,
+                ];
+            }
+            else{
+                $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY06SOAP?wsdl");
+                $options = [
+                    'in'=>json_encode([
+                        'frame_number'=>$verify->frame_number,
+                    ])
+                ];
+                $response = $client->__soapCall("QueryVehicleReturnInfo", array($options));
+                $result = json_decode($response->out,true);
+            }
             if( $result && $result['ret'] == 0 && $result['return_type'] == 2){
                 $verify->status = -1;
                 $verify->save();
@@ -70,8 +77,23 @@ class CarsRefund extends Command
                         $credits1 = -500;
                         $credits4 = 0;
                 }
+
+                //如果没有其他认证车辆
+                $count = \App\Verify::where('uid', $uid)->where('status','>=','0')->count();
+                if($count == 0){
+                    $_n = \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->count();
+                    if($_n > 0){
+                        $owner_logs = \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->get();
+                        foreach($owner_logs as $log){
+                            $credits1 -= $log->point;
+                            $credits4 -= $log->coin;
+                        }
+                        \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->delete();
+                    }
+                }
                 $user_count->extcredits1 += $credits1;
                 $user_count->extcredits4 += $credits4;
+
                 //更新积分
                 \DB::table('discuz_common_member_count')
                     ->where('uid',$uid)
