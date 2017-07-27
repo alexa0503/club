@@ -35,7 +35,7 @@ class DiscuzUserAuth
         }
 
         $authcode = null;
-        if( isset($_COOKIE['K4Ps_2132_auth']) ){
+        if( isset($_COOKIE['K4Ps_2132_auth']) && isset($_COOKIE['K4Ps_2132_saltkey']) ){
             $key = md5('85be29aDkjYOAQgU'.$_COOKIE['K4Ps_2132_saltkey']);
             $authcode = DiscuzHelper::authcode($_COOKIE['K4Ps_2132_auth'],'DECODE',$key);
         }
