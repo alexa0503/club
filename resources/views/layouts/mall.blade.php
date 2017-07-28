@@ -185,6 +185,7 @@
                     <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/1">服务承诺</a></li>
                     <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/2">服务站点查询</a></li>
                     <li><a href="http://www.dffengguang.com.cn/index.php/Index/shfw/type/3">售后手册公示</a></li>
+                    <li><a href="http://dfsk.51tis.com/">环保信息</a></li>
                 </ul>
                 </li>
             </div>
