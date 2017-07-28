@@ -172,7 +172,7 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("addMemberLevelInfo", array($options));
             $result = json_decode($response->addMemberLevelInfoReturn,true);
-            var_dump($result);
+            //var_dump($result);
             if( !$result || $result['ret'] != 0){
                 continue;
             }
@@ -186,7 +186,7 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));
             $result = json_decode($response->out,true);
-
+            //var_dump($result);
             if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
                 foreach ($result['data'] as $data){
                     $count = \App\OwnerLog::where('uid', $uid)
@@ -215,7 +215,7 @@ class OwnerController extends Controller
             ];
             $response = $client->__soapCall("CancelOrderAccount", array($options));
             $result1 = json_decode($response->out,true);
-            var_dump($result1);
+            //var_dump($result1);
             if($result1 && $result1['ret'] == 0 && isset($result1['data']) && is_array($result1['data'])){
                 foreach ($result1['data'] as $data){
 
@@ -249,16 +249,15 @@ class OwnerController extends Controller
     }
     protected function updateLog($uid,$data)
     {
-        $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
         if( $data['generate_way'] == 2 ){
-            $credits1 = -1*$data['Point'];
-            $credits4 = -1*$data['Coin'];
+            $credits1 = (-1)*abs($data['Point']);
+            $credits4 = (-1)*abs($data['Coin']);
         }
         else{
             $credits1 = $data['Point'];
             $credits4 = $data['Coin'];
         }
-
+        $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
         $log = new \App\OwnerLog();
         $log->verify_id = $data['verify_id'];
         $log->uid = $uid;
