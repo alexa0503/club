@@ -93,5 +93,28 @@ class DiscuzHelper
             return date('y/m/d H:i:s',$timestamp);
         }
     }
+    //检查积分，用户组是否正确
+    public static function checkUserGroup($id)
+    {
+        $user_group = \DB::table('discuz_common_member')
+            ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
+            ->select('discuz_common_member.groupid')
+            ->where('uid',$id)->first();
+        $user_count = \DB::table('discuz_common_member_count')->where('uid',$id)->first();
+
+        $right_group = \DB::table('discuz_common_usergroup')
+            ->where('type','member')
+            ->where('creditslower', '>', $user_count->extcredits1)
+            ->where('creditshigher', '<=', $user_count->extcredits1)
+            ->select('groupid')
+            ->first();
+
+        if($user_group->groupid != $right_group->groupid){
+            \DB::table('discuz_common_member')->where('uid',$id)->update([
+                'groupid'=>$right_group->groupid
+            ]);
+        }
+
+    }
 
 }

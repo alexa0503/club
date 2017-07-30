@@ -38,6 +38,8 @@ class Kernel extends ConsoleKernel
             ->everyMinute();
         $schedule->command('cars:refund')
             ->everyMinute();
+        $schedule->command('points:update')
+            ->everyFiveMinutes();
 
     }
 
