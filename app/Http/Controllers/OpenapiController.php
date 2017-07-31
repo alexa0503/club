@@ -63,6 +63,7 @@ class OpenapiController extends Controller{
             ->leftJoin("discuz_common_credit_log as b","b.uid","=","a.uid")
             ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
             ->where("a.frame_number","=",$request->Vin)
+            ->where("b.extcredits1","<>","0")
             ->select("a.uid","b.extcredits1","c.title","c.text")
             ->get();
         /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
@@ -81,6 +82,7 @@ class OpenapiController extends Controller{
             ->leftJoin("discuz_common_credit_log as b","b.uid","=","a.uid")
             ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
             ->where("a.frame_number","=",$request->Vin)
+            ->where("b.extcredits4","<>","0")
             ->select("a.uid","b.extcredits4","c.title","c.text")
             ->get();
         /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
