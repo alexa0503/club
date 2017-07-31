@@ -19,10 +19,10 @@
                 </div>
                 <div class="caret"></div>
                 <div class="content" style="min-height: 300px;">
-                    <div class="pull-right" style="width: 800px;">
+                    <div class="pull-right" style="width: 800px;margin-right:30px;">
                         <div class="rows">
                             @foreach($features1 as $k=>$item)
-                            <div class="col-md-3 {{($k+1<count($features1))?'border':''}}" style="height:260px;margin-bottom:10px;">
+                            <div class="col-md-3 {{ ( $k%4 != 3) ?'border':''}}" style="height:257px;margin-bottom:20px;">
                                 <div style="height:40px;"><h4>{{$item->name}}</h4></div>
                                 <span>{{$item->point}}风迷币</span>
                                 <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
@@ -48,10 +48,10 @@
                 </div>
                 <div class="caret"></div>
                 <div class="content" style="min-height: 300px;">
-                    <div class="pull-right" style="width: 800px;">
+                    <div class="pull-right" style="width: 800px;margin-right:30px;">
                         <div class="rows">
                             @foreach($features2 as $k=>$item)
-                                <div class="col-md-3 {{($k+1<count($features2))?'border':''}}" style="height:260px;margin-bottom:10px;">
+                                <div class="col-md-3 {{($k%4 != 3)?'border':''}}" style="height:257px;margin-bottom:20px;">
                                     <h4>{{$item->name}}</h4>
                                     <span>{{$item->point}}风迷币</span>
                                     <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
