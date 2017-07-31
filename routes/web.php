@@ -132,6 +132,14 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         Route::get('/mall/order', 'MallController@orderIndex');
     });
 });
+
+/**********************2017-07-28*****************************/
+Route::post('/openapi/userinfo', 'OpenapiController@getUserinfo');
+Route::post('/openapi/extcredits1', 'OpenapiController@getExtcredits1');
+Route::post('/openapi/extcredits4', 'OpenapiController@getExtcredits4');
+/**********************2017-07-28*****************************/
+
+
 //省市数据
 Route::get('/districts', function(){
     $provinces = \App\District::whereNull('parent_id')->get()->map(function($item){
@@ -198,3 +206,4 @@ Route::get('/logout', function () {
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
