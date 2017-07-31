@@ -64,13 +64,13 @@ class OpenapiController extends Controller{
             ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
             ->where("a.frame_number","=",$request->Vin)
             ->where("b.extcredits1","<>","0")
-            ->select("a.uid","b.extcredits1","b.dateline","c.title","c.text")
+            ->select("b.extcredits1","b.dateline","c.title","c.text")
             ->get();
         /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
             from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
             where a.frame_number='{$request->vin}' and a.uid=b.uid and b.logid=c.logid
             limit 1");*/
-            if($info){
+            if(!$info->isEmpty()){
                 $this->jsond(1,"SUCC",$info);
             }else{
                 $this->jsond(0,"ERROR");
@@ -83,13 +83,13 @@ class OpenapiController extends Controller{
             ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
             ->where("a.frame_number","=",$request->Vin)
             ->where("b.extcredits4","<>","0")
-            ->select("a.uid","b.extcredits4","b.dateline","c.title","c.text")
+            ->select("b.extcredits4","b.dateline","c.title","c.text")
             ->get();
         /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
             from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
             where a.frame_number='{$request->vin}' and a.uid=b.uid and b.logid=c.logid
             limit 1");*/
-            if($info){
+            if(!$info->isEmpty()){
                 $this->jsond(1,"SUCC",$info);
             }else{
                 $this->jsond(0,"ERROR");
