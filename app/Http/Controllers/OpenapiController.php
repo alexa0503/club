@@ -11,11 +11,11 @@ class OpenapiController extends Controller{
 
 	public function __construct(Request $request){
 		$messages = [
-            'vin.required' => '参数不能为空',
-            'vin.regex' => '格式错误',
+            'Vin.required' => '参数不能为空',
+            'Vin.regex' => '格式错误',
         ];
         $validator = Validator::make($request->all(), [
-            'vin' => [
+            'Vin' => [
                 'required',
                 'regex:/^[a-z0-9A-Z]{17}$/',
             ],
@@ -31,7 +31,7 @@ class OpenapiController extends Controller{
         $info = DB::table("verifies as a")
             ->leftJoin("discuz_common_member_count as b","b.uid","=","a.uid")
             ->leftJoin("discuz_common_member as c","c.uid","=","a.uid")
-            ->where("a.frame_number","=",$request->vin)
+            ->where("a.frame_number","=",$request->Vin)
             ->select("a.uid","b.extcredits1","b.extcredits4","c.groupid",
                 DB::raw("(CASE groupid 
                     WHEN 11 THEN '银牌' 
