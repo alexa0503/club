@@ -77,6 +77,11 @@
 @section('scripts')
     <script>
         $().ready(function () {
+            $('.row1').each(function(){
+                var h = $(this).find('.pull-right').height();
+                $(this).find('.content').height(h);
+            });
+
             $('.slick').slick({
                 'prevArrow':null,
                 'nextArrow':null,
