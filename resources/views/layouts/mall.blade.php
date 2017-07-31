@@ -75,10 +75,14 @@
                 <div class="thread-top" style="">今日: <em>{{session('discuz.forum.todayposts')}}</em><span class="pipe">|</span>昨日: <em>{{session('discuz.forum.yesterdayposts')}}</em><span class="pipe">|</span>帖子: <em>{{session('discuz.forum.posts')}}</em><span class="pipe">|</span>会员: <em>{{session('discuz.user_count')}}</em><span class="pipe">|</span>欢迎新会员: <a href="/bbs/home.php?mod=space&uid={{session('discuz.latest_user.uid')}}&do=profile">{{session('discuz.latest_user.username')}}</a></div>
                 <div style="width:285px;margin-top:20px;float:left;">
                     <div class="input-group" id="search">
-                        <input type="text" class="form-control" placeholder="搜索帖子" />
+                        <input type="text" class="form-control" placeholder="搜索帖子" style="outline:none;" />
                         <div class="input-group-btn">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                <button type="button" class="btn" style="outline:none;">
+                                    <div style="
+                                    background: url(http://club.dffengguang.com.cn/bbs/static/assets/imgs/layout/search_icon.png) 0 0 no-repeat;height:20px;width:28px;
+                                "></div>
+                                </button>
                             </div>
                         </div>
                     </div>
