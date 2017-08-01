@@ -31,14 +31,9 @@ class OpenapiController extends Controller{
         $info = DB::table("verifies as a")
             ->leftJoin("discuz_common_member_count as b","b.uid","=","a.uid")
             ->leftJoin("discuz_common_member as c","c.uid","=","a.uid")
+            ->leftJoin("discuz_common_usergroup as d","d.groupid","=","c.groupid")
             ->where("a.frame_number","=",$request->Vin)
-            ->select("a.uid","b.extcredits1","b.extcredits4","c.groupid",
-                DB::raw("(CASE groupid 
-                    WHEN 11 THEN '银牌' 
-                    WHEN 12 THEN '金牌'
-                    WHEN 13 THEN '铂金'
-                    WHEN 14 THEN '钻石'
-                     ELSE '铜牌' END) AS groupname"))
+            ->select("a.uid","b.extcredits1","b.extcredits4","c.groupid","d.grouptitle")
             ->first();
         /*$info = DB::select("select a.uid,b.extcredits1,b.extcredits4,
             CASE groupid 
@@ -62,9 +57,10 @@ class OpenapiController extends Controller{
         $info = DB::table("verifies as a")
             ->leftJoin("discuz_common_credit_log as b","b.uid","=","a.uid")
             ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
+            ->leftJoin("discuz_forum_activity as d","d.tid","=","b.relatedid")
             ->where("a.frame_number","=",$request->Vin)
             ->where("b.extcredits1","<>","0")
-            ->select("b.extcredits1","b.dateline","c.title","c.text")
+            ->select("b.extcredits1","b.dateline","c.title","c.text","d.place","d.class")
             ->get();
         /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
             from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
@@ -81,9 +77,10 @@ class OpenapiController extends Controller{
         $info = DB::table("verifies as a")
             ->leftJoin("discuz_common_credit_log as b","b.uid","=","a.uid")
             ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
+            ->leftJoin("discuz_forum_activity as d","d.tid","=","b.relatedid")
             ->where("a.frame_number","=",$request->Vin)
             ->where("b.extcredits4","<>","0")
-            ->select("b.extcredits4","b.dateline","c.title","c.text")
+            ->select("b.extcredits4","b.dateline","c.title","c.text","d.place","d.class")
             ->get();
         /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
             from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
