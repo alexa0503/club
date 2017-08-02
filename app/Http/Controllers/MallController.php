@@ -13,7 +13,7 @@ class MallController extends Controller
     //
     public function index()
     {
-        $features1 = \App\Item::where('feature1', '>', 0)->orderBy('feature1', 'ASC')->limit(4)->get();
+        $features1 = \App\Item::where('feature1', '>', 0)->orderBy('feature1', 'ASC')->get();
         $features2 = \App\Item::where('feature2', '>', 0)->orderBy('feature2', 'ASC')->get();
         $page = \App\Page::find(2);
         $feature1_kvs = $page->blocks->filter(function ($value, $key) {

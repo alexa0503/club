@@ -78,11 +78,15 @@
                         <input type="text" class="form-control" placeholder="搜索帖子" style="outline:none;" />
                         <div class="input-group-btn">
                             <div class="btn-group" role="group">
+<<<<<<< HEAD
                                 <button type="button" class="btn" style="outline:none;">
                                     <div style="
                                     background: url(http://club.dffengguang.com.cn/bbs/static/assets/imgs/layout/search_icon.png) 0 0 no-repeat;height:20px;width:28px;
                                 "></div>
                                 </button>
+=======
+                                <button type="button" class="btn" id="btn-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+>>>>>>> 6fb11aae4a479ee43fb78774a17817c4c5a4ff1c
                             </div>
                         </div>
                     </div>
@@ -427,6 +431,9 @@
     var is_cart = false;
     @endif
     $().ready(function () {
+        $('#btn-search').on('click', function(){
+            location.href='http://club.dffengguang.com.cn/bbs/search.php?mod=forum';
+        })
         $.getJSON('{{url("/districts")}}', function (districts) {
             mall_districts = districts;
             initProvinces();
