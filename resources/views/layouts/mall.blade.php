@@ -35,7 +35,7 @@
         })
     </script>
 </head>
-<body style="background: #fff url(../images/mall/bkg_index.jpg) 50% 0 no-repeat;">
+<body style="background: #fff url(../images/mall/bkg_index.jpg) 50% -11px no-repeat;">
 <div id="login" style="height: 30px;">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
