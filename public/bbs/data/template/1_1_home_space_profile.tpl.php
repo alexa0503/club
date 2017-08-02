@@ -216,7 +216,7 @@
 <li><em>Email</em><?php echo $space['email'];?></li>
 <?php } ?>
 <li><em>邮箱状态</em><?php if($space['emailstatus'] > 0) { ?>已验证<?php } else { ?>未验证<?php } ?></li>
-<li><em>视频认证</em><?php if($space['videophotostatus'] > 0) { ?>已认证 <?php if($showvideophoto) { ?>&nbsp;&nbsp;(<a href="home.php?mod=space&amp;uid=<?php echo $space['uid'];?>&amp;do=videophoto" id="viewphoto" onclick="showWindow(this.id, this.href, 'get', 0)">查看认证照片</a>)<?php } } else { ?>未认证<?php } ?></li>
+<li style="display:none;"><em>视频认证</em><?php if($space['videophotostatus'] > 0) { ?>已认证 <?php if($showvideophoto) { ?>&nbsp;&nbsp;(<a href="home.php?mod=space&amp;uid=<?php echo $space['uid'];?>&amp;do=videophoto" id="viewphoto" onclick="showWindow(this.id, this.href, 'get', 0)">查看认证照片</a>)<?php } } else { ?>未认证<?php } ?></li>
 </ul>
 <ul>
 <?php if($space['spacenote']) { ?><li><em class="xg1">最新记录&nbsp;&nbsp;</em><?php echo $space['spacenote'];?></li><?php } if($space['customstatus']) { ?><li class="xg1"><em>自定义头衔&nbsp;&nbsp;</em><?php echo $space['customstatus'];?></li><?php } if($space['group']['maxsigsize'] && $space['sightml']) { ?><li><em class="xg1">个人签名&nbsp;&nbsp;</em><table><tr><td><?php echo $space['sightml'];?></td></tr></table></li><?php } ?>

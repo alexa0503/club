@@ -115,10 +115,10 @@ $sectpl = <<<EOF
 EOF;
 ?><?php $sechash = !isset($sechash) ? 'S'.($_G['inajax'] ? 'A' : '').$_G['sid'] : $sechash.random(3);
 $sectpl = str_replace("'", "\'", $sectpl);?><?php if($secqaacheck) { ?>
-<span id="secqaa_q<?php echo $sechash;?>"></span>		
+<span id="secqaa_q<?php echo $sechash;?>"></span>
 <script type="text/javascript" reload="1">updatesecqaa('q<?php echo $sechash;?>', '<?php echo $sectpl;?>', '<?php echo $_G['basescript'];?>::<?php echo CURMODULE;?>');</script>
 <?php } if($seccodecheck) { ?>
-<span id="seccode_c<?php echo $sechash;?>"></span>		
+<span id="seccode_c<?php echo $sechash;?>"></span>
 <script type="text/javascript" reload="1">updateseccode('c<?php echo $sechash;?>', '<?php echo $sectpl;?>', '<?php echo $_G['basescript'];?>::<?php echo CURMODULE;?>');</script>
 <?php } } ?>
 
@@ -188,7 +188,7 @@ $sectpl = str_replace("'", "\'", $sectpl);?><?php if($secqaacheck) { ?>
 <div class="rfm">
 <table>
 <tr>
-<th><label for="lostpw_username">用户名:</label></th>
+<th><span class="rq">*</span><label for="lostpw_username">用户名:</label></th>
 <td><input type="text" name="username" id="lostpw_username" size="30" value=""  tabindex="1" class="px p_fre" /></td>
 </tr>
 </table>
