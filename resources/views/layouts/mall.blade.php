@@ -43,7 +43,7 @@
             <li class="login"><a href="/bbs/member.php?mod=logging&amp;action=login&amp;referer={{url('/mall')}}">登录</a></li>
             <li class="login"><a href="/bbs/member.php?mod=register">注册</a></li>
             @else
-            <li style="padding-left:12px;background: url(/bbs/static/image/common/user_online.gif) no-repeat 0px 10px"><a href="/bbs/home.php?mod=space&amp;uid=1" target="_blank" title="访问我的空间">{{Session::get('discuz.user.username')}}</a></li>
+            <li style="padding-left:12px;background: url(/bbs/static/image/common/user_online.gif) no-repeat 0px 10px"><a href="/bbs/home.php?mod=space&amp;uid=1" target="_blank" style="font-weight: bold;" title="访问我的空间">{{Session::get('discuz.user.username')}}</a></li>
             <li class="split">|</li>
             <li><a href="/bbs/home.php?mod=spacecp">我的</a></li>
             <li class="split">|</li>
