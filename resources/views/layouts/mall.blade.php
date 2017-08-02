@@ -35,8 +35,8 @@
         })
     </script>
 </head>
-<body>
-<div id="login">
+<body style="background: #fff url(../images/mall/bkg_index.jpg) 50% 0 no-repeat;">
+<div id="login" style="height: 30px;">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             @if(!Session::get('discuz.hasLogin'))
@@ -68,7 +68,7 @@
 
     </div>
 </div>
-<header class="navbar navbar-static-top bs-docs-nav" id="top">
+<header class="navbar navbar-static-top bs-docs-nav" id="top" style="margin-bottom: 32px;background: rgba(255,255,255,0.9);">
     <div class="container">
         <div class="row">
             <div class="pull-right">
@@ -78,15 +78,11 @@
                         <input type="text" class="form-control" placeholder="搜索帖子" style="outline:none;" />
                         <div class="input-group-btn">
                             <div class="btn-group" role="group">
-<<<<<<< HEAD
                                 <button type="button" class="btn" style="outline:none;">
                                     <div style="
                                     background: url(http://club.dffengguang.com.cn/bbs/static/assets/imgs/layout/search_icon.png) 0 0 no-repeat;height:20px;width:28px;
                                 "></div>
                                 </button>
-=======
-                                <button type="button" class="btn" id="btn-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
->>>>>>> 6fb11aae4a479ee43fb78774a17817c4c5a4ff1c
                             </div>
                         </div>
                     </div>
@@ -106,7 +102,7 @@
                 @endif
         </div>
         <div class="row">
-            <nav id="bs-navbar" class="collapse navbar-collapse">
+            <nav id="bs-navbar" class="collapse navbar-collapse" style="font-weight: bold;">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="/" >首页</a>
@@ -431,9 +427,6 @@
     var is_cart = false;
     @endif
     $().ready(function () {
-        $('#btn-search').on('click', function(){
-            location.href='http://club.dffengguang.com.cn/bbs/search.php?mod=forum';
-        })
         $.getJSON('{{url("/districts")}}', function (districts) {
             mall_districts = districts;
             initProvinces();

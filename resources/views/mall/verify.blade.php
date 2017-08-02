@@ -1,10 +1,23 @@
 @extends('layouts.mall')
 @section('content')
     <div id="main">
-        <div class="container" style="padding-top: 40px;padding-bottom: 40px;">
+        <div class="container" style="padding-top: 60px;padding-bottom: 40px;position: relative;">
+        <!--nav-->
+        <div style=" position: absolute; left: 0; top: 0; padding-left: 19px; height: 29px;"><a href="./" class="nvhm" title="首页" style=" float: left; height: 29px; width: 16px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/search.png) no-repeat 0 0; line-height: 200px; overflow: hidden; text-decoration: none; color: #5f2927;">超级风迷东风风光车友会</a><em style=" display: block; width: 20px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/pt_item.png) no-repeat 3px 10px; line-height: 29px; overflow: hidden; float: left; height: 100%;"></em><a href="http://club.dffengguang.com.cn/bbs/home.php?mod=spacecp" style=" line-height: 29px; color: #5f2927; float: left; height: 29px; font-size: 12px;">设置</a><em style=" display: block; width: 20px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/pt_item.png) no-repeat 3px 10px; line-height: 29px; overflow: hidden; float: left; height: 100%; "></em><div style=" font-size: 12px; color: #444; float: left; height: 100%; line-height: 29px; /* display: block; */">车主认证</div></div>
+
             <div class="row">
-                <div class="col-md-2 col-xs-2">
-                    <div class="list-group">
+                <div class="col-md-2 col-xs-2" style="padding-left: 0px;">
+                <h2 style="
+                            padding: 10px;
+                            border-bottom: 1px dashed #CDCDCD;
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #444;
+                            background: #e8f0f7;
+                            margin: 0;
+                            width: 137px;
+                        ">设置</h2>
+                    <div class="list-group"  style="width: 137px;">
                         <a href="/bbs/home.php?mod=spacecp&ac=avatar" class="list-group-item">修改头像</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=profile" class="list-group-item">个人资料</a>
                         <a href="javascript:;" class="list-group-item active ">
