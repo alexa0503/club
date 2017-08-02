@@ -81,7 +81,7 @@
 <table summary="转账与兑换" cellspacing="0" cellpadding="0" class="dt mtm">
 <caption>
 <h2 class="mbm xs2">
-<a href="home.php?mod=spacecp&amp;ac=credit4&amp;op=log" class="xi2 xs1 xw0 y">查看更多&raquo;</a>风迷币记录
+<!--<a href="home.php?mod=spacecp&amp;ac=credit4&amp;op=log" class="xi2 xs1 xw0 y">查看更多&raquo;</a>-->风迷币记录
 </h2>
 </caption>
 <tr>
@@ -160,24 +160,24 @@ appendscript('http://union.tenpay.com/bankList/bank.js', '');
 $sectpl = <<<EOF
 <table id="card_box_sec" style="
 EOF;
- if($_G['setting']['card']['open'] && $ecchecked) { 
+ if($_G['setting']['card']['open'] && $ecchecked) {
 $sectpl .= <<<EOF
 display:;
 EOF;
- } else { 
+ } else {
 $sectpl .= <<<EOF
 display:none;
 EOF;
- } 
+ }
 $sectpl .= <<<EOF
 " cellspacing="0" cellpadding="0" class="tfm mtn"><tr><th><sec></th><td colspan="2"><span id="sec<hash>" onclick="showMenu({'ctrlid':this.id,'win':'{$_GET['handlekey']}'})"><sec></span><div id="sec<hash>_menu" class="p_pop p_opt" style="display:none"><sec></div></td></tr></table>
 EOF;
 ?><?php $sechash = !isset($sechash) ? 'S'.($_G['inajax'] ? 'A' : '').$_G['sid'] : $sechash.random(3);
 $sectpl = str_replace("'", "\'", $sectpl);?><?php if($secqaacheck) { ?>
-<span id="secqaa_q<?php echo $sechash;?>"></span>		
+<span id="secqaa_q<?php echo $sechash;?>"></span>
 <script type="text/javascript" reload="1">updatesecqaa('q<?php echo $sechash;?>', '<?php echo $sectpl;?>', '<?php echo $_G['basescript'];?>::<?php echo CURMODULE;?>');</script>
 <?php } if($seccodecheck) { ?>
-<span id="seccode_c<?php echo $sechash;?>"></span>		
+<span id="seccode_c<?php echo $sechash;?>"></span>
 <script type="text/javascript" reload="1">updateseccode('c<?php echo $sechash;?>', '<?php echo $sectpl;?>', '<?php echo $_G['basescript'];?>::<?php echo CURMODULE;?>');</script>
 <?php } ?><table cellspacing="0" cellpadding="0" class="tfm mtn">
 <?php } } ?>
