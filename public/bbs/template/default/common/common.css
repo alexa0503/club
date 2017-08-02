@@ -704,7 +704,7 @@ CSS 写作注意事项：
 			 .ct2_a h1.mt { display: none; }
 			 .ct2_a .tb { margin-top: 3px; }
 		.ct2_a .mn { float: right; width: 810px; }
-			.ct2_a .mn { display: inline; margin-right: 10px; padding-top: 10px; width: 800px; }
+			.ct2_a .mn { display: inline; margin-right: 138px; padding-top: 10px; width: 800px; }
 				#nv_userapp .ct2_a .mn, .ct2_a_r .mn { margin-right: 0; width: 810px; }
 
 		.ct3_a .mn { float: left; margin-left: 20px; width: 565px; }
@@ -1407,7 +1407,7 @@ CSS 写作注意事项：
 			.pc_btn img { opacity: 0.5; }
 				.pc_btn:hover img { opacity: 1; }
 	.pc_r { background-position: -30px 0; }
-	
+
 /* 用于文字提示等弹出层提示 */
 	.popuptext .pc_l,.popuptext .pc_c,.popuptext .pc_inner,.popuptext .pc_r { background: url({IMGDIR}/popuptext_bg.gif) no-repeat 0 0; }
 	.popuptext .pc_c { width: 200px; background-position: 0 -56px; background-repeat: repeat-x; }
@@ -1773,7 +1773,7 @@ DIY图片幻灯片未加载时隐藏,模块标识隐藏
 		.waterfall .c .nopic { display: block; background:{WRAPBG} url({IMGDIR}/nophototiny.png) no-repeat 50% 50%; cursor: pointer; }
 	.waterfall .auth { padding: 0 10px 10px; border-width: 0 1px 1px; border-style: solid; border-color: transparent #EAEAEA #B9B9B9; background: #F8F8F8; }
 		.waterfall .auth img { display: inline-block; margin: 0 1px; }
-		
+
 /* 大分页按钮 by theo */
 .pgbtn { margin: 5px 0 10px; }
 	.pgbtn a { display: block; height: 40px; line-height: 40px; letter-spacing: 5px; text-align: center; border: 1px solid #DCDCDC; font-size: 14px; outline: none; border-radius: 5px; box-shadow: 0 1px 0 #F5F5F5; }
