@@ -3,8 +3,8 @@
     <div id="main">
         <div class="container" style="padding-top: 40px;padding-bottom: 40px;">
             <div class="row">
-                <div class="col-md-2">
-                    <div class="list-group">
+                <div class="col-md-2" style="padding-left: 15px;">
+                    <div class="list-group" style="width: 137px;">
 
                         <a href="/bbs/home.php?mod=spacecp&ac=avatar" class="list-group-item">修改头像</a>
                         <a href="/bbs/home.php?mod=spacecp&ac=profile" class="list-group-item">个人资料</a>
