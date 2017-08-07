@@ -513,8 +513,8 @@ body {
   overflow: hidden; }
   #nv_portal #activity ul li {
     border-top: 1px solid #9a0606;
-    padding-top: 30px;
-    margin-bottom: 30px; }
+    padding-top: 20px;
+    margin-bottom: 20px; }
     #nv_portal #activity ul li.first {
       padding-top: 0;
       border-top: 0; }

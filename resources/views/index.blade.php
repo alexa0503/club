@@ -418,7 +418,7 @@
                         </div>
                     </div>
                 <!-- activity start -->
-                    <div id="activity" class="contentStyle" style="height:885px;">
+                    <div id="activity" class="contentStyle" style="height:950px;">
                         <div class="titles">
                             <a href="javascript:;"><img src="/bbs/static/assets/imgs/layout/activity.png" alt=""></a>
                         </div>
