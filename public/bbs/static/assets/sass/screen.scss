@@ -516,7 +516,8 @@ body {
                         padding: 0;
                         text-align: center;
                         color: #fff;
-                        &:hover {
+                        &:hover,
+                        &.active {
                             background-color: #f50c0c;
                             background-image: none;
                         }
@@ -662,8 +663,8 @@ body {
             overflow: hidden;
             li {
                 border-top: 1px solid #9a0606;
-                padding-top: 30px;
-                margin-bottom: 30px;
+                padding-top: 20px;
+                margin-bottom: 20px;
                 &.first {
                     padding-top: 0;
                     border-top: 0;
@@ -1075,5 +1076,3 @@ body {
     }
   }
 }
-
-

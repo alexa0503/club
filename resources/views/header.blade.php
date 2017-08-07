@@ -61,7 +61,7 @@
                         <li class="a" id="mn_forum"><a href="/bbs/forum.php" hidefocus="true" title="">车型论坛<span></span></a></li>
                     </ul>
                     <ul>
-                        <!-- <li class="a" id="mn_forum"><a href="/bbs/forum.php" hidefocus="true" title="">车主聚会<span></span></a></li> -->
+                        <li class="a" id="mn_forum"><a href="/bbs/forum.php?gid=44" hidefocus="true" title="">风迷活动<span></span></a></li>
                     </ul>
                     <ul>
                         <li class="a" id="mn_forum"><a href="/mall" hidefocus="true" title="">积分商城<span></span></a></li>

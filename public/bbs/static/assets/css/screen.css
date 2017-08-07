@@ -403,7 +403,7 @@ body {
         padding: 0;
         text-align: center;
         color: #fff; }
-        #nv_portal #hotpoint .menus ul li a:hover {
+        #nv_portal #hotpoint .menus ul li a:hover, #nv_portal #hotpoint .menus ul li a.active {
           background-color: #f50c0c;
           background-image: none; }
 #nv_portal #hotpoint .contentsWrap .left {
