@@ -35,7 +35,7 @@
         })
     </script>
 </head>
-<body style="background: #fff url(../images/mall/bkg_index.jpg) 50% -11px no-repeat;">
+<body style="background: #fff url(http://club.dffengguang.com.cn/bbs/static/assets/imgs/layout/bg.jpg) 50% 0 no-repeat;">
 <div id="login" style="height: 30px;">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
@@ -71,7 +71,7 @@
 <header class="navbar navbar-static-top bs-docs-nav" id="top" style="margin-bottom: 32px;background: rgba(255,255,255,0.9);">
     <div class="container">
         <div class="row">
-            <div class="pull-right">
+            <div class="pull-right" style="position: absolute;right: 0;">
                 <div class="thread-top" style="">今日: <em>{{session('discuz.forum.todayposts')}}</em><span class="pipe">|</span>昨日: <em>{{session('discuz.forum.yesterdayposts')}}</em><span class="pipe">|</span>帖子: <em>{{session('discuz.forum.posts')}}</em><span class="pipe">|</span>会员: <em>{{session('discuz.user_count')}}</em><span class="pipe">|</span>欢迎新会员: <a href="/bbs/home.php?mod=space&uid={{session('discuz.latest_user.uid')}}&do=profile">{{session('discuz.latest_user.username')}}</a></div>
                 <div style="width:285px;margin-top:20px;float:left;">
                     <div class="input-group" id="search">
