@@ -9,20 +9,26 @@ use Validator;
 
 class OpenapiController extends Controller{
 
-	public function __construct(Request $request){
-		$messages = [
-            'Vin.required' => '参数不能为空',
-            'Vin.regex' => '格式错误',
-        ];
-        $validator = Validator::make($request->all(), [
-            'Vin' => [
-                'required',
-                'regex:/^[a-z0-9A-Z]{17}$/',
-            ],
-        ], $messages);
+    public $timestamp;
 
-        if ($validator->fails()) {
-            $this->jsond(0,$validator->errors()->first());
+	public function __construct(Request $request){
+        //echo \Route::current()->getActionName();die;
+        $this->timestamp = time();
+        if(strpos("register",\Route::current()->getActionName()) !== false){
+    		$messages = [
+                'Vin.required' => '参数不能为空',
+                'Vin.regex' => '格式错误',
+            ];
+            $validator = Validator::make($request->all(), [
+                'Vin' => [
+                    'required',
+                    'regex:/^[a-z0-9A-Z]{17}$/',
+                ],
+            ], $messages);
+
+            if ($validator->fails()) {
+                $this->jsond(0,$validator->errors()->first());
+            }
         }
 	}
 
@@ -92,6 +98,139 @@ class OpenapiController extends Controller{
                 $this->jsond(0,"ERROR");
             }
     }
+
+    public function register(Request $request){
+        //$uid = INSERT INTO discuz_ucenter_members username='$username', password='$password', email='$email', regip='$regip', regdate='$regdate', salt='$salt'
+        //INSERT INTO discuz_ucenter_memberfields SET uid='$uid'
+        //C::t('common_member')->insert($uid, $username, $password, $email, $_G['clientip'], $groupinfo['groupid'], $init_arr);
+        //print_r($request->all());die;
+        $messages = [
+            'username.required' => '用户名不能为空',
+            'username.min' => '用户名长度必须大于3位',
+            'username.alpha_dash' => '用户名格式错误，只能包含字母、数字、破折、号以及下划线',
+            'username.unique' => '用户名已经存在',
+
+            'password.required' => '密码不能为空',
+            'password.min' => '密码长度必须大于6位',
+            'password.alpha_dash' => '密码格式错误，只能包含字母、数字、破折、号以及下划线',
+            'password.confirmed' => '两次密码输入不一致',
+
+            'email.required' => '邮箱不能为空',
+            'email.email' => '邮箱格式错误',
+            'email.unique' => '邮件已经存在',
+
+            'regip.required' => 'ip不能为空',
+            'regip.ip' => 'ip格式错误',
+        ];
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|min:3|alpha_dash|unique:discuz_ucenter_members',
+            'password' => 'required|min:6|alpha_dash|confirmed',
+            'email' => 'required|email|unique:discuz_ucenter_members',
+            'regip' => 'required|ip',
+        ], $messages);
+        //print_r($validator->errors()->first());die;
+        if ($validator->fails()) {
+            $this->jsond(0,$validator->errors()->first());
+        }
+
+        $username = $request->username;
+        $salt = substr(uniqid(rand()), -6);
+        $password = md5(md5($request->password).$salt);
+        $email = $request->email;
+        $regip = $request->regip;
+        $regdate = $this->timestamp;
+        $groupid = 10;
+
+        $uid = DB::table('discuz_ucenter_members')->insertGetId([
+            'username' => (string) $username,
+            'password'=>(string) $password,
+            'email'=>(string) $email,
+            'regip'=>(string) $regip,
+            'regdate'=>(string) $regdate,
+            'salt'=>$salt,
+        ]);
+
+        if(!$uid) $this->jsond(0,"注册失败");
+        DB::table('discuz_ucenter_memberfields')->insert([
+            'uid' => $uid,
+            'blacklist' => ''
+        ]);
+
+        /*DB::table('common_member')->insert([
+            'uid' => $uid,
+            'username' => $username,
+            'password'=>$password,
+            'email'=>$email,
+            'regip'=>$regip,
+            'regdate'=>$regdate,
+            'salt'=>$salt,
+        ]);*/
+        $init_arr = array('credits' => explode(',', "0,0,0,0,0,0,0,0,0"), 'profile'=>array(), 'emailstatus' => 0);
+        $this->common_member_insert($uid, $username, $password, $email, $regip, $groupid, $init_arr);
+        $this->jsond(1,"注册成功",array("uid"=>$uid));
+    }
+
+
+    public function common_member_insert($uid, $username, $password, $email, $ip, $groupid, $extdata, $adminid = 0) {
+        if(($uid = intval($uid))) {
+
+            $credits = isset($extdata['credits']) ? $extdata['credits'] : array();
+            $profile = isset($extdata['profile']) ? $extdata['profile'] : array();
+            $profile['uid'] = $uid;
+            $profile['bio'] = "";
+            $profile['interest'] = "";
+            $profile['field1'] = "";
+            $profile['field2'] = "";
+            $profile['field3'] = "";
+            $profile['field4'] = "";
+            $profile['field5'] = "";
+            $profile['field6'] = "";
+            $profile['field7'] = "";
+            $profile['field8'] = "";
+            $base = array(
+                'uid' => $uid,
+                'username' => (string)$username,
+                'password' => (string)$password,
+                'email' => (string)$email,
+                'adminid' => intval($adminid),
+                'groupid' => intval($groupid),
+                'regdate' => $this->timestamp,
+                'emailstatus' => intval($extdata['emailstatus']),
+                'credits' => intval($credits[0]),
+                'timeoffset' => 9999
+            );
+            $status = array(
+                'uid' => $uid,
+                'regip' => (string)$ip,
+                'lastip' => (string)$ip,
+                'lastvisit' => $this->timestamp,
+                'lastactivity' => $this->timestamp,
+                'lastpost' => 0,
+                'lastsendmail' => 0
+            );
+            $count = array(
+                'uid' => $uid,
+                'extcredits1' => intval($credits[1]),
+                'extcredits2' => intval($credits[2]),
+                'extcredits3' => intval($credits[3]),
+                'extcredits4' => intval($credits[4]),
+                'extcredits5' => intval($credits[5]),
+                'extcredits6' => intval($credits[6]),
+                'extcredits7' => intval($credits[7]),
+                'extcredits8' => intval($credits[8])
+            );
+            $ext = array('uid' => $uid);
+            DB::table('discuz_common_member')->insert($base, false, true);
+            DB::table('discuz_common_member_status')->insert($status, false, true);
+            DB::table('discuz_common_member_count')->insert($count, false, true);
+            DB::table('discuz_common_member_profile')->insert($profile, false, true);
+            DB::table('discuz_common_member_field_forum')->insert(array('uid' => $uid,"medals"=>"","sightml"=>"","groupterms"=>"","groups"=>""), false, true);
+            DB::table('discuz_common_member_field_home')->insert(array('uid' => $uid,"spacecss"=>"","blockposition"=>"","recentnote"=>"","spacenote"=>"","privacy"=>"","feedfriend"=>"","acceptemail"=>"","magicgift"=>"","stickblogs"=>""), false, true);
+            return true;
+        }
+    }
+
+
 
 	public function jsond($result, $msg="", $info = array()){
 		echo json_encode(array("result"=>$result,"msg"=>$msg,"info"=>$info));

@@ -137,6 +137,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
 Route::get('/openapi/userinfo', 'OpenapiController@getUserinfo');
 Route::get('/openapi/extcredits1', 'OpenapiController@getExtcredits1');
 Route::get('/openapi/extcredits4', 'OpenapiController@getExtcredits4');
+Route::post('/openapi/register', 'OpenapiController@register');
 /**********************2017-07-28*****************************/
 
 
