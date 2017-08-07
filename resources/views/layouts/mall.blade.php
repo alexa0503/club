@@ -110,6 +110,9 @@
                     <li>
                         <a href="/bbs" >车型论坛</a>
                     </li>
+                    <li>
+                        <a href="/bbs/forum.php?gid=44" >风迷活动</a>
+                    </li>
                     <!--<li>
                         <a href="/bbs" >车主聚会</a>
                     </li>-->
