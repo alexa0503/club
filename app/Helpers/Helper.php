@@ -1,5 +1,6 @@
 <?php
 namespace App\Helpers;
+use Illuminate\Support\Facades\DB;
 /**
  *
  */
@@ -80,11 +81,11 @@ class Helper
         $user_count->extcredits1 += $credits1;
         $user_count->extcredits4 += $credits4;
         //更新积分
-        DB::table('discuz_common_member_count')->where('uid',$uid)->update([
+        \DB::table('discuz_common_member_count')->where('uid',$uid)->update([
             'extcredits1' => $user_count->extcredits1,
             'extcredits4' => $user_count->extcredits4,
         ]);
-        $logid = DB::table('discuz_common_credit_log')->insertGetId([
+        $logid = \DB::table('discuz_common_credit_log')->insertGetId([
             'uid' => $uid,
             'operation'=>'',
             'relatedid'=>$uid,
@@ -99,7 +100,7 @@ class Helper
             'extcredits8'=>0,
         ]);
         //插入日志
-        DB::table('discuz_common_credit_log_field')->insert([
+        \DB::table('discuz_common_credit_log_field')->insert([
             'logid'=>$logid,
             'title'=>$data['title'],
             'text'=> $reason,
