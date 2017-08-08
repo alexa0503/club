@@ -42,46 +42,14 @@ class PointsUpdate extends Command
         $verifies = \App\Verify::where('status','>=',0)->get();
         foreach($verifies as $verify){
             $uid = $verify->uid;
-            $user = \DB::table('discuz_common_member')
-                ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
-                ->select('discuz_common_member.groupid','discuz_common_usergroup.grouptitle')
-                ->where('uid',$uid)->first();
-            switch ($user->groupid){
-                case 11:
-                    //$member_level = '银牌';
-                    $multiple = 1;
-                    break;
-                case 12:
-                    //$member_level = '金牌';
-                    $multiple = 1.2;
-                    break;
-                case 13:
-                    //$member_level = '铂金';
-                    $multiple = 1.5;
-                    break;
-                case 14:
-                    //$member_level = '钻石';
-                    $multiple = 2;
-                    break;
-                default:
-                    //$member_level = '铜牌';
-                    $multiple = 1;
-            }
-            $member_level = $user->grouptitle;
-            DiscuzHelper::checkUserGroup($verify->uid);//更新用户等级
             $frame_number = $verify->frame_number;//车架号
-            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
-            $options = [
-                'json'=>json_encode([
-                    'vin'=>$frame_number,
-                    'member_level'=>$member_level,
-                    'multiple'=>$multiple,
-                ])
-            ];
-            $response = $client->__soapCall("addMemberLevelInfo", array($options));
-            $result = json_decode($response->addMemberLevelInfoReturn,true);
-            if( !$result || $result['ret'] != 0){
-                continue;
+
+            $_log = \App\OwnerLog::where('verify_id', $verify->id)->orderBy('score_id','DESC')->first();
+            if( $_log == null ){
+                $score_id = 0;
+            }
+            else{
+                $score_id = $_log->score_id;
             }
 
             //新增积分
@@ -89,12 +57,14 @@ class PointsUpdate extends Command
             $options = [
                 'in'=>json_encode([
                     'frame_number'=>$frame_number,
+                    'score_id' => $score_id,
                 ])
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));
             $result = json_decode($response->out,true);
+            //$result = json_decode('{"data":[{"Dealer":"F31-0002","spent_at":"2017-08-08 00:00:00.0","Rono":"AROF31-0002170800128","Type":"11441001","SCORE_ID":"201707070899","vin":"LVZA53P94GC578465","Coin":"156","Point":"156","Reason":"自费购买配件：韩国SK风光机油SM5W-30"}],"ret":"0","msg":"ok"}',true);
             \Log::info('积分新增['.$frame_number.']:'.$response->out);
-            //var_dump($result);
+            var_dump($result);
             if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
                 foreach ($result['data'] as $data){
                     $count = \App\OwnerLog::where('uid', $uid)

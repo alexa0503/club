@@ -137,57 +137,25 @@ class OwnerController extends Controller
     {
         $uid = session('discuz.user.uid');
         $verifies = \App\Verify::where('uid',$uid)->where('status','>=',0)->get();
-        //$user = \App\User::where('uid', $uid)->first();
-        $user = \DB::table('discuz_common_member')
-            ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
-            ->select('discuz_common_member.groupid','discuz_common_usergroup.grouptitle')
-            ->where('uid',$uid)->first();
-        switch ($user->groupid){
-            case 11:
-                //$member_level = '银牌';
-                $multiple = 1;
-                break;
-            case 12:
-                //$member_level = '金牌';
-                $multiple = 1.2;
-                break;
-            case 13:
-                //$member_level = '铂金';
-                $multiple = 1.5;
-                break;
-            case 14:
-                //$member_level = '钻石';
-                $multiple = 2;
-                break;
-            default:
-                //$member_level = '铜牌';
-                $multiple = 1;
-        }
-        $member_level = $user->grouptitle;
+
+
 
         foreach($verifies as $verify){
-            DiscuzHelper::checkUserGroup($verify->uid);//更新用户等级
             $frame_number = $verify->frame_number;//车架号
-            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
-            $options = [
-                'json'=>json_encode([
-                    'vin'=>$frame_number,
-                    'member_level'=>$member_level,
-                    'multiple'=>$multiple,
-                ])
-            ];
-            $response = $client->__soapCall("addMemberLevelInfo", array($options));
-            $result = json_decode($response->addMemberLevelInfoReturn,true);
-            //var_dump($result);
-            if( !$result || $result['ret'] != 0){
-                continue;
-            }
 
+            $_log = \App\OwnerLog::where('verify_id', $verify->id)->orderBy('score_id','DESC')->first();
+            if( $_log == null ){
+                $score_id = 0;
+            }
+            else{
+                $score_id = $_log->score_id;
+            }
             //新增积分
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl");
             $options = [
                 'in'=>json_encode([
                     'frame_number'=>$frame_number,
+                    'score_id' => $score_id,
                 ])
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));

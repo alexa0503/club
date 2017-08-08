@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         Commands\SendCoupons::class,
         Commands\CarsRefund::class,
         Commands\ObtainCoupons::class,
+        Commands\SendLevels::class,
     ];
 
     /**
@@ -39,7 +40,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('cars:refund')
             ->everyMinute();
         $schedule->command('points:update')
-            ->everyFiveMinutes();
+            ->dailyAt('03:00');
+        $schedule->command('send:levels')
+            ->dailyAt('00:00');
 
     }
 
