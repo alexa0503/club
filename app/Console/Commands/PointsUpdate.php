@@ -93,6 +93,7 @@ class PointsUpdate extends Command
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));
             $result = json_decode($response->out,true);
+            \Log::info('积分新增['.$frame_number.']:'.$response->out);
             //var_dump($result);
             if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
                 foreach ($result['data'] as $data){
@@ -122,6 +123,7 @@ class PointsUpdate extends Command
             ];
             $response = $client->__soapCall("CancelOrderAccount", array($options));
             $result1 = json_decode($response->out,true);
+            \Log::info('工单取消['.$frame_number.']:'.$response->out);
             //var_dump($result1);
             if($result1 && $result1['ret'] == 0 && isset($result1['data']) && is_array($result1['data'])){
                 foreach ($result1['data'] as $data){
