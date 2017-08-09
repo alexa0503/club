@@ -1187,7 +1187,7 @@ body {
                 </tr>
             </table>
         </div>
-        <p style="font-size:9pt; line-height:115%; margin:0pt 0pt 10pt"><span style="font-family:Arial; font-size:9pt; font-weight:bold">&#xa0;</span>
+        <p style="font-size:9pt; line-height:115%; margin:5pt 57pt 10pt"><span style="font-family:微软雅黑; font-size:9pt;">会员购买制定消费类获得积分与风迷币每日24：00更新，新注册认证的会员按注册当日进行计算。</span>
         </p>
         <p style="margin:0pt"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">附表二：已</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">购车入会</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">奖励</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">明细表</span>
             <span
