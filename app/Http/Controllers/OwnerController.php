@@ -111,6 +111,46 @@ class OwnerController extends Controller
             'text'=>'车主认证通过奖励',
         ]);
 
+        DiscuzHelper::checkUserGroup($uid);//更新用户等级
+        $user = \DB::table('discuz_common_member')
+            ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
+            ->select('discuz_common_member.groupid','discuz_common_usergroup.grouptitle')
+            ->where('uid',$uid)->first();
+        switch ($user->groupid){
+            case 11:
+                //$member_level = '银牌';
+                $multiple = 1;
+                break;
+            case 12:
+                //$member_level = '金牌';
+                $multiple = 1.2;
+                break;
+            case 13:
+                //$member_level = '铂金';
+                $multiple = 1.5;
+                break;
+            case 14:
+                //$member_level = '钻石';
+                $multiple = 2;
+                break;
+            default:
+                //$member_level = '铜牌';
+                $multiple = 1;
+        }
+        $member_level = $user->grouptitle;
+        $user_count = \DB::table('discuz_common_member_count')->where('uid', $uid)->first();
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
+        $options = [
+            'json'=>json_encode([
+                'vin'=>$request->frame_number,
+                'member_level'=>$member_level,
+                'multiple'=>$multiple,
+                'total_scores'=>$user_count->extcredits1,
+                'total_fmb'=>$user_count->extcredits4,
+            ])
+        ];
+        $response = $client->__soapCall("addMemberLevelInfo", array($options));
+
         //发送消息
         if( env('APP_ENV') != 'local'){
             $key = env('DISCUZ_UCKEY');
@@ -137,8 +177,6 @@ class OwnerController extends Controller
     {
         $uid = session('discuz.user.uid');
         $verifies = \App\Verify::where('uid',$uid)->where('status','>=',0)->get();
-
-
 
         foreach($verifies as $verify){
             $frame_number = $verify->frame_number;//车架号
