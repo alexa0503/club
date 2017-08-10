@@ -111,6 +111,7 @@ class OwnerController extends Controller
             'text'=>'车主认证通过奖励',
         ]);
 
+        $verifies = \App\Verify::where('status','>=',0)->where('uid', $uid)->get();
         DiscuzHelper::checkUserGroup($uid);//更新用户等级
         $user = \DB::table('discuz_common_member')
             ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
@@ -139,17 +140,19 @@ class OwnerController extends Controller
         }
         $member_level = $user->grouptitle;
         $user_count = \DB::table('discuz_common_member_count')->where('uid', $uid)->first();
-        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
-        $options = [
-            'json'=>json_encode([
-                'vin'=>$request->frame_number,
-                'member_level'=>$member_level,
-                'multiple'=>$multiple,
-                'total_scores'=>$user_count->extcredits1,
-                'total_fmb'=>$user_count->extcredits4,
-            ])
-        ];
-        $response = $client->__soapCall("addMemberLevelInfo", array($options));
+        foreach($verifies as $verify){
+            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
+            $options = [
+                'json'=>json_encode([
+                    'vin'=>$verify->frame_number,
+                    'member_level'=>$member_level,
+                    'multiple'=>$multiple,
+                    'total_scores'=>$user_count->extcredits1,
+                    'total_fmb'=>$user_count->extcredits4,
+                ])
+            ];
+            $response = $client->__soapCall("addMemberLevelInfo", array($options));
+        }
 
         //发送消息
         if( env('APP_ENV') != 'local'){
