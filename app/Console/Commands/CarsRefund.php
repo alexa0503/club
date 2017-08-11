@@ -85,14 +85,14 @@ class CarsRefund extends Command
                     if($_n > 0){
                         $owner_logs = \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->get();
                         foreach($owner_logs as $log){
-                            $credits1 -= $log->point;
-                            $credits4 -= $log->coin;
+                            $credits1 -= abs($log->point);
+                            $credits4 -= abs($log->coin);
                         }
                         \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->delete();
                     }
                 }
-                $user_count->extcredits1 += $credits1;
-                $user_count->extcredits4 += $credits4;
+                $user_count->extcredits1 = $user_count->extcredits1 - abs($credits1);
+                $user_count->extcredits4 = $user_count->extcredits4 - abs($credits4);
 
                 //更新积分
                 \DB::table('discuz_common_member_count')
