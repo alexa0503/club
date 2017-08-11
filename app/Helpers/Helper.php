@@ -45,6 +45,30 @@ class Helper
         ];
         return str_ireplace($search, $replace, $string);
     }
+    public static function getCreditsFromCarModel($model_code)
+    {
+        $model_code = \App\Helpers\Helper::replaceCarModel($model_code);
+        switch (strtoupper($model_code)){
+            case '风光580':
+            case '风光580智尚版':
+                $credits1 = 4000;
+                $credits4 = 0;
+                break;
+            case '风光370':
+            case '风光360':
+                $credits1 = 2000;
+                $credits4 = 0;
+                break;
+            case '风光330':
+                $credits1 = 1000;
+                $credits4 = 0;
+                break;
+            default:
+                $credits1 = 500;
+                $credits4 = 0;
+        }
+        return $credits1;
+    }
     public static function updateLog($uid,$data)
     {
         if( $data['generate_way'] == 2 ){

@@ -11,9 +11,10 @@ class OwnerController extends Controller
 {
     public function verify(Request $request)
     {
+        $request->merge(array_map('trim', $request->all()));
         $messages = [
-            'frame_number.required' => '请填写17位数字加英文车架号',
-            'frame_number.regex' => '请填写17位数字加英文车架号',
+            'frame_number.required' => '请填写8位数字加英文车架号',
+            'frame_number.regex' => '请填写8位数字加英文车架号',
             'frame_number.unique' => '该车架号已经被使用过了',
             'id_card.required' => '必须填写身份证号',
         ];
@@ -21,7 +22,7 @@ class OwnerController extends Controller
             'frame_number' => [
                 'required',
                 'unique:verifies,frame_number',
-                'regex:/^[a-z0-9A-Z]{17}$/'
+                'regex:/^[a-z0-9A-Z]{8}$/'
             ],
             'id_card' => 'required',
         ], $messages);
@@ -59,27 +60,13 @@ class OwnerController extends Controller
         $veirfy->uid = $uid;
         $veirfy->frame_number = $request->frame_number;
         $veirfy->id_card = $request->id_card;
-        $veirfy->model_code = $result['modelCode'];
+        $model_code = $veirfy->model_code = \App\Helpers\Helper::replaceCarModel($result['modelCode']);
         $veirfy->save();
 
         $user_count = \App\UserCount::where('uid',$uid)->first();
+        $credits1 = \App\Helpers\Helper::getCreditsFromCarModel($model_code);
+        $credits4 = 0;
 
-        //$count = \App\Verify::where('uid', $uid)->count();
-        switch (strtoupper($result['modelCode'])){
-            case 'F507':
-            case 'F507S':
-                $credits1 = 4000;
-                $credits4 = 0;
-                break;
-            case 'F506':
-            case 'F506S':
-                $credits1 = 2000;
-                $credits4 = 0;
-                break;
-            default:
-                $credits1 = 500;
-                $credits4 = 0;
-        }
 
         $user_count->extcredits1 += $credits1;
         $user_count->extcredits4 += $credits4;
