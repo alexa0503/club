@@ -706,7 +706,7 @@ body {
                 </tr>
             </tbody></table>
         </div>
-        <p style="margin:0pt"><span style="font-family:微软雅黑; font-size:9pt">备注：</span><span style="font-family:Arial; font-size:9pt">1.</span><span style="font-family:微软雅黑; font-size:9pt">车友会</span><span style="font-family:微软雅黑; font-size:9pt">有权</span><span style="font-family:微软雅黑; font-size:9pt">根据实际情况调整会员权益项目，请以</span>
+        <p style="margin:0pt"><span style="font-weight: bold;font-family:微软雅黑; font-size:9pt">备注：</span><span style="font-family:Arial; font-size:9pt">1.</span><span style="font-family:微软雅黑; font-size:9pt">车友会</span><span style="font-family:微软雅黑; font-size:9pt">有权</span><span style="font-family:微软雅黑; font-size:9pt">根据实际情况调整会员权益项目，请以</span>
             <span style="font-family:微软雅黑; font-size:9pt">当期</span><span style="font-family:微软雅黑; font-size:9pt">官方</span><span style="font-family:微软雅黑; font-size:9pt">公告</span><span style="font-family:微软雅黑; font-size:9pt">为准。</span>
         </p>
         <p style="margin:0pt"><span style="font-family:微软雅黑; font-size:9pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family:微软雅黑; font-size:9pt"> </span><span style="font-family:Arial; font-size:9pt">2.</span><span style="font-family:微软雅黑; font-size:9pt">会员根</span><span style="font-family:微软雅黑; font-size:9pt">据自己的会员级别享受相应的会员权益，在服务过程中应主动提供会员</span>
