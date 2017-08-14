@@ -87,12 +87,12 @@ class MallController extends Controller
                 $has_coupon = true;
                 $code = [];
                 for ($i=0; $i<$cart->quantity ;$i++){
-                    $bytes = random_bytes(6);
+
                     $coupon = new \App\Coupon();
                     $coupon->uid = $uid;
                     $coupon->value = $cart->color;
                     $coupon->valid_date = $cart->item->valid_date;
-                    $code[] = $coupon->code = $uid.substr(bin2hex($bytes), 0, 13).date('Ymd');
+                    $code[] = $coupon->code = \App\Helpers\Helper::generateCouponCode();
                     $coupon->save();
                 }
                 $_item['code'] = implode($code,',');

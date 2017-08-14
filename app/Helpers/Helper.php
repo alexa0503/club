@@ -130,4 +130,17 @@ class Helper
             'text'=> $reason,
         ]);
     }
+    //生成优惠券码
+    public static function generateCouponCode()
+    {
+        $bytes = random_bytes(6);
+        $code = date('Ymd').substr(bin2hex($bytes), 0, 6);
+        $count = \App\Coupon::where('code', $code)->count();
+        if($count > 0){
+            return \App\Helpers\Helper::generateCouponCode();
+        }
+        else{
+            return $code;
+        }
+    }
 }
