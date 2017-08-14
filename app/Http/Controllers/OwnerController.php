@@ -252,8 +252,8 @@ class OwnerController extends Controller
     public function reference(Request $request)
     {
         $messages = [
-            'frame_number.required' => '请填写17位数字加英文车架号',
-            'frame_number.regex' => '请填写17位数字加英文车架号',
+            'frame_number.required' => '请填写8位数字加英文车架号',
+            'frame_number.regex' => '请填写8位数字加英文车架号',
             'frame_number.unique' => '该车架号已经推荐过了',
             'username.required' => '必须填写推荐用户名',
             'username.exists' => '推荐的用户名不存在哦',
@@ -262,7 +262,7 @@ class OwnerController extends Controller
             'frame_number' => [
                 'required',
                 'unique:references,frame_number',
-                'regex:/^[a-z0-9A-Z]{17}$/'
+                'regex:/^[a-z0-9A-Z]{8}$/'
             ],
             'username' => 'required|exists:discuz_common_member,username',
         ], $messages);
