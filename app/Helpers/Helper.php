@@ -44,8 +44,8 @@ class Helper
     }
     public static function getCreditsFromCarModel($model_code)
     {
-        $_code = self::replaceCarModel($model_code);
-        switch ($_code){
+        //$_code = self::replaceCarModel($model_code);
+        switch ($model_code){
             case '风光580':
             case '风光580智尚版':
                 $credits1 = 4000;

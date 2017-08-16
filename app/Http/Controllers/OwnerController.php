@@ -81,11 +81,11 @@ class OwnerController extends Controller
         $veirfy->uid = $uid;
         $veirfy->frame_number = $frame_number;
         $veirfy->id_card = $request->id_card;
-        $veirfy->model_code = \App\Helpers\Helper::replaceCarModel($result['modelCode']);
+        $model_code = $veirfy->model_code = \App\Helpers\Helper::replaceCarModel($result['modelCode']);
         $veirfy->save();
 
         $user_count = \App\UserCount::where('uid',$uid)->first();
-        $credits1 = \App\Helpers\Helper::getCreditsFromCarModel($result['modelCode']);
+        $credits1 = \App\Helpers\Helper::getCreditsFromCarModel($model_code);
         $credits4 = 0;
 
         $user_count->extcredits1 += $credits1;
