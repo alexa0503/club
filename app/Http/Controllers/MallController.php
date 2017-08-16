@@ -148,7 +148,7 @@ class MallController extends Controller
             'uid' => $uid,
             'operation' => '',
             'relatedid' => $uid,
-            'dateline' => time() + 8 * 3600,
+            'dateline' => time(),
             'extcredits1' => 0,
             'extcredits4' => $amount_point * -1,
             'extcredits2' => 0,
