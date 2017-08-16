@@ -37,7 +37,7 @@
                     <div class="form-group" id="form-group-frame_number">
                         <label for="frame_number" class="col-md-2 col-xs-2 control-label">车架号:</label>
                         <div class="col-md-10 col-xs-10">
-                            <input class="form-control" type="text" value="" id="frame_number" name="frame_number" placeholder="输入车架号">
+                            <input class="form-control" type="text" value="" id="frame_number" name="frame_number" placeholder="输入后八位车架号">
                             <label class="help-block" for="frame_number" id="help-frame_number"></label>
                         </div><!-- /.col -->
                     </div><!-- /form-group -->
