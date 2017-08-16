@@ -77,7 +77,7 @@ class Helper
             $credits1 = $data['Point'];
             $credits4 = $data['Coin'];
         }
-        $reason = self::replaceCarModel($data['Reason']);
+        $reason = $data['Reason'];
         //\App\Helpers\Helper::replaceCarModel($data['Reason']);
         $spent_at = date('Y-m-d H:i:s',strtotime($data['spent_at']));
         $log = new \App\OwnerLog();

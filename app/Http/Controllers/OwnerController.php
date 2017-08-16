@@ -81,7 +81,7 @@ class OwnerController extends Controller
         $veirfy->uid = $uid;
         $veirfy->frame_number = $frame_number;
         $veirfy->id_card = $request->id_card;
-        $model_code = $veirfy->model_code = \App\Helpers\Helper::replaceCarModel($result['modelCode']);
+        $veirfy->model_code = \App\Helpers\Helper::replaceCarModel($result['modelCode']);
         $veirfy->save();
 
         $user_count = \App\UserCount::where('uid',$uid)->first();
