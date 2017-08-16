@@ -67,6 +67,7 @@ class CarsRefund extends Command
                 $credits4 = 0;
 
                 //如果没有其他认证车辆
+                /*
                 $count = \App\Verify::where('uid', $uid)->where('status','>=','0')->count();
                 if($count == 0){
                     $_n = \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->count();
@@ -78,6 +79,16 @@ class CarsRefund extends Command
                         }
                         \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->delete();
                     }
+                }
+                */
+                $_n = \App\OwnerLog::where('verify_id', $verify->id)->where('generate_way','1')->count();
+                if($_n > 0){
+                    $owner_logs = \App\OwnerLog::where('verify_id', $verify->id)->where('generate_way','1')->get();
+                    foreach($owner_logs as $log){
+                        $credits1 += (-1)*abs($log->point);
+                        $credits4 += (-1)*abs($log->coin);
+                    }
+                    \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->delete();
                 }
 
                 $user_count->extcredits1 = $user_count->extcredits1 + $credits1;
