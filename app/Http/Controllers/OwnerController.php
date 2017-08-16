@@ -64,7 +64,7 @@ class OwnerController extends Controller
         $veirfy->save();
 
         $user_count = \App\UserCount::where('uid',$uid)->first();
-        $credits1 = \App\Helpers\Helper::getCreditsFromCarModel($model_code);
+        $credits1 = \App\Helpers\Helper::getCreditsFromCarModel($result['modelCode']);
         $credits4 = 0;
 
 
