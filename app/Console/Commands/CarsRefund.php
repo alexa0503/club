@@ -63,6 +63,7 @@ class CarsRefund extends Command
                 $user_count = \App\UserCount::where('uid',$uid)->first();
 
                 $credits1 = \App\Helpers\Helper::getCreditsFromCarModel($verify->model_code);
+                $credits1 = -1*abs($credits1);
                 $credits4 = 0;
 
                 //如果没有其他认证车辆
@@ -72,14 +73,14 @@ class CarsRefund extends Command
                     if($_n > 0){
                         $owner_logs = \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->get();
                         foreach($owner_logs as $log){
-                            $credits1 -= abs($log->point);
-                            $credits4 -= abs($log->coin);
+                            $credits1 += -1*abs($log->point);
+                            $credits4 += -1*abs($log->coin);
                         }
                         \App\OwnerLog::where('uid', $uid)->where('generate_way','1')->delete();
                     }
                 }
-                $user_count->extcredits1 = $user_count->extcredits1 - abs($credits1);
-                $user_count->extcredits4 = $user_count->extcredits4 - abs($credits4);
+                $user_count->extcredits1 = $user_count->extcredits1 + $credits1
+                $user_count->extcredits4 = $user_count->extcredits4 + $credits4;
 
                 //更新积分
                 \DB::table('discuz_common_member_count')
