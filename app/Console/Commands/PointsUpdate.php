@@ -62,18 +62,10 @@ class PointsUpdate extends Command
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));
             $result = json_decode($response->out,true);
-            //$result = json_decode('{"data":[{"Dealer":"F31-0002","spent_at":"2017-08-08 00:00:00.0","Rono":"AROF31-0002170800128","Type":"11441001","SCORE_ID":"201707070899","vin":"LVZA53P94GC578465","Coin":"156","Point":"156","Reason":"自费购买配件：韩国SK风光机油SM5W-30"}],"ret":"0","msg":"ok"}',true);
             \Log::info('积分新增['.$frame_number.']:'.$response->out);
-            var_dump($result);
             if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
                 foreach ($result['data'] as $data){
-                    $count = \App\OwnerLog::where('uid', $uid)
-                        //->where('spent_at', $spent_at)
-                        ->where('generate_way', 1)
-                        //->where('reason', $data['Reason'])
-                        ->where('score_id', $data['SCORE_ID'])
-                        ->count();
-
+                    $count = \App\OwnerLog::where('score_id', $data['SCORE_ID'])->count();
                     if( $count > 0 ){
                         continue;
                     }
@@ -85,10 +77,18 @@ class PointsUpdate extends Command
             }
 
             //工单取消
+            $_log = \App\OwnerLog::where('verify_id', $verify->id)->where('generate_way',2)->orderBy('score_id','DESC')->first();
+            if( $_log == null ){
+                $score_id = 0;
+            }
+            else{
+                $score_id = $_log->score_id;
+            }
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY05SOAP?wsdl");
             $options = [
                 'in'=>json_encode([
                     'frame_number'=>$frame_number,
+                    'score_id'=>$score_id,
                 ])
             ];
             $response = $client->__soapCall("CancelOrderAccount", array($options));
@@ -97,14 +97,7 @@ class PointsUpdate extends Command
             //var_dump($result1);
             if($result1 && $result1['ret'] == 0 && isset($result1['data']) && is_array($result1['data'])){
                 foreach ($result1['data'] as $data){
-
-                    $count = \App\OwnerLog::where('uid', $uid)
-                        //->where('spent_at', $spent_at)
-                        ->where('generate_way', 2)
-                        //->where('reason', $data['Reason'])
-                        ->where('score_id', $data['SCORE_ID'])
-                        ->count();
-
+                    $count = \App\OwnerLog::where('score_id', $data['SCORE_ID'])->count();
                     if( $count > 0 ){
                         continue;
                     }

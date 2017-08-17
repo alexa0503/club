@@ -39,8 +39,16 @@ class OwnerVerify extends Command
      */
     public function handle()
     {
-        $result = \App\Helpers\Helper::replaceCarModel('K05(K01)晚上的的');
-        var_dump($result);
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY05SOAP?wsdl");
+        $options = [
+            'in'=>json_encode([
+                'frame_number'=>'LVZA53P94GC578465',
+                'score_id'=>0,
+            ])
+        ];
+        $response = $client->__soapCall("CancelOrderAccount", array($options));
+        $result1 = json_decode($response->out,true);
+        var_dump($result1);
         return;
         $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY08SOAP?wsdl");
         $options = [
