@@ -191,7 +191,7 @@ class OwnerController extends Controller
         foreach($verifies as $verify){
             $frame_number = $verify->frame_number;//车架号
 
-            $_log = \App\OwnerLog::where('verify_id', $verify->id)->orderBy('score_id','DESC')->first();
+            $_log = \App\OwnerLog::where('verify_id', $verify->id)->where('generate_way',1)->orderBy('score_id','DESC')->first();
             if( $_log == null ){
                 $score_id = 0;
             }
@@ -229,10 +229,18 @@ class OwnerController extends Controller
             }
 
             //工单取消
+            $_log = \App\OwnerLog::where('verify_id', $verify->id)->where('generate_way',2)->orderBy('score_id','DESC')->first();
+            if( $_log == null ){
+                $score_id = 0;
+            }
+            else{
+                $score_id = $_log->score_id;
+            }
             $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY05SOAP?wsdl");
             $options = [
                 'in'=>json_encode([
                     'frame_number'=>$frame_number,
+                    'score_id' => $score_id,
                 ])
             ];
             $response = $client->__soapCall("CancelOrderAccount", array($options));
