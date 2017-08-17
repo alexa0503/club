@@ -94,19 +94,12 @@ class PointsUpdate extends Command
             $response = $client->__soapCall("CancelOrderAccount", array($options));
             $result1 = json_decode($response->out,true);
             \Log::info('工单取消['.$frame_number.']:'.$response->out);
-            //var_dump($result1);
             if($result1 && $result1['ret'] == 0 && isset($result1['data']) && is_array($result1['data'])){
                 foreach ($result1['data'] as $data){
                     $count = \App\OwnerLog::where('score_id', $data['SCORE_ID'])->count();
                     if( $count > 0 ){
                         continue;
                     }
-                    /*
-                    \App\OwnerLog::where('uid', $uid)
-                        ->where('generate_way', 2)
-                        ->where('rono', $data['Rono'])
-                        ->delete();
-                    */
                     $data['title'] = '车主工单取消';
                     $data['generate_way'] = 2;
                     $data['verify_id'] = $verify->id;

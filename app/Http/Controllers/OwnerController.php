@@ -187,6 +187,12 @@ class OwnerController extends Controller
     {
         $uid = session('discuz.user.uid');
         $verifies = \App\Verify::where('uid',$uid)->where('status','>=',0)->get();
+        $updated_at = session('points.updated_at');
+        //限制用户频繁请求
+        if($updated_at > time() - 30 ){
+            return;
+        }
+        \Session::put('points.updated_at', time());
 
         foreach($verifies as $verify){
             $frame_number = $verify->frame_number;//车架号
