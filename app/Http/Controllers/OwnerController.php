@@ -28,7 +28,7 @@ class OwnerController extends Controller
         ], $messages);
         $validator->after(function ($validator) use($request) {
             $frame_number = $request->frame_number;
-            $count = \App\Verify::where('frame_number','like','%'.$frame_number)->count();
+            $count = \App\Verify::where('frame_number','like','%'.$frame_number)->where('status','>=',0)->count();
             if( $count > 0){
                 $validator->errors()->add('frame_number', '该车架号已经被使用过了');
             }
