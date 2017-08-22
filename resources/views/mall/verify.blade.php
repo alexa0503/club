@@ -42,9 +42,9 @@
                         </div><!-- /.col -->
                     </div><!-- /form-group -->
                     <div class="form-group" id="form-group-id_card">
-                        <label for="id_card" class="col-md-2 col-xs-2 control-label">身份证:</label>
+                        <label for="id_card" class="col-md-2 col-xs-2 control-label">姓名:</label>
                         <div class="col-md-10 col-xs-10">
-                            <input class="form-control" type="text" value="" id="id_card" name="id_card" placeholder="输入身份证">
+                            <input class="form-control" type="text" value="" id="id_card" name="id_card" placeholder="输入姓名">
                             <label class="help-block" for="id_card" id="help-id_card"></label>
                         </div><!-- /.col -->
                     </div><!-- /form-group -->
@@ -96,7 +96,7 @@
                                             <td style="border-top: none;">{{$verify->frame_number}}</td>
                                         </tr>
                                         <tr>
-                                            <td>身份证</td>
+                                            <td>姓名</td>
                                             <td>{{$verify->id_card}}</td>
                                         </tr>
                                         <tr>

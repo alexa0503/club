@@ -12,11 +12,14 @@ class OwnerController extends Controller
     public function verify(Request $request)
     {
         $request->merge(array_map('trim', $request->all()));
+        $uid = session('discuz.user.uid');
         $messages = [
             'frame_number.required' => '请填写8位数字加英文车架号',
             'frame_number.regex' => '请填写8位数字加英文车架号',
             //'frame_number.unique' => '该车架号已经被使用过了',
-            'id_card.required' => '必须填写身份证号',
+            'id_card.required' => '必须填写姓名',
+            'id_card.min'=>'姓名不能少于两位',
+            'id_card.max'=>'姓名不能大于40位',
         ];
         $validator = Validator::make($request->all(), [
             'frame_number' => [
@@ -24,7 +27,7 @@ class OwnerController extends Controller
                 //'unique:verifies,frame_number',
                 'regex:/^[a-z0-9A-Z]{8}$/'
             ],
-            'id_card' => 'required',
+            'id_card' => 'required|min:2|max:40',
         ], $messages);
         $validator->after(function ($validator) use($request) {
             $frame_number = $request->frame_number;
@@ -32,26 +35,12 @@ class OwnerController extends Controller
             if( $count > 0){
                 $validator->errors()->add('frame_number', '该车架号已经被使用过了');
             }
-
-            /*
-            $options = [
-                'frame_number'=>$request->frame_number,
-                'id_card'=>$request->id_card,
-                'register_date'=>date('Y-m-d H:i:s'),
-                'type'=>'1',
-            ];
-            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY01SOAP?wsdl");
-            $options = [
-                'in'=>json_encode($options),
-            ];
-            $response = $client->__soapCall("Hy01", array($options));
-            $result = json_decode($response->out,true);
-            //var_dump($result);
-            if( !$result || $result['ret']!= 0){
-                $validator->errors()->add('frame_number', '车架号或身份证输入错误，请重新填写。');
-                //return response(['ret'=>1001,'msg'=>'车架号或身份证输入错误，请重新填写。']);
+        });
+        $validator->after(function ($validator) use($uid,$request) {
+            $vf = \App\Verify::where('uid', $uid)->where('status','>=',0)->first();
+            if( $vf != null && $vf->id_card != $request->id_card ){
+                $validator->errors()->add('id_card', '此次认证与上次认证姓名不一致');
             }
-            */
         });
 
         if ($validator->fails()) {
@@ -73,10 +62,9 @@ class OwnerController extends Controller
         if( !$result || $result['ret']!= 0){
             return response(['ret'=>1001,'msg'=>'车架号或身份证输入错误，请重新填写。']);
         }
-
+        //获取18位车架号
         $frame_number = $result['vin'];
 
-        $uid = session('discuz.user.uid');
         $veirfy = new \App\Verify();
         $veirfy->uid = $uid;
         $veirfy->frame_number = $frame_number;
