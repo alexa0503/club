@@ -14,125 +14,186 @@ class OpenapiController extends Controller{
 	public function __construct(Request $request){
         //echo \Route::current()->getActionName();die;
         $this->timestamp = time();
-        if(strpos("register",\Route::current()->getActionName()) !== false){
-    		$messages = [
-                'Vin.required' => '参数不能为空',
-                'Vin.regex' => '格式错误',
-            ];
-            $validator = Validator::make($request->all(), [
-                'Vin' => [
-                    'required',
-                    'regex:/^[a-z0-9A-Z]{17}$/',
-                ],
-            ], $messages);
+        $request->merge(array_map('trim', $request->all()));
+        
+        $messages = [
+            'Vin.required' => '参数不能为空',
+            'Vin.regex' => '格式错误',
+        ];
+        $validator = Validator::make($request->all(), [
+            'Vin' => [
+                'required',
+                'regex:/^[a-z0-9A-Z]{17}$/',
+            ],
+        ], $messages);
 
-            if ($validator->fails()) {
-                $this->jsond(0,$validator->errors()->first());
-            }
+        if ($validator->fails()) {
+            //$this->jsond(0,$validator->errors()->first());
         }
 	}
 
 
 	public function getUserinfo(Request $request){
+        $info = $this->userinfo($request);
+        if($info) $this->jsond(1,"SUCC",$info);
+        //没有数据，自动注册
+        $messages = [
+            'id_card.required' => '参数不能为空',
+        ];
+        $validator = Validator::make($request->all(), [
+            'id_card' => [
+                'required',
+            ],
+        ], $messages);
+
+        if ($validator->fails()) {
+            $this->jsond(0,$validator->errors()->first());
+        }
+        $Vin = substr($request->Vin,-8);
+        //根据vin和id_card获取车型
+        $options = [
+            'frame_number'=>$Vin,
+            'id_card'=>$request->id_card,
+            'register_date'=>$this->timestamp,
+            'type'=>'1',
+        ];
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY01SOAP?wsdl");
+        $options = [
+            'in'=>json_encode($options),
+        ];
+        $response = $client->__soapCall("Hy01", array($options));
+        $result = json_decode($response->out,true);
+        //print_r($result);die;
+        if( !$result || $result['ret']!= 0){
+            $this->jsond(0,"车架号或身份证输入错误，请重新填写。");
+        }
+
+        $frame_number = $result['vin'];
+        //vin后8位为用户名，密码统一为123456
+        $request->username = $Vin;
+        $request->password = "123456";
+        $uid = $this->register($request);
+        //记录认证信息
+        $veirfy = new \App\Verify();
+        $veirfy->uid = $uid;
+        $veirfy->frame_number = $frame_number;
+        $veirfy->id_card = $request->id_card;
+        $model_code = $veirfy->model_code = \App\Helpers\Helper::replaceCarModel($result['modelCode']);
+        $veirfy->save();
+
+        $user_count = \App\UserCount::where('uid',$uid)->first();
+        $credits1 = \App\Helpers\Helper::getCreditsFromCarModel($model_code);
+        $credits4 = 0;
+
+        $user_count->extcredits1 += $credits1;
+        $user_count->extcredits4 += $credits4;
+        //print_r($user_count);die;
+        //更新积分
+        DB::table('discuz_common_member_count')
+            ->where('uid',$uid)
+            ->update([
+                'extcredits1' => $user_count->extcredits1,
+                'extcredits4' => $user_count->extcredits4,
+            ]);
+        $logid = DB::table('discuz_common_credit_log')->insertGetId([
+            'uid' => $uid,
+            'operation'=>'',
+            'relatedid'=>$uid,
+            'dateline'=>$this->timestamp,
+            'extcredits1'=>$credits1,
+            'extcredits4'=>$credits4,
+            'extcredits2'=>0,
+            'extcredits3'=>0,
+            'extcredits5'=>0,
+            'extcredits6'=>0,
+            'extcredits7'=>0,
+            'extcredits8'=>0,
+        ]);
+        //插入日志
+        DB::table('discuz_common_credit_log_field')->insert([
+            'logid'=>$logid,
+            'title'=>'车主认证',
+            'text'=>'车主认证通过奖励',
+        ]);
+
+        $verifies = \App\Verify::where('status','>=',0)->where('uid', $uid)->get();
+        DiscuzHelper::checkUserGroup($uid);//更新用户等级
+        $user = \DB::table('discuz_common_member')
+            ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
+            ->select('discuz_common_member.groupid','discuz_common_usergroup.grouptitle')
+            ->where('uid',$uid)->first();
+        switch ($user->groupid){
+            case 11:
+                //$member_level = '银牌';
+                $multiple = 1;
+                break;
+            case 12:
+                //$member_level = '金牌';
+                $multiple = 1.2;
+                break;
+            case 13:
+                //$member_level = '铂金';
+                $multiple = 1.5;
+                break;
+            case 14:
+                //$member_level = '钻石';
+                $multiple = 2;
+                break;
+            default:
+                //$member_level = '铜牌';
+                $multiple = 1;
+        }
+        $member_level = $user->grouptitle;
+        $user_count = \DB::table('discuz_common_member_count')->where('uid', $uid)->first();
+        foreach($verifies as $verify){
+            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
+            $options = [
+                'json'=>json_encode([
+                    'vin'=>$verify->frame_number,
+                    'member_level'=>$member_level,
+                    'multiple'=>$multiple,
+                    'total_scores'=>$user_count->extcredits1,
+                    'total_fmb'=>$user_count->extcredits4,
+                ])
+            ];
+            $response = $client->__soapCall("addMemberLevelInfo", array($options));
+        }
+
+        //发送消息
+        /*if( env('APP_ENV') != 'local'){
+            $key = env('DISCUZ_UCKEY');
+            $fromuid = 1;
+            $timestamp = $this->timestamp;
+            $msgto = $uid;
+            $subject = '车主验证成功';
+            $message = '恭喜您，车主验证成功，你获取了积分与风迷币奖励。奖励如下：'.$credits1.' 积分，'.$credits4.'风迷币。';
+            $url = env('APP_URL').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=".$fromuid."&msgto=".$msgto."&subject=".$subject."&message=".$message."&time=".$timestamp, 'ENCODE', $key));
+            $client = new \GuzzleHttp\Client();
+            $client->request('GET', $url);
+        }*/
+        $info = $this->userinfo($request);
+        $this->jsond(1,"SUCC",$info);
+	}
+
+    public function userinfo(Request $request){
         $info = DB::table("verifies as a")
             ->leftJoin("discuz_common_member_count as b","b.uid","=","a.uid")
             ->leftJoin("discuz_common_member as c","c.uid","=","a.uid")
             ->leftJoin("discuz_common_usergroup as d","d.groupid","=","c.groupid")
             ->where("a.frame_number","=",$request->Vin)
+            ->where("a.status",">=","0")
             ->select("a.uid","b.extcredits1","b.extcredits4","c.groupid","d.grouptitle")
             ->first();
-        /*$info = DB::select("select a.uid,b.extcredits1,b.extcredits4,
-            CASE groupid 
-            WHEN 11 THEN '银牌'
-            WHEN 12 THEN '金牌'
-            WHEN 13 THEN '铂金'
-            WHEN 14 THEN '钻石'
-            ELSE '铜牌'
-            END as groupname
-            from verifies a,discuz_common_member_count b,discuz_common_member c 
-            where a.frame_number='{$request->vin}' and a.uid=c.uid and a.uid=b.uid
-            limit 1");*/
-            if($info){
-                $this->jsond(1,"SUCC",$info);
-            }else{
-                $this->jsond(0,"ERROR");
-            }
-	}
-
-	public function getExtcredits1(Request $request){
-        $info = DB::table("verifies as a")
-            ->leftJoin("discuz_common_credit_log as b","b.uid","=","a.uid")
-            ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
-            ->leftJoin("discuz_forum_activity as d","d.tid","=","b.relatedid")
-            ->where("a.frame_number","=",$request->Vin)
-            ->where("b.extcredits1","<>","0")
-            ->select("b.extcredits1","b.operation","b.dateline","c.title","c.text","d.place","d.class")
-            ->get();
-        /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
-            from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
-            where a.frame_number='{$request->vin}' and a.uid=b.uid and b.logid=c.logid
-            limit 1");*/
-            if(!$info->isEmpty()){
-                $this->jsond(1,"SUCC",$info);
-            }else{
-                $this->jsond(0,"ERROR");
-            }
-	}
-
-    public function getExtcredits4(Request $request){
-        $info = DB::table("verifies as a")
-            ->leftJoin("discuz_common_credit_log as b","b.uid","=","a.uid")
-            ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
-            ->leftJoin("discuz_forum_activity as d","d.tid","=","b.relatedid")
-            ->where("a.frame_number","=",$request->Vin)
-            ->where("b.extcredits4","<>","0")
-            ->select("b.extcredits4","b.operation","b.dateline","c.title","c.text","d.place","d.class")
-            ->get();
-        /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
-            from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
-            where a.frame_number='{$request->vin}' and a.uid=b.uid and b.logid=c.logid
-            limit 1");*/
-            if(!$info->isEmpty()){
-                $this->jsond(1,"SUCC",$info);
-            }else{
-                $this->jsond(0,"ERROR");
-            }
+        return $info;
     }
+
+	
 
     public function register(Request $request){
         //$uid = INSERT INTO discuz_ucenter_members username='$username', password='$password', email='$email', regip='$regip', regdate='$regdate', salt='$salt'
         //INSERT INTO discuz_ucenter_memberfields SET uid='$uid'
         //C::t('common_member')->insert($uid, $username, $password, $email, $_G['clientip'], $groupinfo['groupid'], $init_arr);
         //print_r($request->all());die;
-        $messages = [
-            'username.required' => '用户名不能为空',
-            'username.min' => '用户名长度必须大于3位',
-            'username.alpha_dash' => '用户名格式错误，只能包含字母、数字、破折、号以及下划线',
-            'username.unique' => '用户名已经存在',
-
-            'password.required' => '密码不能为空',
-            'password.min' => '密码长度必须大于6位',
-            'password.alpha_dash' => '密码格式错误，只能包含字母、数字、破折、号以及下划线',
-            'password.confirmed' => '两次密码输入不一致',
-
-            'email.required' => '邮箱不能为空',
-            'email.email' => '邮箱格式错误',
-            'email.unique' => '邮件已经存在',
-
-            'regip.required' => 'ip不能为空',
-            'regip.ip' => 'ip格式错误',
-        ];
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|min:3|alpha_dash|unique:discuz_ucenter_members',
-            'password' => 'required|min:6|alpha_dash|confirmed',
-            'email' => 'required|email|unique:discuz_ucenter_members',
-            'regip' => 'required|ip',
-        ], $messages);
-        //print_r($validator->errors()->first());die;
-        if ($validator->fails()) {
-            $this->jsond(0,$validator->errors()->first());
-        }
-
         $username = $request->username;
         $salt = substr(uniqid(rand()), -6);
         $password = md5(md5($request->password).$salt);
@@ -167,7 +228,7 @@ class OpenapiController extends Controller{
         ]);*/
         $init_arr = array('credits' => explode(',', "0,0,0,0,0,0,0,0,0"), 'profile'=>array(), 'emailstatus' => 0);
         $this->common_member_insert($uid, $username, $password, $email, $regip, $groupid, $init_arr);
-        $this->jsond(1,"注册成功",array("uid"=>$uid));
+        return $uid;
     }
 
 
@@ -230,7 +291,45 @@ class OpenapiController extends Controller{
         }
     }
 
+    public function getExtcredits1(Request $request){
+        $info = DB::table("verifies as a")
+            ->leftJoin("discuz_common_credit_log as b","b.uid","=","a.uid")
+            ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
+            ->leftJoin("discuz_forum_activity as d","d.tid","=","b.relatedid")
+            ->where("a.frame_number","=",$request->Vin)
+            ->where("b.extcredits1","<>","0")
+            ->select("b.extcredits1","b.operation","b.dateline","c.title","c.text","d.place","d.class")
+            ->get();
+        /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
+            from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
+            where a.frame_number='{$request->vin}' and a.uid=b.uid and b.logid=c.logid
+            limit 1");*/
+        if(!$info->isEmpty()){
+            $this->jsond(1,"SUCC",$info);
+        }else{
+            $this->jsond(0,"ERROR");
+        }
+    }
 
+    public function getExtcredits4(Request $request){
+        $info = DB::table("verifies as a")
+            ->leftJoin("discuz_common_credit_log as b","b.uid","=","a.uid")
+            ->leftJoin("discuz_common_credit_log_field as c","c.logid","=","b.logid")
+            ->leftJoin("discuz_forum_activity as d","d.tid","=","b.relatedid")
+            ->where("a.frame_number","=",$request->Vin)
+            ->where("b.extcredits4","<>","0")
+            ->select("b.extcredits4","b.operation","b.dateline","c.title","c.text","d.place","d.class")
+            ->get();
+        /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
+            from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
+            where a.frame_number='{$request->vin}' and a.uid=b.uid and b.logid=c.logid
+            limit 1");*/
+        if(!$info->isEmpty()){
+            $this->jsond(1,"SUCC",$info);
+        }else{
+            $this->jsond(0,"ERROR");
+        }
+    }
 
 	public function jsond($result, $msg="", $info = array()){
 		echo json_encode(array("result"=>$result,"msg"=>$msg,"info"=>$info));
