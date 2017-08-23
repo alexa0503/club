@@ -28,7 +28,7 @@ class OpenapiController extends Controller{
         ], $messages);
 
         if ($validator->fails()) {
-            //$this->jsond(0,$validator->errors()->first());
+            $this->jsond(0,$validator->errors()->first());
         }
 	}
 
