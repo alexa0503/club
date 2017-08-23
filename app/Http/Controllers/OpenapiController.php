@@ -35,7 +35,14 @@ class OpenapiController extends Controller{
 
 	public function getUserinfo(Request $request){
         $info = $this->userinfo($request);
-        if($info) $this->jsond(1,"SUCC",$info);
+        if($info){
+            if($info->status >= 0){
+                $this->jsond(1,"SUCC",$info);
+            }else{
+                $this->jsond(0,"该车架号已退车",array());
+            }
+        }
+        
         //没有数据，自动注册
         $messages = [
             'id_card.required' => '参数不能为空',
@@ -181,8 +188,7 @@ class OpenapiController extends Controller{
             ->leftJoin("discuz_common_member as c","c.uid","=","a.uid")
             ->leftJoin("discuz_common_usergroup as d","d.groupid","=","c.groupid")
             ->where("a.frame_number","=",$request->Vin)
-            ->where("a.status",">=","0")
-            ->select("a.uid","b.extcredits1","b.extcredits4","c.groupid","d.grouptitle")
+            ->select("a.uid","a.status","b.extcredits1","b.extcredits4","c.groupid","d.grouptitle")
             ->first();
         return $info;
     }
