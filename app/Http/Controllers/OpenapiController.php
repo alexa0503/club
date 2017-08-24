@@ -15,7 +15,7 @@ class OpenapiController extends Controller{
         //echo \Route::current()->getActionName();die;
         $this->timestamp = time();
         $request->merge(array_map('trim', $request->all()));
-        
+
         $messages = [
             'Vin.required' => '参数不能为空',
             'Vin.regex' => '格式错误',
@@ -42,7 +42,7 @@ class OpenapiController extends Controller{
                 $this->jsond(0,"该车架号已退车",array());
             }
         }
-        
+
         //没有数据，自动注册
         $messages = [
             'id_card.required' => '参数不能为空',
@@ -193,7 +193,7 @@ class OpenapiController extends Controller{
         return $info;
     }
 
-	
+
 
     public function register(Request $request){
         //$uid = INSERT INTO discuz_ucenter_members username='$username', password='$password', email='$email', regip='$regip', regdate='$regdate', salt='$salt'
@@ -206,7 +206,7 @@ class OpenapiController extends Controller{
         $email = $request->email;
         $regip = $request->regip;
         $regdate = $this->timestamp;
-        $groupid = 10;
+        $groupid = 11;//默认11
 
         $uid = DB::table('discuz_ucenter_members')->insertGetId([
             'username' => (string) $username,
@@ -307,7 +307,7 @@ class OpenapiController extends Controller{
             ->select("b.extcredits1","b.operation","b.dateline","c.title","c.text","d.place","d.class")
             ->get();
         /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
-            from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
+            from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c
             where a.frame_number='{$request->vin}' and a.uid=b.uid and b.logid=c.logid
             limit 1");*/
         if(!$info->isEmpty()){
@@ -327,7 +327,7 @@ class OpenapiController extends Controller{
             ->select("b.extcredits4","b.operation","b.dateline","c.title","c.text","d.place","d.class")
             ->get();
         /*$info = DB::select("select a.uid,b.extcredits1,c.title,c.text
-            from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c 
+            from verifies a,discuz_common_credit_log b,discuz_common_credit_log_field c
             where a.frame_number='{$request->vin}' and a.uid=b.uid and b.logid=c.logid
             limit 1");*/
         if(!$info->isEmpty()){
