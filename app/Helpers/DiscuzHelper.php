@@ -102,6 +102,10 @@ class DiscuzHelper
             ->where('uid',$id)->first();
         $user_count = \DB::table('discuz_common_member_count')->where('uid',$id)->first();
 
+        if( null == $user_count){
+          return;
+        }
+
         $right_group = \DB::table('discuz_common_usergroup')
             ->where('type','member')
             ->where('creditslower', '>', $user_count->extcredits1)
@@ -109,7 +113,7 @@ class DiscuzHelper
             ->select('groupid')
             ->first();
 
-        if($user_group->groupid != $right_group->groupid){
+        if($user_group != null && $right_group != null && $user_group->groupid != $right_group->groupid){
             \DB::table('discuz_common_member')->where('uid',$id)->update([
                 'groupid'=>$right_group->groupid
             ]);
