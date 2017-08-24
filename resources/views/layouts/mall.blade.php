@@ -108,7 +108,7 @@
                         <a href="/" >首页</a>
                     </li>
                     <li>
-                        <a href="/bbs" >车型论坛</a>
+                        <a href="/bbs/forum.php?gid=1" >车型论坛</a>
                     </li>
                     <li>
                         <a href="/bbs/forum.php?gid=44" >风迷活动</a>

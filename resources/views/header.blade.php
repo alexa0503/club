@@ -58,7 +58,7 @@
                         <li class="a" id="mn_forum"><a href="/" hidefocus="true" title="">首页<span></span></a></li>
                     </ul>
                     <ul>
-                        <li class="a" id="mn_forum"><a href="/bbs/forum.php" hidefocus="true" title="">车型论坛<span></span></a></li>
+                        <li class="a" id="mn_forum"><a href="/bbs/forum.php?gid=1" hidefocus="true" title="">车型论坛<span></span></a></li>
                     </ul>
                     <ul>
                         <li class="a" id="mn_forum"><a href="/bbs/forum.php?gid=44" hidefocus="true" title="">风迷活动<span></span></a></li>
