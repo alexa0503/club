@@ -40,7 +40,7 @@ class RegisterMembers extends Command
     $m =  null == $this->argument('m') ? 0 :  $this->argument('m');
     $n =  null == $this->argument('n') ? 1000 :  $this->argument('n');
     $file = file_get_contents(storage_path('crm.csv'));
-    $members = explode("\r\n",$file);
+    $members = explode("\n",$file);
     foreach ($members as $key=>$member) {
       if( $key < $m || $key > $n){
         continue;
