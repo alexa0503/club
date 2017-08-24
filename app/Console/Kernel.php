@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
         Commands\CarsRefund::class,
         Commands\ObtainCoupons::class,
         Commands\SendLevels::class,
+        Commands\RegisterMembers::class,
     ];
 
     /**
