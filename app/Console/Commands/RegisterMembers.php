@@ -47,7 +47,7 @@ class RegisterMembers extends Command
       }
       $_member = explode(",", $member);
       $return = file_get_contents('http://club.dffengguang.com.cn//openapi/userinfo?Vin='.$_member[0].'&id_card='.urlencode($_member[1]));
-      $this->info($return);
+      $this->info($key.', '.$return);
     }
   }
 }
