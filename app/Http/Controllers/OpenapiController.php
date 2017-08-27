@@ -341,4 +341,78 @@ class OpenapiController extends Controller{
 		echo json_encode(array("result"=>$result,"msg"=>$msg,"info"=>$info));
 		exit;
 	}
+  //积分新增或者消耗
+  public function updateCredits(Request $request)
+  {
+    $key = '5abdeadc74b73';
+    //return md5('LVZA53P94GC578465'.$key.'1503855231');
+    //1503855231,655b6abd883dedd4183de6827b46ef94
+    //http://club.dev/openapi/credits/update?Vin=LVZA53P94GC578465&timestamp=1503855231&credits1=100&credits4=200&sign=655b6abd883dedd4183de6827b46ef94
+    $verify = \App\Verify::where('frame_number', $request->Vin)->first();
+    if( null == $verify ){
+      return ['result'=>0,'msg'=>'ERROR1','info'=>'不存在拥有此车架号的用户'];
+    }
+    if ( null == $request->timestamp || null == $request->sign ){
+      return ['result'=>0,'msg'=>'ERROR2','info'=>'缺少参数'];
+    }
+    if( md5($request->Vin.$key.$request->timestamp) != $request->sign ){
+      return ['result'=>0,'msg'=>'ERROR3','info'=>'请求验证失败'];
+    }
+    $uid = $verify->uid;
+    $count =\DB::table('discuz_common_credit_log')->where('uid', $uid)->where('dateline',$request->timestamp)->count();
+    if( $count > 0){
+      return ['result'=>0,'msg'=>'ERROR4','info'=>'重复请求'];
+    }
+    $credits1 = $request->credits1 ? : 0;
+    $credits4 = $request->credits4 ? : 0;
+    $credits1 = (int)$credits1;
+    $credits4 = (int)$credits4;
+    $timestamp = $request->timestamp;
+    $title = $request->title ? urldecode($request->title) : '积分奖惩';
+    $text = $request->text ? urldecode($request->text) : '';
+    if( $credits1 == 0 && $credits4 == 0){
+      return ['result'=>0,'msg'=>'ERROR','info'=>'不存在拥有此车架号的用户'];
+    }
+    $user_count = \App\UserCount::where('uid',$uid)->first();
+    $user_count->extcredits1 += $credits1;
+    $user_count->extcredits4 += $credits4;
+    //更新积分
+    \DB::table('discuz_common_member_count')->where('uid',$uid)->update([
+        'extcredits1' => $user_count->extcredits1,
+        'extcredits4' => $user_count->extcredits4,
+    ]);
+    $logid = \DB::table('discuz_common_credit_log')->insertGetId([
+        'uid' => $uid,
+        'operation'=>'',
+        'relatedid'=>$uid,
+        'dateline'=>$timestamp,
+        'extcredits1'=>$credits1,
+        'extcredits4'=>$credits4,
+        'extcredits2'=>0,
+        'extcredits3'=>0,
+        'extcredits5'=>0,
+        'extcredits6'=>0,
+        'extcredits7'=>0,
+        'extcredits8'=>0,
+    ]);
+    //插入日志
+    \DB::table('discuz_common_credit_log_field')->insert([
+        'logid'=>$logid,
+        'title'=>$title,
+        'text'=> $text,
+    ]);
+
+    if( env('APP_ENV') != 'local'){
+        $key = env('DISCUZ_UCKEY');
+        $fromuid = 1;
+        $timestamp = time();
+        $msgto = $uid;
+        $subject = $title;
+        $message = '由于'.$text.'，详情如下：'.$credits1.' 积分，'.$credits4.'风迷币。';
+        $url = env('APP_URL').'/bbs/api/uc.php?time='.$timestamp.'&code='.urlencode(DiscuzHelper::authcode("action=sendpm&fromuid=".$fromuid."&msgto=".$msgto."&subject=".$subject."&message=".$message."&time=".$timestamp, 'ENCODE', $key));
+        $client = new \GuzzleHttp\Client();
+        $client->request('GET', $url);
+    }
+    return response(['result'=>1,'msg'=>'SUCC']);
+  }
 }
