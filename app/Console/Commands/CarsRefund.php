@@ -121,6 +121,7 @@ class CarsRefund extends Command
                     'title'=>'车主退车',
                     'text'=>'车主退车扣除奖励',
                 ]);
+                file_get_contents('http://vcrm.dfsk.com.cn/API/CRM/UnBind.aspx?vin='.$verify->frame_number);
             }
         }
     }
