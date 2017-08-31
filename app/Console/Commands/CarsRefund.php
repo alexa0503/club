@@ -37,8 +37,13 @@ class CarsRefund extends Command
      */
     public function handle()
     {
-        $verifies = \App\Verify::where('status','>=', 0)->get();
+      $count = \App\Verify::where('status','>=',0)->count();
+      $n = ceil($count/100);
+      for ($i=0; $i < $n; $i++) {
+        $verifies = \App\Verify::where('status','>=',0)->skip($i*100)->take(100)->get();
+        //$verifies = \App\Verify::where('status','>=', 0)->get();
         foreach($verifies as $verify){
+          $this->info($i.','.$verify->id);
             if( env('APP_ENV') == 'local'){
                 $result = [
                     'ret'=>0,
@@ -124,5 +129,6 @@ class CarsRefund extends Command
                 file_get_contents('http://vcrm.dfsk.com.cn/API/CRM/UnBind.aspx?vin='.$verify->frame_number);
             }
         }
+      }
     }
 }

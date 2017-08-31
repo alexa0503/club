@@ -39,9 +39,15 @@ class PointsUpdate extends Command
      */
     public function handle()
     {
-        $verifies = \App\Verify::where('status','>=',0)->get();
+      $count = \App\Verify::where('status','>=',0)->count();
+      $n = ceil($count/100);
+      for ($i=0; $i < $n; $i++) {
+        $verifies = \App\Verify::where('status','>=',0)->skip($i*100)->take(100)->get();
         foreach($verifies as $verify){
-            \App\Helpers\Helper::pointsUpdate($verify);
+          $this->info($i.','.$verify->id);
+          \App\Helpers\Helper::pointsUpdate($verify);
         }
+      }
+
     }
 }
