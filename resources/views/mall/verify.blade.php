@@ -3,10 +3,10 @@
     <div id="main">
         <div class="container" style="padding-top: 60px;padding-bottom: 40px;position: relative;">
         <!--nav-->
-        <div style=" position: absolute; left: 0; top: 0; padding-left: 19px; height: 29px;"><a href="./" class="nvhm" title="首页" style=" float: left; height: 29px; width: 16px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/search.png) no-repeat 0 0; line-height: 200px; overflow: hidden; text-decoration: none; color: #5f2927;">超级风迷东风风光车友会</a><em style=" display: block; width: 20px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/pt_item.png) no-repeat 3px 10px; line-height: 29px; overflow: hidden; float: left; height: 100%;"></em><a href="http://club.dffengguang.com.cn/bbs/home.php?mod=spacecp" style=" line-height: 29px; color: #5f2927; float: left; height: 29px; font-size: 12px;">设置</a><em style=" display: block; width: 20px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/pt_item.png) no-repeat 3px 10px; line-height: 29px; overflow: hidden; float: left; height: 100%; "></em><div style=" font-size: 12px; color: #444; float: left; height: 100%; line-height: 29px; /* display: block; */">车主认证</div></div>
+        <div class="hidden-xs" style=" position: absolute; left: 0; top: 0; padding-left: 19px; height: 29px;"><a href="./" class="nvhm" title="首页" style=" float: left; height: 29px; width: 16px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/search.png) no-repeat 0 0; line-height: 200px; overflow: hidden; text-decoration: none; color: #5f2927;">超级风迷东风风光车友会</a><em style=" display: block; width: 20px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/pt_item.png) no-repeat 3px 10px; line-height: 29px; overflow: hidden; float: left; height: 100%;"></em><a href="http://club.dffengguang.com.cn/bbs/home.php?mod=spacecp" style=" line-height: 29px; color: #5f2927; float: left; height: 29px; font-size: 12px;">设置</a><em style=" display: block; width: 20px; background: url(http://club.dffengguang.com.cn/bbs/static/image/common/pt_item.png) no-repeat 3px 10px; line-height: 29px; overflow: hidden; float: left; height: 100%; "></em><div style=" font-size: 12px; color: #444; float: left; height: 100%; line-height: 29px; /* display: block; */">车主认证</div></div>
 
             <div class="row">
-                <div class="col-md-2 col-xs-2" style="padding-left: 0px;">
+                <div class="col-sm-2 col-md-2 col-xs-2 hidden-xs" style="padding-left: 0px;">
                 <h2 style="
                             padding: 10px;
                             border-bottom: 1px dashed #CDCDCD;
@@ -32,18 +32,18 @@
                         <a href="/bbs/home.php?mod=spacecp&ac=promotion" class="list-group-item">访问推广</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-6">
+                <div class="col-sm-6 col-md-6 col-xs-10">
                     {{ Form::open(array('url' => url('/verify'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'verify-form')) }}
                     <div class="form-group" id="form-group-frame_number">
-                        <label for="frame_number" class="col-md-2 col-xs-2 control-label">车架号:</label>
-                        <div class="col-md-10 col-xs-10">
+                        <label for="frame_number" class="col-sm-2 col-md-2 col-xs-10 control-label">车架号:</label>
+                        <div class="col-sm-10 col-md-10 col-xs-12">
                             <input class="form-control" type="text" value="" id="frame_number" name="frame_number" placeholder="输入后八位车架号">
                             <label class="help-block" for="frame_number" id="help-frame_number"></label>
                         </div><!-- /.col -->
                     </div><!-- /form-group -->
                     <div class="form-group" id="form-group-id_card">
-                        <label for="id_card" class="col-md-2 col-xs-2 control-label">姓名:</label>
-                        <div class="col-md-10 col-xs-10">
+                        <label for="id_card" class="col-sm-2 col-md-2 col-xs-10 control-label">姓名:</label>
+                        <div class="col-sm-10 col-md-10 col-xs-12">
                             <input class="form-control" type="text" value="" id="id_card" name="id_card" placeholder="输入姓名">
                             <label class="help-block" for="id_card" id="help-id_card"></label>
                         </div><!-- /.col -->
@@ -54,8 +54,7 @@
                         </div><!-- /.col -->
                     </div><!-- /form-group -->
                     {{ Form::close() }}
-
-                    <div class="rows" style="margin-top: 40px;">
+                    <div class="rows hidden-xs" style="margin-top: 40px;">
                         <ul id="myTab" class="nav nav-tabs">
                             @foreach($verifies as $k=>$verify)
                                 @if($k<5)

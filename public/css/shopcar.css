@@ -9,6 +9,9 @@
     margin: 0;
     padding: 0;
 }
+body {
+  background: #fff url(http://club.dffengguang.com.cn/bbs/static/assets/imgs/layout/bg.jpg) 50% 0 no-repeat;
+}
 header .container .row {
     position: relative;
 }
@@ -134,7 +137,15 @@ header .container .btnShopCarP .carbox .removeSp {
     background: #fff;
     margin: 10px auto;
 }
-
+@media screen and (max-width: 767px) {
+  #top .container,#main .container {
+      width: 100%;
+      margin: 10px auto;
+  }
+  body {
+    background: url(/bbs/static/image/mobile/images/pic_bg.jpg);
+  }
+}
 #main .container .addr {
     padding: 15px 0;
     border: 1px solid #ccc;

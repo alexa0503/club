@@ -35,8 +35,8 @@
         })
     </script>
 </head>
-<body style="background: #fff url(http://club.dffengguang.com.cn/bbs/static/assets/imgs/layout/bg.jpg) 50% 0 no-repeat;">
-<div id="login" style="height: 30px;">
+<body>
+<div id="login" style="height: 30px;" class="hidden-xs">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             @if(!Session::get('discuz.hasLogin'))
@@ -71,7 +71,7 @@
 <header class="navbar navbar-static-top bs-docs-nav" id="top" style="margin-bottom: 32px;background: rgba(255,255,255,0.9);">
     <div class="container">
         <div class="row">
-            <div class="pull-right" style="position: absolute;right: 0;">
+            <div class="pull-right hidden-xs" style="position: absolute;right: 0;">
                 <div class="thread-top" style="">今日: <em>{{session('discuz.forum.todayposts')}}</em><span class="pipe">|</span>昨日: <em>{{session('discuz.forum.yesterdayposts')}}</em><span class="pipe">|</span>帖子: <em>{{session('discuz.forum.posts')}}</em><span class="pipe">|</span>会员: <em>{{session('discuz.user_count')}}</em><span class="pipe">|</span>欢迎新会员: <a href="/bbs/home.php?mod=space&uid={{session('discuz.latest_user.uid')}}&do=profile">{{session('discuz.latest_user.username')}}</a></div>
                 <div style="width:285px;margin-top:20px;float:left;">
                     <div class="input-group" id="search">
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div style="height:132px;">
-                <a href="http://www.dffengguang.com.cn/"><img src="/bbs/static/assets/imgs/layout/logo_1.png" alt=""></a>
+                <a href="http://www.dffengguang.com.cn/" class="hidden-xs"><img src="/bbs/static/assets/imgs/layout/logo_1.png" alt=""></a>
                 <a href="http://club.dffengguang.com.cn/"><img src="/bbs/static/assets/imgs/layout/logo_2.png" alt=""></a></div>
 
             @if(Request::segment(1) == 'mall')
@@ -133,7 +133,7 @@
     </div>
 </header>
 @yield('content')
-<footer>
+<footer class="hidden-xs">
     <div class="container">
         <div class="pull-right" id="footer-services">
             <div class="rows">
