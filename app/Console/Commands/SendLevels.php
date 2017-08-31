@@ -44,13 +44,14 @@ class SendLevels extends Command
       for ($i=0; $i < $n; $i++) {
         $verifies = \App\Verify::where('status','>=',0)->skip($i*100)->take(100)->get();
         foreach($verifies as $verify){
-            DiscuzHelper::checkUserGroup($verify->uid);//更新用户等级
-            $uid = $verify->uid;
+          $uid = $verify->uid;
+            DiscuzHelper::checkUserGroup($uid);//更新用户等级
             $user = \DB::table('discuz_common_member')
                 ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
                 ->select('discuz_common_member.groupid','discuz_common_usergroup.grouptitle')
                 ->where('uid',$uid)->first();
-            switch ($user->groupid){
+            $groupid = $user == null ? 11 : $user->groupid;
+            switch ($groupid){
                 case 11:
                     //$member_level = '银牌';
                     $multiple = 1;
@@ -85,7 +86,6 @@ class SendLevels extends Command
                 ])
             ];
             $response = $client->__soapCall("addMemberLevelInfo", array($options));
-            //$result = json_decode($response->addMemberLevelInfoReturn,true);
             \Log::info('发送会员等级['.$frame_number.']:'.$response->addMemberLevelInfoReturn);
         }
       }

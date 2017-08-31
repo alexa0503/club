@@ -113,7 +113,7 @@ class DiscuzHelper
             ->select('groupid')
             ->first();
 
-        if($user_group != null && $right_group != null && $user_group->groupid != $right_group->groupid){
+        if($right_group != null && $user_group->groupid != $right_group->groupid){
             \DB::table('discuz_common_member')->where('uid',$id)->update([
                 'groupid'=>$right_group->groupid
             ]);
