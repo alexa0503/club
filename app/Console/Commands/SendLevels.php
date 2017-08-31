@@ -39,7 +39,10 @@ class SendLevels extends Command
      */
     public function handle()
     {
-        $verifies = \App\Verify::where('status','>=',0)->get();
+      $count = \App\Verify::where('status','>=',0)->count();
+      $n = ceil($count/100);
+      for ($i=0; $i < $n; $i++) {
+        $verifies = \App\Verify::where('status','>=',0)->skip($i*100)->take(100)->get();
         foreach($verifies as $verify){
             DiscuzHelper::checkUserGroup($verify->uid);//更新用户等级
             $uid = $verify->uid;
@@ -85,5 +88,6 @@ class SendLevels extends Command
             //$result = json_decode($response->addMemberLevelInfoReturn,true);
             \Log::info('发送会员等级['.$frame_number.']:'.$response->addMemberLevelInfoReturn);
         }
+      }
     }
 }
