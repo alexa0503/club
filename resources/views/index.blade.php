@@ -394,8 +394,8 @@
                     <div class="showWrap" id="boards">
                         <div class="tab">
                             <ul>
-                                <li><a class="active" href="javascrit:;" data-target="boards-digest">精华风迷</a></li>
-                                <li><a href="javascrit:;" data-target="boards-diligent">勤奋风迷</a></li>
+                                <li><a class="active" href="javascript:;" data-target="boards-digest">精华风迷</a></li>
+                                <li><a href="javascript:;" data-target="boards-diligent">勤奋风迷</a></li>
                             </ul>
                         </div>
                         <div class="content">
