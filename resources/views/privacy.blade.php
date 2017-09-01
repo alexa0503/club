@@ -1254,7 +1254,7 @@ body {
         </p>
         <p style="margin:0pt"><span style="font-family:Arial; font-size:9pt; font-weight:bold">&nbsp;</span>
         </p>
-        <p style="margin:0pt"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">附表四：推荐购车奖励明细表</span>
+        <!--<p style="margin:0pt"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">附表四：推荐购车奖励明细表</span>
         </p>
         <div style="text-align:center">
             <table cellspacing="0" cellpadding="0" style="border-collapse:collapse; margin:0 auto; width:426.05pt">
@@ -1338,7 +1338,7 @@ body {
         <p style="margin:0pt; text-align:justify"><span style="font-family:微软雅黑; font-size:9pt">示例：当</span><span style="font-family:微软雅黑; font-size:9pt">用户已经</span><span style="font-family:微软雅黑; font-size:9pt">成</span><span style="font-family:微软雅黑; font-size:9pt">为</span><span style="font-family:微软雅黑; font-size:9pt">会员后，推荐</span>
             <span style="font-family:微软雅黑; font-size:9pt">他人</span><span style="font-family:微软雅黑; font-size:9pt">购买一辆风光</span><span style="font-family:Arial; font-size:9pt">580</span><span style="font-family:微软雅黑; font-size:9pt">新车可以</span><span style="font-family:微软雅黑; font-size:9pt">获得</span>
                 <span style="font-family:Arial; font-size:9pt">2000</span><span style="font-family:微软雅黑; font-size:9pt">评级积分。</span>
-        </p>
+        </p>-->
         <p style="margin:0pt"><span style="font-family:微软雅黑; font-size:9pt; font-weight:bold">备注：</span>
         </p>
         <p style="margin:0pt; text-indent:18pt"><span style="font-family:Arial; font-size:9pt; font-weight:normal">1.</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:normal">车友会</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:normal">有权</span><span style="font-family:微软雅黑; font-size:9pt; font-weight:normal">根据实际情况</span>
