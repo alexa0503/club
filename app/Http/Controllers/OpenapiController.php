@@ -191,7 +191,7 @@ class OpenapiController extends Controller{
             ->select("a.uid","a.status","b.extcredits1","b.extcredits4","c.groupid","d.grouptitle")
             ->first();
 
-        if($info->uid){
+        if($info){
             $len = 8 - strlen($info->uid);
             $uid = "";
             if($len > 0){
