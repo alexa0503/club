@@ -645,58 +645,79 @@ body {
 .pg_post .wp #editorbox {
   padding: 0 20px; }
 
-#nv_forum .bm_c table .fl_row td {
+#nv_forum .bm_c table .fl_row td,
+#nv_misc .bm_c table .fl_row td {
   border-top: 1px solid #f50c0c; }
-#nv_forum .bm_c table .fl_icn_g {
+#nv_forum .bm_c table .fl_icn_g,
+#nv_misc .bm_c table .fl_icn_g {
   width: auto !important;
   text-align: center;
   float: none !important; }
-  #nv_forum .bm_c table .fl_icn_g a img {
+  #nv_forum .bm_c table .fl_icn_g a img,
+  #nv_misc .bm_c table .fl_icn_g a img {
     text-align: center;
     float: none !important; }
-#nv_forum .bm_c table .fl_g {
+#nv_forum .bm_c table .fl_g,
+#nv_misc .bm_c table .fl_g {
   padding: 30px 0; }
-  #nv_forum .bm_c table .fl_g dl {
+  #nv_forum .bm_c table .fl_g dl,
+  #nv_misc .bm_c table .fl_g dl {
     margin: 0 !important;
     padding: 0 !important;
     text-align: center; }
-    #nv_forum .bm_c table .fl_g dl dt a {
+    #nv_forum .bm_c table .fl_g dl dt a,
+    #nv_misc .bm_c table .fl_g dl dt a {
       color: #a52020;
       font-size: 18px;
       font-weight: bold; }
-#nv_forum .wp {
+#nv_forum .wp,
+#nv_misc .wp {
   background-color: #fff;
   margin-top: 30px;
   margin-bottom: 30px; }
-  #nv_forum .wp #pt {
+  #nv_forum .wp #pt,
+  #nv_misc .wp #pt {
     padding: 0 20px; }
-  #nv_forum .wp #ct {
+  #nv_forum .wp #ct,
+  #nv_misc .wp #ct {
     padding-bottom: 20px; }
-    #nv_forum .wp #ct .bm {
+    #nv_forum .wp #ct .bm,
+    #nv_misc .wp #ct .bm {
       padding: 0 20px; }
-#nv_forum .boardnav {
+#nv_forum .boardnav,
+#nv_misc .boardnav {
   background-color: #fff;
   margin: 30px 0; }
-  #nv_forum .boardnav .z {
+  #nv_forum .boardnav .z,
+  #nv_misc .boardnav .z {
     padding-left: 20px; }
-  #nv_forum .boardnav .mn {
+  #nv_forum .boardnav .mn,
+  #nv_misc .boardnav .mn {
     padding: 0 20px; }
-  #nv_forum .boardnav .pgb {
+  #nv_forum .boardnav .pgb,
+  #nv_misc .boardnav .pgb {
     background-color: #fff; }
-    #nv_forum .boardnav .pgb a {
+    #nv_forum .boardnav .pgb a,
+    #nv_misc .boardnav .pgb a {
       color: #cb2e1e;
       border-color: #cb2e1e; }
-  #nv_forum .boardnav #threadlist {
+  #nv_forum .boardnav #threadlist,
+  #nv_misc .boardnav #threadlist {
     margin-top: 20px; }
-  #nv_forum .boardnav #ct .mn .bm {
+  #nv_forum .boardnav #ct .mn .bm,
+  #nv_misc .boardnav #ct .mn .bm {
     padding: 0; }
-  #nv_forum .boardnav #ct .mn #f_pst {
+  #nv_forum .boardnav #ct .mn #f_pst,
+  #nv_misc .boardnav #ct .mn #f_pst {
     margin: 10px 0 30px 0; }
-  #nv_forum .boardnav #ct .mn #pgt {
+  #nv_forum .boardnav #ct .mn #pgt,
+  #nv_misc .boardnav #ct .mn #pgt {
     margin: 0; }
-  #nv_forum .boardnav #ct .mn .pgs {
+  #nv_forum .boardnav #ct .mn .pgs,
+  #nv_misc .boardnav #ct .mn .pgs {
     margin: 0; }
-  #nv_forum .boardnav #pt {
+  #nv_forum .boardnav #pt,
+  #nv_misc .boardnav #pt {
     padding: 0; }
 
 #pgt .pg,
