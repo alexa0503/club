@@ -190,6 +190,17 @@ class OpenapiController extends Controller{
             ->where("a.frame_number","=",$request->Vin)
             ->select("a.uid","a.status","b.extcredits1","b.extcredits4","c.groupid","d.grouptitle")
             ->first();
+
+        if($info){
+            $len = 8 - strlen($info->uid);
+            $uid = "";
+            if($len > 0){
+                for($i=0;$i<$len;$i++){
+                    $uid .= "0";
+                }
+            }
+            $info->uid = $uid.$info->uid;
+        }
         return $info;
     }
 
