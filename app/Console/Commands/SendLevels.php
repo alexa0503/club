@@ -76,7 +76,7 @@ class SendLevels extends Command
                 $member_level = $user->grouptitle;
                 $frame_number = $verify->frame_number;//车架号
                 $user_count = \DB::table('discuz_common_member_count')->where('uid', $uid)->first();
-                $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl",,['exceptions' => 0]);
+                $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl",['exceptions' => 0]);
                 $options = [
                     'json'=>json_encode([
                         'vin'=>$frame_number,

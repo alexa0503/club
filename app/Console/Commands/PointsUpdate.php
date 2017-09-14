@@ -40,7 +40,6 @@ class PointsUpdate extends Command
     public function handle()
     {
         ini_set('memory_limit', '1024M');
-
         $n =  null == $this->argument('n') ? 0 :  $this->argument('n');
         for ($i=0; $i < 10 ; $i++) {
             $start = $i*1000 + $n*10000;
