@@ -40,8 +40,13 @@ class Kernel extends ConsoleKernel
             ->everyMinute();
         $schedule->command('cars:refund')
             ->dailyAt('01:00');
-        $schedule->command('points:update')
-            ->dailyAt('03:00');
+        $count = \App\Verify::count();
+        $n = ceil($count/10000);
+        for ($i=0; $i < $n ; $i++) {
+            $schedule->command('points:update '.$i)
+                ->dailyAt('03:00');
+        }
+
         $schedule->command('send:levels')
             ->dailyAt('00:00');
 

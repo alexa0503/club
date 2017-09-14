@@ -155,7 +155,7 @@ class Helper
             $score_id = $_log->score_id;
         }
         //新增积分
-        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl");
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl",['exceptions' => 0]);
         $options = [
             'in'=>json_encode([
                 'frame_number'=>$frame_number,
@@ -163,7 +163,14 @@ class Helper
             ])
         ];
         $response = $client->__soapCall("queryPartsInfo", array($options));
-        $result = json_decode($response->out,true);
+        if( !is_soap_fault($response)){
+            $result = json_decode($response->out,true);
+        }
+        else{
+            $result = null;
+        }
+
+
         if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
             foreach ($result['data'] as $data){
                 $count = \App\OwnerLog::where('score_id',$data['SCORE_ID'])->withTrashed()->count();
@@ -185,7 +192,7 @@ class Helper
         else{
             $score_id = $_log->score_id;
         }
-        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY05SOAP?wsdl");
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY05SOAP?wsdl",['exceptions' => 0]);
         $options = [
             'in'=>json_encode([
                 'frame_number'=>$frame_number,
@@ -193,7 +200,14 @@ class Helper
             ])
         ];
         $response = $client->__soapCall("CancelOrderAccount", array($options));
-        $result1 = json_decode($response->out,true);
+        if( !is_soap_fault($response)){
+            $result1 = json_decode($response->out,true);
+        }
+        else{
+            $result1 = null;
+        }
+
+
         //var_dump($result1);
         if($result1 && $result1['ret'] == 0 && isset($result1['data']) && is_array($result1['data'])){
             foreach ($result1['data'] as $data){
