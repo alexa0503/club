@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
         $n = ceil($count/10000);
         for ($i=0; $i < $n ; $i++) {
             $schedule->command('points:update '.$i)
-                ->dailyAt('03:00');
+                ->dailyAt('03:'.(10+$i));
         }
 
         $schedule->command('send:levels')

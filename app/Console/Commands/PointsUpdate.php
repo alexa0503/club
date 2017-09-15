@@ -46,6 +46,7 @@ class PointsUpdate extends Command
             $verifies = \App\Verify::where('status','>=',0)->skip($start)->take(1000)->orderBy('created_at', 'DESC')->get();
             foreach($verifies as $verify){
                 \App\Helpers\Helper::pointsUpdate($verify);
+                \Log::info('积分更新:'.$verify->id);
                 $this->info('积分更新:'.$verify->id);
             }
             $this->info($start.'n:'.$n);
