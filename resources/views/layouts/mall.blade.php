@@ -117,7 +117,7 @@
                         <a href="/bbs" >车主聚会</a>
                     </li>-->
                     <li>
-                        <a href="/mall" >积分商城</a>
+                        <a href="/mall" >礼品商城</a>
                     </li>
                     <li>
                         <a href="http://dffengguang.com.cn/" target="_blank" >风光官网</a>

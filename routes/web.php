@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth.discuz.admin', 'menu'], 'prefix' => 'admin'
     Route::get('item/{id}/restore', 'ItemController@restore')->name('item.restore');
     Route::resource('item', 'ItemController');
     Route::resource('page.block', 'BlockController');
+    Route::get('order/export', 'OrderController@export')->name('order.export');
     Route::resource('order', 'OrderController');
     Route::resource('verify', 'VerifyController');
     Route::resource('reference', 'ReferenceController');
@@ -101,6 +102,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
 
 
     Route::get('/mall', 'MallController@index');
+    Route::get('/mall/category/{id?}', 'MallController@category');
     Route::get('/mall/item/{id}', 'MallController@item');
     Route::group(['middleware' => ['auth.discuz.must']], function () {
 

@@ -64,7 +64,7 @@
                         <li class="a" id="mn_forum"><a href="/bbs/forum.php?gid=44" hidefocus="true" title="">风迷活动<span></span></a></li>
                     </ul>
                     <ul>
-                        <li class="a" id="mn_forum"><a href="/mall" hidefocus="true" title="">积分商城<span></span></a></li>
+                        <li class="a" id="mn_forum"><a href="/mall" hidefocus="true" title="">礼品商城<span></span></a></li>
                     </ul>
                     <ul>
                         <li class="a" id="mn_forum"><a href="http://dffengguang.com.cn/" hidefocus="true" title="" target="_blank">风光官网<span></span></a></li>

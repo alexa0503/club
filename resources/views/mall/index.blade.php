@@ -5,7 +5,7 @@
         <div class="row">
             @if(count($kvs)>0)
             <div id="kv">
-                <a href="{{$kvs[0]->link}}"><img src="{{$kvs[0]->image}}"/></a>
+                <a href="{{$kvs[0]->link}}"><img src="{{$kvs[0]->image}}" width="1090"/></a>
                 <div id="kv-text">
                     <h2>{{$kvs[0]->title}}</h2>
                     <p>{{$kvs[0]->description}}</p>
@@ -18,58 +18,42 @@
                     <span>爆款推荐</span>
                 </div>
                 <div class="caret"></div>
-                <div class="content" style="min-height: 300px;">
-                    <div class="pull-right" style="width: 800px;margin-right:30px;">
-                        <div class="rows">
-                            @foreach($features1 as $k=>$item)
-                            <div class="col-md-3 {{ ( $k%4 != 3) ?'border':''}}" style="height:257px;margin-bottom:20px;">
-                                <div style="height:40px;"><h4>{{$item->name}}</h4></div>
-                                <span>{{$item->point}}风迷币</span>
-                                <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
-                            </div>
-                            @endforeach
+                <div style="position:absolute;top:0;right:0;margin-right:20px;margin-top:10px;"><a href="{{url('mall/category')}}" style="color:red;font-weight:bold;">More&gt;&gt;</a></div>
+                <div class="content" style="height: 300px;">
+                    <div class="rows">
+                        @foreach($features1 as $k=>$item)
+                        <div class="col-md-2 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                            <div style="height:40px;"><h4>{{$item->name}}</h4></div>
+                            <span>{{$item->point}}风迷币</span>
+                            <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
                         </div>
+                        @endforeach
                     </div>
-                    @if(count($feature1_kvs)>0)
-                    <div class="kv">
-                        <div class="slick" style="width: 214px;height:260px;">
-                            @foreach($feature1_kvs as $kv)
-                            <div><a href="{{$kv->link}}"><img height="260" width="214" src="{{asset($kv->image)}}" alt="{{$kv->title}}" /></a></div>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif
                 </div>
             </div>
+            @foreach ($categories as $category)
+            @if( count($category->indexItems) > 0 )
             <div class="row1">
                 <div class="top-border"></div>
                 <div class="top">
-                    <span>车载必备</span>
+                    <span>{{$category->name}}</span>
                 </div>
                 <div class="caret"></div>
-                <div class="content" style="min-height: 300px;">
-                    <div class="pull-right" style="width: 800px;margin-right:30px;">
-                        <div class="rows">
-                            @foreach($features2 as $k=>$item)
-                                <div class="col-md-3 {{($k%4 != 3)?'border':''}}" style="height:257px;margin-bottom:20px;">
-                                    <h4>{{$item->name}}</h4>
-                                    <span>{{$item->point}}风迷币</span>
-                                    <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
-                                </div>
-                            @endforeach
+                <div style="position:absolute;top:0;right:0;margin-right:20px;margion-top:10px;"><a href="{{url('mall/category/'.$category->id)}}" style="color:red;font-weight:bold;">More&gt;&gt;</a></div>
+                <div class="content" style="height: 300px;">
+                    <div class="rows">
+                        @foreach($category->indexItems as $k=>$item)
+                        <div class="col-md-2 {{ ( $k%6 != 5 and $k != count($category->indexItems)-1 ) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                            <div style="height:40px;"><h4>{{$item->name}}</h4></div>
+                            <span>{{$item->point}}风迷币</span>
+                            <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
                         </div>
+                        @endforeach
                     </div>
-                    @if(count($feature2_kvs)>0)
-                    <div class="kv">
-                        <div class="slick" style="width: 214px;height:260px;">
-                            @foreach($feature2_kvs as $kv)
-                            <div><a href="{{$kv->link}}"><img height="260" width="214" src="{{asset($kv->image)}}" alt="{{$kv->title}}" /></a></div>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif
                 </div>
             </div>
+            @endif
+            @endforeach
         </div>
     </div>
 </div>
@@ -77,11 +61,6 @@
 @section('scripts')
     <script>
         $().ready(function () {
-            $('.row1').each(function(){
-                var h = $(this).find('.pull-right').height();
-                $(this).find('.content').height(h);
-            });
-
             $('.slick').slick({
                 'prevArrow':null,
                 'nextArrow':null,

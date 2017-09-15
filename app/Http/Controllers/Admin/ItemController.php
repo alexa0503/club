@@ -27,7 +27,12 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('admin.item.create');
+        $categories = \App\Category::all();
+        $dealers = \App\Dealer::all();
+        return view('admin.item.create',[
+            'categories' => $categories,
+            'dealers' => $dealers,
+        ]);
     }
 
     /**
@@ -38,22 +43,29 @@ class ItemController extends Controller
      */
     public function store(\App\Http\Requests\ItemPost $request)
     {
+        //$request->merge(array_map('trim', $request->all()));
         $item = new \App\Item();
         $item->name = $request->name;
+        $item->product_code = $request->product_code;
         $item->content = $request->input('content');
         $item->price = $request->price;
+        $item->settlement_price = $request->settlement_price ? : 0;
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
-        $item->feature2 = $request->feature2;
+        $item->feature2 = 0;
         $item->subtitle = $request->subtitle;
+        $item->dealer_id = $request->dealer_id;
+        $item->category_id = $request->category_id;
         $item->type = $request->type;
         $item->valid_date = $request->valid_date;
+        /*
         $inventories = [];
         foreach( $request->colors as $k=>$v){
             $quantity = $request->quantities[$k] ? : 0;
             $inventories[] = ['color'=>$v, 'quantity'=>$quantity];
         }
-        $item->inventories = $inventories;
+        */
+        $item->inventories = [];
         $item->images = $request->images ? : [];
         $item->save();
         return response(['ret'=>0,'url'=>route('item.index')]);
@@ -77,8 +89,12 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
+        $categories = \App\Category::all();
+        $dealers = \App\Dealer::all();
         return view('admin.item.edit',[
             'item' => \App\Item::find($id),
+            'categories' => $categories,
+            'dealers' => $dealers,
         ]);
     }
 
@@ -97,16 +113,22 @@ class ItemController extends Controller
         $item->price = $request->price;
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
-        $item->feature2 = $request->feature2;
+        $item->feature2 = 0;
         $item->subtitle = $request->subtitle;
         $item->type = $request->type;
         $item->valid_date = $request->valid_date;
+        $item->dealer_id = $request->dealer_id;
+        $item->category_id = $request->category_id;
+        $item->product_code = $request->product_code;
+        $item->settlement_price = $request->settlement_price ? : 0;
+        /*
         $inventories = [];
         foreach( $request->colors as $k=>$v){
             $quantity = $request->quantities[$k] ? : 0;
             $inventories[] = ['color'=>$v, 'quantity'=>$quantity];
         }
-        $item->inventories = $inventories;
+        */
+        $item->inventories = [];
         $item->images = $request->images ? : [];
         $item->save();
         return response(['ret'=>0,'url'=>route('item.index')]);

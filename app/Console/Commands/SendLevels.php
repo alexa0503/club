@@ -97,6 +97,25 @@ class SendLevels extends Command
                     \Log::info('发送会员等级['.$frame_number.']:'.'失败');
                 }
             }
+            $member_level = $user->grouptitle;
+            $frame_number = $verify->frame_number;//车架号
+            $user_count = \DB::table('discuz_common_member_count')->where('uid', $uid)->first();
+            try {
+                $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl");
+                $options = [
+                    'json'=>json_encode([
+                        'vin'=>$frame_number,
+                        'member_level'=>$member_level,
+                        'multiple'=>$multiple,
+                        'total_scores'=>$user_count->extcredits1,
+                        'total_fmb'=>$user_count->extcredits4,
+                    ])
+                ];
+                $response = $client->__soapCall("addMemberLevelInfo", array($options));
+                \Log::info('发送会员等级['.$frame_number.']:'.$response->addMemberLevelInfoReturn);
+            } catch (Exception $e) {
+                \Log::info('发送会员等级['.$frame_number.']:'.'失败'.$e->getMessage());
+            }
         }
     }
 }

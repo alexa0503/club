@@ -31,7 +31,7 @@
                         <tr>
                             <td style="position:relative;height:90px;">
                                 <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$item['image']}}" alt="">
-                                <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}} {{$item['color']}}
+                                <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}}
                                     <br/>
                                     @if(isset($item['coupon'])){{$item['coupon'][$i]['code']}}<br/><span style="font-size:12px;color:#999;">使用期限：{{$item['coupon'][$i]['valid_date']}}</span>@endif
                                 </div>
@@ -50,7 +50,7 @@
                         <tr>
                             <td style="position:relative;height:90px;">
                                 <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$item['image']}}" alt="">
-                                <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}}@if($item['color']!='default')<br/>{{$item['color']}}@endif @if(isset($item['code']))<br/>{!! str_replace(',','<br/>',$item['code']) !!}@endif</div>
+                                <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}} @if(isset($item['code']))<br/>{!! str_replace(',','<br/>',$item['code']) !!}@endif</div>
                             </td>
                             <td>{{$item['quantity']}}</td>
                             @if($has_address == true)

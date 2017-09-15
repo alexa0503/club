@@ -11,27 +11,6 @@
                             <label for="price" class="col-md-2 col-xs-2 control-label">价格:</label>
                             <div class="col-md-10 col-xs-10"><label class="" for="" style="color:red;">{{$item->point}}风迷币</label></div><!-- /.col -->
                         </div><!-- /form-group -->
-                    @if(count($item->inventories) <= 1 && $item->inventories[0]['color'] == 'default')
-                        <input type="hidden" value="{{$item->inventories[0]['color']}}" name="color" />
-                    @else
-                        <div class="form-group" id="form-group-color">
-                            <label for="color" class="col-md-2 col-xs-2 control-label">选择:</label>
-                            <div class="col-md-10 col-xs-10">
-                                <div style="width:100%;height:40px;">
-                                    <div class="funkyradio">
-                                        @foreach($item->inventories as $k=>$inventory)
-                                            <div class="funkyradio-default">
-                                                <input type="radio" value="{{$inventory['color']}}" name="color" id="radio{{$k}}" />
-                                                <label for="radio{{$k}}">{{$inventory['color']}}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <label class="help-block" for="" id="help-color"></label>
-                            </div><!-- /.col -->
-                        </div><!-- /form-group -->
-                    @endif
-
                         <div class="form-group" id="form-group-quantity">
                             <label for="quantity" class="col-md-2 col-xs-2 control-label">数量:</label>
                             <div class="col-md-10 col-xs-10">

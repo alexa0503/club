@@ -6,16 +6,15 @@
 			<table class="table table-striped">
 	      		<thead>
 	        		<tr>
-			        	<th>ID</th>
-                        <th>缩略图</th>
+                        <th>产品编号</th>
 			          	<th>产品名</th>
+                        <th>产品性质</th>
                         <th>产品分类</th>
+                        <th>经销商</th>
 			          	<th>已售</th>
 			          	<th>市场价</th>
 			          	<th>风迷币</th>
 						<th>爆款推荐</th>
-						<th>车载必备</th>
-			          	<th>库存</th>
 						<th>状态</th>
 			          	<th>操作</th>
 	        		</tr>
@@ -23,16 +22,15 @@
 	      		<tbody>
                     @foreach($items as $item)
 		        	<tr>
-			          	<td>{{$item->id}}</td>
-                        <td><img src="{{$item->thumb}}" class="img-thumbnail" style="max-width: 200px;max-height: 200px;" /></td>
+			          	<td>{{$item->product_code}}</td>
 			          	<td>{{$item->name}}</td>
                         <td>{{$item->type==1?'优惠券':'普通商品'}}</td>
+			          	<td>{{ $item->category ? $item->category->name : '--'}}</td>
+			          	<td>{{ $item->dealer ? $item->dealer->name : '--'}}</td>
 			          	<td>{{$item->sold_quantity}}</td>
 			          	<td>{{$item->price}}</td>
 			          	<td>{{$item->point}}</td>
 						<td>{{$item->feature1 > 0 ? $item->feature1 : '--' }}</td>
-						<td>{{$item->feature2 > 0 ? $item->feature2 : '--' }}</td>
-						<td>{{$item->inventoriesToString()}}</td>
 						<td>{!! $item->deleted_at ? '<span class="text-danger">已删</span>' : '正常' !!}</td>
                         <td>
 

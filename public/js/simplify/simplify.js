@@ -231,6 +231,7 @@ $(window).load(function() {
 	setTimeout(function() {
 		$('.chat-alert').removeClass('active');
 	}, 8000);
+	$('.datepicker').datepicker({format:'yyyy-mm-dd'});
 });
 
 // Toggle Scroll to Top button

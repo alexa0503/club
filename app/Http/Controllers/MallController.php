@@ -10,31 +10,45 @@ use Validator;
 
 class MallController extends Controller
 {
-    //
+    //首页
     public function index()
     {
-        $features1 = \App\Item::where('feature1', '>', 0)->orderBy('feature1', 'ASC')->get();
-        $features2 = \App\Item::where('feature2', '>', 0)->orderBy('feature2', 'ASC')->get();
+        $features1 = \App\Item::where('feature1', '>', 0)->orderBy('feature1', 'ASC')->limit(6)->get();
+        $categories = \App\Category::orderBy('sort_id', 'ASC')->get();
         $page = \App\Page::find(2);
-        $feature1_kvs = $page->blocks->filter(function ($value, $key) {
-            return $value->name == 'feature1_kv';
-        })->values()->all();
-        $feature2_kvs = $page->blocks->filter(function ($value, $key) {
-            return $value->name == 'feature2_kv';
-        })->values()->all();
-
         $kvs = $page->blocks->filter(function ($value, $key) {
             return $value->name == 'kvs';
         })->values()->all();
         return view('mall.index', [
             'features1' => $features1,
-            'features2' => $features2,
-            'feature1_kvs' => $feature1_kvs,
-            'feature2_kvs' => $feature2_kvs,
+            'categories' => $categories,
+            'kvs' => $kvs,
+        ]);
+    }
+    //产品分类页面
+    public function category($category_id = null)
+    {
+        if( $category_id == null ){
+            $items = \App\Item::where('feature1', '>', 0)->orderBy('feature1', 'ASC')->paginate(18);
+            $category = null;
+        }
+        else{
+            $items = \App\Item::where('category_id',$category_id)->paginate(18);
+            $category = \App\Category::find($category_id);
+        }
+        $page = \App\Page::find(2);
+
+        $kvs = $page->blocks->filter(function ($value, $key) {
+            return $value->name == 'kvs';
+        })->values()->all();
+        return view('mall.category', [
+            'items' => $items,
+            'category'=>$category,
             'kvs' => $kvs,
         ]);
     }
 
+    //商品详情页面
     public function item($id)
     {
         $item = \App\Item::find($id);
@@ -47,6 +61,7 @@ class MallController extends Controller
         ]);
     }
 
+    //订单提交处理
     public function order(Request $request)
     {
         if( null == $request->input('address_id')){
@@ -69,15 +84,12 @@ class MallController extends Controller
         foreach($carts as $k=>$cart){
             $amount_quantity += $cart->quantity;
             $amount_point += ($cart->item->point * $cart->quantity);
-            $inventory = \App\Helpers\Helper::getInventory($cart->item->inventories, $cart->color);
-
-            if ( $inventory < $cart->quantity ) {
-                return ['ret' => 1002, 'msg' => '抱歉，'.$cart->item->name.'商品库存不足'];
-            }
             $_item = [
                 'name'=>$cart->item->name,
+                'product_code'=>$cart->item->product_code,
+                'price'=>$cart->item->price,
+                'settlement_price'=>$cart->item->settlement_price,
                 'quantity'=>$cart->quantity,
-                'color'=>$cart->color,
                 'image'=>$cart->item->images[0],
                 'point'=>$cart->item->point,
                 'type'=>$cart->item->type,
@@ -90,7 +102,6 @@ class MallController extends Controller
 
                     $coupon = new \App\Coupon();
                     $coupon->uid = $uid;
-                    $coupon->value = $cart->color;
                     $coupon->valid_date = $cart->item->valid_date;
                     $code[] = $coupon->code = \App\Helpers\Helper::generateCouponCode();
                     $coupon->save();
@@ -104,41 +115,42 @@ class MallController extends Controller
         }
         $address = \App\DeliveryAddress::find($request->input('address_id'));
 
-        $order = new \App\Order();
-        $order->uid = $uid;
-        $order->quantity = $amount_quantity;
-        $order->point = $amount_point;
-        $order->items = $items;
-        $order->receiver = $address->name;
-        $order->mobile = $address->mobile;
-        $order->telephone = $address->telephone;
-        $order->address = $address->province.$address->city.$address->district.$address->detail;
-        $order->save();
-        $item_name = [];
-        foreach($carts as $k=>$cart){
-            $item_name[] = $cart->item->name;
-            $order_item = new \App\OrderItem();
-            $order_item->item_id = $cart->item_id;
-            $order_item->quantity = $cart->quantity;
-            $order_item->point = $cart->item->point;
-            $order_item->color = $cart->color;
-            $order_item->code = $cart->item->type == 1 ? $items[$k]['code'] : NULL;
-            $order_item->order_id = $order->id;
-            $order_item->save();
-            //更新库存
-            $inventories = $cart->item->inventories;
-            $item = \App\Item::find($cart->item->id);
-            foreach($inventories as $inventory){
-                if($inventory['color'] == $cart->color){
-                    $inventory['quantity'] = $inventory['quantity'] - $cart->quantity;
-                }
+        DB::beginTransaction();
+        try {
+            foreach($carts as $k=>$cart){
+                $order = new \App\Order();
+                $order->uid = $uid;
+                $order->quantity = $cart->quantity;
+                $order->point = $cart->item->point * $cart->quantity;
+                $order->items = array($items[$k]);
+                $order->receiver = $address->name;
+                $order->mobile = $address->mobile;
+                $order->telephone = $address->telephone;
+                $order->address = $address->province.$address->city.$address->district.$address->detail;
+                $order->save();
+
+                $item_name = [];
+                $item_name[] = $cart->item->name;
+                $order_item = new \App\OrderItem();
+                $order_item->item_id = $cart->item_id;
+                $order_item->quantity = $cart->quantity;
+                $order_item->point = $cart->item->point;
+                $order_item->code = $cart->item->type == 1 ? $items[$k]['code'] : NULL;
+                $order_item->order_id = $order->id;
+                $order_item->save();
+                $item = \App\Item::find($cart->item_id);
+                $item->sold_quantity += $cart->quantity;//已售
+                $item->save();
+                //删除购物车
+                $cart->delete();
+                DB::commit();
             }
-            $item->inventories = $inventories;
-            $item->sold_quantity += $cart->quantity;//已售
-            $item->save();
-            //删除购物车
-            $cart->delete();
+        } catch (\Exception $e) {
+            return ['ret' => 1200, 'msg' => $e->getMessage()];
+            DB::rollback();
         }
+
+
 
         DB::table('discuz_common_member_count')->where('uid',$uid)->update([
             'extcredits4' => $user_count->extcredits4 - $amount_point,
@@ -220,30 +232,18 @@ class MallController extends Controller
             'quantity.min' => '商品数量不能小于:min',
             'quantity.max' => '商品数量不能大于:max',
             'item_id.*' => '商品必须存在哦~',
-            'color.*' => '请选择'
         ];
         $validator = Validator::make($request->all(), [
             'quantity' => 'required|numeric|min:1|max:100',
             'item_id' => 'required|exists:items,id',
-            'color' => 'required',
         ], $messages);
-        $validator->after(function ($validator) use ($request) {
-            if( $request->color ){
-                $item = \App\Item::find($request->item_id);
-                $inventory = \App\Helpers\Helper::getInventory($item->inventories, $request->color);
-                if ( $inventory < $request->quantity ) {
-                    $validator->errors()->add('quantity', '商品库存不足');
-                }
-            }
 
-        });
         if ($validator->fails()) {
             return response($validator->errors(), 422);
         }
         $uid = session('discuz.user.uid');
         $cart = \App\Cart::where('uid', $uid)
             ->where('item_id', $request->item_id)
-            ->where('color', $request->color)
             ->first();
         if( $cart == null ){
             $cart = new \App\Cart;
@@ -253,7 +253,6 @@ class MallController extends Controller
             $cart->quantity = $request->quantity + $cart->quantity;
         }
         $cart->item_id = $request->item_id;
-        $cart->color = $request->color;
         $cart->uid = $uid;
         $cart->save();
         return ['ret' => 0, 'msg'=>'已放入购物车，您可以继续浏览其他页面'];
@@ -264,10 +263,6 @@ class MallController extends Controller
         $cart = \App\Cart::find($id);
         if( $cart->uid != session('discuz.user.uid')){
             return ['ret'=>1002,'msg'=>'无权限'];
-        }
-        $inventory = \App\Helpers\Helper::getInventory($cart->item->inventories, $cart->color);
-        if( $inventory <= 0 || $quantity > $inventory){
-            return ['ret'=>1001,'msg'=>'库存不足'];
         }
         $cart->quantity = $quantity;
         $cart->save();
