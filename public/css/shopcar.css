@@ -297,7 +297,7 @@ header .container .btnShopCarP .carbox .removeSp {
 
 #main .container .shangpinbox .shopDi {
     position: relative;
-    width: 85%;
+    width: 100%;
     height: 70px;
     background: #fff8e6;
 }
@@ -305,7 +305,7 @@ header .container .btnShopCarP .carbox .removeSp {
 #main .container .shangpinbox .shopDi .dibox {
     position: absolute;
     top: 40%;
-    width: 100%;
+    width: 85%;
 }
 
 #main .container .shangpinbox .shopDi .dibox .allSe {
