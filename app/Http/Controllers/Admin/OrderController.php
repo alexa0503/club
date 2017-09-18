@@ -91,7 +91,7 @@ class OrderController extends Controller
         ];
         //array_unshift($arr,$arr_title);
         $contens = array_merge(array($arr_title), $arr);
-        $filename = date('Ymd').'.csv';
+        $filename = 'orders/'.date('Ymd').'.csv';
         $file = fopen(public_path($filename), 'w');
         fwrite($file, chr(0xEF).chr(0xBB).chr(0xBF));
         foreach ($contens as $content) {
