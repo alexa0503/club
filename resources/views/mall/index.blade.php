@@ -12,6 +12,7 @@
                 </div>
             </div>
             @endif
+            @if( count($features1) > 0 )
             <div class="row1">
                 <div class="top-border"></div>
                 <div class="top">
@@ -31,6 +32,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @foreach ($categories as $category)
             @if( count($category->indexItems) > 0 )
             <div class="row1">
