@@ -33,9 +33,10 @@
                     <div class="rows">
                         @foreach($items as $k=>$item)
                         <div class="col-md-2 {{ ( $k%6 != 5 and $k != count($items)-1 ) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+
+                            <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
                             <div style="height:40px;"><h4>{{$item->name}}</h4></div>
                             <span>{{$item->point}}风迷币</span>
-                            <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
                         </div>
                         @endforeach
                     </div>
