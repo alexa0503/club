@@ -56,7 +56,10 @@ class OrderController extends Controller
             })->toArray();
             $model->whereIn('uid', $uids);
         }
-        $orders = $model->get();
+        $orders = $model->with(['item'=>function($query){
+            //$query->whereNull('deleted_at');
+            $query->withTrashed();
+        }])->get();
         $order_statuses = config('custom.order.statuses');
         //订单时间、订单号、产品编号、产品名、数量、总风迷币、市场价、结算价、配送相关信息（姓名、地址等）
 
@@ -67,7 +70,7 @@ class OrderController extends Controller
             $dealer = '';
             $order_items = \App\OrderItem::where('order_id', $order->id)->get();
             foreach( $order_items as $order_item ){
-                $dealer = null == $order_item->item->dealer ? '' : $order_item->item->dealer->name;
+                $dealer = (null == $order_item->item || null == $order_item->item->dealer) ? '' : $order_item->item->dealer->name;
                 break;
             }
             return [
