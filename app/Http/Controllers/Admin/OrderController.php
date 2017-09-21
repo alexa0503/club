@@ -64,6 +64,12 @@ class OrderController extends Controller
             $code = isset($order->items[0]['product_code']) ? $order->items[0]['product_code'] : '';
             $settlement_price = isset($order->items[0]['settlement_price']) ? $order->items[0]['settlement_price'] : '';
             $price = isset($order->items[0]['price']) ? $order->items[0]['price'] : '';
+            $dealer = '';
+            $order_items = \App\OrderItem::where('order_id', $order->id)->get();
+            foreach( $order_items as $order_item ){
+                $dealer = $order_item->name;
+                break;
+            }
             return [
                 $order->number,
                 $code,
@@ -72,8 +78,9 @@ class OrderController extends Controller
                 $order->point,
                 $price,
                 $settlement_price,
+                $dealer,
                 $order->created_at,
-                $order->receiver.'('.$order->address.')',
+                $order->receiver.'，手机：'.$order->mobile.'，地址：'.$order->address,
                 $order_statuses[$order->status],
             ];
         })->toArray();
@@ -85,8 +92,9 @@ class OrderController extends Controller
             '总风迷币',
             '市场价',
             '结算价',
+            '经销商',
             '订单时间',
-            '配送相关信息（姓名、地址等）',
+            '配送相关信息（姓名、手机、地址等）',
             '订单状态',
         ];
         //array_unshift($arr,$arr_title);
