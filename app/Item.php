@@ -36,6 +36,6 @@ class Item extends Model
     }
     public function dealer()
     {
-        return $this->belongsTo('App\Dealer', 'dealer_id', 'id');
+        return $this->belongsTo('App\Dealer');
     }
 }

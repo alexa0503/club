@@ -10,7 +10,7 @@ class OrderItem extends Model
     {
         return $this->belongsTo('App\Item');
     }
-    public function orders()
+    public function order()
     {
         return $this->belongsTo('App\Order');
     }

@@ -67,7 +67,7 @@ class OrderController extends Controller
             $dealer = '';
             $order_items = \App\OrderItem::where('order_id', $order->id)->get();
             foreach( $order_items as $order_item ){
-                $dealer = $order_item->name;
+                $dealer = null == $order_item->item->dealer ? '' : $order_item->item->dealer->name;
                 break;
             }
             return [

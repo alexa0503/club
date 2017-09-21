@@ -196,7 +196,11 @@ class MallController extends Controller
     public function cart(Request $request)
     {
         $uid = session('discuz.user.uid');
-        $carts = \App\Cart::where('uid', $uid)->with('item')->get();
+        $carts = \App\Cart::where('uid', $uid)->with(['item'=>function($query){
+            //$query->whereNull('deleted_at');
+            $query->withTrashed();
+        }])->get()->where('item.deleted_at',null);
+
         $addresses = \App\DeliveryAddress::where('uid', $uid)->get();
         if($request->ajax()){
             return ['ret'=>0,'data'=>$carts];
