@@ -14,6 +14,9 @@ class DeliveryAddress extends Model
         'mobile',
         'telephone',
         'email',
+        'province',
+        'city',
+        'district',
         'alias'
     ];
 
