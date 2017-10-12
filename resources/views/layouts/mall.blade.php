@@ -331,6 +331,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<div style="display:none"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1264698221'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/stat.php%3Fid%3D1264698221%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
 <script src="{{asset('js/jquery.form.js')}}"></script>
 <script>
     var mall_districts = {};

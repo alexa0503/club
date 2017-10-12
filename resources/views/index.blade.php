@@ -574,6 +574,7 @@
 <div id="scrolltop">
     <span hidefocus="true"><a title="返回顶部" onclick="window.scrollTo('0','0')" class="scrolltopa" ><b>返回顶部</b></a></span>
 </div>
+<div style="display:none"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1264698221'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/stat.php%3Fid%3D1264698221%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
 <script type="text/javascript">_attachEvent(window, 'scroll', function () { showTopLink(); });checkBlind();</script>
 <div id="discuz_tips" style="display:none;"></div>
 <script type="text/javascript">
