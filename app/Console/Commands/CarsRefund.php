@@ -40,7 +40,29 @@ class CarsRefund extends Command
       $count = \App\Verify::where('status','>=',0)->count();
       $n = ceil($count/100);
       for ($i=0; $i < $n; $i++) {
-        $verifies = \App\Verify::where('status','>=',0)->skip($i*100)->take(100)->get();
+        $verifies = \App\Verify::where('status','>=',0)->skip($i*500)->take(200)->get();
+
+        $frame_numbers = $verifies->map(function($item, $key){
+            return "'$item->frame_number'";
+        })->toArray();
+
+        var_dump(implode(',', $frame_numbers));
+
+        $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY06SOAP?wsdl",['exceptions' => 0]);
+        $options = [
+            'in'=>json_encode([
+                'frame_number'=>$frame_numbers,
+            ])
+        ];
+        $response = $client->__soapCall("QueryVehicleReturnInfo", array($options));
+        if( !is_soap_fault($response)){
+            $result = json_decode($response->out,true);
+        }
+        else{
+            $result = null;
+        }
+        var_dump($result);
+        return;
         //$verifies = \App\Verify::where('status','>=', 0)->get();
         foreach($verifies as $verify){
           $this->info($i.','.$verify->id);

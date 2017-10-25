@@ -100,13 +100,16 @@ class Helper
         }
         */
         $user_count = \App\UserCount::where('uid',$uid)->first();
-        $user_count->extcredits1 += $credits1;
-        $user_count->extcredits4 += $credits4;
-        //更新积分
-        \DB::table('discuz_common_member_count')->where('uid',$uid)->update([
-            'extcredits1' => $user_count->extcredits1,
-            'extcredits4' => $user_count->extcredits4,
-        ]);
+        if( $user_count != null ){
+            $user_count->extcredits1 += $credits1;
+            $user_count->extcredits4 += $credits4;
+            //更新积分
+            \DB::table('discuz_common_member_count')->where('uid',$uid)->update([
+                'extcredits1' => $user_count->extcredits1,
+                'extcredits4' => $user_count->extcredits4,
+            ]);
+        }
+
         $logid = \DB::table('discuz_common_credit_log')->insertGetId([
             'uid' => $uid,
             'operation'=>'',

@@ -41,13 +41,22 @@ class RegisterMembers extends Command
     $n =  null == $this->argument('n') ? 1000 :  $this->argument('n');
     $file = file_get_contents(storage_path('crm.csv'));
     $members = explode("\n",$file);
+
+    $file = fopen(storage_path('1.csv'), 'w');
+    fwrite($file, chr(0xEF).chr(0xBB).chr(0xBF));
     foreach ($members as $key=>$member) {
       if( $key < $m || $key > $n){
         continue;
       }
       $_member = explode(",", $member);
-      $return = file_get_contents('http://club.dffengguang.com.cn//openapi/userinfo?Vin='.$_member[0].'&id_card='.urlencode($_member[1]));
+      $return = @file_get_contents('http://club.dffengguang.com.cn/openapi/userinfo?Vin='.$_member[0].'&id_card='.urlencode(trim($_member[1])));
+      $_return = json_decode($return, true);
+      $_member[] = $key+1;
+      if($return == null || $_return['result'] == 0){
+          fputcsv($file, $_member);
+      }
       $this->info($key.', '.$return);
+      \Log::info($return);
     }
   }
 }
