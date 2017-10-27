@@ -56,7 +56,6 @@ class PointsCancel extends Command
                 //trigger_error("SOAP Fault: (faultcode: {$response->faultcode}, faultstring: {$response->faultstring})", E_USER_ERROR);
                 $result = null;
             }
-            //var_dump($result);
             if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
                 $score_id = end($result['data'])['SCORE_ID'];
                 foreach ($result['data'] as $data){
@@ -64,7 +63,7 @@ class PointsCancel extends Command
                     if( $count > 0 ){
                         continue;
                     }
-                    $verify = \App\Verify::where('frame_number', $data['vin'])->first();
+                    $verify = \App\Verify::where('frame_number', $data['VIN'])->first();
                     if( null == $verify ){
                         continue;
                     }

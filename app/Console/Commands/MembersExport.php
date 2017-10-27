@@ -52,12 +52,12 @@ class MembersExport extends Command
             '时间',
             '备注',
         ];
-        $filename = 'd-0'.$n.'.csv';
+        $filename = 'd1-0'.$n.'.csv';
         $file = fopen(storage_path($filename), 'w');
         fwrite($file, chr(0xEF).chr(0xBB).chr(0xBF));
         //fputcsv($file, $arr_title);
 
-        $filename1 = 'dms.csv';
+        $filename1 = 'dms-02.csv';
         $handle = fopen(storage_path($filename1), 'r');
         while(!feof($handle)){
             $line = fgets($handle);
