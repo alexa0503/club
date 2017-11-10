@@ -1177,6 +1177,16 @@ body {
                             </p>
                         </td>
                     </tr>
+                    <tr style="height:22.7pt">
+                        <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:129.15pt">
+                            <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">风光</span><span style="font-family:Arial; font-size:9pt">S560</span><span style="font-family:微软雅黑; font-size:9pt">系列</span>
+                            </p>
+                        </td>
+                        <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:129pt">
+                            <p style="margin:0pt; text-align:center; text-indent:24pt"><span style="font-family:Arial; font-size:9pt">3000</span>
+                            </p>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -1240,6 +1250,16 @@ body {
                         </td>
                         <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:128.85pt">
                             <p style="margin:0pt; text-align:center; text-indent:24pt"><span style="font-family:Arial; font-size:9pt">4000</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr style="height:22.7pt">
+                        <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:129pt">
+                            <p style="margin:0pt; text-align:center"><span style="font-family:微软雅黑; font-size:9pt">风光</span><span style="font-family:Arial; font-size:9pt">S560</span><span style="font-family:微软雅黑; font-size:9pt">系列</span>
+                            </p>
+                        </td>
+                        <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:128.85pt">
+                            <p style="margin:0pt; text-align:center; text-indent:24pt"><span style="font-family:Arial; font-size:9pt">3000</span>
                             </p>
                         </td>
                     </tr>
