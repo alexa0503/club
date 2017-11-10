@@ -35,6 +35,12 @@ class Helper
             case 'F507S':
                 $return = '风光580';
                 break;
+            case 'F516':
+                $return = '风光S560';
+                break;
+            case 'F503S':
+                $return = '风光330S';
+                break;
             default:
                 $return = '小康微车';
                 break;
@@ -51,6 +57,9 @@ class Helper
                 $credits1 = 4000;
                 $credits4 = 0;
                 break;
+            case '风光S560':
+                $credits1 = 3000;
+                $credits4 = 0;
             case '风光370':
             case '风光360':
             case '风光360/370':
@@ -58,8 +67,10 @@ class Helper
                 $credits4 = 0;
                 break;
             case '风光330':
+            case '风光330S':
                 $credits1 = 1000;
                 $credits4 = 0;
+                break;
                 break;
             default:
                 $credits1 = 500;
