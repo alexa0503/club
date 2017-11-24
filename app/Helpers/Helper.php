@@ -239,4 +239,23 @@ class Helper
         //$verify->status = 1;
         //$verify->save();
     }
+
+    public static function object_array($array) {  
+        if(is_object($array)) {  
+            $array = (array)$array;  
+        } if(is_array($array)) {  
+            foreach($array as $key=>$value) {  
+                $array[$key] = \App\Helpers\Helper::object_array($value);  
+            }  
+        }  
+        return $array;  
+    }  
+
+    public static function mk_dir($dir, $mode = 0777) {
+        if (is_dir($dir) || @mkdir($dir, $mode))
+            return true;
+        if (!\App\Helpers\Helper::mk_dir(dirname($dir), $mode))
+            return false;
+        return @mkdir($dir, $mode);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\Helper;
 
 class CreditController extends Controller
 {
@@ -23,10 +24,59 @@ class CreditController extends Controller
             $model->where('discuz_common_member.uid','=', $request->keywords);
             $model->orWhere('discuz_common_member.username', 'LIKE', '%'.$request->keywords.'%');
         }
+        if(null != $request->date1){
+            $model->where('discuz_common_credit_log.dateline','>=', strtotime($request->date1 ."00:00:00"));
+        }
+        if(null != $request->date2){
+            $model->where('discuz_common_credit_log.dateline','<=', strtotime($request->date2 ."23:59:59"));
+        }
         $rows = $model->paginate(20);
         return view('admin.credit.index',[
-            'rows' => $rows
+            'rows' => $rows,
+            'requestAll' => $request->all(),
         ]);
+    }
+
+    public function export(Request $request){
+        $model = \DB::table('discuz_common_credit_log')
+            ->join('discuz_common_credit_log_field', 'discuz_common_credit_log.logid','=','discuz_common_credit_log_field.logid')
+            ->join('discuz_common_member', 'discuz_common_member.uid', '=', 'discuz_common_credit_log.uid')
+            ->select('discuz_common_credit_log.uid', 'discuz_common_member.username', 'discuz_common_credit_log.extcredits1', 'discuz_common_credit_log.extcredits4', 'discuz_common_credit_log_field.title', 'discuz_common_credit_log_field.text', 'discuz_common_credit_log.dateline')
+            ->orderBy('discuz_common_credit_log.dateline', 'DESC');
+        if(null != $request->keywords){
+            $model->where('discuz_common_member.uid','=', $request->keywords);
+            $model->orWhere('discuz_common_member.username', 'LIKE', '%'.$request->keywords.'%');
+        }
+        if(null != $request->date1){
+            $model->where('discuz_common_credit_log.dateline','>=', strtotime($request->date1 ."00:00:00"));
+        }
+        if(null != $request->date2){
+            $model->where('discuz_common_credit_log.dateline','<=', strtotime($request->date2 ."23:59:59"));
+        }
+        $rows = $model->get();
+
+        $date = date("Y_m_d_").rand(1000,9999);
+        $filename = "credit_{$date}.csv";
+        $filename = iconv("utf-8", "gb2312", $filename);
+        $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
+        fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
+        $title = ["UID","用户名","积分","风迷币","原因","描述","创建时间"];
+
+        fputcsv($fp, $title);
+        $cnt = 0;
+        $limit = 10000;
+        foreach ($rows as $k => $v) {
+            $cnt ++;
+            if ($limit == $cnt) {
+                ob_flush();
+                flush();
+                $cnt = 0;
+            }
+            $v->dateline = date("Y-m-d H:i:s", $v->dateline);
+            fputcsv($fp, Helper::object_array($v));
+        }
+        fclose($fp);
+        return response()->download("downloads/datacsv/".$filename);
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\Helper;
+use DB;
 
 class VerifyController extends Controller
 {
@@ -12,12 +14,96 @@ class VerifyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = \App\Verify::paginate(20);
+        $where = array();
+        //开始时间
+        if($request->has('date1')){
+            $where[] = ['created_at', '>=', "{$request->date1} 00:00:00"];
+        }
+        //结束时间
+        if($request->has('date2')){
+            $where[] = ['created_at', '<=', "{$request->date2} 23:59:59"];
+        }
+        //车型
+        if($request->has('model_code')){
+            $where[] = ['model_code', '=', $request->model_code];
+        }
+        //数据来源
+        if($request->has('datafrom')){
+            if($request->datafrom == 1){
+                $where[] = ['m.email',"=",""];
+            }else if($request->datafrom == 2){
+                $where[] = ['m.email',"!=",""];
+            }
+            $items = \App\Verify::leftJoin('discuz_common_member as m',"verifies.uid","=","m.uid")
+                    ->where($where)->paginate(20);
+        }else{
+            $items = \App\Verify::where($where)->paginate(20);
+        }
+
+        //print_r($items->links());die;
+        
+        $model_codes = \App\Verify::groupBy("model_code")->select("model_code")->get();
         return view('admin.verify.index',[
             'items' => $items,
+            'model_codes' => $model_codes,
+            'requestAll' => $request->all(),
         ]);
+    }
+
+    public function export(Request $request){
+        $where = array();
+        //开始时间
+        if($request->has('date1')){
+            $where[] = ['created_at', '>=', "{$request->date1} 00:00:00"];
+        }
+        //结束时间
+        if($request->has('date2')){
+            $where[] = ['created_at', '<=', "{$request->date2} 23:59:59"];
+        }
+        //车型
+        if($request->has('model_code')){
+            $where[] = ['model_code', '=', $request->model_code];
+        }
+        //数据来源
+        if($request->has('datafrom')){
+            if($request->datafrom == 1){
+                $where[] = ['m.email',"=",""];
+            }else if($request->datafrom == 2){
+                $where[] = ['m.email',"!=",""];
+            }
+            $items = \App\Verify::leftJoin('discuz_common_member as m',"verifies.uid","=","m.uid")
+                    ->where($where)
+                    ->select("verifies.id","m.username","verifies.frame_number","verifies.id_card","verifies.model_code","verifies.created_at")
+                    ->get();
+        }else{
+            $items = \App\Verify::where($where)->get();
+        }
+        //print_r($items);die;
+        $date = date("Y_m_d_").rand(1000,9999);
+        $filename = "verify_{$date}.csv";
+        $filename = iconv("utf-8", "gb2312", $filename);
+        $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
+        fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
+        $title = ["编号","用户名","车架号","身份证号","车型","创建时间"];
+
+        fputcsv($fp, $title);
+        $cnt = 0;
+        $limit = 10000;
+        foreach ($items as $k => $v) {
+            $cnt ++;
+            if ($limit == $cnt) {
+                ob_flush();
+                flush();
+                $cnt = 0;
+            }
+            unset($v->status,$v->updated_at,$v->deleted_at);
+            //print_r($v->toArray());die;
+            fputcsv($fp, $v->toArray());
+        }
+        fclose($fp);
+        return response()->download("downloads/datacsv/".$filename);
     }
 
     /**
