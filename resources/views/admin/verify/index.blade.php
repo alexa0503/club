@@ -16,8 +16,8 @@
                 <div class="form-group">
                     <select class="form-control" id="datafrom" name="datafrom" value="{{Request::input('datafrom')}}">
                         <option value="">选择数据来源/全部</option>
-                        <option value="1">车友会</option>
-                        <option value="2">CRM</option>
+                        <option value="1">CRM</option>
+                        <option value="2">车友会</option>
                     </select>
                 </div>
                 <div class="form-group">
