@@ -38,6 +38,7 @@ class CreditController extends Controller
     }
 
     public function export(Request $request){
+        set_time_limit(0);
         $model = \DB::table('discuz_common_credit_log')
             ->join('discuz_common_credit_log_field', 'discuz_common_credit_log.logid','=','discuz_common_credit_log_field.logid')
             ->join('discuz_common_member', 'discuz_common_member.uid', '=', 'discuz_common_credit_log.uid')
@@ -53,7 +54,6 @@ class CreditController extends Controller
         if(null != $request->date2){
             $model->where('discuz_common_credit_log.dateline','<=', strtotime($request->date2 ."23:59:59"));
         }
-        $rows = $model->get();
 
         $date = date("Y_m_d_").rand(1000,9999);
         $filename = "credit_{$date}.csv";
@@ -61,20 +61,15 @@ class CreditController extends Controller
         $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
         $title = ["UID","用户名","积分","风迷币","原因","描述","创建时间"];
-
         fputcsv($fp, $title);
-        $cnt = 0;
-        $limit = 10000;
-        foreach ($rows as $k => $v) {
-            $cnt ++;
-            if ($limit == $cnt) {
-                ob_flush();
-                flush();
-                $cnt = 0;
+
+        $model->chunk(10000, function($list) use ($fp){
+            foreach ($list as $k => $v) {
+                $v->dateline = date("Y-m-d H:i:s", $v->dateline);
+                fputcsv($fp, Helper::object_array($v));
             }
-            $v->dateline = date("Y-m-d H:i:s", $v->dateline);
-            fputcsv($fp, Helper::object_array($v));
-        }
+            //return false;
+        });
         fclose($fp);
         return response()->download("downloads/datacsv/".$filename);
     }

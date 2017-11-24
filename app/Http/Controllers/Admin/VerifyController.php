@@ -53,18 +53,19 @@ class VerifyController extends Controller
     }
 
     public function export(Request $request){
+        set_time_limit(0);
         $where = array();
         //开始时间
         if($request->has('date1')){
-            $where[] = ['created_at', '>=', "{$request->date1} 00:00:00"];
+            $where[] = ['a.created_at', '>=', "{$request->date1} 00:00:00"];
         }
         //结束时间
         if($request->has('date2')){
-            $where[] = ['created_at', '<=', "{$request->date2} 23:59:59"];
+            $where[] = ['a.created_at', '<=', "{$request->date2} 23:59:59"];
         }
         //车型
         if($request->has('model_code')){
-            $where[] = ['model_code', '=', $request->model_code];
+            $where[] = ['a.model_code', '=', $request->model_code];
         }
         //数据来源
         if($request->has('datafrom')){
@@ -73,35 +74,29 @@ class VerifyController extends Controller
             }else if($request->datafrom == 2){
                 $where[] = ['m.email',"!=",""];
             }
-            $items = \App\Verify::leftJoin('discuz_common_member as m',"verifies.uid","=","m.uid")
-                    ->where($where)
-                    ->select("verifies.id","m.username","verifies.frame_number","verifies.id_card","verifies.model_code","verifies.created_at")
-                    ->get();
-        }else{
-            $items = \App\Verify::where($where)->get();
+            
         }
-        //print_r($items);die;
+
         $date = date("Y_m_d_").rand(1000,9999);
         $filename = "verify_{$date}.csv";
         $filename = iconv("utf-8", "gb2312", $filename);
         $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
         $title = ["编号","用户名","车架号","身份证号","车型","创建时间"];
-
         fputcsv($fp, $title);
-        $cnt = 0;
-        $limit = 10000;
-        foreach ($items as $k => $v) {
-            $cnt ++;
-            if ($limit == $cnt) {
-                ob_flush();
-                flush();
-                $cnt = 0;
-            }
-            unset($v->status,$v->updated_at,$v->deleted_at);
-            //print_r($v->toArray());die;
-            fputcsv($fp, $v->toArray());
-        }
+
+        \DB::table("verifies as a")
+            ->leftJoin('discuz_common_member as m',"a.uid","=","m.uid")
+            ->where($where)
+            ->select("a.id","m.username","a.frame_number","a.id_card","a.model_code","a.created_at")
+            ->orderBy("a.id","asc")
+            ->chunk(10000, function($list) use ($fp){
+                foreach ($list as $k => $v) {
+                    fputcsv($fp, Helper::object_array($v));
+                }
+                //return false;
+            });
+        //print_r($items);die;
         fclose($fp);
         return response()->download("downloads/datacsv/".$filename);
     }
