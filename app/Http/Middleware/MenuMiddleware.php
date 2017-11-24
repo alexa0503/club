@@ -44,7 +44,7 @@ class MenuMiddleware
             $menu3->add('新增', ['url'=>route('credit.create'),'class'=>'bg-palette3']);
 
             /*************************2017-11-17  添加数据导出模块*************************/
-            $menu->add('数据导出', ['url'=>route('dataexport.index'),'class'=>'bg-palette7']);
+            //$menu->add('数据导出', ['url'=>route('dataexport.index'),'class'=>'bg-palette7']);
             /*************************2017-11-17  添加数据导出模块*************************/
         });
         return $next($request);
