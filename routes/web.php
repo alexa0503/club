@@ -31,8 +31,8 @@ Route::group(['middleware' => ['auth.discuz.admin', 'menu'], 'prefix' => 'admin'
     Route::get('credit/export', 'CreditController@export');
     Route::resource('credit', 'CreditController');
     /*************************2017-11-17  添加数据导出模块*************************/
-    Route::get('dataexport/export', 'DataexportController@export');
-    Route::resource('dataexport', 'DataexportController');
+    Route::get('members/export', 'MembersController@export');
+    Route::resource('members', 'MembersController');
     /*************************2017-11-17  添加数据导出模块*************************/
 });
 Route::group(['middleware' => ['auth.discuz.user']], function () {
