@@ -23,7 +23,7 @@
             <div class="smart-widget-body">
                 <table class="table table-striped">
                     <thead>
-                    <tr>cgg
+                    <tr>
                         <th>ID</th>
                         <th>用户名</th>
                         <th>积分</th>
