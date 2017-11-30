@@ -41,7 +41,6 @@
 			          	<td>{{$row->text}}</td>
 						<td>{{Carbon\Carbon::createFromTimestamp($row->dateline)->toDateTimeString()}}</td>
 			          	<td>{{$row->model_code}}</td>
-						@endif
 		        	</tr>
                     @endforeach
 		      	</tbody>
