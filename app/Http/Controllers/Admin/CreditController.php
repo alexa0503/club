@@ -15,22 +15,26 @@ class CreditController extends Controller
      */
     public function index(Request $request)
     {
-        $model = \DB::table('discuz_common_credit_log')
-            ->join('discuz_common_credit_log_field', 'discuz_common_credit_log.logid','=','discuz_common_credit_log_field.logid')
-            ->join('discuz_common_member', 'discuz_common_member.uid', '=', 'discuz_common_credit_log.uid')
-            ->select('discuz_common_credit_log.*', 'discuz_common_credit_log_field.title', 'discuz_common_credit_log_field.text', 'discuz_common_member.username')
-            ->orderBy('discuz_common_credit_log.dateline', 'DESC');
+        $model = \DB::table('discuz_common_credit_log as cl')
+            ->leftJoin('discuz_common_credit_log_field as lf','lf.logid','=','cl.logid')
+            ->leftJoin('discuz_common_member as m','m.uid','=','cl.uid')
+            ->leftJoin('verifies as v','v.uid','cl.uid')
+            ->select('cl.logid','m.uid','m.username','cl.extcredits1','extcredits4', 'lf.title', 'lf.text','cl.dateline','v.model_code')
+            ->orderBy('cl.logid', 'DESC');
+
         if(null != $request->keywords){
-            $model->where('discuz_common_member.uid','=', $request->keywords);
-            $model->orWhere('discuz_common_member.username', 'LIKE', '%'.$request->keywords.'%');
+            $model->where('m.uid','=', $request->keywords);
+            $model->orWhere('m.username', 'LIKE', '%'.$request->keywords.'%');
         }
         if(null != $request->date1){
-            $model->where('discuz_common_credit_log.dateline','>=', strtotime($request->date1 ."00:00:00"));
+            $model->where('cl.dateline','>=', strtotime($request->date1 ." 00:00:00"));
         }
         if(null != $request->date2){
-            $model->where('discuz_common_credit_log.dateline','<=', strtotime($request->date2 ."23:59:59"));
+            $model->where('cl.dateline','<=', strtotime($request->date2 ." 23:59:59"));
         }
+
         $rows = $model->paginate(20);
+        //print_r($rows->total());die;
         return view('admin.credit.index',[
             'rows' => $rows,
             'requestAll' => $request->all(),
@@ -39,20 +43,22 @@ class CreditController extends Controller
 
     public function export(Request $request){
         set_time_limit(0);
-        $model = \DB::table('discuz_common_credit_log')
-            ->join('discuz_common_credit_log_field', 'discuz_common_credit_log.logid','=','discuz_common_credit_log_field.logid')
-            ->join('discuz_common_member', 'discuz_common_member.uid', '=', 'discuz_common_credit_log.uid')
-            ->select('discuz_common_credit_log.uid', 'discuz_common_member.username', 'discuz_common_credit_log.extcredits1', 'discuz_common_credit_log.extcredits4', 'discuz_common_credit_log_field.title', 'discuz_common_credit_log_field.text', 'discuz_common_credit_log.dateline')
-            ->orderBy('discuz_common_credit_log.dateline', 'DESC');
+        $model = \DB::table('discuz_common_credit_log as cl')
+            ->leftJoin('discuz_common_credit_log_field as lf','lf.logid','=','cl.logid')
+            ->leftJoin('discuz_common_member as m','m.uid','=','cl.uid')
+            ->leftJoin('verifies as v','v.uid','cl.uid')
+            ->select('cl.logid','m.uid','m.username','cl.extcredits1','extcredits4', 'lf.text','cl.dateline','v.model_code')
+            ->orderBy('cl.logid', 'DESC');
+
         if(null != $request->keywords){
             $model->where('discuz_common_member.uid','=', $request->keywords);
-            $model->orWhere('discuz_common_member.username', 'LIKE', '%'.$request->keywords.'%');
+            $model->orWhere('m.username', 'LIKE', '%'.$request->keywords.'%');
         }
         if(null != $request->date1){
-            $model->where('discuz_common_credit_log.dateline','>=', strtotime($request->date1 ."00:00:00"));
+            $model->where('cl.dateline','>=', strtotime($request->date1 ."00:00:00"));
         }
         if(null != $request->date2){
-            $model->where('discuz_common_credit_log.dateline','<=', strtotime($request->date2 ."23:59:59"));
+            $model->where('cl.dateline','<=', strtotime($request->date2 ."23:59:59"));
         }
 
         $date = date("Y_m_d_").rand(1000,9999);
@@ -60,7 +66,8 @@ class CreditController extends Controller
         $filename = iconv("utf-8", "gb2312", $filename);
         $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
-        $title = ["UID","用户名","积分","风迷币","原因","描述","创建时间"];
+
+        $title = ["ID","UID","用户名","积分","风迷币","原因","消费时间","车型"];
         fputcsv($fp, $title);
 
         $model->chunk(10000, function($list) use ($fp){
@@ -74,6 +81,68 @@ class CreditController extends Controller
         return response()->download("downloads/datacsv/".$filename);
     }
 
+
+
+    public function dms(Request $request){
+        $model = \DB::table('owner_logs as l')
+            ->leftJoin('discuz_common_member as m','m.uid','=','l.uid')
+            ->leftJoin('verifies as v','v.uid','l.uid')
+            ->select('l.id','m.uid','m.username','l.score_id','l.rono','l.point','l.coin', 'l.reason','l.spent_at','v.model_code','l.dealer')
+            ->orderBy('l.id', 'DESC');
+        if(null != $request->keywords){
+            $model->where('m.uid','=', $request->keywords);
+            $model->orWhere('m.username', 'LIKE', '%'.$request->keywords.'%');
+        }
+        if(null != $request->date1){
+            $model->where('l.spent_at','>=', $request->date1 ." 00:00:00");
+        }
+        if(null != $request->date2){
+            $model->where('l.spent_at','<=', $request->date2 ." 23:59:59");
+        }
+        $rows = $model->paginate(20);
+
+        return view('admin.credit.dms',[
+            'rows' => $rows,
+            'requestAll' => $request->all(),
+        ]);
+    }
+
+    public function exportdms(Request $request){
+        set_time_limit(0);
+        $model = \DB::table('owner_logs as l')
+            ->leftJoin('discuz_common_member as m','m.uid','=','l.uid')
+            ->leftJoin('verifies as v','v.uid','l.uid')
+            ->select('l.id','m.uid','m.username','l.score_id','l.rono','l.point','l.coin', 'l.reason','l.spent_at','v.model_code','l.dealer')
+            ->orderBy('l.id', 'DESC');
+        if(null != $request->keywords){
+            $model->where('m.uid','=', $request->keywords);
+            $model->orWhere('m.username', 'LIKE', '%'.$request->keywords.'%');
+        }
+        if(null != $request->date1){
+            $model->where('l.spent_at','>=', $request->date1 ." 00:00:00");
+        }
+        if(null != $request->date2){
+            $model->where('l.spent_at','<=', $request->date2 ." 23:59:59");
+        }
+
+        $date = date("Y_m_d_").rand(1000,9999);
+        $filename = "credit_{$date}.csv";
+        $filename = iconv("utf-8", "gb2312", $filename);
+        $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
+        fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
+
+        $title = ["ID","UID","用户名","SCORE ID","RONO","积分","风迷币","原因","消费时间","车型","经销商代码"];
+        fputcsv($fp, $title);
+
+        $model->chunk(10000, function($list) use ($fp){
+            foreach ($list as $k => $v) {
+                fputcsv($fp, Helper::object_array($v));
+            }
+            //return false;
+        });
+        fclose($fp);
+        return response()->download("downloads/datacsv/".$filename);
+    }
     /**
      * Show the form for creating a new resource.
      *

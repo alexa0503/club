@@ -36,13 +36,16 @@ class VerifyController extends Controller
             }else if($request->datafrom == 2){
                 $where[] = ['m.email',"!=",""];
             }
-            $items = \App\Verify::leftJoin('discuz_common_member as m',"verifies.uid","=","m.uid")
-                    ->where($where)->paginate(20);
-        }else{
-            $items = \App\Verify::where($where)->paginate(20);
         }
 
-        //print_r($items->links());die;
+        $items = \DB::table("verifies as v")
+                    ->join('discuz_common_member as m',"v.uid","=","m.uid")
+                    ->join('discuz_common_member_count as c','c.uid','=','v.uid')
+                    ->join('discuz_common_usergroup as g','g.groupid','=','m.groupid')
+                    ->select("v.id","m.username","g.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","v.created_at","m.email")
+                    ->where($where)->paginate(20);
+
+        //print_r($items);die;
         
         $model_codes = \App\Verify::groupBy("model_code")->select("model_code")->get();
         return view('admin.verify.index',[
@@ -82,14 +85,16 @@ class VerifyController extends Controller
         $filename = iconv("utf-8", "gb2312", $filename);
         $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
-        $title = ["编号","用户名","车架号","身份证号","车型","创建时间"];
+        $title = ["编号","会员名","会员等级","积分","风迷币","认证车架号","认证姓名","认证车型","创建时间","邮箱"];
         fputcsv($fp, $title);
 
-        \DB::table("verifies as a")
-            ->leftJoin('discuz_common_member as m',"a.uid","=","m.uid")
+        \DB::table("verifies as v")
+            ->join('discuz_common_member as m',"v.uid","=","m.uid")
+            ->join('discuz_common_member_count as c','c.uid','=','v.uid')
+            ->join('discuz_common_usergroup as g','g.groupid','=','m.groupid')
+            ->select("v.id","m.username","g.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","v.created_at","m.email")
             ->where($where)
-            ->select("a.id","m.username","a.frame_number","a.id_card","a.model_code","a.created_at")
-            ->orderBy("a.id","asc")
+            ->orderBy("v.id","asc")
             ->chunk(10000, function($list) use ($fp){
                 foreach ($list as $k => $v) {
                     fputcsv($fp, Helper::object_array($v));

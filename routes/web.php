@@ -29,11 +29,11 @@ Route::group(['middleware' => ['auth.discuz.admin', 'menu'], 'prefix' => 'admin'
     Route::resource('verify', 'VerifyController');
     Route::resource('reference', 'ReferenceController');
     Route::get('credit/export', 'CreditController@export');
+    Route::get('credit/exportdms', 'CreditController@exportdms');
+    Route::get('credit/dms', 'CreditController@dms')->name('credit.dms');
     Route::resource('credit', 'CreditController');
-    /*************************2017-11-17  添加数据导出模块*************************/
     Route::get('members/export', 'MembersController@export');
-    Route::resource('members', 'MembersController');
-    /*************************2017-11-17  添加数据导出模块*************************/
+    Route::get('members', 'MembersController@index')->name('members.index');
 });
 Route::group(['middleware' => ['auth.discuz.user']], function () {
 

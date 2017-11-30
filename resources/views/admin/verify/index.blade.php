@@ -33,22 +33,30 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>用户名</th>
-                        <th>车架号</th>
-                        <th>身份证号</th>
-                        <th>车型</th>
-                        <th>创建时间</th>
+                        <th>会员名</th>
+                        <th>会员等级</th>
+                        <th>积分</th>
+                        <th>风迷币</th>
+                        <th>认证车架号</th>
+                        <th>认证姓名</th>
+                        <th>认证车型</th>
+                        <th>注册时间</th>
+                        <th>邮箱</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($items as $item)
                         <tr>
                             <td>{{$item->id}}</td>
-                            <td>{{$item->user->username}}</td>
+                            <td>{{$item->username}}</td>
+                            <td>{{$item->grouptitle}}</td>
+                            <td>{{$item->extcredits1}}</td>
+                            <td>{{$item->extcredits4}}</td>
                             <td>{{$item->frame_number}}</td>
                             <td>{{$item->id_card}}</td>
                             <td>{{$item->model_code}}</td>
                             <td>{{$item->created_at}}</td>
+                            <td>{{$item->email}}</td>
                         </tr>
                     @endforeach
                     </tbody>

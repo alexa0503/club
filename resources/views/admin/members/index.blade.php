@@ -25,12 +25,15 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>用户名</th>
+                        <th>会员名</th>
+                        <th>会员等级</th>
                         <th>积分</th>
                         <th>风迷币</th>
+                        <th>认证车架号</th>
+                        <th>认证姓名</th>
+                        <th>认证车型</th>
+                        <th>注册时间</th>
                         <th>邮箱</th>
-                        <th>等级</th>
-                        <th>创建时间</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -38,11 +41,14 @@
                         <tr>
                             <td>{{$item->uid}}</td>
                             <td>{{$item->username}}</td>
+                            <td>{{$item->grouptitle}}</td>
                             <td>{{$item->extcredits1}}</td>
                             <td>{{$item->extcredits4}}</td>
-                            <td>{{$item->email}}</td>
-                            <td>{{$item->grouptitle}}</td>
+                            <td>{{$item->frame_number}}</td>
+                            <td>{{$item->id_card}}</td>
+                            <td>{{$item->model_code}}</td>
                             <td>{{Carbon\Carbon::createFromTimestamp($item->regdate)->toDateTimeString()}}</td>
+                            <td>{{$item->email}}</td>
                         </tr>
                     @endforeach
                     </tbody>

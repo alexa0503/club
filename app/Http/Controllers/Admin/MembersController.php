@@ -35,12 +35,13 @@ class MembersController extends Controller
         }
 
         $items = DB::table("discuz_common_member as m")
-                    ->join('discuz_common_member_count as c',"c.uid","=","m.uid")
-                    ->join("discuz_common_usergroup as u","u.groupid","=","m.groupid")
-                    ->select("m.uid","m.username","c.extcredits1","c.extcredits4","m.email","u.grouptitle","m.regdate")
-                    ->where($where)
-                    ->paginate(20);
-                    //print_r($items);die;
+            ->join('discuz_common_member_count as c',"c.uid","=","m.uid")
+            ->join("discuz_common_usergroup as u","u.groupid","=","m.groupid")
+            ->leftJoin("verifies as v","v.uid","=","m.uid")
+            ->select("m.uid","m.username","u.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","m.regdate","m.email")
+            ->where($where)
+            ->paginate(20);
+        //print_r($items);die;
         return view('admin.members.index',[
             'items' => $items,
             'requestAll' => $request->all(),
@@ -72,13 +73,14 @@ class MembersController extends Controller
         $filename = iconv("utf-8", "gb2312", $filename);
         $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
-        $title = ["编号","用户名","积分","风迷币","邮箱","等级","创建时间"];
+        $title = ["编号","会员名","会员等级","积分","风迷币","认证车架号","认证姓名","认证车型","注册时间","邮箱"];
         fputcsv($fp, $title);
 
-        DB::table("discuz_common_member as m")
+        $items = DB::table("discuz_common_member as m")
             ->join('discuz_common_member_count as c',"c.uid","=","m.uid")
             ->join("discuz_common_usergroup as u","u.groupid","=","m.groupid")
-            ->select("m.uid","m.username","c.extcredits1","c.extcredits4","m.email","u.grouptitle","m.regdate")
+            ->leftJoin("verifies as v","v.uid","=","m.uid")
+            ->select("m.uid","m.username","u.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","m.regdate","m.email")
             ->where($where)
             ->orderBy("m.uid","asc")
             ->chunk(10000, function($list) use ($fp){

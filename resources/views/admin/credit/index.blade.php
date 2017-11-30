@@ -26,21 +26,22 @@
 			        	<th>积分</th>
 			        	<th>风迷币</th>
 			        	<th>原因</th>
-			        	<th>描述</th>
-			        	<th>创建时间</th>
+			        	<th>消费时间</th>
+			        	<th>车型</th>
 	        		</tr>
 	      		</thead>
 	      		<tbody>
                     @foreach($rows as $row)
 		        	<tr>
 			          	<td>{{$row->logid}}</td>
-						<td>{{$row->uid}}</td>
-                        <td>{{$row->username}}</td>
-						<td>{{$row->extcredits1}}</td>
-						<td>{{$row->extcredits4}}</td>
-						<td>{{$row->title}}</td>
-						<td>{{$row->text}}</td>
+			          	<td>{{$row->uid}}</td>
+			          	<td>{{$row->username}}</td>
+			          	<td>{{$row->extcredits1}}</td>
+			          	<td>{{$row->extcredits4}}</td>
+			          	<td>{{$row->text}}</td>
 						<td>{{Carbon\Carbon::createFromTimestamp($row->dateline)->toDateTimeString()}}</td>
+			          	<td>{{$row->model_code}}</td>
+						@endif
 		        	</tr>
                     @endforeach
 		      	</tbody>
@@ -57,7 +58,8 @@
         $('.export').click(function(){
             var date1 = $('input[name=date1]').val();
             var date2 = $('input[name=date2]').val();
-            var url = "{{url('admin/credit/export')}}"+'?date1='+date1+'&date2='+date2;
+            var datafrom = $('#datafrom').val();
+            var url = "{{url('admin/credit/export')}}"+'?date1='+date1+'&date2='+date2+'&datafrom='+datafrom;
             location.href=encodeURI(url);
         })
     });
