@@ -22,6 +22,7 @@ class Kernel extends ConsoleKernel
         Commands\RegisterMembers::class,
         Commands\MembersExport::class,
         Commands\PointsCancel::class,
+        Commands\SyncModel::class,
     ];
 
     /**
