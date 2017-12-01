@@ -19,11 +19,11 @@ class VerifyController extends Controller
         $where = array();
         //开始时间
         if($request->has('date1')){
-            $where[] = ['created_at', '>=', "{$request->date1} 00:00:00"];
+            $where[] = ['v.created_at', '>=', $request->date1." 00:00:00"];
         }
         //结束时间
         if($request->has('date2')){
-            $where[] = ['created_at', '<=', "{$request->date2} 23:59:59"];
+            $where[] = ['v.created_at', '<=', $request->date2." 23:59:59"];
         }
         //车型
         if($request->has('model_code')){
@@ -39,9 +39,9 @@ class VerifyController extends Controller
         }
 
         $items = \DB::table("verifies as v")
-                    ->join('discuz_common_member as m',"v.uid","=","m.uid")
-                    ->join('discuz_common_member_count as c','c.uid','=','v.uid')
-                    ->join('discuz_common_usergroup as g','g.groupid','=','m.groupid')
+                    ->leftJoin('discuz_common_member as m',"v.uid","=","m.uid")
+                    ->leftJoin('discuz_common_member_count as c','c.uid','=','v.uid')
+                    ->leftJoin('discuz_common_usergroup as g','g.groupid','=','m.groupid')
                     ->select("v.id","m.username","g.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","v.created_at","m.email")
                     ->where($where)->paginate(20);
 
@@ -60,15 +60,15 @@ class VerifyController extends Controller
         $where = array();
         //开始时间
         if($request->has('date1')){
-            $where[] = ['a.created_at', '>=', "{$request->date1} 00:00:00"];
+            $where[] = ['v.created_at', '>=', "{$request->date1} 00:00:00"];
         }
         //结束时间
         if($request->has('date2')){
-            $where[] = ['a.created_at', '<=', "{$request->date2} 23:59:59"];
+            $where[] = ['v.created_at', '<=', "{$request->date2} 23:59:59"];
         }
         //车型
         if($request->has('model_code')){
-            $where[] = ['a.model_code', '=', $request->model_code];
+            $where[] = ['v.model_code', '=', $request->model_code];
         }
         //数据来源
         if($request->has('datafrom')){

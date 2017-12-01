@@ -126,7 +126,7 @@ class CreditController extends Controller
         }
 
         $date = date("Y_m_d_").rand(1000,9999);
-        $filename = "credit_{$date}.csv";
+        $filename = "owner_{$date}.csv";
         $filename = iconv("utf-8", "gb2312", $filename);
         $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
