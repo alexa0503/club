@@ -37,13 +37,15 @@ class VerifyController extends Controller
                 $where[] = ['m.email',"!=",""];
             }
         }
-        
+
         $items = \DB::table("verifies as v")
                     ->leftJoin('discuz_common_member as m',"v.uid","=","m.uid")
                     ->leftJoin('discuz_common_member_count as c','c.uid','=','v.uid')
                     ->leftJoin('discuz_common_usergroup as g','g.groupid','=','m.groupid')
                     ->select("v.id","m.username","g.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","v.created_at","m.email")
-                    ->where($where)->paginate(20);
+                    ->where($where)
+                    ->orderBy("v.id","desc")
+                    ->paginate(20);
 
         //print_r($items);die;
         
@@ -94,7 +96,7 @@ class VerifyController extends Controller
             ->join('discuz_common_usergroup as g','g.groupid','=','m.groupid')
             ->select("v.id","m.username","g.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","v.created_at","m.email")
             ->where($where)
-            ->orderBy("v.id","asc")
+            ->orderBy("v.id","desc")
             ->chunk(10000, function($list) use ($fp){
                 foreach ($list as $k => $v) {
                     fputcsv($fp, Helper::object_array($v));

@@ -40,6 +40,7 @@ class MembersController extends Controller
             ->leftJoin("verifies as v","v.uid","=","m.uid")
             ->select("m.uid","m.username","u.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","m.regdate","m.email")
             ->where($where)
+            ->orderBy("m.uid","desc")
             ->paginate(20);
         //print_r($items);die;
         return view('admin.members.index',[
@@ -82,7 +83,7 @@ class MembersController extends Controller
             ->leftJoin("verifies as v","v.uid","=","m.uid")
             ->select("m.uid","m.username","u.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","m.regdate","m.email")
             ->where($where)
-            ->orderBy("m.uid","asc")
+            ->orderBy("m.uid","desc")
             ->chunk(10000, function($list) use ($fp){
                 foreach ($list as $k => $v) {
                     $v->regdate = date("Y-m-d H:i:s",$v->regdate);
