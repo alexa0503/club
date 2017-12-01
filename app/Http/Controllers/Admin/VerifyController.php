@@ -37,7 +37,7 @@ class VerifyController extends Controller
                 $where[] = ['m.email',"!=",""];
             }
         }
-
+        
         $items = \DB::table("verifies as v")
                     ->leftJoin('discuz_common_member as m',"v.uid","=","m.uid")
                     ->leftJoin('discuz_common_member_count as c','c.uid','=','v.uid')
