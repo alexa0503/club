@@ -33,7 +33,7 @@
                                 <img style="height:71px;width:71px;display:block;position:absolute;top:10px;left:10px;" src="{{$item['image']}}" alt="">
                                 <div style="overflow: hidden;height:71px;width:297px;position:absolute;left:0;top:6px;left:92px;">{{$item['name']}}
                                     <br/>
-                                    @if(isset($item['coupon'])){{$item['coupon'][$i]['code']}}<br/><span style="font-size:12px;color:#999;">使用期限：{{$item['coupon'][$i]['valid_date']}}</span>@endif
+                                    @if(isset($item['coupon'])){{'兑换码：'.$item['coupon'][$i]['code']}}<br/><span style="font-size:12px;color:#999;">使用期限：{{$item['coupon'][$i]['valid_date']}}</span>@endif
                                 </div>
                             </td>
                             <td>1</td>
