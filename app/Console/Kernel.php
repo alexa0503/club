@@ -45,7 +45,7 @@ class Kernel extends ConsoleKernel
             ->dailyAt('01:00');
         $schedule->command('points:update')
             ->dailyAt('03:00');
-        $schedule->command('points:update')
+        $schedule->command('points:update y')
             ->dailyAt('02:00');
         $schedule->command('points:cancel')
             ->dailyAt('04:00');
@@ -60,7 +60,6 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('send:levels')
             ->dailyAt('00:00');
-
     }
 
     /**

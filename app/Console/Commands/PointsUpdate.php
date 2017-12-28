@@ -13,7 +13,7 @@ class PointsUpdate extends Command
     *
     * @var string
     */
-    protected $signature = 'points:update {n?}';
+    protected $signature = 'points:update {is_latest?}';
 
     /**
     * The console command description.
@@ -40,10 +40,12 @@ class PointsUpdate extends Command
     public function handle()
     {
         ini_set('memory_limit', '1024M');
-        $score_id = '0';
+        $is_latest = (null == $this->argument('is_latest')) ? 'y' :  strtolower($this->argument('is_latest'));
+        $score_id = $is_latest == 'y' ? '' : '0';
+
         while (true) {
             $this->info($score_id);
-            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl",['exceptions' => 0]);
+            $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY02SOAP?wsdl", ['exceptions' => 0]);
             $options = [
                 'in'=>json_encode([
                     'frame_number'=>'',
@@ -51,31 +53,32 @@ class PointsUpdate extends Command
                 ])
             ];
             $response = $client->__soapCall("queryPartsInfo", array($options));
-            if( !is_soap_fault($response)){
-                $result = json_decode($response->out,true);
-            }
-            else{
+            if (!is_soap_fault($response)) {
+                $result = json_decode($response->out, true);
+            } else {
                 //trigger_error("SOAP Fault: (faultcode: {$response->faultcode}, faultstring: {$response->faultstring})", E_USER_ERROR);
                 $result = null;
             }
-            if($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])){
+            if ($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])) {
                 $score_id = end($result['data'])['SCORE_ID'];
-                foreach ($result['data'] as $data){
-                    $count = \App\OwnerLog::where('score_id',$data['SCORE_ID'])->withTrashed()->count();
-                    if( $count > 0 ){
+                foreach ($result['data'] as $data) {
+                    $count = \App\OwnerLog::where('score_id', $data['SCORE_ID'])->withTrashed()->count();
+                    if ($count > 0) {
                         continue;
                     }
                     $verify = \App\Verify::where('frame_number', $data['vin'])->first();
-                    if( null == $verify ){
+                    if (null == $verify) {
                         continue;
                     }
                     $data['title'] = '车主奖励';
                     $data['generate_way'] = 1;
                     $data['verify_id'] = $verify->id;
-                    \App\Helpers\Helper::updateLog($verify->uid,$data);
+                    \App\Helpers\Helper::updateLog($verify->uid, $data);
                 }
+            } else {
+                return false;
             }
-            else{
+            if ($is_latest == 'y') {
                 return false;
             }
         }
