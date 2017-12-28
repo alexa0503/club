@@ -76,6 +76,9 @@ class PointsUpdate extends Command
                     \App\Helpers\Helper::updateLog($verify->uid, $data);
                 }
             } else {
+                if ($result) {
+                    $this->info($result['ret']);
+                }
                 return false;
             }
             if ($is_latest == 'y') {
