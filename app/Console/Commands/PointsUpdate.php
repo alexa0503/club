@@ -40,7 +40,7 @@ class PointsUpdate extends Command
     public function handle()
     {
         ini_set('memory_limit', '1024M');
-        $is_latest = (null == $this->argument('is_latest')) ? 'y' :  strtolower($this->argument('is_latest'));
+        $is_latest = (null == $this->argument('is_latest')) ? 'n' :  strtolower($this->argument('is_latest'));
         $score_id = $is_latest == 'y' ? '' : '0';
 
         while (true) {
