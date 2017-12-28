@@ -60,7 +60,10 @@ class PointsUpdate extends Command
                 $result = null;
             }
             if ($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])) {
-                $score_id = end($result['data'])['SCORE_ID'];
+                if ($is_latest != 'y') {
+                    $score_id = end($result['data'])['SCORE_ID'];
+                }
+
                 foreach ($result['data'] as $data) {
                     $count = \App\OwnerLog::where('score_id', $data['SCORE_ID'])->withTrashed()->count();
                     if ($count > 0) {
@@ -79,9 +82,6 @@ class PointsUpdate extends Command
                 if ($result) {
                     $this->info($result['ret']);
                 }
-                return false;
-            }
-            if ($is_latest == 'y') {
                 return false;
             }
         }
