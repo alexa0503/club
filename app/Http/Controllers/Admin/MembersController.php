@@ -52,7 +52,6 @@ class MembersController extends Controller
     public function export(Request $request)
     {
         $where = array();
-        $where[] = [1, '=', 1];
         //开始时间
         if($request->has('date1')){
             $where[] = ['m.regdate', '>=', strtotime($request->date1 . " 00:00:00")];
@@ -83,7 +82,7 @@ class MembersController extends Controller
             ->join("discuz_common_usergroup as u","u.groupid","=","m.groupid")
             ->leftJoin("verifies as v","v.uid","=","m.uid")
             ->select("m.uid","m.username","u.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","m.regdate","m.email")
-            ->where($where)
+            ->where(sizeof($where)>0?'':$where)
             ->orderBy("m.uid","desc")
             ->chunk(10000, function($list) use ($fp){
                 foreach ($list as $k => $v) {
