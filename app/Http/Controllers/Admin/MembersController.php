@@ -52,7 +52,7 @@ class MembersController extends Controller
     public function export(Request $request)
     {
         $where = array();
-        $where[] = ['1', '=', '1'];
+        $where[] = [1, '=', 1];
         //开始时间
         if($request->has('date1')){
             $where[] = ['m.regdate', '>=', strtotime($request->date1 . " 00:00:00")];
