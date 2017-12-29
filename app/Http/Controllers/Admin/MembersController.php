@@ -69,6 +69,8 @@ class MembersController extends Controller
             }
         }
 
+        print_r($where);
+
         $date = date("Y_m_d_").rand(1000,9999);
         $filename = "members_{$date}.csv";
         $filename = iconv("utf-8", "gb2312", $filename);
@@ -76,6 +78,7 @@ class MembersController extends Controller
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
         $title = ["编号","会员名","会员等级","积分","风迷币","认证车架号","认证姓名","认证车型","注册时间","邮箱"];
         fputcsv($fp, $title);
+        print_r("222222222222");die;
 
         $items = DB::table("discuz_common_member as m")
             ->join('discuz_common_member_count as c',"c.uid","=","m.uid")
