@@ -67,8 +67,6 @@ class MembersController extends Controller
             }else if($request->datafrom == 2){
                 $where[] = ['m.email',"!=",""];
             }
-        }else{
-            $where[] = ['m.email',"=",""];
         }
 
         $date = date("Y_m_d_").rand(1000,9999);
