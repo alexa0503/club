@@ -51,7 +51,6 @@ class MembersController extends Controller
 
     public function export(Request $request)
     {
-        set_time_limit(0);
         $where = array();
         //开始时间
         if($request->has('date1')){
@@ -77,7 +76,6 @@ class MembersController extends Controller
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
         $title = ["编号","会员名","会员等级","积分","风迷币","认证车架号","认证姓名","认证车型","注册时间","邮箱"];
         fputcsv($fp, $title);
-
         $items = DB::table("discuz_common_member as m")
             ->join('discuz_common_member_count as c',"c.uid","=","m.uid")
             ->join("discuz_common_usergroup as u","u.groupid","=","m.groupid")
@@ -88,7 +86,8 @@ class MembersController extends Controller
             ->chunk(30000, function($list) use ($fp){
                 foreach ($list as $k => $v) {
                     $v->regdate = date("Y-m-d H:i:s",$v->regdate);
-                    fputcsv($fp, Helper::object_array($v));
+                    //fputcsv($fp, Helper::object_array($v));
+                    fputcsv($fp, json_decode(json_encode($v), true));
                 }
                 //return false;
             });
