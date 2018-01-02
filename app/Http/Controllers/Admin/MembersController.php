@@ -85,7 +85,7 @@ class MembersController extends Controller
             ->select("m.uid","m.username","u.grouptitle","c.extcredits1","c.extcredits4","v.frame_number","v.id_card","v.model_code","m.regdate","m.email")
             ->where($where)
             ->orderBy("m.uid","desc")
-            ->chunk(10000, function($list) use ($fp){
+            ->chunk(30000, function($list) use ($fp){
                 foreach ($list as $k => $v) {
                     $v->regdate = date("Y-m-d H:i:s",$v->regdate);
                     fputcsv($fp, Helper::object_array($v));
