@@ -51,6 +51,7 @@ class MembersController extends Controller
 
     public function export(Request $request)
     {
+        set_time_limit(0);
         $where = array();
         //开始时间
         if($request->has('date1')){
