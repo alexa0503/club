@@ -19,8 +19,10 @@ class MallController extends Controller
         $kvs = $page->blocks->filter(function ($value, $key) {
             return $value->name == 'kvs';
         })->values()->all();
+        $latest = \App\Item::orderBy('created_at', 'DESC')->limit(6)->get();
         return view('mall.index', [
             'features1' => $features1,
+            'latest' => $latest,
             'categories' => $categories,
             'kvs' => $kvs,
         ]);
