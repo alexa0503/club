@@ -42,6 +42,33 @@
                 </div>
             </div>
             @endif
+            @if( count($features2) > 0 )
+            <div class="row1">
+                <div class="top-border"></div>
+                <div class="top">
+                    <span>我能兑换</span>
+                </div>
+                <div class="caret"></div>
+                <div style="position:absolute;top:0;right:0;margin-right:20px;margin-top:10px;">
+                    <a href="{{url('mall/category')}}" style="color:red;font-weight:bold;">More&gt;&gt;</a>
+                </div>
+                <div class="content" style="height: 300px;">
+                    <div class="rows">
+                        @foreach($features2 as $k=>$item)
+                        <div class="col-md-2 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                            <a href="{{url('/mall/item/'.$item->id)}}">
+                                <img src="{{$item->thumb}}" width="162" height="177" />
+                            </a>
+                            <div style="height:40px;">
+                                <h4>{{$item->name}}</h4>
+                            </div>
+                            <span>{{$item->point}}风迷币</span>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            @endif
             @if( count($features1) > 0 )
             <div class="row1">
                 <div class="top-border"></div>

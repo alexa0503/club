@@ -20,8 +20,18 @@ class MallController extends Controller
             return $value->name == 'kvs';
         })->values()->all();
         $latest = \App\Item::orderBy('created_at', 'DESC')->limit(6)->get();
+        if( session('discuz.hasLogin') ){
+            $discuz_user = session('discuz.user');
+            $point = $discuz_user['user_count']['extcredits4'];
+            $features2 =  \App\Item::where('point', '<', $point)->limit(6)->get();
+        }
+        else{
+            $features2 = [];
+        }
+        
         return view('mall.index', [
             'features1' => $features1,
+            'features2' => $features2,
             'latest' => $latest,
             'categories' => $categories,
             'kvs' => $kvs,
