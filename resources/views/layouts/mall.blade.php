@@ -218,20 +218,20 @@
                     <div class="col-md-10 col-xs-10">
                         <input class="form-control" type="text" value="" id="username" name="username">
                         <label class="help-block" for="username" id="help-username"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 <div class="form-group" id="form-group-password">
                     <label for="price" class="col-md-2 col-xs-2 control-label">密码:</label>
                     <div class="col-md-10 col-xs-10">
                         <input class="form-control" type="password" value="" id="password" name="password">
                         <label class="help-block" for="password" id="help-password"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-md-10 col-xs-10 col-md-offset-2">
                         <button type="submit" class="btn btn-custom">登录</button>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 {{ Form::close() }}
             </div>
         </div><!-- /.modal-content -->
@@ -268,8 +268,8 @@
                     <div class="col-md-10 col-xs-10">
                         <input class="form-control" type="text" value="" id="username" name="name">
                         <label class="help-block" for="name" id="help-name"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 <div class="form-group" id="form-group-name">
                     <label for="district" class="col-md-2 col-xs-2 control-label">* 地区:</label>
                     <div class="col-md-10 col-xs-10">
@@ -294,38 +294,38 @@
                             </div>
                         </div>
 
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
 
                 <div class="form-group" id="form-group-detail">
                     <label for="detail" class="col-md-2 col-xs-2 control-label">* 详细地址:</label>
                     <div class="col-md-10 col-xs-10">
                         <input class="form-control" type="text" value="" id="detail" name="detail">
                         <label class="help-block" for="detail" id="help-detail"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
 
                 <div class="form-group" id="form-group-mobile">
                     <label for="mobile" class="col-md-2 col-xs-2 control-label">* 手机号码:</label>
                     <div class="col-md-10 col-xs-10">
                         <input class="form-control" type="text" value="" id="mobile" name="mobile">
                         <label class="help-block" for="mobile" id="help-mobile"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
 
                 <div class="form-group" id="form-group-telephone">
                     <label for="telephone" class="col-md-2 col-xs-2 control-label">固定电话:</label>
                     <div class="col-md-10 col-xs-10">
                         <input class="form-control" type="text" value="" id="telephone" name="telephone">
                         <label class="help-block" for="telephone" id="help-telephone"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 <input type="hidden" name="id" value="">
                 <div class="form-group">
                     <div class="col-md-10 col-xs-10 col-md-offset-2 col-xs-offset-2">
                         <button type="submit" class="btn btn-custom">确 认</button>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 {{ Form::close() }}
             </div>
         </div><!-- /.modal-content -->

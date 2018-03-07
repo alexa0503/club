@@ -9,8 +9,8 @@
                         {{ Form::open(array('url' => url('/mall/cart'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'post-form')) }}
                         <div class="form-group">
                             <label for="price" class="col-md-2 col-xs-2 control-label">价格:</label>
-                            <div class="col-md-10 col-xs-10"><label class="" for="" style="color:red;">{{$item->point}}风迷币</label></div><!-- /.col -->
-                        </div><!-- /form-group -->
+                            <div class="col-md-10 col-xs-10"><label class="" for="" style="color:red;">{{$item->point}}风迷币</label></div>
+                        </div>
                         <div class="form-group" id="form-group-quantity">
                             <label for="quantity" class="col-md-2 col-xs-2 control-label">数量:</label>
                             <div class="col-md-10 col-xs-10">
@@ -22,8 +22,8 @@
                                     </div>
                                 </div>
 
-                                <label class="help-block" for="" id="help-quantity"></label></div><!-- /.col -->
-                        </div><!-- /form-group -->
+                                <label class="help-block" for="" id="help-quantity"></label></div>
+                        </div>
                     <input type="hidden" value="{{$item->id}}" name="item_id" />
                     <button type="button" id="buy-now" class="btn-submit btn btn-lg btn-custom">立即兑换</button>
                     <button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>

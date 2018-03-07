@@ -7,7 +7,7 @@
 			<div class="form-group"><input class="form-control datepicker" name="date1" placeholder="输入开始日期" value="{{Request::input('date1')}}" />-<input class="form-control datepicker" name="date2" placeholder="输入结束日期" value="{{Request::input('date2')}}" /></div>
             <div class="form-group">
                 <input type="text" placeholder="请输入用户名或者UID" value="{{Request::input('keywords')}}" class="form-control" name="keywords" id="keywords">
-            </div><!-- /form-group -->
+            </div>
             <div class="form-group">
             	<button type="submit" class="btn btn-primary btn-sm">提交</button>
                 <button type="button" class="btn btn-primary btn-sm export">导出</button>

@@ -27,20 +27,20 @@
                         <div class="col-md-10 col-xs-10">
                             <input class="form-control" type="text" value="" id="frame_number" name="frame_number" placeholder="输入车架号">
                             <label class="help-block" for="frame_number" id="help-frame_number"></label>
-                        </div><!-- /.col -->
-                    </div><!-- /form-group -->
+                        </div>
+                    </div>
                     <div class="form-group" id="form-group-username">
                         <label for="username" class="col-md-2 col-xs-2 control-label">推荐用户名:</label>
                         <div class="col-md-10 col-xs-10">
                             <input class="form-control" type="text" value="" id="username" name="username" placeholder="输入推荐用户名">
                             <label class="help-block" for="username" id="help-username"></label>
-                        </div><!-- /.col -->
-                    </div><!-- /form-group -->
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-md-10 col-xs-10 col-md-offset-2">
                             <button type="submit" class="btn btn-custom">认证</button>
-                        </div><!-- /.col -->
-                    </div><!-- /form-group -->
+                        </div>
+                    </div>
                     {{ Form::close() }}
                 </div>
             </div>

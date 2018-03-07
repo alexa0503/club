@@ -17,7 +17,7 @@ $today = \Carbon\Carbon::today()->timestamp;
 			            	<button type="submit" class="btn btn-success no-shadow" tabindex="-1">Search</button>
 			            </div> <!-- /input-group-btn -->
 			        </div> <!-- /input-group -->
-				</div><!-- /.col -->
+				</div>
 				<div class="col-md-6 text-right"><a href="{{route('shop.export')}}">导出</a></div>
 			</div><!-- /.row -->
 		</form>

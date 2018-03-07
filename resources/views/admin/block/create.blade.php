@@ -70,8 +70,8 @@
                                         </div>
                                         <img id="preview-image" style="margin-top:15px;max-height:100px;">
                                         <label class="help-block" for="" id="help-image"></label>
-                                    </div><!-- /.col -->
-                                </div><!-- /form-group -->
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="" class="col-lg-2 control-label">缩略图</label>
@@ -86,8 +86,8 @@
                                         </div>
                                         <img id="preview-thumb" style="margin-top:15px;max-height:100px;">
                                         <label class="help-block" for="" id="help-thumb"></label>
-                                    </div><!-- /.col -->
-                                </div><!-- /form-group -->
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="" class="col-lg-2 col-md-3 control-label">排序</label>

@@ -9,41 +9,41 @@
                     <div class="col-lg-8 col-md-8">
                         <input value="" name="username" type="text" class="form-control" id="username" placeholder="请输入用户名">
                         <label class="help-block" for="" id="help-username"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="extcredits1" class="col-lg-4 col-md-4 control-label">积分<br/>[负数为扣除]</label>
                     <div class="col-lg-8 col-md-8">
                         <input value="" name="extcredits1" type="text" class="form-control" id="extcredits1" placeholder="请输入积分">
                         <label class="help-block" for="" id="help-extcredits1"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="extcredits4" class="col-lg-4 col-md-4 control-label">风迷币<br/>[负数为扣除]</label>
                     <div class="col-lg-8 col-md-8">
                         <input value="" name="extcredits4" type="text" class="form-control" id="extcredits4" placeholder="请输入风迷币">
                         <label class="help-block" for="" id="help-extcredits4"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="title" class="col-lg-4 col-md-4 control-label">变更理由标题</label>
                     <div class="col-lg-8 col-md-8">
                         <input value="" name="title" type="text" class="form-control" id="title" placeholder="请输入变更理由标题">
                         <label class="help-block" for="" id="help-title"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="text" class="col-lg-4 col-md-4 control-label">变更理由描述</label>
                     <div class="col-lg-8 col-md-8">
                         <textarea class="form-control" id="text" name="text" placeholder="请输入变更理由描述"></textarea>
                         <label class="help-block" for="" id="help-text"></label>
-                    </div><!-- /.col -->
-                </div><!-- /form-group -->
+                    </div>
+                </div>
 				<div class="form-group">
 					<div class="col-lg-offset-4 col-md-offset-4 col-lg-8 col-md-8">
 						<button type="submit" class="btn btn-success btn-sm">提交</button>
-					</div><!-- /.col -->
-				</div><!-- /form-group -->
+					</div>
+				</div>
 				{{ Form::close() }}
 			</div>
 		</div><!-- ./smart-widget-inner -->

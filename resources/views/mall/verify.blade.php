@@ -39,20 +39,20 @@
                         <div class="col-sm-10 col-md-10 col-xs-12">
                             <input class="form-control" type="text" value="" id="frame_number" name="frame_number" placeholder="输入后八位车架号">
                             <label class="help-block" for="frame_number" id="help-frame_number"></label>
-                        </div><!-- /.col -->
-                    </div><!-- /form-group -->
+                        </div>
+                    </div>
                     <div class="form-group" id="form-group-id_card">
                         <label for="id_card" class="col-sm-2 col-md-2 col-xs-10 control-label">姓名:</label>
                         <div class="col-sm-10 col-md-10 col-xs-12">
                             <input class="form-control" type="text" value="" id="id_card" name="id_card" placeholder="输入姓名">
                             <label class="help-block" for="id_card" id="help-id_card"></label>
-                        </div><!-- /.col -->
-                    </div><!-- /form-group -->
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-md-10 col-xs-10 col-md-offset-2">
                             <button type="submit" class="btn btn-custom">认证</button>
-                        </div><!-- /.col -->
-                    </div><!-- /form-group -->
+                        </div>
+                    </div>
                     {{ Form::close() }}
                     <div class="rows hidden-xs" style="margin-top: 40px;">
                         <ul id="myTab" class="nav nav-tabs">
