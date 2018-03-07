@@ -108,6 +108,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
 
 
     Route::get('/mall', 'MallController@index');
+    Route::get('/mall/search', 'MallController@search');
     Route::get('/mall/category/{id?}', 'MallController@category');
     Route::get('/mall/item/{id}', 'MallController@item');
     Route::group(['middleware' => ['auth.discuz.must']], function () {

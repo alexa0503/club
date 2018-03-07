@@ -25,6 +25,50 @@ class MallController extends Controller
             'kvs' => $kvs,
         ]);
     }
+    public function search(Request $request)
+    {
+        $category_id = $request->input('cat_id');
+        $name = $request->input('keywords');
+        $order_name = strtolower($request->input('order_name'));
+        $order_type = strtoupper($request->input('order_type'));
+        $point_min = (int)$request->input('point_min');
+        $point_max = (int)$request->input('point_max');
+        if( $order_name != 'created_at' || $order_name != 'name' || $order_name != 'point' ){
+            $order_name = 'created_at';
+        }
+        $order_type = $order_type != 'DESC' ? 'ASC' : 'DESC';
+        $model = \App\Item::orderBy($order_name, $order_type);
+        if( $category_id != null ){
+            $model->where('category_id',$category_id);
+            $category = \App\Category::find($category_id);
+        }
+        else{
+            $category = null;
+        }
+        if( null != $name ){
+            $model->where('name', 'LIKE', '%'.$name.'%');
+        }
+        if( $point_min > 0){
+            $model->where('point', '>' ,$point_min);
+        }
+        if( $point_max > 0){
+            $model->where('point', '<' ,$point_max);
+        }
+        $items = $model->paginate(18);
+        $page = \App\Page::find(2);
+
+        $kvs = $page->blocks->filter(function ($value, $key) {
+            return $value->name == 'kvs';
+        })->values()->all();
+
+        $categories = \App\Category::all();
+        return view('mall.search', [
+            'items' => $items,
+            'category'=>$category,
+            'categories'=>$categories,
+            'kvs' => $kvs,
+        ]);
+    }
     //产品分类页面
     public function category($category_id = null)
     {
@@ -41,9 +85,11 @@ class MallController extends Controller
         $kvs = $page->blocks->filter(function ($value, $key) {
             return $value->name == 'kvs';
         })->values()->all();
+        $categories = \App\Category::all();
         return view('mall.category', [
             'items' => $items,
             'category'=>$category,
+            'categories'=>$categories,
             'kvs' => $kvs,
         ]);
     }
