@@ -15,6 +15,7 @@
 			          	<th>市场价</th>
 			          	<th>风迷币</th>
 						<th>爆款推荐</th>
+						<th>热门兑换</th>
 						<th>状态</th>
 			          	<th>操作</th>
 	        		</tr>
@@ -31,6 +32,7 @@
 			          	<td>{{$item->price}}</td>
 			          	<td>{{$item->point}}</td>
 						<td>{{$item->feature1 > 0 ? $item->feature1 : '--' }}</td>
+						<td>{{$item->feature2 > 0 ? $item->feature2 : '--' }}</td>
 						<td>{!! $item->deleted_at ? '<span class="text-danger">已删</span>' : '正常' !!}</td>
                         <td>
 

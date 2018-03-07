@@ -9,24 +9,24 @@
                 <div class="col-lg-10">
                     <input value="{{$item->name}}" name="name" type="text" class="form-control" id="name" placeholder="请输入产品名">
                     <label class="help-block" for="" id="help-name"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="subtitle" class="col-lg-2 control-label">副标题</label>
                 <div class="col-lg-10">
                     <input value="{{$item->subtitle}}" name="subtitle" type="text" class="form-control" id="subtitle" placeholder="请输入副标题">
                     <label class="help-block" for="" id="help-subtitle"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="product_code" class="col-lg-2 control-label">产品编号</label>
                 <div class="col-lg-10">
                     <input value="{{$item->product_code}}" name="product_code" type="text" class="form-control" id="product_code" placeholder="请输入产品编号">
                     <label class="help-block" for="" id="help-product_code"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="category_id" class="col-lg-2 control-label">商品分类</label>
@@ -37,44 +37,51 @@
                         @endforeach
                     </select>
                     <label class="help-block" for="" id="help-category_id"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="dealer_id" class="col-lg-2 control-label">经销商</label>
                 <div class="col-lg-10">
                     <select name="dealer_id" class="form-control" id="dealer_id">
                         @foreach( $dealers as $dealer )
-                        <option value="{{$dealer->id}}" @if($dealer->id == $item->dealer_id){{'selected="selected'}}"@endif>{{$dealer->name}}</option>
+                        <option value="{{$dealer->id}}" {{ $dealer->id == $item->dealer_id ? 'selected="selected"' : '' }} >{{$dealer->name}}</option>
                         @endforeach
                     </select>
                     <label class="help-block" for="" id="help-dealer_id"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="type" class="col-lg-2 control-label">商品性质</label>
                 <div class="col-lg-10">
                     <select name="type" class="form-control" id="type"><option value="0">普通商品</option><option value="1" {{$item->type==1 ? 'selected="selected"':''}}>优惠券</option></select>
                     <label class="help-block" for="" id="help-type"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="valid_date" class="col-lg-2 control-label">有效期[仅优惠券有效]</label>
                 <div class="col-lg-10">
                     <input value="{{$item->valid_date}}" name="valid_date" type="text" class="form-control" id="valid_date" placeholder="">
                     <label class="help-block" for="" id="help-valid_date"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="feature1" class="col-lg-2 control-label">爆款推荐[大于0整数为推荐]</label>
                 <div class="col-lg-10">
                     <input value="{{$item->feature1}}" name="feature1" type="text" class="form-control" id="feature1" placeholder="">
                     <label class="help-block" for="" id="help-feature1"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="feature2" class="col-lg-2 control-label">热门兑换[大于0整数为推荐]</label>
+                <div class="col-lg-10">
+                    <input value="{{$item->feature2}}" name="feature2" type="text" class="form-control" id="feature2" placeholder="">
+                    <label class="help-block" for="" id="help-feature2"></label>
+                </div>
+            </div>
 
 
             <div class="form-group">
@@ -82,16 +89,16 @@
                 <div class="col-lg-10">
                     <input value="{{$item->price}}" name="price" type="text" class="form-control" id="price" placeholder="">
                     <label class="help-block" for="" id="help-price"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="point" class="col-lg-2 control-label">兑换风迷币</label>
                 <div class="col-lg-10">
                     <input value="{{$item->point}}" name="point" type="text" class="form-control" id="point" placeholder="">
                     <label class="help-block" for="" id="help-point"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
             <div class="form-group">
                 <label for="name" class="col-lg-2 control-label">产品图片</label>
                 <div class="col-lg-10">
@@ -105,16 +112,16 @@
                     </div>
 
                     <label class="help-block" for="" id="help-images"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="content" class="col-lg-2 control-label">产品描述</label>
                 <div class="col-lg-10">
                     <textarea name="content" class="article-ckeditor form-control" id="content" rows="20">{!! $item->content !!}</textarea>
                     <label class="help-block" for="" id="help-content"></label>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
 
 
 
@@ -123,8 +130,8 @@
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-success btn-sm">提交</button>
-                </div><!-- /.col -->
-            </div><!-- /form-group -->
+                </div>
+            </div>
             {{ Form::close() }}
         </div>
     </div><!-- ./smart-widget-inner -->

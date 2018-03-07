@@ -52,7 +52,7 @@ class ItemController extends Controller
         $item->settlement_price = $request->settlement_price ? : 0;
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
-        $item->feature2 = 0;
+        $item->feature2 = $request->feature2;
         $item->subtitle = $request->subtitle;
         $item->dealer_id = $request->dealer_id;
         $item->category_id = $request->category_id;
@@ -113,7 +113,7 @@ class ItemController extends Controller
         $item->price = $request->price;
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
-        $item->feature2 = 0;
+        $item->feature2 = $request->feature2;
         $item->subtitle = $request->subtitle;
         $item->type = $request->type;
         $item->valid_date = $request->valid_date;
