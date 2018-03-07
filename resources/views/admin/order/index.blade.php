@@ -6,7 +6,7 @@
                 <!--<div class="form-group"><input class="form-control" name="keywords" /></div>-->
                 <div class="form-group"><input class="form-control datepicker" name="date1" placeholder="输入开始日期" value="{{Request::input('date1')}}" />-<input class="form-control datepicker" name="date2" placeholder="输入结束日期" value="{{Request::input('date2')}}" /></div>
                 <div class="form-group"><input class="form-control" name="username" placeholder="输入用户名" value="{{Request::input('username')}}" /></div>
-                <div class="form-group"><select class="form-control" name="status"><option value="">选择订单状态/全部</option><option value="0">待发货</option><option value="1">待配送</option><option value="2">已完成</option></select></div>
+                <div class="form-group"><select class="form-control" name="status"><option value="">选择订单状态/全部</option><option value="0">待发货</option><option value="1">配送中</option><option value="2">已完成</option></select></div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">查询</button>
                     <button type="button" class="btn btn-primary export">导出</button></div>
@@ -82,8 +82,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
+            </div>
+        </div>
     </div>
 @endsection
 @section('scripts')

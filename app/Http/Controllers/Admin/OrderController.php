@@ -192,7 +192,13 @@ class OrderController extends Controller
         $order = \App\Order::find($id);
         $order->logistics_name = $request->logistics_name;
         $order->logistics_code = $request->logistics_code;
-        $order->status = 1;
+        if( $request->next_step != 1 && $order->status == 1){
+            $order->status = 1;
+        }
+        else{
+            $order->status += 1;
+        }
+        
         $order->save();
         return response(['ret'=>0,'url'=>route('order.index')]);
     }
