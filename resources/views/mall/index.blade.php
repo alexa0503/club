@@ -23,7 +23,7 @@
                 </div>
                 <div class="caret"></div>
                 <div style="position:absolute;top:0;right:0;margin-right:20px;margin-top:10px;">
-                    <a href="{{url('mall/category')}}" style="color:red;font-weight:bold;">More&gt;&gt;</a>
+                    <a href="/mall/search?keywords=&point_min=&point_max=&cat_id=&order_name=created_at&order_type=DESC" style="color:red;font-weight:bold;">More&gt;&gt;</a>
                 </div>
                 <div class="content" style="height: 300px;">
                     <div class="rows">
@@ -50,7 +50,6 @@
                 </div>
                 <div class="caret"></div>
                 <div style="position:absolute;top:0;right:0;margin-right:20px;margin-top:10px;">
-                    <a href="{{url('mall/category')}}" style="color:red;font-weight:bold;">More&gt;&gt;</a>
                 </div>
                 <div class="content" style="height: 300px;">
                     <div class="rows">
@@ -77,7 +76,6 @@
                 </div>
                 <div class="caret"></div>
                 <div style="position:absolute;top:0;right:0;margin-right:20px;margin-top:10px;">
-                    <a href="{{url('mall/category')}}" style="color:red;font-weight:bold;">More&gt;&gt;</a>
                 </div>
                 <div class="content" style="height: 300px;">
                     <div class="rows">

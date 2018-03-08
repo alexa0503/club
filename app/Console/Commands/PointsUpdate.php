@@ -77,6 +77,7 @@ class PointsUpdate extends Command
                     $data['generate_way'] = 1;
                     $data['verify_id'] = $verify->id;
                     \App\Helpers\Helper::updateLog($verify->uid, $data);
+                    \App\Helpers\DiscuzHelper::checkUserGroup($verify->uid);//更新用户等级
                 }
             } else {
                 if ($result) {

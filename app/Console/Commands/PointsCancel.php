@@ -71,6 +71,7 @@ class PointsCancel extends Command
                     $data['generate_way'] = 2;
                     $data['verify_id'] = $verify->id;
                     \App\Helpers\Helper::updateLog($verify->uid,$data);
+                    \App\Helpers\DiscuzHelper::checkUserGroup($verify->uid);//更新用户等级
                     \App\OwnerLog::where('rono', $data['Rono'])->where('generate_way','1')->delete();
                 }
             }
