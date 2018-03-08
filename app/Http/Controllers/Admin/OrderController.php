@@ -24,17 +24,55 @@ class OrderController extends Controller
         if($request->status !== null){
             $model->where('status', $request->status);
         }
+        if($request->name !== null){
+            $item_ids = \App\Item::where('name', 'LIKE', '%'.$request->name.'%')->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
         if($request->username != null ){
             $uids = \App\User::where('username', 'LIKE', '%'.$request->username.'%')->get()->map(function($item){
                 return $item->uid;
             })->toArray();
             $model->whereIn('uid', $uids);
         }
+        if($request->dealer_id !== null){
+            $dealer = \App\Dealer::find($request->dealer_id);
+            $item_ids = \App\Item::where('dealer_id', $dealer->id)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        if($request->category_id !== null){
+            $category = \App\Category::find($request->category_id);
+            $item_ids = \App\Item::where('category_id', $category->id)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        $dealers = \App\Dealer::all();
+        $categories = \App\Category::all();
         $items = $model->paginate(20);
         $order_statuses = config('custom.order.statuses');
+
+        $stat['qty'] = $model->sum('quantity');
+        $stat['point'] = $model->sum('point');
+        //dd($stat['qty']);
         return view('admin.order.index',[
             'items' => $items,
             'order_statuses' => $order_statuses,
+            'dealers' => $dealers,
+            'categories' => $categories,
+            'stat' => $stat
         ]);
     }
 
@@ -56,6 +94,37 @@ class OrderController extends Controller
             })->toArray();
             $model->whereIn('uid', $uids);
         }
+        if($request->dealer_id !== null){
+            $dealer = \App\Dealer::find($request->dealer_id);
+            $item_ids = \App\Item::where('dealer_id', $dealer->id)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        if($request->category_id !== null){
+            $category = \App\Category::find($request->category_id);
+            $item_ids = \App\Item::where('category_id', $category->id)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        if($request->name !== null){
+            $item_ids = \App\Item::where('name', 'LIKE', '%'.$request->name.'%')->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        $stat['qty'] = $model->sum('quantity');
+        $stat['point'] = $model->sum('point');
         $orders = $model->get();
         $order_statuses = config('custom.order.statuses');
         //订单时间、订单号、产品编号、产品名、数量、总风迷币、市场价、结算价、配送相关信息（姓名、地址等）
@@ -73,7 +142,7 @@ class OrderController extends Controller
                 break;
             }
             return [
-                $order->number,
+                '="'.$order->number.'"',
                 $code,
                 $order->items[0]['name'],
                 $order->quantity,
@@ -99,10 +168,23 @@ class OrderController extends Controller
             '配送相关信息（姓名、手机、地址等）',
             '订单状态',
         ];
+        $arr_footer = [
+            '总计',
+            '',
+            '',
+            $stat['qty'],
+            $stat['point'],
+            '',
+            '',
+            '',
+            '',
+            '',
+            ''
+        ];
         
         //array_unshift($arr,$arr_title);
-        $contens = array_merge(array($arr_title), $arr);
-        $filename = 'orders/'.date('Ymd').'.csv';
+        $contens = array_merge(array($arr_title), $arr,  array($arr_footer));
+        $filename = 'orders/'.date('Ymd').rand(1000,9999).'.csv';
         $file = fopen(public_path($filename), 'w');
         fwrite($file, chr(0xEF).chr(0xBB).chr(0xBF));
         foreach ($contens as $content) {

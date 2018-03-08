@@ -17,5 +17,9 @@ class Order extends Model
     {
         return date('YmdHi', strtotime($this->created_at)).$this->id;
     }
+    public function _items()
+    {
+        return $this->belongsToMany('App\Item', 'order_items', 'order_id', 'item_id');
+    }
 
 }
