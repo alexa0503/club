@@ -71,16 +71,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="feature1" class="col-lg-2 control-label">爆款推荐[大于0整数为推荐]</label>
+                    <label for="feature1" class="col-lg-2 control-label">爆款推荐[大于0的整数为推荐]</label>
                     <div class="col-lg-10">
                         <input value="0" name="feature1" type="text" class="form-control" id="feature1" placeholder="">
                         <label class="help-block" for="" id="help-feature1"></label>
                     </div>
                 </div>
                  <div class="form-group">
-                    <label for="feature2" class="col-lg-2 control-label">热门兑换[大于0整数为推荐]</label>
+                    <label for="feature2" class="col-lg-2 control-label">热门兑换[从小到大显示]</label>
                     <div class="col-lg-10">
-                        <input value="" name="feature2" type="text" class="form-control" id="feature2" placeholder="">
+                        <input value="9999" name="feature2" type="text" class="form-control" id="feature2" placeholder="">
                         <label class="help-block" for="" id="help-feature2"></label>
                     </div>
                 </div>

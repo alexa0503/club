@@ -28,7 +28,7 @@ class MallController extends Controller
         else{
             $features2 = [];
         }
-        $features3 =  \App\Item::where('sold_quantity', '>', 0)->orderBy('feature2', 'ASC')->orderBy('sold_quantity', 'DESC')->limit(6)->get();
+        $features3 =  \App\Item::orderBy('feature2', 'ASC')->orderBy('sold_quantity', 'DESC')->limit(6)->get();
         
         
         return view('mall.index', [
