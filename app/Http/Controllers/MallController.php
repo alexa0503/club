@@ -48,7 +48,7 @@ class MallController extends Controller
         $order_type = strtoupper($request->input('order_type'));
         $point_min = (int)$request->input('point_min');
         $point_max = (int)$request->input('point_max');
-        if( $order_name != 'created_at' || $order_name != 'name' || $order_name != 'point' ){
+        if( $order_name != 'created_at' && $order_name != 'name' && $order_name != 'point' ){
             $order_name = 'created_at';
         }
         $order_type = $order_type != 'DESC' ? 'ASC' : 'DESC';
