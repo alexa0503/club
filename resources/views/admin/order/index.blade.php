@@ -238,7 +238,6 @@
     $('.export').click(function () {
         var date1 = $('input[name=date1]').val();
         var date2 = $('input[name=date2]').val();
-        var username = $('input[name=username]').val();
         var status = $('select[name=status]').val();
         var category_id = $('select[name=category_id]').val();
         var username = $('input[name=username]').val();

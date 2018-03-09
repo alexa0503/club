@@ -20,8 +20,7 @@
                     <div class="form-group">
                         <select class="form-control" name="order_name">
                             <option value="created_at" {{ Request::input('order_name') == 'created_at' ? 'selected="selected"' : '' }}>按时间</option>
-                            <option value="name" {{ Request::input('order_name') == 'name' ? 'selected="selected"' : '' }}>按名称</option>
-                            <option value="price" {{ Request::input('order_name') == 'price' ? 'selected="selected"' : '' }}>按价格</option>
+                            <option value="point" {{ Request::input('order_name') == 'point' ? 'selected="selected"' : '' }}>按风迷币</option>
                         </select>
                         <select class="form-control" name="order_type">
                             <option value="ASC" {{ Request::input('order_type') == 'ASC' ? 'selected="selected"' : '' }}>递增</option>
