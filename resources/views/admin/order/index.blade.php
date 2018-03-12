@@ -123,7 +123,7 @@
                     </tr>
                 </tfoot>
             </table>
-            {!! $items->links() !!}
+            {!! $items->appends(Request::except('page'))->links() !!}
         </div>
     </div>
     <!-- ./smart-widget-inner -->
