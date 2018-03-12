@@ -1,6 +1,39 @@
 @extends('layouts.admin')
 @section('content')
 <div class="smart-widget">
+    <div class="smart-widget-header">
+        <form class="form-inline" action="/admin/item">
+            <div class="form-group">
+                <input class="form-control datepicker" name="date1" placeholder="输入开始日期" value="{{Request::input('date1')}}"
+                />-
+                <input class="form-control datepicker" name="date2" placeholder="输入结束日期" value="{{Request::input('date2')}}"
+                />
+            </div>
+             <div class="form-group">
+                <input class="form-control" name="name" placeholder="输入产品名" value="{{Request::input('name')}}" />
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="dealer_id">
+                    <option value="">选择供应商/全部</option>
+                    @foreach($dealers as $dealer)
+                    <option value="{{ $dealer->id }}" {{ $dealer->id == Request::input('dealer_id') ? 'selected="selected"' : '' }}>{{ $dealer->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="category_id">
+                    <option value="">选择产品分类/全部</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ $category->id == Request::input('category_id') ? 'selected="selected"' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">查询</button>
+                <button type="button" class="btn btn-primary export">导出</button>
+            </div>
+        </form>
+    </div>
 	<div class="smart-widget-inner">
 		<div class="smart-widget-body">
 			<table class="table table-striped">
@@ -47,7 +80,7 @@
                     @endforeach
 		      	</tbody>
 		    </table>
-            {!! $items->links() !!}
+            {!! $items->appends(Request::except('page'))->links() !!}
 		</div>
 	</div><!-- ./smart-widget-inner -->
 </div>

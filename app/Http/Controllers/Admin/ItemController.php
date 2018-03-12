@@ -12,11 +12,55 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = \App\Item::withTrashed()->paginate(20);
+        
+        $dealers = \App\Dealer::all();
+        $categories = \App\Category::all();
+        $model = \App\Item::orderBy('created_at', 'DESC');
+        if($request->date1 !== null){
+            $model->where('created_at', '>=', $request->date1);
+        }
+        if($request->date2 !== null){
+            $model->where('created_at', '<', $request->date2);
+        }
+        if($request->status !== null){
+            $model->where('status', $request->status);
+        }
+        if($request->name !== null){
+            $item_ids = \App\Item::where('name', 'LIKE', '%'.$request->name.'%')->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        if($request->dealer_id !== null){
+            $dealer = \App\Dealer::find($request->dealer_id);
+            $item_ids = \App\Item::where('dealer_id', $dealer->id)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        if($request->category_id !== null){
+            $category = \App\Category::find($request->category_id);
+            $item_ids = \App\Item::where('category_id', $category->id)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        $items = $model->withTrashed()->paginate(20);
         return view('admin.item.index',[
             'items' => $items,
+            'dealers' => $dealers,
+            'categories' => $categories,
         ]);
     }
 
