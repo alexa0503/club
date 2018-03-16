@@ -80,7 +80,7 @@ class OpenapiController extends Controller{
         $request->username = $Vin;
         $request->password = "123456";
         $uid = $this->register($request);
-        //记录认证信息
+        //记录认证信息register
         $veirfy = new \App\Verify();
         $veirfy->uid = $uid;
         $veirfy->frame_number = $frame_number;
@@ -219,32 +219,37 @@ class OpenapiController extends Controller{
         $regdate = $this->timestamp;
         $groupid = 11;//默认11
 
-        $uid = DB::table('discuz_ucenter_members')->insertGetId([
-            'username' => (string) $username,
-            'password'=>(string) $password,
-            'email'=>(string) $email,
-            'regip'=>(string) $regip,
-            'regdate'=>(string) $regdate,
-            'salt'=>$salt,
-        ]);
+        $user = DB::table('discuz_ucenter_members')->select('uid')->where('username', $username)->first();
+        if( $user != null ){
+            $uid = $user->uid;
+        }
+        else{
+            $uid = DB::table('discuz_ucenter_members')->insertGetId([
+                'username' => (string) $username,
+                'password'=>(string) $password,
+                'email'=>(string) $email,
+                'regip'=>(string) $regip,
+                'regdate'=>(string) $regdate,
+                'salt'=>$salt,
+            ]);
+            if(!$uid) $this->jsond(0,"注册失败");
+            DB::table('discuz_ucenter_memberfields')->insert([
+                'uid' => $uid,
+                'blacklist' => ''
+            ]);
 
-        if(!$uid) $this->jsond(0,"注册失败");
-        DB::table('discuz_ucenter_memberfields')->insert([
-            'uid' => $uid,
-            'blacklist' => ''
-        ]);
-
-        /*DB::table('common_member')->insert([
-            'uid' => $uid,
-            'username' => $username,
-            'password'=>$password,
-            'email'=>$email,
-            'regip'=>$regip,
-            'regdate'=>$regdate,
-            'salt'=>$salt,
-        ]);*/
-        $init_arr = array('credits' => explode(',', "0,0,0,0,0,0,0,0,0"), 'profile'=>array(), 'emailstatus' => 0);
-        $this->common_member_insert($uid, $username, $password, $email, $regip, $groupid, $init_arr);
+            /*DB::table('common_member')->insert([
+                'uid' => $uid,
+                'username' => $username,
+                'password'=>$password,
+                'email'=>$email,
+                'regip'=>$regip,
+                'regdate'=>$regdate,
+                'salt'=>$salt,
+            ]);*/
+            $init_arr = array('credits' => explode(',', "0,0,0,0,0,0,0,0,0"), 'profile'=>array(), 'emailstatus' => 0);
+            $this->common_member_insert($uid, $username, $password, $email, $regip, $groupid, $init_arr);
+        }
         return $uid;
     }
 
