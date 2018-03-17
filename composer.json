@@ -11,6 +11,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
         "lavary/laravel-menu": "^1.6",
+        "spatie/laravel-permission": "^2.9",
         "symfony/psr-http-message-bridge": "^1.0",
         "unisharp/laravel-ckeditor": "^4.6",
         "unisharp/laravel-filemanager": "^1.8"

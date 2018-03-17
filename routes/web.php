@@ -15,7 +15,31 @@ use App\Helpers\DiscuzHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth.discuz.admin', 'menu'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+Route::get('admin/login', 'Admin\LoginController@ShowLogin');
+Route::post('admin/login', 'Admin\LoginController@login');
+Route::get('admin/logout', 'Admin\LoginController@logout');
+Route::get('admin/install', function(){
+    /*
+    $user = new App\Admin();
+    $user->name = 'admin';
+    $user->email = 'admin@admin.com';
+    $user->password = bcrypt('admin@2017');
+    $user->save();
+    */
+
+    //Role::create(['guard_name'=>'admin','name' => 'superadmin']);
+    //Permission::create(['guard_name'=>'admin','name' => 'global privileges']);
+    
+    $role = Role::findByName('superadmin');
+    //$role->givePermissionTo('global privileges');
+    //$user = App\Admin::find(1);
+    //$user->givePermissionTo('global privileges');
+    //$user->assignRole(['superadmin'],'superadmin');
+        
+});
+Route::group(['middleware' => ['role:*', 'menu'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     });
@@ -34,6 +58,8 @@ Route::group(['middleware' => ['auth.discuz.admin', 'menu'], 'prefix' => 'admin'
     Route::resource('credit', 'CreditController');
     Route::get('members/export', 'MembersController@export');
     Route::get('members', 'MembersController@index')->name('members.index');
+    Route::resource('permission', 'PermissionController');
+    Route::resource('dealer', 'DealerController');
 });
 Route::group(['middleware' => ['auth.discuz.user']], function () {
 
@@ -112,7 +138,6 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
     Route::get('/mall/category/{id?}', 'MallController@category');
     Route::get('/mall/item/{id}', 'MallController@item');
     Route::group(['middleware' => ['auth.discuz.must']], function () {
-
         Route::get('/verify', function(){
             $uid = session('discuz.user.uid');
             $verifies = \App\Verify::where('uid', $uid)->get();

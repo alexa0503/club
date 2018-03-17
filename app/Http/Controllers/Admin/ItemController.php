@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class ItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:产品管理']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,10 +19,22 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
+        $admin = Auth::guard('admin')->user();
         
-        $dealers = \App\Dealer::all();
         $categories = \App\Category::all();
         $model = \App\Item::orderBy('created_at', 'DESC');
+        
+        if($admin->hasRole('管理员')){
+            $dealers = \App\Dealer::all();
+        }
+        else{
+            $role_names = $admin->getRoleNames();
+            $dealers = \App\Dealer::whereIn('name', $role_names)->get();
+            $dealer_ids = $dealers->map(function($item){
+                return $item->id;
+            });
+            $model->whereIn('dealer_id',$dealer_ids);
+        }
         if($request->date1 !== null){
             $model->where('created_at', '>=', $request->date1);
         }
@@ -71,8 +88,15 @@ class ItemController extends Controller
      */
     public function create()
     {
+        $admin = Auth::guard('admin')->user();
         $categories = \App\Category::all();
-        $dealers = \App\Dealer::all();
+        if($admin->hasRole('管理员')){
+            $dealers = \App\Dealer::all();
+        }
+        else{
+            $role_names = $admin->getRoleNames();
+            $dealers = \App\Dealer::whereIn('name', $role_names)->get();
+        }
         return view('admin.item.create',[
             'categories' => $categories,
             'dealers' => $dealers,
@@ -133,8 +157,15 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
+        $admin = Auth::guard('admin')->user();
         $categories = \App\Category::all();
-        $dealers = \App\Dealer::all();
+        if($admin->hasRole('管理员')){
+            $dealers = \App\Dealer::all();
+        }
+        else{
+            $role_names = $admin->getRoleNames();
+            $dealers = \App\Dealer::whereIn('name', $role_names)->get();
+        }
         return view('admin.item.edit',[
             'item' => \App\Item::find($id),
             'categories' => $categories,

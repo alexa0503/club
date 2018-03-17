@@ -1,15 +1,29 @@
 <?php
 
 namespace App;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Admin extends Model
+class Admin extends Authenticatable
 {
-    protected $table = 'discuz_ucenter_admins';
-    public $timestamps = false;
-    public function getAvatarAttribute($value)
-    {
-        return url('/').'/bbs/uc_server/avatar.php?uid='.$this->uid.'&type=real&size=small';
-    }
+    use HasRoles;
+
+    protected $guard_name = 'admin';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }

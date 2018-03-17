@@ -60,5 +60,8 @@ class Kernel extends HttpKernel
         'auth.discuz.user' => \App\Http\Middleware\DiscuzUserAuth::class,
         'auth.discuz.must' => \App\Http\Middleware\DiscuzMustLogin::class,
         'menu' => \App\Http\Middleware\MenuMiddleware::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
+        'permission' => \App\Http\Middleware\PermissionMiddleware::class,
+        'admin.guest' => \App\Http\Middleware\AdminGuestMiddleware::class,
     ];
 }

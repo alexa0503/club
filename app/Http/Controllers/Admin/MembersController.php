@@ -9,6 +9,10 @@ use DB;
 
 class MembersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:管理员','permission:会员积分']);
+    }
     /**
      * Display a listing of the resource.
      *

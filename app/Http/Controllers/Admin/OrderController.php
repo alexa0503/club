@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:订单管理']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,27 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+        $admin = Auth::guard('admin')->user();
         $model = \App\Order::orderBy('created_at', 'DESC');
+        if($admin->hasRole('管理员')){
+            $dealers = \App\Dealer::all();
+        }
+        else{
+            $role_names = $admin->getRoleNames();
+            $dealers = \App\Dealer::whereIn('name', $role_names)->get();
+            $dealer_ids = $dealers->map(function($item){
+                return $item->id;
+            });
+
+            $item_ids = \App\Item::whereIn('dealer_id', $dealer_ids)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+
         if($request->date1 !== null){
             $model->where('created_at', '>=', $request->date1);
         }
@@ -59,7 +84,6 @@ class OrderController extends Controller
             });
             $model->whereIn('id', $ids);
         }
-        $dealers = \App\Dealer::all();
         $categories = \App\Category::all();
         $items = $model->paginate(20);
         $order_statuses = config('custom.order.statuses');
@@ -78,7 +102,26 @@ class OrderController extends Controller
 
     public function export(Request $request)
     {
+        $admin = Auth::guard('admin')->user();
         $model = \App\Order::orderBy('created_at', 'DESC');
+        if($admin->hasRole('管理员')){
+            $dealers = \App\Dealer::all();
+        }
+        else{
+            $role_names = $admin->getRoleNames();
+            $dealers = \App\Dealer::whereIn('name', $role_names)->get();
+            $dealer_ids = $dealers->map(function($item){
+                return $item->id;
+            });
+
+            $item_ids = \App\Item::whereIn('dealer_id', $dealer_ids)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
         if($request->date1 != null){
             $model->where('created_at', '>=', $request->date1);
         }

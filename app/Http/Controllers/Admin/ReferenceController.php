@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 class ReferenceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:管理员','permission:认证记录']);
+    }
     /**
      * Display a listing of the resource.
      *

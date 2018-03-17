@@ -9,6 +9,10 @@ use DB;
 
 class BlockController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:管理员','permission:页面管理']);
+    }
     /**
      * Display a listing of the resource.
      *
