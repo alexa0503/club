@@ -18,7 +18,7 @@
                                 <h5 class="no-m-bottom">{{Session('discuz.admin.username')}}</h5>
                                 <div class="m-top-xs">
                                     <a href="{{url('/bbs/home.php?mod=spacecp')}}" class="m-right-sm">资料</a>
-                                    <a href="javascrit:;">退出</a>
+                                    <a href="{{ url('/admin/logout') }}">退出</a>
                                 </div>
                             </div>
                         </li>
@@ -92,7 +92,7 @@
                                     </a>
                                 </li>-->
                                 <li>
-                                    <a href="javascrit:;">
+                                    <a href="{{ url('admin/logout') }}">
                                         <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">退出</span>
                                     </a>
                                 </li>

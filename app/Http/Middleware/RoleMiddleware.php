@@ -11,6 +11,9 @@ class RoleMiddleware
     public function handle($request, Closure $next, $role)
     {
         if (Auth::guard('admin')->guest()) {
+            if($request->path() == 'admin'){
+                return redirect('admin/login');
+            }
             throw UnauthorizedException::notLoggedIn();
         }
         if ($role != '*') {

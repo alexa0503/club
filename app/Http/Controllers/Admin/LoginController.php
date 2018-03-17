@@ -47,6 +47,7 @@ class LoginController extends Controller
     }
     public function showLogin()
     {
+        //dd(bcrypt('admin123'));
         return view('admin.login');
     }
     protected function redirectTo()
