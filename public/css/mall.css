@@ -768,4 +768,7 @@ footer .container {
     #modal-tip .modal-dialog {
         width: 80%;
     }
+    .slick-next {
+        display: none!important;
+    }
 }
