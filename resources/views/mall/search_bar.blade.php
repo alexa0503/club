@@ -1,4 +1,4 @@
-            <div class="search_bar">
+            <div class="search_bar hidden-xs">
                 <form class="form-inline form-search" method="GET" enctype="application/x-www-form-urlencoded" action="/mall/search">
                     <div class="form-group">
                         <input name="keywords" class="form-control" placeholder="输入关键词" value="{{ Request::input('keywords') }}">

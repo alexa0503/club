@@ -1,0 +1,38 @@
+body {
+    background: url('../images/mall/mobile/bkg_index.png') no-repeat center 70px fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: "Microsoft YaHei", Simhei, Helmet, Arial, SimSun, Helvetica, sans-serif;
+}
+.header {
+    height:70px;
+    border-bottom: 1px;
+    -webkit-box-shadow:0px 1px 10px #999999;
+    -moz-box-shadow:0px 1px 10px #999999;
+    box-shadow:0px 1px 10px #999999;
+}
+.header .logo {
+    height: 50px;
+    margin:10px 15px;
+    position: relative;
+}
+.header .logo img {
+    height: 50px;
+}
+.fixed-bottom {
+    position: fixed;
+    height: 60px;
+    bottom: 60px;
+    width: 100%;
+}
+.btn-footer {
+    border-radius: 0px!important;
+    background: #278fe8;
+    color: #FFF;
+    width: 260px;
+    height: 60px;
+    line-height: 40px;
+    font-size: 30px;
+}

@@ -5,7 +5,7 @@
             @if(count($kvs)>0)
             <div id="kv">
                 <a href="{{$kvs[0]->link}}">
-                    <img src="{{$kvs[0]->image}}" width="1090" />
+                    <img src="{{ $kvs[0]->image }}" />
                 </a>
                 <div id="kv-text">
                     <h2>{{$kvs[0]->title}}</h2>
@@ -28,7 +28,7 @@
                 <div class="content" style="height: 300px;">
                     <div class="rows">
                         @foreach($latest as $k=>$item)
-                        <div class="col-md-2 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                        <div class="col-md-2 col-xs-6 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
                             <a href="{{url('/mall/item/'.$item->id)}}">
                                 <img src="{{$item->thumb}}" width="162" height="177" />
                             </a>
@@ -54,7 +54,7 @@
                 <div class="content" style="height: 300px;">
                     <div class="rows">
                         @foreach($features2 as $k=>$item)
-                        <div class="col-md-2 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                        <div class="col-md-2 col-xs-6 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
                             <a href="{{url('/mall/item/'.$item->id)}}">
                                 <img src="{{$item->thumb}}" width="162" height="177" />
                             </a>
@@ -80,7 +80,7 @@
                 <div class="content" style="height: 300px;">
                     <div class="rows">
                         @foreach($features3 as $k=>$item)
-                        <div class="col-md-2 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                        <div class="col-md-2 col-xs-6 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
                             <a href="{{url('/mall/item/'.$item->id)}}">
                                 <img src="{{$item->thumb}}" width="162" height="177" />
                             </a>
@@ -107,7 +107,7 @@
                 <div class="content" style="height: 300px;">
                     <div class="rows">
                         @foreach($features1 as $k=>$item)
-                        <div class="col-md-2 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                        <div class="col-md-2 col-xs-6 {{ ( $k%6 != 5) ?'border':''}}" style="height:257px;margin-bottom:20px;">
                             <a href="{{url('/mall/item/'.$item->id)}}">
                                 <img src="{{$item->thumb}}" width="162" height="177" />
                             </a>
@@ -133,7 +133,7 @@
                 <div class="content" style="height: 300px;">
                     <div class="rows">
                         @foreach($category->indexItems as $k=>$item)
-                        <div class="col-md-2 {{ ( $k%6 != 5 and $k != count($category->indexItems)-1 ) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                        <div class="col-md-2 col-xs-6 {{ ( $k%6 != 5 and $k != count($category->indexItems)-1 ) ?'border':''}}" style="height:257px;margin-bottom:20px;">
                             <a href="{{url('/mall/item/'.$item->id)}}">
                                 <img src="{{$item->thumb}}" width="162" height="177" />
                             </a>

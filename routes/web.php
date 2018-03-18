@@ -14,6 +14,7 @@
 use App\Helpers\DiscuzHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Jenssegers\Agent\Agent;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -64,6 +65,11 @@ Route::group(['middleware' => ['role:*', 'menu'], 'prefix' => 'admin', 'namespac
 Route::group(['middleware' => ['auth.discuz.user']], function () {
 
     Route::get('/', function () {
+        
+        $agent = new Agent;
+        if($agent->isMobile()){
+            return view('mobile.index');
+        }
         $page = \App\Page::find(1);
         $kvs = $page->blocks->filter(function ($value, $key) {
             return $value->name == 'kvs';

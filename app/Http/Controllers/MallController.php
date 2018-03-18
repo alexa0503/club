@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Request;
 use App\Helpers\DiscuzHelper;
 use Illuminate\Support\Facades\DB;
+use Jenssegers\Agent\Agent;
 use Validator;
 
 class MallController extends Controller
@@ -13,25 +14,32 @@ class MallController extends Controller
     //首页
     public function index()
     {
-        $features1 = \App\Item::where('feature1', '>', 0)->orderBy('feature1', 'ASC')->limit(6)->get();
+        $agent = new Agent;
+        $limit = $agent->isMobile() ? 2 : 6;
+        $features1 = \App\Item::where('feature1', '>', 0)->orderBy('feature1', 'ASC')->limit($limit)->get();
         $categories = \App\Category::orderBy('sort_id', 'ASC')->get();
         $page = \App\Page::find(2);
         $kvs = $page->blocks->filter(function ($value, $key) {
             return $value->name == 'kvs';
         })->values()->all();
-        $latest = \App\Item::orderBy('created_at', 'DESC')->limit(6)->get();
+        $latest = \App\Item::orderBy('created_at', 'DESC')->limit($limit)->get();
         if( session('discuz.hasLogin') ){
             $discuz_user = session('discuz.user');
             $point = $discuz_user['user_count']['extcredits4'];
-            $features2 =  \App\Item::where('point', '<', $point)->limit(6)->get();
+            $features2 =  \App\Item::where('point', '<', $point)->limit($limit)->get();
         }
         else{
             $features2 = [];
         }
-        $features3 =  \App\Item::orderBy('feature2', 'ASC')->orderBy('sold_quantity', 'DESC')->limit(6)->get();
+        $features3 =  \App\Item::orderBy('feature2', 'ASC')->orderBy('sold_quantity', 'DESC')->limit($limit)->get();
         
-        
-        return view('mall.index', [
+        if($agent->isMobile()){
+            $blade = 'mall.mobile.index';
+        }
+        else{
+            $blade = 'mall.index';
+        }
+        return view($blade, [
             'features1' => $features1,
             'features2' => $features2,
             'features3' => $features3,
@@ -42,6 +50,7 @@ class MallController extends Controller
     }
     public function search(Request $request)
     {
+        $agent = new Agent;
         $category_id = $request->input('cat_id');
         $name = $request->input('keywords');
         $order_name = strtolower($request->input('order_name'));
@@ -77,7 +86,14 @@ class MallController extends Controller
         })->values()->all();
 
         $categories = \App\Category::all();
-        return view('mall.search', [
+
+        if($agent->isMobile()){
+            $blade = 'mall.mobile.search';
+        }
+        else{
+            $blade = 'mall.search';
+        }
+        return view($blade, [
             'items' => $items,
             'category'=>$category,
             'categories'=>$categories,

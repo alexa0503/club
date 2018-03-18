@@ -19,11 +19,12 @@ header .container .btnShopCar {
     position: absolute;
     right: 0px;
     bottom: 0px;
-    width: 162px;
     height: 43px;
     line-height: 43px;
     text-align: center;
     background: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 header .container .btnShopCarP {
@@ -141,9 +142,6 @@ header .container .btnShopCarP .carbox .removeSp {
   #top .container,#main .container {
       width: 100%;
       margin: 10px auto;
-  }
-  body {
-    background: url(/bbs/static/image/mobile/images/pic_bg.jpg);
   }
 }
 #main .container .addr {
@@ -343,4 +341,77 @@ header .container .btnShopCarP .carbox .removeSp {
     color: #fff;
     font-size: 22px;
     cursor: pointer;
+}
+
+@media (max-width:768px) {
+    
+    #main .container .addr .addrList li .userAddr {
+        width: 80%;
+    }
+    #main .container .addr .addrList .upAddr {
+        top: auto;
+        bottom: 0;
+    }
+    #main .container .addr .addrList .delAddr {
+        top: auto;
+        bottom: 0;
+    }
+    #main .container .shangpinbox .shangpin .toolbox {
+        left:auto;
+        right: 0;
+        width: auto;
+        bottom: 100px;
+        top:auto;
+        text-align: right;
+    }
+    #main .container .shangpinbox .shangpin .toolbox .jinbi {
+        margin-left: 0;
+        float: none;
+        width: auto;
+    }
+    #main .container .shangpinbox .shopDi .dibox .allSeT {
+        margin-left: 5px;
+    }
+    #main .container .shangpinbox .shopDi .dibox .shopSum {
+        margin-left: 5px;
+    }
+    #main .container .shangpinbox .shopDi .dibox .Total {
+        color: red;
+    }
+    #main .container .shangpinbox .shangpin .shopTitle {
+        width: auto;
+        left: auto;
+        right: 0;
+    }
+    .qty-group {
+        width: auto;
+        float: none;
+        display: block;
+        width: 124px;
+        text-align: right;
+    }
+    #main .container .shangpinbox .shangpin .toolbox .remove {
+        float: none;
+        margin-left: 0;
+    }
+    #main .container .addr .addrList li .userAddr {
+        min-height: 70px;
+        margin-bottom: 10px;
+    }
+    #main .container .shangpinbox .shopDi .dibox {
+        width: auto;
+    }
+    #main .container .shangpinbox .order-title {
+        font-weight: 800;
+    }
+    .orders .shopTitle {
+        top: 42px!important;
+    }
+    .orders .shangpinbox {
+        margin-top: 20px!important;
+    }
+    
+    .orders .shangpinbox .shangpin .shopImg {
+        left:0!important;
+    }
 }

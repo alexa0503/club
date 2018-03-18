@@ -23,7 +23,7 @@
             </div>
             @include('mall.search_bar',['categories'=>$categories])
             <div class="row1">
-                <div class="top-border"></div>
+                <div class="top-border hidden-xs"></div>
                 <div class="top">
                     <span>@if ( $category ){{$category->name}}@else{{'搜索结果'}}@endif</span>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="rows">
                     @if(count($items) > 0)
                         @foreach($items as $k=>$item)
-                        <div class="col-md-2 {{ ( $k%6 != 5 and $k != count($items)-1 ) ?'border':''}}" style="height:257px;margin-bottom:20px;">
+                        <div class="col-md-2  col-xs-6 {{ ( $k%6 != 5 and $k != count($items)-1 ) ?'border':''}}" style="height:257px;margin-bottom:20px;">
 
                             <a href="{{url('/mall/item/'.$item->id)}}"><img src="{{$item->thumb}}" width="162" height="177" /></a>
                             <div style="height:40px;"><h4>{{$item->name}}</h4></div>

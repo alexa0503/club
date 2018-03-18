@@ -31,10 +31,19 @@
                         </div>
                         <div class="shopTitle">{{$cart->item->name}}</div>
                         <div class="toolbox">
+                             <div class="jinbi">{{$cart->item->point}}风迷币</div>
+                            @if(Agent::isMobile())
+                            <div class="qty-group">
                             <div class="sub" data-url="{{url('/mall/cart/'.$cart->id)}}">-</div>
                             <div class="text"><input type="text" data-url="{{url('/mall/cart/'.$cart->id)}}"value="{{$cart->quantity}}" name="quantity[]" /></div>
                             <div class="add" data-url="{{url('/mall/cart/'.$cart->id)}}">+</div>
-                            <div class="jinbi">{{$cart->item->point}}风迷币</div> <a href="javascript:;" data-url="{{url('/mall/cart/'.$cart->id)}}" class="remove">删除</a>
+                            </div>
+                            @else
+                            <div class="sub" data-url="{{url('/mall/cart/'.$cart->id)}}">-</div>
+                            <div class="text"><input type="text" data-url="{{url('/mall/cart/'.$cart->id)}}"value="{{$cart->quantity}}" name="quantity[]" /></div>
+                            <div class="add" data-url="{{url('/mall/cart/'.$cart->id)}}">+</div>
+                            @endif
+                            <a href="javascript:;" data-url="{{url('/mall/cart/'.$cart->id)}}" class="remove">删除</a>
                         </div>
                         <input type="hidden" name="point[]" value="{{$cart->item->point}}">
                     </li>
@@ -47,7 +56,7 @@
                     <div class="dibox">
                         <input type="checkbox" class="allSe" checked="checked" />
                         <div class="allSeT">全选</div>
-                        <div class="removeAll">删除选中的商品</div>
+                        <div class="removeAll hidden-xs">删除选中的商品</div>
                         <div class="shopSum">合计：</div>
                         <div class="Total"><span></span>风迷币</div>
                     </div>
@@ -56,6 +65,7 @@
             </div>
             <div style="height:77px;width:100%;"></div>
         </div>
+    @include('mall.mobile.car_bar',['active'=>'mall'])
     </div>
 @endsection
 @section('scripts')

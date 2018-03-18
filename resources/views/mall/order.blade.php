@@ -1,8 +1,9 @@
 @extends('layouts.mall')
 @section('content')
     <div id="main">
-        <div class="container" style="padding-bottom: 40px;">
+        <div class="container orders" style="padding-bottom: 40px;">
             <h4>我的订单</h4>
+            @if(!Agent::isMobile())
             <div style="width:100%;height:5px;background:red;margin:30px 0;z-index:1;"></div>
             @if(count($orders) <= 0)
                 <div class="dingdanbox" style="margin-top: 10px;">您还没有任何订单信息</div>
@@ -71,7 +72,44 @@
                 </table>
             </div>
             @endforeach
+            @else
+             <div class="shangpinbox">
+                <ul class="shangpin">
+                    @foreach($orders as $order)
+                    <li class="shoplist" style="position: relative;">
+                        <div class="order-title">{{$order->created_at}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号：{{date('YmdHi',strtotime($order->created_at))}}{{$order->id}}</div>
+                        <div class="shopImg">
+                            <img style="width:100%;height:100%;" src="{{asset($order->items[0]['image'])}}" alt="" />
+                        </div>
+                        <div class="shopTitle">{{$order->items[0]['name']}}</div>
+                        <div class="toolbox">
+                             <div class="jinbi">{{$order->items[0]['point']}}风迷币</div>
+                            <div class="qty-group">
+                            ×{{$order->quantity}}
+                            </div>
+                            <span class="label label-info">{{ $order_statuses[$order->status] }}</span>&nbsp;
+                            <a href="javascript:;" class="delAddr" data-url="">查看物流</a>
+                            @foreach($order->items as $item)
+                            @if(isset($item['type']) AND $item['type']==1)
+                        @for($i=0;$i<$item['quantity'];$i++)
+                            @if(isset($item['coupon'][$i]))
+                             @if(isset($item['coupon']))<br/>{{'兑换码：'.$item['coupon'][$i]['code']}}<span style="font-size:12px;color:#999;">@if(isset($item['coupon'][$i]['valid_date']))&nbsp;使用期限：{{$item['coupon'][$i]['valid_date']}}</span>@endif @endif
+                             @endif
+                             @endfor
+                             @endif
+                            @endforeach
+                        </div>
+                        <input type="hidden" name="point[]" value="{{$order->items[0]['point']}}">
+                    </li>
+                    @endforeach
+                    @if(count($orders) <= 0)
+                    <li class="shoplist" style="text-align: center;color: red;padding-top:40px;">您还没有任何订单信息~<a href="{{url('/mall')}}">点击这里</a>去挑选。</li>
+                    @endif
+                </ul>
+            </div>
+            @endif
         </div>
+    @include('mall.mobile.car_bar',['active'=>'mall'])
     </div>
 @endsection
 @section('scripts')

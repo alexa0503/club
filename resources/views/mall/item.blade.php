@@ -3,7 +3,8 @@
     <div id="main">
         <div class="container">
             <div class="row" id="item-top">
-                <div class="pull-right" style="width:640px;" id="item-detail">
+                @if(!Agent::isMobile())
+                <div class="pull-right hidden-xs" style="width:640px;" id="item-detail">
                     <div class="title">{{$item->name}}</div>
                     <div class="subtitle">{{$item->subtitle}}</div>
                         {{ Form::open(array('url' => url('/mall/cart'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'post-form')) }}
@@ -29,6 +30,7 @@
                     <button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>
                     {{ Form::close() }}
                 </div>
+                @endif
                 <div id="images">
                     <div class="slider slider-for">
                         @foreach($item->images as $image)
@@ -41,11 +43,40 @@
                         @endforeach
                     </div>
                 </div>
+                @if(Agent::isMobile())
+                <div class="visiable-xs-block item-detail">
+                    <div class="title">{{$item->name}}</div>
+                    <div class="subtitle">{{$item->subtitle}}</div>
+                        {{ Form::open(array('url' => url('/mall/cart'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'post-form')) }}
+                        <div class="form-group">
+                            <label for="price" class="col-md-2 col-xs-4 control-label">价格:</label>
+                            <div class="col-md-10 col-xs-8"><label class="" for="" style="color:red;">{{$item->point}}风迷币</label></div>
+                        </div>
+                        <div class="form-group" id="form-group-quantity">
+                            <label for="quantity" class="col-md-2 col-xs-4 control-label">数量:</label>
+                            <div class="col-md-10 col-xs-8">
+                                <div>
+                                    <div class="input-group" style="width: 100px;">
+                                        <span class="input-group-addon" id="item-increase">+</span>
+                                        <input type="text" value="1" class="form-control" placeholder="" aria-describedby="basic-addon1" name="quantity" style="width: 60px;text-align: center">
+                                        <span class="input-group-addon" id="item-decrease">-</span>
+                                    </div>
+                                </div>
+
+                                <label class="help-block" for="" id="help-quantity"></label></div>
+                        </div>
+                    <input type="hidden" value="{{$item->id}}" name="item_id" />
+                    <button type="button" id="buy-now" class="btn-submit btn btn-lg btn-custom">立即兑换</button>
+                    <button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>
+                    {{ Form::close() }}
+                </div>
+                @endif
             </div>
             <div class="row" id="item-content">
                 {!! $item->content !!}
             </div>
         </div>
+    @include('mall.mobile.car_bar',['active'=>'mall'])
     </div>
 
 @endsection
@@ -81,6 +112,14 @@
                 centerMode: false,
                 focusOnSelect: true
             });
+            var w = $('body').width();
+            $('#item-content img').each(function(index){
+                if( $(this).width() > w){
+                    var h = ($(this).height() / $(this).width()) * w
+                    $(this).width(w);
+                    $(this).height(h);
+                }
+            })
             $('.btn-submit').on('click', function () {
                 var id = $(this).attr('id');
                 $('.help-block').html('');
