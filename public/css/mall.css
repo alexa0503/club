@@ -688,6 +688,9 @@ footer .container {
     #bs-mall {
         margin-bottom: 100px;
     }
+    .car-bar .nav-pills li {
+        width: 24%;
+    }
     .car-bar .nav-pills a {
         background: #fff;
         color: #999;
