@@ -76,9 +76,9 @@
                 {!! $item->content !!}
             </div>
         </div>
-    @include('mall.mobile.car_bar',['active'=>'mall'])
     </div>
 
+    @include('mall.mobile.car_bar',['active'=>'mall'])
 @endsection
 @section('scripts')
 

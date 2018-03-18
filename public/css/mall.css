@@ -601,6 +601,7 @@ footer .container {
 @media (max-width:768px) {
     body {
         background: #fff !important;
+        overflow-x: hidden!important;
     }
     #top {
         height: 42px;
