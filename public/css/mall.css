@@ -693,6 +693,9 @@ footer .container {
     #bs-mall {
         margin-bottom: 100px;
     }
+    #bs-mall .col-xs-6 {
+        margin-bottom: 10px;
+    }
     .car-bar .nav-pills li {
         width: 24%;
     }
