@@ -278,3 +278,119 @@
 	.scrolltop.bottom { bottom:8px; }
 	.scrolltop.bottom:after { top:23px; }
 	.scrolltop.bottom:before { border-top:9px solid white; border-bottom:0; top:12px; }
+
+
+	.car-bar {
+        position: fixed;
+        bottom: 0;
+        height: 70px;
+        width: 100%;
+        box-shadow: 0px -2px 3px #9f9f9f;
+        background: #fff;
+        z-index:9999;
+	}
+	.car-bar ul {
+		height: 70px;
+		background: none!important;
+		padding-top:0!important;
+	}
+    .car-bar .nav-pills li {
+		width: 24%;
+		line-height: 20px!important;
+    }
+    .car-bar .nav-pills a {
+        background: #fff;
+        color: #999;
+        font-weight: 600;
+        font-size: 14px;
+        text-align: center;
+    }
+    .car-bar .nav-pills>li.active>a,.car-bar .nav-pills>li.active>a:focus, .car-bar .nav-pills>li.active>a:hover {
+        background: #fff;
+        border-radius: 0;
+        color: #d2241e;
+    }
+    .car-bar .nav-pills a span {
+        width: 100%;
+        display: block;
+	}
+	
+.nav {
+	padding-left: 0;
+	margin-bottom: 0;
+	list-style: none;
+  }
+  .nav > li {
+	position: relative;
+	display: block;
+  }
+  .nav > li > a {
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+  }
+  .nav > li > a:hover,
+  .nav > li > a:focus {
+	text-decoration: none;
+	background-color: #eee;
+  }
+  .nav > li.disabled > a {
+	color: #777;
+  }
+  .nav > li.disabled > a:hover,
+  .nav > li.disabled > a:focus {
+	color: #777;
+	text-decoration: none;
+	cursor: not-allowed;
+	background-color: transparent;
+  }
+  .nav .open > a,
+  .nav .open > a:hover,
+  .nav .open > a:focus {
+	background-color: #eee;
+	border-color: #337ab7;
+  }
+  .nav .nav-divider {
+	height: 1px;
+	margin: 9px 0;
+	overflow: hidden;
+	background-color: #e5e5e5;
+  }
+  .nav > li > a > img {
+	max-width: none;
+  }
+  .nav-pills > li {
+	float: left;
+  }
+  .nav-pills > li > a {
+	border-radius: 4px;
+  }
+  .nav-pills > li + li {
+	margin-left: 2px;
+  }
+  .nav-pills > li.active > a,
+  .nav-pills > li.active > a:hover,
+  .nav-pills > li.active > a:focus {
+	color: #fff;
+	background-color: #337ab7;
+  }
+  .sub_forum li {
+	  width: 49%;
+	  float: left;
+	  height: auto;
+	  margin-bottom: 20px;
+	  margin-top: 20px;
+	  text-align: center;
+  }
+  .sub_forum li a {
+	  color: #d2241e;
+  }
+  .sub_forum li img {
+	  width: 100%;
+  }
+  .clearfix {
+	  clear: both;
+	  height: 0;
+	  line-height: 0;
+  }
+  

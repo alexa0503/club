@@ -81,7 +81,7 @@
 <!-- header end -->
 <!--{hook/index_top_mobile}-->
 <!-- main forumlist start -->
-<div class="wp wm" id="wp">
+<div class="wp wm" id="wp" style="margin-bottom:100px;">
 	<!--{loop $catlist $key $cat}-->
 	<div class="bm bmw fl">
 		<div class="subforumshow bm_h cl" href="#sub_forum_$cat[fid]">
@@ -92,11 +92,15 @@
 			<ul>
 				<!--{loop $cat[forums] $forumid}-->
 				<!--{eval $forum=$forumlist[$forumid];}-->
-				<li><a href="forum.php?mod=forumdisplay&fid={$forum['fid']}"><!--{if $forum[todayposts] > 0}--><span class="num">$forum[todayposts]</span><!--{/if}-->{$forum[name]}</a></li>
+				<li>
+					<div style="display:block;width:100%;">$forum[icon]</div>
+					<a href="forum.php?mod=forumdisplay&fid={$forum['fid']}"><!--{if $forum[todayposts] > 0}--><span class="num">$forum[todayposts]</span><!--{/if}-->{$forum[name]} </a></li>
 				<!--{/loop}-->
-			</ul>
+					<li class="clearfix"></li>
+				</ul>
 		</div>
 	</div>
+	<div class="clearfix"></div>
 	<!--{/loop}-->
 </div>
 <!-- main forumlist end -->
@@ -123,4 +127,5 @@
 </script>
 
 <!--{/if}-->
+<!--{eval $nofooter = true;}-->
 <!--{template common/footer}-->
