@@ -271,16 +271,18 @@
                     data: {_token:window.Laravel.csrfToken,address_id:address_id,id:id},
                     success: function(json){
                         if(json.ret == 0){
-                            //alert(json.msg);
-                            $('#modal-tip').find('.modal-body').html(json.msg);
-                            $('#modal-tip').find('.modal-title').html('恭喜');
+                            $('#modal-tip').find('.modal-body').html('<div class="text-center"><h4>恭喜</h4>'+json.msg+'。</div>');
+                            $('#modal-tip').find('.modal-title').html('<img src="/images/mall/mobile/icon-success.png" height="40" />');
                             $('#modal-tip').modal('show').on('hidden.bs.modal', function () {
                                 // do something…
                                 window.location.href = '{{url("/mall/order")}}';
                             });
                         }
                         else{
-                            alert(json.msg);
+                            //alert(json.msg);
+                            $('#modal-tip').find('.modal-body').html('<div class="text-center"><h4>抱歉</h4>'+json.msg+'。</div>');
+                            $('#modal-tip').find('.modal-title').html('<img src="/images/mall/mobile/icon-warning.png" height="40" />');
+                            $('#modal-tip').modal('show');
                         }
                     },
                     error: function(){

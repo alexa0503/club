@@ -666,8 +666,8 @@
                         //$('#modal-tip').modal('show');
                     } else {
                         $('.modal').modal('hide');
-                        $('#modal-tip').find('.modal-body').html(json.msg);
-                        $('#modal-tip').find('.modal-title').html('抱歉');
+                        $('#modal-tip').find('.modal-body').html('<div class="text-center"><h4>抱歉</h4>'+json.msg+'。</div>');
+                        $('#modal-tip').find('.modal-title').html('<img src="/images/mall/mobile/icon-warning.png" height="40" />');
                         $('#modal-tip').modal('show');
                     }
 

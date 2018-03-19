@@ -15,7 +15,7 @@ class MallController extends Controller
     public function index()
     {
         $agent = new Agent;
-        $limit = $agent->isMobile() ? 2 : 6;
+        $limit = $agent->isMobile() ? 6 : 6;
         $features1 = \App\Item::where('feature1', '>', 0)->orderBy('feature1', 'ASC')->limit($limit)->get();
         $categories = \App\Category::orderBy('sort_id', 'ASC')->get();
         $page = \App\Page::find(2);
@@ -203,6 +203,7 @@ class MallController extends Controller
                 $order->receiver = $address->name;
                 $order->mobile = $address->mobile;
                 $order->telephone = $address->telephone;
+                $order->status = $cart->item->type == 1 ? 0 : 2;//如果是优惠券直接完成状态
                 $order->address = $address->province.$address->city.$address->district.$address->detail;
                 $order->save();
 

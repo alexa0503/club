@@ -132,8 +132,8 @@
                         }
                         else if(json.ret == 0){
                             if (id == 'add-to-cart'){
-                                $('#modal-tip').find('.modal-body').html(json.msg);
-                                $('#modal-tip').find('.modal-title').html('成功');
+                                $('#modal-tip').find('.modal-body').html('<div class="text-center"><h4>恭喜</h4>'+json.msg+'。</div>');
+                                $('#modal-tip').find('.modal-title').html('<img src="/images/mall/mobile/icon-success.png" height="40" />');
                                 $('#modal-tip').modal('show');
                             }
                             else{
@@ -142,8 +142,8 @@
                             ajaxCart();
                         }
                         else{
-                            $('#modal-tip').find('.modal-body').html(json.msg);
-                            $('#modal-tip').find('.modal-title').html('抱歉');
+                            $('#modal-tip').find('.modal-body').html('<div class="text-center"><h4>抱歉</h4>'+json.msg+'。</div>');
+                            $('#modal-tip').find('.modal-title').html('<img src="/images/mall/mobile/icon-warning.png" height="40" />');
                             $('#modal-tip').modal('show');
                         }
                     },

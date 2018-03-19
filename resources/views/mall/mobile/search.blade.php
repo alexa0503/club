@@ -12,10 +12,10 @@
             <div class="col-xs-10">
                 @include('mall.mobile.search_bar')
                 <div class="row1">
-                    <div class="content" style="height: 300px;">
+                    <div class="content">
                         <div class="rows">
                             @if(count($items) > 0) @foreach($items as $k=>$item)
-                            <div class="col-xs-6" style="margin-bottom:20px;">
+                            <div class="col-xs-6" style="margin-bottom:20px;height:200px;">
                                 <a href="{{url('/mall/item/'.$item->id)}}">
                                     <img src="{{$item->thumb}}" class="img-responsive" />
                                 </a>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="padding-left:20px;margin-left:-20px;">
+                <div class="row" style="padding-left:20px;margin-bottom:60px;">
                     {!! $items->links() !!}
                 </div>
             </div>

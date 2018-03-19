@@ -384,11 +384,13 @@ header .container .btnShopCarP .carbox .removeSp {
         right: 0;
     }
     .qty-group {
-        width: auto;
         float: none;
         display: block;
         width: 124px;
         text-align: right;
+    }
+    .orders .qty-group {
+        width: auto;
     }
     #main .container .shangpinbox .shangpin .toolbox .remove {
         float: none;

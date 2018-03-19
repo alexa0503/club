@@ -597,7 +597,12 @@ footer .container {
     text-decoration: none;
     color: #a8a8a8;
 }
-
+.modal-content {
+    border-radius: 0;
+}
+.modal-content .modal-tip img {
+    margin-bottom: 10px;
+}
 @media (max-width:768px) {
     body {
         background: #fff !important;
@@ -661,7 +666,6 @@ footer .container {
         position: absolute;
     }
     .mobile-btns .btn {
-        display: inherit;
         background: #d2241e;
         color: #fff;
         border-radius: 0;
