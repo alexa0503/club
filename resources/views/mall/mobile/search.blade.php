@@ -4,6 +4,8 @@
         <div class="row">
             <div class="col-xs-2">
                 <ul class="list-group list-categories">
+                    
+                    <li class="list-group-item {{ Request::input('cat_id') == null ?'active':'' }}"><a href="/mall/search">全部分类</a></li>
                     @foreach($categories as $category)
                     <li class="list-group-item {{ Request::input('cat_id') == $category->id ?'active':'' }}"><a href="/mall/search?cat_id={{ $category->id }}">{{$category->name}}</a></li>
                     @endforeach
