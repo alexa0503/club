@@ -34,7 +34,7 @@
 <div id="mobile">
     <div class="container">
         <div class="header row">
-            <div class="logo"><div class="pull-right" ><img src="/bbs/static/assets/imgs/layout/logo_2.png" class="img-responsive" /></div><img src="/bbs/static/assets/imgs/layout/logo_1.png" class="img-responsive"  /> </div>
+            <div class="logo"><div class="pull-right" ><img src="/images/mall/mobile/logo_2.png" style="max-height:32px;"  class="img-responsive" /></div><img src="/images/mall/mobile/logo_1.png" style="max-height:32px;margin-top:18px;" class="img-responsive"  /> </div>
         </div>
     </div>
     <div class="container fixed-bottom">

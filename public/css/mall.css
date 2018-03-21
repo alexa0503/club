@@ -778,4 +778,34 @@ footer .container {
     .slick-next {
         display: none!important;
     }
+    .icon-bar {
+        height: 30px;
+        line-height: 30px;
+        display: block;
+        background-size:30px 30px!important;
+    }
+    .icon-cart {
+        background: url('../images/mall/mobile/icon-cart-01.png') center center no-repeat;
+    }
+    li.active .icon-cart {
+        background: url('../images/mall/mobile/icon-cart-02.png') center center no-repeat;
+    }
+    .icon-activity {
+        background: url('../images/mall/mobile/icon-activity-01.png') center center no-repeat;
+    }
+    li.active .icon-activity {
+        background: url('../images/mall/mobile/icon-activity-02.png') center center no-repeat;
+    }
+    .icon-club {
+        background: url('../images/mall/mobile/icon-club-01.png') center center no-repeat;
+    }
+    li.active .icon-club {
+        background: url('../images/mall/mobile/icon-club-02.png') center center no-repeat;
+    }
+    .icon-profile {
+        background: url('../images/mall/mobile/icon-profile-01.png') center center no-repeat;
+    }
+    li.active .icon-profile {
+        background: url('../images/mall/mobile/icon-profile-02.png') center center no-repeat;
+    }
 }
