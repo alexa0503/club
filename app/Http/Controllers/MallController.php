@@ -203,7 +203,7 @@ class MallController extends Controller
                 $order->receiver = $address->name;
                 $order->mobile = $address->mobile;
                 $order->telephone = $address->telephone;
-                $order->status = $cart->item->type == 1 ? 0 : 2;//如果是优惠券直接完成状态
+                $order->status = $cart->item->type == 1 ? 2 : 0;//如果是优惠券直接完成状态
                 $order->address = $address->province.$address->city.$address->district.$address->detail;
                 $order->save();
 
