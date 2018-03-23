@@ -669,12 +669,14 @@ footer .container {
         background: #d2241e;
         color: #fff;
         border-radius: 0;
-        float: left;
         font-size: 12px;
         padding: 6px 6px;
     }
     .mobile-btns .btn-exchange {
         margin-right: 10px;
+    }
+    .mobile-btns .btn-view {
+        margin:0 5px;
     }
     .more-text a {
         color: #d2241e;

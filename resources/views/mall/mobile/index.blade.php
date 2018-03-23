@@ -42,8 +42,8 @@
                                             </div>
                                             <span>{{$item->point}}风迷币</span>
                                             <div class="mobile-btns center-block">
-                                                <a class="btn btn-exchange" href="{{url('/mall/item/'.$item->id)}}">立即兑换</a>
-                                                <a class="btn btn-add2cart" href="{{url('/mall/item/'.$item->id)}}">加入购物车</a>
+                                                <a class="btn btn-view" href="{{url('/mall/item/'.$item->id)}}">查看详情</a>
+                                                
                                             </div>
                                         </div>
                                         @endforeach
@@ -71,8 +71,8 @@
                                             </div>
                                             <span>{{$item->point}}风迷币</span>
                                             <div class="mobile-btns center-block">
-                                                <a class="btn btn-exchange" href="{{url('/mall/item/'.$item->id)}}">立即兑换</a>
-                                                <a class="btn btn-add2cart" href="{{url('/mall/item/'.$item->id)}}">加入购物车</a>
+                                                <a class="btn btn-view" href="{{url('/mall/item/'.$item->id)}}">查看详情</a>
+                                               
                                             </div>
                                         </div>
                                         @endforeach
@@ -97,8 +97,8 @@
                                             </div>
                                             <span>{{$item->point}}风迷币</span>
                                             <div class="mobile-btns center-block">
-                                                <a class="btn btn-exchange" href="{{url('/mall/item/'.$item->id)}}">立即兑换</a>
-                                                <a class="btn btn-add2cart" href="{{url('/mall/item/'.$item->id)}}">加入购物车</a>
+                                                <a class="btn btn-view" href="{{url('/mall/item/'.$item->id)}}">查看详情</a>
+                                                
                                             </div>
                                         </div>
                                         @endforeach
