@@ -121,18 +121,6 @@
                         </div>
                     </div>
                 </div>
-                @if(Request::segment(1) == 'mall' && Request::segment(2) != 'search')
-                <div class="pull-left visible-xs-block">
-                    <div class="search">
-                        <form action="" class="form-inline">
-                            <div class="form-group">
-                                <i class="glyphicon glyphicon-search"></i>
-                                <input class="form-control input-sm" placeholder="搜索" name="keywords" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                @endif
                 
                 <div class="topper-01">
                     <a href="http://www.dffengguang.com.cn/" class="hidden-xs">
@@ -688,9 +676,6 @@
                 $('.weixin_er').hide();
             })
             $.ajax('/points/update', function () {})
-            $('.search input').click(function(){
-                location.href = '/mall/search';
-            })
         })
     </script>
     @yield('scripts')
