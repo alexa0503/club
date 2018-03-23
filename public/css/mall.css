@@ -633,7 +633,7 @@ footer .container {
         margin-top: 20px;
     }
     #indexTabs li {
-        width: 33.333%;
+        width: 25%;
         text-align: center;
         border: none;
     }
@@ -642,8 +642,10 @@ footer .container {
         border: none;
         border-radius: 0px;
         position: relative;
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding-left: 0;
+        padding-right: 0;
     }
     .nav-tabs>li.active>a,
     .nav-tabs>li.active>a:focus,

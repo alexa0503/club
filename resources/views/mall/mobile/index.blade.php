@@ -25,6 +25,9 @@
                     <li role="presentation" class="">
                         <a href="#mine" role="tab" id="mine-tab" data-toggle="tab" aria-controls="mine" aria-expanded="true">我能兑换</a>
                     </li>
+                    <li role="presentation" class="">
+                        <a href="{{ url('mall/search') }}" >全部商品</a>
+                    </li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade active in" id="latest" aria-labelledby="latest-tab">
