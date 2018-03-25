@@ -1,4 +1,5 @@
-<div class="car-bar">
+@if(Agent::isMobile())
+    <div class="car-bar">
         <ul class="nav nav-pills">
             <li class="{{ $active == 'mall' ? 'active':'' }}">
                 <a href="/mall"><i class="icon-bar icon-cart"></i><span>积分商城</span></a>
@@ -14,3 +15,4 @@
             </li>
         </ul>
     </div>
+@endif

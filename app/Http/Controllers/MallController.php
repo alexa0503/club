@@ -132,9 +132,18 @@ class MallController extends Controller
         if (!$item) {
             return redirect('/mall');
         }
+        $uid = session('discuz.user.uid');
+        if( null != $uid ){
+            $favourite = \App\Favourite::where('uid',$uid)->where('item_id', $id)->first();
+            $has_favoured = null == $favourite ? false : true;
+        }
+        else{
+            $has_favoured = false;
+        }
 
         return view('mall.item', [
             'item' => $item,
+            'has_favoured' => $has_favoured,
         ]);
     }
 
@@ -421,5 +430,31 @@ class MallController extends Controller
             'orders'=>$orders,
             'order_statuses' => $order_statuses,
         ]);
+    }
+    public function favouriteIndex()
+    {
+        $uid = session('discuz.user.uid');
+        $favourites = \App\Favourite::where('uid', $uid)->get();
+        return view('mall.favourite',['favourites'=>$favourites]);
+    }
+    public function favouritePost($id)
+    {
+        $uid = session('discuz.user.uid');
+        if($uid == null ){
+            return response()->json(['ret'=>1100]);
+        }
+        $favourite = \App\Favourite::where('uid', $uid)->where('item_id',$id)->first();
+        if($favourite == null){
+            $favourite = new \App\Favourite;
+            $favourite->uid = $uid;
+            $favourite->item_id = $id;
+            $favourite->save();
+            return response()->json(['ret'=>0,'msg'=>'收藏成功']);
+        }
+        else{
+            $favourite->delete();
+            return response()->json(['ret'=>1,'msg'=>'取消收藏成功']);
+            //return response()->json(['ret'=>1001,'msg'=>'您已经收藏过该商品了']);
+        }
     }
 }

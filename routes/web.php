@@ -170,6 +170,8 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         Route::post('/mall/cart', 'MallController@add2Cart');
         Route::post('/mall/order', 'MallController@order');
         Route::get('/mall/order', 'MallController@orderIndex');
+        Route::get('/mall/favourite', 'MallController@favouriteIndex');
+        Route::post('/mall/favourite/{id}', 'MallController@favouritePost');
     });
 });
 

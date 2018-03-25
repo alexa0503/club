@@ -61,7 +61,7 @@
 	.nav .name {display:inline-block; height:30px; overflow:hidden; white-space:nowrap; width:50%;}
 	
 	.hdc { padding:10px 10px 0; background: url(./images/nav_b_line.png) repeat-x 0 100%; margin-bottom:10px; }
-	.hdc h2 { float: left; padding: 0 20px 8px 10px; }
+	.hdc h2 { float: left; padding: 14px 20px 8px 10px; }
 	.user_fun { }
 	.user_fun li { float:right; padding:15px 5px 20px; }
 	.user_fun li a,.nav .icon_edit a { display:block; width:28px; height:28px; background: url(./images/icon.png) no-repeat; line-height:2000px; overflow:hidden; }

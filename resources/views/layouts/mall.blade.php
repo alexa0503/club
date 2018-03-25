@@ -138,6 +138,8 @@
                     @else
                     欢迎，{{session('discuz.user.username')}}
                     &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{{ url('/mall/favourite') }}">我的收藏</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="{{url('/mall/cart')}}">
                         <img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车
                         <span id="cart-count">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;></a>
