@@ -17,7 +17,7 @@ class CreateFavouritesTable extends Migration
             $table->increments('id');
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items');
-            $table->mediumInteger('uid')->unsigned();
+            $table->mediumInteger('uid')->unsigned()->index();
             $table->timestamps();
         });
     }
