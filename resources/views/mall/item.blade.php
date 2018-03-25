@@ -30,6 +30,9 @@
                 <input type="hidden" value="{{$item->id}}" name="item_id" />
                 <button type="button" id="buy-now" class="btn-submit btn btn-lg btn-custom">立即兑换</button>
                 <button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>
+                <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg btn-custom">
+                    <span class="glyphicon {{ $has_favoured ? 'glyphicon-star' : 'glyphicon-star-empty' }}" aria-hidden="true"></span>
+                </button>
                 {{ Form::close() }}
             </div>
             @endif
@@ -77,7 +80,7 @@
                 <input type="hidden" value="{{$item->id}}" name="item_id" />
                 <button type="button" id="buy-now" class="btn-submit btn btn-lg btn-custom">立即兑换</button>
                 <button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>
-                <button type="button" id="add-to-cart" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg btn-custom">
+                <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg btn-custom">
                     <span class="glyphicon {{ $has_favoured ? 'glyphicon-star' : 'glyphicon-star-empty' }}" aria-hidden="true"></span>
                 </button>
                 {{ Form::close() }}
