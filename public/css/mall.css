@@ -603,6 +603,29 @@ footer .container {
 .modal-content .modal-tip img {
     margin-bottom: 10px;
 }
+.btn-star {
+    background: transparent;
+    border-radius: 0;
+    color: red!important;
+    border: 0;
+}
+.btn-star-gray {
+    background:transparent;
+    border-radius: 0;
+    color: #999!important;
+
+}
+.btn-star:focus,
+.btn-star:active:focus,
+.btn-star.active:focus,
+.btn-star.focus,
+.btn-star:active.focus,
+.btn-star.active.focus {
+    border: 0px;
+    border-radius: 0;
+    outline: none;
+    box-shadow:none;
+}
 @media (max-width:768px) {
     body {
         background: #fff !important;

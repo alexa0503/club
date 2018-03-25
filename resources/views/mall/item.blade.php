@@ -30,9 +30,10 @@
                 <input type="hidden" value="{{$item->id}}" name="item_id" />
                 <button type="button" id="buy-now" class="btn-submit btn btn-lg btn-custom">立即兑换</button>
                 <button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>
-                <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg btn-custom">
-                    <span class="glyphicon {{ $has_favoured ? 'glyphicon-star' : 'glyphicon-star-empty' }}" aria-hidden="true"></span>
+                <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray' }}">
+                    <span class="glyphicon glyphicon-star " aria-hidden="true"></span>
                 </button>
+                <img  style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid={{$item->dealer->qq}}&o=超级风迷东风风光车友会&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC=http://wpa.qq.com/pa?p=1:{{$item->dealer->qq}}:1 alt="点击这里给我发消息">
                 {{ Form::close() }}
             </div>
             @endif
@@ -80,8 +81,8 @@
                 <input type="hidden" value="{{$item->id}}" name="item_id" />
                 <button type="button" id="buy-now" class="btn-submit btn btn-lg btn-custom">立即兑换</button>
                 <button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>
-                <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg btn-custom">
-                    <span class="glyphicon {{ $has_favoured ? 'glyphicon-star' : 'glyphicon-star-empty' }}" aria-hidden="true"></span>
+                <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray ' }}">
+                    <span class="glyphicon glyphicon-star " aria-hidden="true"></span>
                 </button>
                 {{ Form::close() }}
             </div>
@@ -183,10 +184,10 @@
                 if (json.ret == 1100) {
                     $('#modal-login').modal('show');
                 } else if (json.ret == 0) {
-                    $('.btn-star').find('.glyphicon').removeClass('glyphicon-star-empty').addClass('glyphicon-star')
+                    $('.btn-star').removeClass('btn-star-gray')
 
                 } else {
-                    $('.btn-star').find('.glyphicon').removeClass('glyphicon-star').addClass('glyphicon-star-empty')
+                    $('.btn-star').addClass('btn-star-gray')
                 }
             }, "JSON").fail(function () {
                 $('#modal-tip').find('.modal-body').html(
