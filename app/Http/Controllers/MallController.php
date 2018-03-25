@@ -452,7 +452,7 @@ class MallController extends Controller
             return response()->json(['ret'=>0,'msg'=>'收藏成功']);
         }
         else{
-            $favourite->delete();
+            \App\Favourite::where('uid', $uid)->where('item_id',$id)->delete();
             return response()->json(['ret'=>1,'msg'=>'取消收藏成功']);
             //return response()->json(['ret'=>1001,'msg'=>'您已经收藏过该商品了']);
         }
