@@ -12,7 +12,7 @@
                     <div class="rows">
                         @foreach($favourites as $k=>$favourite)
                         @if(Agent::isMobile())
-                        <div class="col-xs-6" style="margin-bottom:20px;height:240px;">
+                        <div class="col-xs-6" style="margin-bottom:20px;height:280px;">
                             <a href="{{url('/mall/item/'.$favourite->item->id)}}">
                                 <img src="{{$favourite->item->thumb}}" class="img-responsive" />
                             </a>
@@ -21,7 +21,7 @@
                             </div>
                             <span>{{$favourite->item->point}}风迷币</span>
                             <div class="mobile-btns center-block">
-                                <a class="btn btn-view btn-favourite" href="{{url('/mall/favourite/'.$favourite->item->id)}}">取消收藏</a>
+                                <button class="btn btn-view btn-favourite" style="display:block;width:100%;" data-url="{{url('/mall/favourite/'.$favourite->item->id)}}">取消收藏</button>
                                 
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div style="height:100px;width:100%;"></div>
+            <div style="height:200px;width:100%;"></div>
         </div>
     @include('mall.mobile.car_bar',['active'=>'mall'])
     </div>
