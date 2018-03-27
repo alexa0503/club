@@ -44,6 +44,7 @@ class DealerController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:dealers|max:255',
             'qq' => 'required',
+            'tel' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -52,6 +53,7 @@ class DealerController extends Controller
         $dealer = new \App\Dealer;
         $dealer->name = $request->name;
         $dealer->qq = $request->qq;
+        $dealer->tel = $request->tel;
         $dealer->intro = $request->intro ?: '';
         $dealer->save();
         return response()->json(['ret' => 0, 'url' => route('dealer.index')]);
@@ -92,6 +94,7 @@ class DealerController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:dealers,name,'.$id.'|max:255',
             'qq' => 'required',
+            'tel' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -100,6 +103,7 @@ class DealerController extends Controller
         $dealer = \App\Dealer::find($id);
         $dealer->name = $request->name;
         $dealer->qq = $request->qq;
+        $dealer->tel = $request->tel;
         $dealer->intro = $request->intro ?: '';
         $dealer->save();
         return response()->json(['ret' => 0, 'url' => route('dealer.index')]);

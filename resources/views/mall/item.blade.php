@@ -84,7 +84,6 @@
                 <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray ' }}">
                     <span class="glyphicon glyphicon-star " aria-hidden="true"></span>
                 </button>
-                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{$item->dealer->qq}}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{{$item->dealer->qq}}:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
                 {{ Form::close() }}
             </div>
             @endif

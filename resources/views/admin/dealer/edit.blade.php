@@ -19,6 +19,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="tel" class="col-lg-2 col-md-2 control-label">电话</label>
+                    <div class="col-lg-10 col-md-10">
+                        <input value="{{ $dealer->tel }}" name="tel" type="text" class="form-control" id="tel" placeholder="">
+                        <label class="help-block" for="" id="help-tel"></label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="intro" class="col-lg-2 col-md-2 control-label">简介</label>
                     <div class="col-lg-10 col-md-10">
                         <textarea name="intro" type="text" class="form-control" id="intro">{{ $dealer->intro }}</textarea>

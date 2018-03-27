@@ -8,6 +8,7 @@
                         <th>ID</th>
                         <th>名称</th>
                         <th>QQ</th>
+                        <th>手机</th>
                         <th>简介</th>
                         <th>创建时间</th>
                         <th>操作</th>
@@ -19,6 +20,7 @@
                         <td>{{$item->id}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->qq}}</td>
+                        <td>{{$item->tel}}</td>
                         <td>{{ $item->intro }}</td>
                         <td>{{ $item->created_at }}</td>
                         <td>

@@ -14,8 +14,8 @@
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.4.6.0.css">
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="/css/mall.css">
-    <link rel="stylesheet" type="text/css" href="/css/shopcar.css">
+    <link rel="stylesheet" type="text/css" href="/css/mall.css?_=0.0010">
+    <link rel="stylesheet" type="text/css" href="/css/shopcar.css?_=0.010">
     <!-- Jquery -->
     <script src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/slick.js"></script>
@@ -146,7 +146,7 @@
                     @endif
                     
                 </div>
-                <div class="btnShopCarP" style="display:none;">
+                <div class="btnShopCarP hidden-xs" style="display:none;">
                     <ul class="carbox">
                     </ul>
                     <button class="btnBuy">查看购物车</button>
