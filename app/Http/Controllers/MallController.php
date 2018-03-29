@@ -94,20 +94,8 @@ class MallController extends Controller
                 'point'=>$cart->item->point,
                 'type'=>$cart->item->type,
             ];
-            //优惠券
-            if($cart->item->type == 1){
-                $has_coupon = true;
-                $code = [];
-                for ($i=0; $i<$cart->quantity ;$i++){
-
-                    $coupon = new \App\Coupon();
-                    $coupon->uid = $uid;
-                    $coupon->valid_date = $cart->item->valid_date;
-                    $code[] = $coupon->code = \App\Helpers\Helper::generateCouponCode();
-                    $coupon->save();
-                }
-                $_item['code'] = implode($code,',');
-            }
+            $code[] = \App\Helpers\Helper::generateCouponCode();
+            $_item['code'] = implode($code,',');
             $items[$k] = $_item;
         }
         if ($user_count->extcredits4 < $amount_point || $amount_point <= 0) {
@@ -141,6 +129,19 @@ class MallController extends Controller
                 $item = \App\Item::find($cart->item_id);
                 $item->sold_quantity += $cart->quantity;//已售
                 $item->save();
+                //优惠券
+                if($cart->item->type == 1){
+                    $has_coupon = true;
+                    $code = [];
+                    for ($i=0; $i<$cart->quantity ;$i++){
+                        $coupon = new \App\Coupon();
+                        $coupon->uid = $uid;
+                        $coupon->valid_date = $cart->item->valid_date;
+                        $coupon->value = $cart->item->coupon_value;
+                        $coupon->code = $items[$k]['code'];
+                        $coupon->save();
+                    }
+                }
                 //删除购物车
                 $cart->delete();
                 DB::commit();

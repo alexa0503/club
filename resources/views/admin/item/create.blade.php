@@ -87,6 +87,14 @@
                 </div><!-- /form-group -->
 
                 <div class="form-group">
+                    <label for="coupon_value" class="col-lg-2 control-label">面额【优惠券】</label>
+                    <div class="col-lg-10">
+                        <input value="" name="coupon_value" type="text" class="form-control" id="coupon_value" placeholder="">
+                        <label class="help-block" for="" id="help-coupon_value"></label>
+                    </div><!-- /.col -->
+                </div><!-- /form-group -->
+
+                <div class="form-group">
                     <label for="settlement_price" class="col-lg-2 control-label">结算价</label>
                     <div class="col-lg-10">
                         <input value="" name="settlement_price" type="text" class="form-control" id="settlement_price" placeholder="">

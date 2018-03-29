@@ -49,6 +49,7 @@ class ItemController extends Controller
         $item->product_code = $request->product_code;
         $item->content = $request->input('content');
         $item->price = $request->price;
+        $item->coupon_value = $request->coupon_value ? : 0;
         $item->settlement_price = $request->settlement_price ? : 0;
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
@@ -111,6 +112,7 @@ class ItemController extends Controller
         $item->name = $request->name;
         $item->content = $request->input('content');
         $item->price = $request->price;
+        $item->coupon_value = $request->coupon_value ? : 0;
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
         $item->feature2 = 0;
