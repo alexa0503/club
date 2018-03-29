@@ -92,6 +92,14 @@
                 </div>
             </div>
 
+             <div class="form-group">
+                <label for="coupon_value" class="col-lg-2 control-label">面额[优惠券专用]</label>
+                <div class="col-lg-10">
+                    <input value="{{$item->coupon_value}}" name="coupon_value" type="text" class="form-control" id="coupon_value" placeholder="">
+                    <label class="help-block" for="" id="help-coupon_value"></label>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="point" class="col-lg-2 control-label">兑换风迷币</label>
                 <div class="col-lg-10">

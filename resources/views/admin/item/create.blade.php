@@ -92,6 +92,13 @@
                         <label class="help-block" for="" id="help-price"></label>
                     </div>
                 </div>
+                 <div class="form-group">
+                    <label for="price" class="col-lg-2 control-label">面额[优惠券专用]</label>
+                    <div class="col-lg-10">
+                        <input value="0" name="coupon_value" type="text" class="form-control" id="coupon_value" placeholder="">
+                        <label class="help-block" for="" id="help-coupon_value"></label>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="settlement_price" class="col-lg-2 control-label">结算价</label>
