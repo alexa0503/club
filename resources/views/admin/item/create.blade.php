@@ -71,6 +71,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="coupon_value" class="col-lg-2 control-label">面额[仅优惠券有效]</label>
+                    <div class="col-lg-10">
+                        <input value="" name="coupon_value" type="text" class="form-control" id="coupon_value" placeholder="">
+                        <label class="help-block" for="" id="help-coupon_value"></label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="feature1" class="col-lg-2 control-label">爆款推荐[大于0的整数为推荐]</label>
                     <div class="col-lg-10">
                         <input value="0" name="feature1" type="text" class="form-control" id="feature1" placeholder="">

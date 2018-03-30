@@ -46,6 +46,7 @@
                         <th>经销商</th>
 			          	<th>已售</th>
 			          	<th>市场价</th>
+			          	<th>结算价</th>
 			          	<th>风迷币</th>
 						<th>爆款推荐</th>
 						<th>热门兑换</th>
@@ -63,6 +64,7 @@
 			          	<td>{{ $item->dealer ? $item->dealer->name : '--'}}</td>
 			          	<td>{{$item->sold_quantity}}</td>
 			          	<td>{{$item->price}}</td>
+			          	<td>{{$item->settlement_price}}</td>
 			          	<td>{{$item->point}}</td>
 						<td>{{$item->feature1 > 0 ? $item->feature1 : '--' }}</td>
 						<td>{{$item->feature2 > 0 ? $item->feature2 : '--' }}</td>

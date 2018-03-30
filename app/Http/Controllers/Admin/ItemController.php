@@ -118,6 +118,7 @@ class ItemController extends Controller
         $item->content = $request->input('content');
         $item->price = $request->price;
         $item->settlement_price = $request->settlement_price ? : 0;
+        $item->coupon_value = $request->coupon_value ? : 0;
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
         $item->feature2 = $request->feature2;
@@ -185,6 +186,8 @@ class ItemController extends Controller
         $item = \App\Item::find($id);
         $item->name = $request->name;
         $item->content = $request->input('content');
+        $item->settlement_price = $request->settlement_price ? : 0;
+        $item->coupon_value = $request->coupon_value ? : 0;
         $item->price = $request->price;
         $item->point = $request->point;
         $item->feature1 = $request->feature1;
