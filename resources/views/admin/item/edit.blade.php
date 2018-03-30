@@ -93,6 +93,14 @@
                 </div><!-- /.col -->
             </div><!-- /form-group -->
 
+             <div class="form-group">
+                    <label for="settlement_price" class="col-lg-2 control-label">结算价</label>
+                    <div class="col-lg-10">
+                        <input value="{{$item->settlement_price}}" name="settlement_price" type="text" class="form-control" id="settlement_price" placeholder="">
+                        <label class="help-block" for="" id="help-settlement_price"></label>
+                    </div>
+                </div>
+
             <div class="form-group">
                 <label for="point" class="col-lg-2 control-label">兑换风迷币</label>
                 <div class="col-lg-10">
