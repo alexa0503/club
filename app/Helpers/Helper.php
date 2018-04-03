@@ -29,6 +29,7 @@ class Helper
                 break;
             case 'F506':
             case 'F506S':
+            case '370N':
                 $return = '风光360/370';
                 break;
             case 'F507':
