@@ -57,12 +57,15 @@ class SyncModel extends Command
             $result = json_decode($response->out,true);
             if( $result && $result['ret'] == 0){
                 $model = \App\Helpers\Helper::replaceCarModel($result['modelCode']);
-                $this->info($verify->id.','.$model.','.$verify->model_code.','.$result['modelCode']);
                 if($model != $verify->model_code){
+                    $this->info($verify->id.','.$model.','.$verify->model_code.','.$result['modelCode']);
                     $verify->model_code = $model;
                     $verify->save();
                 }
             }
+        }
+        if(null != $verifies){
+            $this->call('sync:model', ['n'=>$n+1]);
         }
     }
 }
