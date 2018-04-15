@@ -460,4 +460,70 @@ class MallController extends Controller
             //return response()->json(['ret'=>1001,'msg'=>'您已经收藏过该商品了']);
         }
     }
+    public function logistics()
+    {
+        $url = 'http://v.juhe.cn/exp/index?key=9f904834e0de2fa8a780ae99542e802f&com=sf&no=575677355677&dtype=json';
+        $result = '{
+            "resultcode": "200",
+            "reason": "查询物流信息成功",
+            "result": {
+              "company": "EMS",
+              "com": "ems",
+              "no": "1186465887499",
+              "status": "1", 
+              "list": [
+                {
+                  "datetime": "2016-06-15 21:44:04", 
+                  "remark": "离开郴州市 发往长沙市【郴州市】",
+                  "zone": ""
+                },
+                {
+                  "datetime": "2016-06-15 21:46:45",
+                  "remark": "郴州市邮政速递物流公司国际快件监管中心已收件（揽投员姓名：侯云,联系电话:）【郴州市】",
+                  "zone": ""
+                },
+                {
+                  "datetime": "2016-06-16 12:04:00",
+                  "remark": "离开长沙市 发往贵阳市（经转）【长沙市】",
+                  "zone": ""
+                },
+                {
+                  "datetime": "2016-06-17 07:53:00",
+                  "remark": "到达贵阳市处理中心（经转）【贵阳市】",
+                  "zone": ""
+                },
+                {
+                  "datetime": "2016-06-18 07:40:00",
+                  "remark": "离开贵阳市 发往毕节地区（经转）【贵阳市】",
+                  "zone": ""
+                },
+                {
+                  "datetime": "2016-06-18 09:59:00",
+                  "remark": "离开贵阳市 发往下一城市（经转）【贵阳市】",
+                  "zone": ""
+                },
+                {
+                  "datetime": "2016-06-18 12:01:00",
+                  "remark": "到达  纳雍县 处理中心【毕节地区】",
+                  "zone": ""
+                },
+                {
+                  "datetime": "2016-06-18 17:34:00",
+                  "remark": "离开纳雍县 发往纳雍县阳长邮政支局【毕节地区】",
+                  "zone": ""
+                },
+                {
+                  "datetime": "2016-06-20 17:55:00",
+                  "remark": "投递并签收，签收人：单位收发章 *【毕节地区】",
+                  "zone": ""
+                }
+              ]
+            },
+            "error_code": 0 
+          }';
+          return $result;
+          //return json_decode($result);
+          //return response()->json(json_encode($result));
+          
+    }
 }

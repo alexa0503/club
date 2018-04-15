@@ -138,7 +138,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         ]);
     });
 
-
+    Route::get('/mall/logistics', 'MallController@logistics');
     Route::get('/mall', 'MallController@index');
     Route::get('/mall/search', 'MallController@search');
     Route::get('/mall/category/{id?}', 'MallController@category');

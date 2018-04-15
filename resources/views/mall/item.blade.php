@@ -52,6 +52,12 @@
                     </div>
                     @endforeach
                 </div>
+                <div class="item-detail-favourite">
+                    <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray ' }}">
+                        <span class="glyphicon glyphicon-star " aria-hidden="true"></span>
+                    </button>
+                    <a href="tel:{{$item->dealer->tel}}"><img src="/images/mall/mobile/service.png" height="20" /></a>
+                </div>
             </div>
             @if(Agent::isMobile())
             <div class="visiable-xs-block item-detail">
@@ -59,31 +65,23 @@
                 <div class="subtitle">{{$item->subtitle}}</div>
                 {{ Form::open(array('url' => url('/mall/cart'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'post-form')) }}
                 <div class="form-group">
-                    <label for="price" class="col-md-2 col-xs-4 control-label">价格:</label>
-                    <div class="col-md-10 col-xs-8">
-                        <label class="" for="" style="color:red;">{{$item->point}}风迷币</label>
-                    </div>
+                    价格：<font color="red">{{$item->point}}风迷币</font>
                 </div>
                 <div class="form-group" id="form-group-quantity">
-                    <label for="quantity" class="col-md-2 col-xs-4 control-label">数量:</label>
-                    <div class="col-md-10 col-xs-8">
-                        <div>
-                            <div class="input-group" style="width: 100px;">
-                                <span class="input-group-addon" id="item-increase">+</span>
-                                <input type="text" value="1" class="form-control" placeholder="" aria-describedby="basic-addon1" name="quantity" style="width: 60px;text-align: center">
-                                <span class="input-group-addon" id="item-decrease">-</span>
-                            </div>
+                    数量：
+                     <div class="item-detail-group">
+                        <div class="input-group" style="width: 100px;">
+                            <span class="input-group-addon" id="item-increase">+</span>
+                            <input type="text" value="1" class="form-control" placeholder="" aria-describedby="basic-addon1" name="quantity" style="width: 60px;text-align: center">
+                            <span class="input-group-addon" id="item-decrease">-</span>
                         </div>
-
-                        <label class="help-block" for="" id="help-quantity"></label>
                     </div>
                 </div>
                 <input type="hidden" value="{{$item->id}}" name="item_id" />
-                <button type="button" id="buy-now" class="btn-submit btn btn-lg btn-custom">立即兑换</button>
-                <button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>
-                <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray ' }}">
-                    <span class="glyphicon glyphicon-star " aria-hidden="true"></span>
-                </button>
+                <div class="item-detail-btns">
+                    <button type="button" id="buy-now" class="btn-submit btn btn-lg btn-custom">立即兑换</button><button type="button" id="add-to-cart" class="btn-submit btn btn-lg btn-custom">加入购物车</button>
+                </div>
+                
                 {{ Form::close() }}
             </div>
             @endif

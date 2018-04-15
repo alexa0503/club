@@ -88,15 +88,19 @@
                             ×{{$order->quantity}}
                             </div>
                             <span class="label label-info">{{ $order_statuses[$order->status] }}</span>&nbsp;
-                            <a href="javascript:;" class="delAddr" data-url="">查看物流</a>
+                           
                             @foreach($order->items as $item)
                             @if(isset($item['type']) AND $item['type']==1)
-                        @for($i=0;$i<$item['quantity'];$i++)
+                            @for($i=0;$i<$item['quantity'];$i++)
                             @if(isset($item['coupon'][$i]))
-                             @if(isset($item['coupon']))<br/>{{'兑换码：'.$item['coupon'][$i]['code']}}<span style="font-size:12px;color:#999;">@if(isset($item['coupon'][$i]['valid_date']))&nbsp;使用期限：{{$item['coupon'][$i]['valid_date']}}</span>@endif @endif
-                             @endif
-                             @endfor
-                             @endif
+                                @if(isset($item['coupon']))<br/>{{'兑换码：'.$item['coupon'][$i]['code']}}<span style="font-size:12px;color:#999;">@if(isset($item['coupon'][$i]['valid_date']))&nbsp;使用期限：{{$item['coupon'][$i]['valid_date']}}</span>@endif
+                                @endif
+                            @endif
+                            @endfor
+                            @else
+                             <a href="javascript:;" class="showLogistics" data-url="">查看物流</a>
+                            <div class="logistics hidden"></div>
+                            @endif
                             @endforeach
                         </div>
                         <input type="hidden" name="point[]" value="{{$order->items[0]['point']}}">
@@ -115,6 +119,25 @@
 @section('scripts')
     <script>
         $().ready(function () {
+            $('.showLogistics').on('click',function(){
+                //var obj = $(this);
+                $.getJSON('/mall/logistics',function(json){
+                    if(json.error_code == 0){
+                        var html = '';
+                        for(var list of json.result.list){
+                            html += list.datetime + list.remark + '<br/>'
+                        }
+                        $('#modal-tip').find('.modal-body').html(
+                            '<div>' + html +
+                            '。</div>');
+                        $('#modal-tip').find('.modal-title').html(
+                            '<img src="/images/mall/mobile/icon-success.png" height="40" /> '+ json.result.com
+                        );
+                        $('#modal-tip').modal('show');
+                    }
+                })
+                
+            })
         })
     </script>
 @endsection

@@ -138,7 +138,7 @@
                     @else
                     欢迎，{{session('discuz.user.username')}}
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="{{ url('/mall/favourite') }}">我的收藏</a>
+                    <a href="{{ url('/mall/favourite') }}"><i class="glyphicon glyphicon-star-empty " aria-hidden="true"></i> 我的收藏</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="{{url('/mall/cart')}}">
                         <img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车

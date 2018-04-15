@@ -62,7 +62,7 @@
                     <div role="tabpanel" class="tab-pane fade" id="hot" aria-labelledby="hot-tab">
                         <div class="content">
                             <div class="row1">
-                                <div class="content" style="height: 300px;">
+                                <div class="content">
                                     <div class="rows">
                                         @foreach($features3 as $k=>$item)
                                         <div class="col-xs-6">
@@ -88,7 +88,7 @@
                     <div role="tabpanel" class="tab-pane fade" id="mine" aria-labelledby="mine-tab">
                         <div class="content">
                             <div class="row1">
-                                <div class="content" style="height: 300px;">
+                                <div class="content">
                                     <div class="rows">
                                         @foreach($features2 as $k=>$item)
                                         <div class="col-xs-6">
