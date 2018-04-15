@@ -301,7 +301,6 @@
     .car-bar .nav-pills a {
         background: #fff;
         color: #999;
-        font-weight: 600;
         font-size: 14px;
         text-align: center;
     }
@@ -395,10 +394,11 @@
   }
   
   .icon-bar {
-	height: 30px;
-	line-height: 30px;
+	height: 24px;
+	line-height: 24px;
 	display: block;
-	background-size:30px 30px!important;
+	background-size:24px 24px!important;
+	margin-bottom: 6px;
 }
 .icon-cart {
 	background: url('../../../../images/mall/mobile/icon-cart-01.png') center center no-repeat;
