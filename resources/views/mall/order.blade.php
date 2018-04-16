@@ -98,7 +98,7 @@
                             @endif
                             @endfor
                             @else
-                             <a href="javascript:;" class="showLogistics" data-url="">查看物流</a>
+                             <a href="javascript:;" class="showLogistics" data-url="{{ url('/mall/logistics/'.$order->id) }}">查看物流</a>
                             <div class="logistics hidden"></div>
                             @endif
                             @endforeach
@@ -120,20 +120,26 @@
     <script>
         $().ready(function () {
             $('.showLogistics').on('click',function(){
-                //var obj = $(this);
-                $.getJSON('/mall/logistics',function(json){
-                    if(json.error_code == 0){
+                var url = $(this).data('url');
+                $.getJSON(url,function(json){
+                    if(json.ret == 0){
                         var html = '';
-                        for(var list of json.result.list){
-                            html += list.datetime + list.remark + '<br/>'
+                        console.log(json.data.list);
+                        for(var index in json.data.list){
+                            html += json.data.list[index].datetime + json.data.list[index].remark + '<br/>'
                         }
                         $('#modal-tip').find('.modal-body').html(
                             '<div>' + html +
                             '。</div>');
                         $('#modal-tip').find('.modal-title').html(
-                            '<img src="/images/mall/mobile/icon-success.png" height="40" /> '+ json.result.com
+                            '<img src="/images/mall/mobile/icon-success.png" height="40" /> '+ json.data.company
                         );
                         $('#modal-tip').modal('show');
+                    }
+                    else{
+                        $('#modal-tip').find('.modal-body').html('<div class="text-center"><h4>抱歉</h4>'+json.errMsg+'。</div>');
+                            $('#modal-tip').find('.modal-title').html('<img src="/images/mall/mobile/icon-warning.png" height="40" />');
+                            $('#modal-tip').modal('show');
                     }
                 })
                 

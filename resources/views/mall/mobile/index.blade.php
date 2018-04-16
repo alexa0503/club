@@ -34,9 +34,9 @@
                         <div class="content">
                             <div class="row1">
                                 <div class="content">
-                                    <div class="rows">
+                                    <div class="rows border-index-content">
                                         @foreach($latest as $k=>$item)
-                                        <div class="col-xs-6">
+                                        <div class="col-xs-6 border-index">
                                             <a href="{{url('/mall/item/'.$item->id)}}">
                                                 <img src="{{$item->thumb}}" width="162" height="177" />
                                             </a>
@@ -44,7 +44,7 @@
                                                 <h4>{{$item->name}}</h4>
                                             </div>
                                             <span>{{$item->point}}风迷币</span>
-                                            <div class="mobile-btns center-block">
+                                            <div class="mobile-btns center-block btns-index">
                                                 <a class="btn btn-view" href="{{url('/mall/item/'.$item->id)}}">查看详情</a>
                                                 
                                             </div>
@@ -65,7 +65,7 @@
                                 <div class="content">
                                     <div class="rows">
                                         @foreach($features3 as $k=>$item)
-                                        <div class="col-xs-6">
+                                        <div class="col-xs-6 border-index">
                                             <a href="{{url('/mall/item/'.$item->id)}}">
                                                 <img src="{{$item->thumb}}" width="162" height="177" />
                                             </a>
@@ -91,7 +91,7 @@
                                 <div class="content">
                                     <div class="rows">
                                         @foreach($features2 as $k=>$item)
-                                        <div class="col-xs-6">
+                                        <div class="col-xs-6 border-index">
                                             <a href="{{url('/mall/item/'.$item->id)}}">
                                                 <img src="{{$item->thumb}}" width="162" height="177" />
                                             </a>

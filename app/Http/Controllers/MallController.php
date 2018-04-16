@@ -460,70 +460,151 @@ class MallController extends Controller
             //return response()->json(['ret'=>1001,'msg'=>'您已经收藏过该商品了']);
         }
     }
-    public function logistics()
+    public function logistics(Request $request,$id)
     {
-        $url = 'http://v.juhe.cn/exp/index?key=9f904834e0de2fa8a780ae99542e802f&com=sf&no=575677355677&dtype=json';
-        $result = '{
-            "resultcode": "200",
-            "reason": "查询物流信息成功",
-            "result": {
-              "company": "EMS",
-              "com": "ems",
-              "no": "1186465887499",
-              "status": "1", 
-              "list": [
-                {
-                  "datetime": "2016-06-15 21:44:04", 
-                  "remark": "离开郴州市 发往长沙市【郴州市】",
-                  "zone": ""
-                },
-                {
-                  "datetime": "2016-06-15 21:46:45",
-                  "remark": "郴州市邮政速递物流公司国际快件监管中心已收件（揽投员姓名：侯云,联系电话:）【郴州市】",
-                  "zone": ""
-                },
-                {
-                  "datetime": "2016-06-16 12:04:00",
-                  "remark": "离开长沙市 发往贵阳市（经转）【长沙市】",
-                  "zone": ""
-                },
-                {
-                  "datetime": "2016-06-17 07:53:00",
-                  "remark": "到达贵阳市处理中心（经转）【贵阳市】",
-                  "zone": ""
-                },
-                {
-                  "datetime": "2016-06-18 07:40:00",
-                  "remark": "离开贵阳市 发往毕节地区（经转）【贵阳市】",
-                  "zone": ""
-                },
-                {
-                  "datetime": "2016-06-18 09:59:00",
-                  "remark": "离开贵阳市 发往下一城市（经转）【贵阳市】",
-                  "zone": ""
-                },
-                {
-                  "datetime": "2016-06-18 12:01:00",
-                  "remark": "到达  纳雍县 处理中心【毕节地区】",
-                  "zone": ""
-                },
-                {
-                  "datetime": "2016-06-18 17:34:00",
-                  "remark": "离开纳雍县 发往纳雍县阳长邮政支局【毕节地区】",
-                  "zone": ""
-                },
-                {
-                  "datetime": "2016-06-20 17:55:00",
-                  "remark": "投递并签收，签收人：单位收发章 *【毕节地区】",
-                  "zone": ""
-                }
-              ]
+        $order = \App\Order::find($id);
+        $json_string = '[
+            {
+                "com":"顺丰",
+                "no":"sf"
             },
-            "error_code": 0 
-          }';
-          return $result;
-          //return json_decode($result);
-          //return response()->json(json_encode($result));
-          
+            {
+                "com":"申通",
+                "no":"sto"
+            },
+            {
+                "com":"圆通",
+                "no":"yt"
+            },
+            {
+                "com":"韵达",
+                "no":"yd"
+            },
+            {
+                "com":"天天",
+                "no":"tt"
+            },
+            {
+                "com":"EMS",
+                "no":"ems"
+            },
+            {
+                "com":"中通",
+                "no":"zto"
+            },
+            {
+                "com":"汇通",
+                "no":"ht"
+            },
+            {
+                "com":"全峰",
+                "no":"qf"
+            },
+            {
+                "com":"德邦",
+                "no":"db"
+            },
+            {
+                "com":"国通",
+                "no":"gt"
+            },
+            {
+                "com":"如风达",
+                "no":"rfd"
+            },
+            {
+                "com":"京东快递",
+                "no":"jd"
+            },
+            {
+                "com":"宅急送",
+                "no":"zjs"
+            },
+            {
+                "com":"EMS国际",
+                "no":"emsg"
+            },
+            {
+                "com":"Fedex国际",
+                "no":"fedex"
+            },
+            {
+                "com":"邮政国内（挂号信）",
+                "no":"yzgn"
+            },
+            {
+                "com":"UPS国际快递",
+                "no":"ups"
+            },
+            {
+                "com":"中铁快运",
+                "no":"ztky"
+            },
+            {
+                "com":"佳吉快运",
+                "no":"jiaji"
+            },
+            {
+                "com":"速尔快递",
+                "no":"suer"
+            },
+            {
+                "com":"信丰物流",
+                "no":"xfwl"
+            },
+            {
+                "com":"优速快递",
+                "no":"yousu"
+            },
+            {
+                "com":"中邮物流",
+                "no":"zhongyou"
+            },
+            {
+                "com":"天地华宇",
+                "no":"tdhy"
+            },
+            {
+                "com":"安信达快递",
+                "no":"axd"
+            },
+            {
+                "com":"快捷速递",
+                "no":"kuaijie"
+            },
+            {
+                "com":"马来西亚（大包EMS）",
+                "no":"malaysiaems"
+            },
+            {
+                "com":"马来西亚邮政（小包）",
+                "no":"malaysiapost"
+            }
+        ]';
+        $list = json_decode($json_string);
+
+        if($order == null || empty($order->logistics_name)){
+            return response()->json(['ret'=>1001,'errMsg'=>'没有物流信息']);
+        }
+        $logistics_no = null;
+        foreach($list as $v){
+            if( preg_match('/'.$v->com.'/i', $order->logistics_name)){
+                $logistics_no = $v->no;
+                break;
+            }
+        }
+        if( null == $logistics_no) {
+            return response()->json(['ret'=>1002,'errMsg'=>'没有物流信息']);
+        }
+        $url = 'http://v.juhe.cn/exp/index?key=9f904834e0de2fa8a780ae99542e802f&com='.$logistics_no.'&no='.$order->logistics_code.'&dtype=json';
+        $reponse = json_decode(file_get_contents($url));
+        if($reponse->error_code == 0){
+           $result['data'] = $reponse->result;
+           $result = ['ret'=>0,'data'=>$reponse->result];
+           return response()->json($result);
+        }
+        else{
+            return response()->json(['ret'=>1001,'errMsg'=>'没有物流信息']);
+        }
     }
 }
