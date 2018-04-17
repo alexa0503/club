@@ -38,6 +38,11 @@ class MembersController extends Controller
             }
         }
 
+        if($request->has('group')){
+            $where[] = ['u.groupid',$request->input('group')];
+        }
+        
+
         $items = DB::table("discuz_common_member as m")
             ->join('discuz_common_member_count as c',"c.uid","=","m.uid")
             ->join("discuz_common_usergroup as u","u.groupid","=","m.groupid")
@@ -47,9 +52,11 @@ class MembersController extends Controller
             ->orderBy("m.uid","desc")
             ->paginate(20);
         //print_r($items);die;
+        $groups = DB::table('discuz_common_usergroup')->where('type','member')->get();
         return view('admin.members.index',[
             'items' => $items,
             'requestAll' => $request->all(),
+            'groups' => $groups,
         ]);
     }
 
@@ -71,6 +78,10 @@ class MembersController extends Controller
             }else if($request->datafrom == 2){
                 $where[] = ['m.email',"!=",""];
             }
+        }
+        
+        if($request->has('group')){
+            $where[] = ['u.groupid',$request->input('group')];
         }
 
         $date = date("Y_m_d_").rand(1000,9999);

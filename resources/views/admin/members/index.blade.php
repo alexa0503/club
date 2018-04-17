@@ -13,6 +13,14 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <select class="form-control" id="group" name="group" value="{{Request::input('group')}}">
+                        <option value="">请选择/全部</option>
+                        @foreach($groups as $group)
+                        <option value="{{ $group->groupid }}" {!! Request::input('group') == $group->groupid ? 'selected="selected"' : '' !!}>{{ $group->grouptitle }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary">查询</button>
                     <button type="button" class="btn btn-primary export">导出</button>
                     <span>共 {!! $items->total() !!} 条记录</span>
