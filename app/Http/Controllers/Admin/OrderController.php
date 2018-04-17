@@ -279,8 +279,153 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = \App\Order::find($id);
+        $json_string = '[
+            {
+                "com":"顺丰",
+                "no":"sf"
+            },
+            {
+                "com":"申通",
+                "no":"sto"
+            },
+            {
+                "com":"圆通",
+                "no":"yt"
+            },
+            {
+                "com":"韵达",
+                "no":"yd"
+            },
+            {
+                "com":"天天",
+                "no":"tt"
+            },
+            {
+                "com":"EMS",
+                "no":"ems"
+            },
+            {
+                "com":"中通",
+                "no":"zto"
+            },
+            {
+                "com":"汇通",
+                "no":"ht"
+            },
+            {
+                "com":"全峰",
+                "no":"qf"
+            },
+            {
+                "com":"德邦",
+                "no":"db"
+            },
+            {
+                "com":"国通",
+                "no":"gt"
+            },
+            {
+                "com":"如风达",
+                "no":"rfd"
+            },
+            {
+                "com":"京东快递",
+                "no":"jd"
+            },
+            {
+                "com":"宅急送",
+                "no":"zjs"
+            },
+            {
+                "com":"EMS国际",
+                "no":"emsg"
+            },
+            {
+                "com":"Fedex国际",
+                "no":"fedex"
+            },
+            {
+                "com":"邮政国内（挂号信）",
+                "no":"yzgn"
+            },
+            {
+                "com":"邮政",
+                "no":"yzgn"
+            },
+            {
+                "com":"UPS国际快递",
+                "no":"ups"
+            },
+            {
+                "com":"中铁快运",
+                "no":"ztky"
+            },
+            {
+                "com":"佳吉快运",
+                "no":"jiaji"
+            },
+            {
+                "com":"速尔快递",
+                "no":"suer"
+            },
+            {
+                "com":"信丰物流",
+                "no":"xfwl"
+            },
+            {
+                "com":"优速快递",
+                "no":"yousu"
+            },
+            {
+                "com":"中邮物流",
+                "no":"zhongyou"
+            },
+            {
+                "com":"天地华宇",
+                "no":"tdhy"
+            },
+            {
+                "com":"安信达快递",
+                "no":"axd"
+            },
+            {
+                "com":"快捷速递",
+                "no":"kuaijie"
+            },
+            {
+                "com":"马来西亚（大包EMS）",
+                "no":"malaysiaems"
+            },
+            {
+                "com":"马来西亚邮政（小包）",
+                "no":"malaysiapost"
+            }
+        ]';
+        $list = json_decode($json_string);
+
+        $logistics_no = null;
+        $logistics = null;
+        
+        foreach($list as $v){
+            if( preg_match('/'.$v->com.'/i', $order->logistics_name)){
+                $logistics_no = $v->no;
+                break;
+            }
+        }
+        if( null == $logistics_no) {
+            $logistics = null;
+            //return response()->json(['ret'=>1002,'errMsg'=>'没有物流信息']);
+        }
+        if( !empty($order->logistics_code) && $order->status == 1 ){
+            $url = 'http://v.juhe.cn/exp/index?key=9f904834e0de2fa8a780ae99542e802f&com='.$logistics_no.'&no='.$order->logistics_code.'&dtype=json';
+            $reponse = json_decode(file_get_contents($url),true);
+            if($reponse['error_code'] == 0){
+                $logistics = $reponse['result']['list'];
+            }
+        }
         return view('admin.order.edit',[
             'order'=>$order,
+            'logistics' => $logistics,
         ]);
     }
 

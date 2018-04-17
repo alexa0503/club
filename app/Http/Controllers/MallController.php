@@ -533,6 +533,10 @@ class MallController extends Controller
                 "no":"yzgn"
             },
             {
+                "com":"邮政",
+                "no":"yzgn"
+            },
+            {
                 "com":"UPS国际快递",
                 "no":"ups"
             },

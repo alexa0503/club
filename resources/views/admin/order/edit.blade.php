@@ -27,6 +27,19 @@
     </div>
     @if($order->status == 1)
     <div class="form-group" id="form-group-mobile">
+        <label for="" class="col-md-2 col-xs-2 control-label"> 物流信息:</label>
+        <div class="col-md-10 col-xs-10">
+            @if($logistics)
+            @foreach($logistics as $info)
+            <h5>{{ $info['datetime'] }} {{ $info['remark'] }}</h5>
+            @endforeach
+            @else
+            <h5>没有物流信息</h5>
+            @endif
+        </div>
+    </div>
+    
+    <div class="form-group" id="form-group-mobile">
         <label for="remarks" class="col-md-2 col-xs-2 control-label"> 是否完成订单:</label>
         <div class="col-md-10 col-xs-10">
             <input type="checkbox" value="1" name="next_step" />
