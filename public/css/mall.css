@@ -875,8 +875,21 @@ footer .container {
         position: absolute;
         bottom:0;
         right: 0;
-        margin-bottom: 24px;
+        margin-bottom: 10px;
         margin-right: 20px;
+        padding-right:40px;
+    }
+    .item-detail-favourite .glyphicon  {
+        font-size: 24px;
+    }
+    .item-detail-favourite a {
+        display: block;
+        position: absolute;
+        right:0;
+        bottom:10px;
+        font-size: 18px;
+        line-height: 1.33333;
+        color: red!important;
     }
     .item-detail .btn-custom {
         background-color: #c1372b;

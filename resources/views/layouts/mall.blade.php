@@ -8,14 +8,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.4.6.0.css">
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="/css/mall.css?_=0.0010">
-    <link rel="stylesheet" type="text/css" href="/css/shopcar.css?_=0.010">
+    <link rel="stylesheet" type="text/css" href="/css/mall.css?_=0.0011">
+    <link rel="stylesheet" type="text/css" href="/css/shopcar.css?_=0.011">
     <!-- Jquery -->
     <script src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/slick.js"></script>
