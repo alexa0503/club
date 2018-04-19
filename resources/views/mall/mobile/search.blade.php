@@ -12,7 +12,7 @@
             </div>
             <div class="mobile-item-list">
                 @include('mall.mobile.search_bar')
-                <div class="row1">
+                <div class="row1 search-content">
                     <div class="content">
                         <div class="rows">
                             @if(count($items) > 0) @foreach($items as $k=>$item)

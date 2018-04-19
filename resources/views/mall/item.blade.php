@@ -56,7 +56,7 @@
                     <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray ' }}">
                         <span class="glyphicon glyphicon-star " aria-hidden="true"></span>
                     </button>
-                    <a href="tel:{{$item->dealer->tel}}"><img src="/images/mall/mobile/service.png" height="20" /></a>
+                    <a href="tel:{{$item->dealer->tel}}"><img src="/images/mall/mobile/service.png" height="30" /></a>
                 </div>
             </div>
             @if(Agent::isMobile())

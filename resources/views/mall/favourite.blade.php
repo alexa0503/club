@@ -1,7 +1,7 @@
 @extends('layouts.mall')
 @section('content')
     <div id="main">
-        <div class="container">
+        <div class="container" id="favourite">
             <div class="row1">
                 <div class="top-border"></div>
                 <div class="top">

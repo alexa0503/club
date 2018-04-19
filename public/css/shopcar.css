@@ -447,4 +447,13 @@ header .container .btnShopCarP .carbox .removeSp {
         box-shadow: none!important;
         outline: 0;
     }
+    header .container .btnShopCar {
+        position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        height: 32px;
+        line-height: 32px;
+        box-shadow:0 5px 5px -5px #9f9f9f!important;
+    }
 }
