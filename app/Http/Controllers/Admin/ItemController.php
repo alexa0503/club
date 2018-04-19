@@ -120,8 +120,9 @@ class ItemController extends Controller
         $item->coupon_value = $request->coupon_value ? : 0;
         $item->settlement_price = $request->settlement_price ? : 0;
         $item->point = $request->point;
-        $item->feature1 = $request->feature1;
-        $item->feature2 = $request->feature2;
+        $item->feature1 = $request->feature1 ? : 0;
+        //$item->feature2 = $request->feature2;
+        $item->feature2 = rand(9999,99999);
         $item->subtitle = $request->subtitle;
         $item->dealer_id = $request->dealer_id;
         $item->category_id = $request->category_id;
