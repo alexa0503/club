@@ -29,6 +29,13 @@ class MembersController extends Controller
         if($request->has('date2')){
             $where[] = ['m.regdate', '<=', strtotime($request->date2 . " 23:59:59")];
         }
+        
+        if($request->has('min_coin')){
+            $where[] = ['c.extcredits4', '>=', $request->min_coin];
+        }
+        if($request->has('max_coin')){
+            $where[] = ['c.extcredits4', '<=', $request->max_coin];
+        }
         //数据来源
         if($request->has('datafrom')){
             if($request->datafrom == 1){
@@ -70,6 +77,12 @@ class MembersController extends Controller
         //结束时间
         if($request->has('date2')){
             $where[] = ['m.regdate', '<=', strtotime($request->date2 . " 23:59:59")];
+        }
+        if($request->has('min_coin')){
+            $where[] = ['c.extcredits4', '>=', $request->min_coin];
+        }
+        if($request->has('max_coin')){
+            $where[] = ['c.extcredits4', '<=', $request->max_coin];
         }
         //数据来源
         if($request->has('datafrom')){

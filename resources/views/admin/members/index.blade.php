@@ -5,6 +5,7 @@
             <form class="form-inline" action="/admin/members">
                 <!--<div class="form-group"><input class="form-control" name="keywords" /></div>-->
                 <div class="form-group"><input class="form-control datepicker" name="date1" placeholder="输入开始日期" value="{{Request::input('date1')}}" />-<input class="form-control datepicker" name="date2" placeholder="输入结束日期" value="{{Request::input('date2')}}" /></div>
+                <div class="form-group">风迷币：<input class="form-control " style="width:60px;" name="min_coin" placeholder="最小" value="{{Request::input('min_coin')}}" />-<input class="form-control " name="max_coin"  style="width:60px;" placeholder="最大" value="{{Request::input('max_coin')}}" /></div>
                 <div class="form-group">
                     <select class="form-control" id="datafrom" name="datafrom" value="{{Request::input('datafrom')}}">
                         <option value="">选择数据来源/全部</option>
