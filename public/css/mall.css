@@ -1010,4 +1010,8 @@ footer .container {
     #main .row1 .top-border {
         max-width: 100%;
     }
+    #main .row1 .top {
+        font-size: 16px;
+        text-align: center;
+    }
 }
