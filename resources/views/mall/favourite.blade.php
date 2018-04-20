@@ -9,10 +9,10 @@
                 </div>
                 <div class="caret"></div>
                 <div class="content">
-                    <div class="rows">
+                    <div class="rows border-index-content">
                         @foreach($favourites as $k=>$favourite)
                         @if(Agent::isMobile())
-                        <div class="col-xs-6" style="margin-bottom:20px;height:280px;">
+                        <div class="col-xs-6 border-index">
                             <a href="{{url('/mall/item/'.$favourite->item->id)}}">
                                 <img src="{{$favourite->item->thumb}}" class="img-responsive" />
                             </a>
@@ -20,7 +20,7 @@
                                 <h4 style="font-size:12px">{{$favourite->item->name}}</h4>
                             </div>
                             <span>{{$favourite->item->point}}风迷币</span>
-                            <div class="mobile-btns center-block">
+                            <div class="mobile-btns center-block btns-favourite">
                                 <button class="btn btn-view btn-favourite" style="display:block;width:100%;" data-url="{{url('/mall/favourite/'.$favourite->item->id)}}">取消收藏</button>
                                 
                             </div>
@@ -37,6 +37,7 @@
                         </div>
                         @endif
                         @endforeach
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>

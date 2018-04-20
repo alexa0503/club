@@ -46,7 +46,6 @@
                                             <span>{{$item->point}}风迷币</span>
                                             <div class="mobile-btns center-block btns-index">
                                                 <a class="btn btn-view" href="{{url('/mall/item/'.$item->id)}}">查看详情</a>
-                                                
                                             </div>
                                         </div>
                                         @endforeach
@@ -73,7 +72,7 @@
                                                 <h4>{{$item->name}}</h4>
                                             </div>
                                             <span>{{$item->point}}风迷币</span>
-                                            <div class="mobile-btns center-block">
+                                            <div class="mobile-btns center-block btns-index">
                                                 <a class="btn btn-view" href="{{url('/mall/item/'.$item->id)}}">查看详情</a>
                                                
                                             </div>
@@ -99,7 +98,7 @@
                                                 <h4>{{$item->name}}</h4>
                                             </div>
                                             <span>{{$item->point}}风迷币</span>
-                                            <div class="mobile-btns center-block">
+                                            <div class="mobile-btns center-block btns-index">
                                                 <a class="btn btn-view" href="{{url('/mall/item/'.$item->id)}}">查看详情</a>
                                                 
                                             </div>

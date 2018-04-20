@@ -681,7 +681,7 @@ footer .container {
         background: #d2241e;
         color: #fff;
         border-radius: 0;
-        font-size: 12px;
+        font-size: 14px;
         padding: 6px 6px;
     }
     .mobile-btns .btn-exchange {
@@ -871,6 +871,10 @@ footer .container {
         margin-top: 0;
         margin-bottom: 53px;
     }
+    .btn-star {
+        font-size: 16px;
+        text-align: center;
+    }
     .item-detail-favourite {
         position: absolute;
         bottom:0;
@@ -878,22 +882,23 @@ footer .container {
         margin-bottom: 10px;
         margin-right: 20px;
         padding-right:40px;
+        text-align: center;
     }
     .item-detail-favourite .glyphicon  {
-        font-size: 24px;
+        font-size: 30px;
     }
     .item-detail-favourite a {
         display: block;
         position: absolute;
         right:0;
         bottom:10px;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.33333;
-        color: red!important;
+        color: gray!important;
     }
     .item-detail .btn-custom {
         background-color: #c1372b;
-        font-size:14px;
+        font-size:16px;
         font-weight: normal;
     }
     #main .row1 .content {
@@ -971,12 +976,20 @@ footer .container {
         margin-left:-20px;
         margin-right:-20px;
     }
+    .btns-favourite {
+        margin-left:-20px;
+        margin-right:-10px;
+    }
     #main .row1 .content h4 {
         font-weight: normal;
         color: #666;
     }
     #favourite {
-        margin-bottom: 100px;
+        margin-bottom: 100px!important;
+    }
+    #favourite .content .rows{
+        margin-left:-15px;
+        margin-right:-15px;
     }
     #main .row1 .top-border {
         max-width: 100%;

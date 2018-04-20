@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title>{{ config('app.name', '') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script language="javascript" id="temp">
+		document.write('<meta name="viewport" content="width=640, initial-scale=' + window.screen.width / 640 +
+			',user-scalable=no, target-densitydpi=device-dpi">');
+	</script>
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- CSRF Token -->
@@ -31,17 +35,26 @@
     </script>
 </head>
 <body>
+<main id="background"></main>
 <div id="mobile">
     <div class="container">
-        <div class="header row">
-            <div class="logo"><div class="pull-right" ><img src="/images/mall/mobile/logo_2.png" style="max-height:32px;"  class="img-responsive" /></div><img src="/images/mall/mobile/logo_1.png" style="max-height:32px;margin-top:18px;" class="img-responsive"  /> </div>
-        </div>
-    </div>
-    <div class="container fixed-bottom">
-        <div class="footer text-center">
-            <a href="{{ url('mall') }}" class="btn btn-footer">立即加入</a>
+        <div class="header rows">
+            <div class="logo"><div class="pull-right" ><img src="/images/mall/mobile/logo_2.png" width="120" style="margin-top:20px;" /></div><img src="/images/mall/mobile/logo_1.png" width="100" /> </div>
         </div>
     </div>
 </div>
+<script>
+$().ready(function(){
+    var background = new Image();
+    background.src = '/images/mall/mobile/kv.jpg';
+    background.onload = function () {
+        var loadbackground = document.getElementById('background');
+        loadbackground.style.backgroundImage = 'url(' + background.src + ')';
+        window.setTimeout(function(){
+            window.location.href="/mall"
+        },2000)
+    }
+})
+</script>
 </body>
 </html>
