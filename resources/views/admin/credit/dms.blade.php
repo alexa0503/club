@@ -9,6 +9,13 @@
                     <input type="text" placeholder="请输入用户名或者UID" value="{{Request::input('keywords')}}" class="form-control" name="keywords" id="keywords">
                 </div>
                 <div class="form-group">
+                    <select class="form-control" name="type">
+                        <option value="">选择/所有</option>
+                        <option value="1" {!! Request::input('type') == '1' ? 'selected="selected"' : '' !!}>获取</option>
+                        <option value="-1" {!! Request::input('type') == '1' ? 'selected="selected"' : '' !!}>消耗</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-sm">提交</button>
                     <button type="button" class="btn btn-primary btn-sm export">导出</button>
                     <span>共 {!! $rows->total() !!} 条记录</span>

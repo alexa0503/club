@@ -103,6 +103,13 @@ class CreditController extends Controller
         if(null != $request->date2){
             $model->where('l.spent_at','<=', $request->date2 ." 23:59:59");
         }
+        
+        if('-1' == $request->type){
+            $model->where('l.coin','<', '0');
+        }
+        if('1' == $request->type){
+            $model->where('l.coin','>=', '0');
+        }
         $rows = $model->paginate(20);
 
         return view('admin.credit.dms',[
@@ -127,6 +134,14 @@ class CreditController extends Controller
         }
         if(null != $request->date2){
             $model->where('l.spent_at','<=', $request->date2 ." 23:59:59");
+        }
+
+        
+        if('-1' == $request->type){
+            $model->where('l.coin','<', '0');
+        }
+        if('1' == $request->type){
+            $model->where('l.coin','>=', '0');
         }
 
         $date = date("Y_m_d_").rand(1000,9999);
