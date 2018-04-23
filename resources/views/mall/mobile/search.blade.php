@@ -51,6 +51,7 @@
             'dots': true,
             'autoplay': true
         });
+        $("#main .container .search-content").css('margin-top',($('.search_bar').height()+26)+'px');
     })
 </script>
 @endsection
