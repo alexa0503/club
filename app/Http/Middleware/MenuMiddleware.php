@@ -54,8 +54,8 @@ class MenuMiddleware
                 $menu->add('推荐购车', ['url'=>route('reference.index'),'class'=>'bg-palette6']);
             }
             //会员积分
-            if($admin->hasPermissionTo('风迷币消耗记录') && $admin->hasAnyRole(['管理员'])){
-                $menu3 = $menu->add('风迷币消耗记录', ['url'=>route('credit.index'),'class'=>'openable bg-palette7']);
+            if($admin->hasPermissionTo('风迷币积分记录') && $admin->hasAnyRole(['管理员'])){
+                $menu3 = $menu->add('风迷币积分记录', ['url'=>route('credit.index'),'class'=>'openable bg-palette7']);
                 $menu3->add('查看', ['url'=>route('credit.index'),'class'=>'bg-palette3']);
                 $menu3->add('新增', ['url'=>route('credit.create'),'class'=>'bg-palette3']);
                 $menu3->add('dms数据', ['url'=>route('credit.dms'),'class'=>'bg-palette3']);
