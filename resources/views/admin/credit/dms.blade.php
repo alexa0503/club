@@ -12,7 +12,7 @@
                     <select class="form-control" name="type">
                         <option value="">选择/所有</option>
                         <option value="1" {!! Request::input('type') == '1' ? 'selected="selected"' : '' !!}>获取</option>
-                        <option value="-1" {!! Request::input('type') == '1' ? 'selected="selected"' : '' !!}>消耗</option>
+                        <option value="-1" {!! Request::input('type') == '-1' ? 'selected="selected"' : '' !!}>消耗</option>
                     </select>
                 </div>
                 <div class="form-group">
