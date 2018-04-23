@@ -11,7 +11,7 @@ class MembersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:管理员','permission:会员积分']);
+        $this->middleware(['role:管理员','permission:粉丝数据']);
     }
     /**
      * Display a listing of the resource.
