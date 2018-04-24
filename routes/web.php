@@ -52,6 +52,7 @@ Route::group(['middleware' => ['role:*', 'menu'], 'prefix' => 'admin', 'namespac
     Route::resource('order', 'OrderController');
     Route::get('verify/export', 'VerifyController@export');
     Route::resource('verify', 'VerifyController');
+    Route::get('reference/export', 'ReferenceController@export');
     Route::resource('reference', 'ReferenceController');
     Route::get('credit/export', 'CreditController@export');
     Route::get('credit/exportdms', 'CreditController@exportdms');

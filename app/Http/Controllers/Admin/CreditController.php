@@ -37,6 +37,14 @@ class CreditController extends Controller
             $model->where('cl.dateline','<=', strtotime($request->date2 ." 23:59:59"));
         }
 
+        
+        if('-1' == $request->type){
+            $model->where('cl.extcredits4','<', '0');
+        }
+        if('1' == $request->type){
+            $model->where('cl.extcredits4','>=', '0');
+        }
+
         $rows = $model->paginate(20);
         //print_r($rows->total());die;
         return view('admin.credit.index',[
@@ -64,6 +72,15 @@ class CreditController extends Controller
         if(null != $request->date2){
             $model->where('cl.dateline','<=', strtotime($request->date2 ."23:59:59"));
         }
+
+        
+        if('-1' == $request->type){
+            $model->where('cl.extcredits4','<', '0');
+        }
+        if('1' == $request->type){
+            $model->where('cl.extcredits4','>=', '0');
+        }
+
 
         $date = date("Y_m_d_").rand(1000,9999);
         $filename = "credit_{$date}.csv";
@@ -110,6 +127,7 @@ class CreditController extends Controller
         if('1' == $request->type){
             $model->where('l.coin','>=', '0');
         }
+        $model->where('l.generate_way','!=', '3');
         $rows = $model->paginate(20);
 
         return view('admin.credit.dms',[
@@ -143,6 +161,8 @@ class CreditController extends Controller
         if('1' == $request->type){
             $model->where('l.coin','>=', '0');
         }
+        $model->where('l.generate_way','!=', '3');
+        
 
         $date = date("Y_m_d_").rand(1000,9999);
         $filename = "owner_{$date}.csv";
