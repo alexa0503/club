@@ -48,30 +48,6 @@ class RecommendedCar extends Command
             //trigger_error("SOAP Fault: (faultcode: {$response->faultcode}, faultstring: {$response->faultstring})", E_USER_ERROR);
             $result = null;
         }
-        //var_dump($result);
-        $result['ret'] = 0;
-        $result['data'] = [
-            [
-                'spent_at' => '2018-03-23 11:54:23.0',
-                'customerVin' => 'LVZA53P99HC200692',
-                'modelCode' => 'F506S',
-                'vin' => 'LVZA53P91GC659665',
-                'dealerCode' => 'F28-0001',
-                'points' => '3600',
-                'resultId' => '1000000005',
-                'type' => '推荐购车'
-            ],
-            [
-                'spent_at' => '2018-04-23 20:26:19.0',
-                'customerVin' => 'LVZA53P99HC200692',
-                'modelCode' => 'F506S',
-                'vin' => 'LVZA53P91GC659665',
-                'dealerCode' => 'F28-0001',
-                'points' => '3600',
-                'resultId' => '1000000006',
-                'type' => '推荐购车'
-            ]
-        ];
         if ($result && $result['ret'] == 0 && isset($result['data']) && is_array($result['data'])) {
             foreach ($result['data'] as $data) {
                 $data['SCORE_ID'] = $data['resultId'];
