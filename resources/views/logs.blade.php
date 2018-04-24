@@ -32,7 +32,7 @@
 <div class="avatar_m"><span><img src="http://club.dffengguang.com.cn/bbs/uc_server/avatar.php?uid={{$uid}}&size=small" /></span></div>
 <h2 class="name">{{$user->username}}</h2>
 </div>
-<div class="user_box">
+<div class="user_box" style="margin-bottom:100px;">
 <ul>
 <li class="active li-point"><div><span>{{$user->point}} </span>评级积分</div></li>
 <li class="li-coin"><div><span>{{$user->coin}} </span>风迷币</div></li>
