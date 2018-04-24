@@ -50,6 +50,8 @@ class Kernel extends ConsoleKernel
             ->dailyAt('02:00');
         $schedule->command('points:cancel')
             ->dailyAt('04:00');
+        $schedule->command('recommended:car')
+        ->dailyAt('05:00');
         /*
         $count = \App\Verify::count();
         $n = ceil($count/10000);
