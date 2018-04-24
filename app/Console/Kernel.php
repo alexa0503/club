@@ -23,6 +23,7 @@ class Kernel extends ConsoleKernel
         Commands\MembersExport::class,
         Commands\PointsCancel::class,
         Commands\SyncModel::class,
+        Commands\RecommendedCar::class,
     ];
 
     /**

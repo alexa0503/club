@@ -30,7 +30,7 @@ class Helper
             case 'F506':
             case 'F506S':
             case '370N':
-            $return = '风光360/370';
+                $return = '风光360/370';
                 break;
             case 'F507':
             case 'F507S':
@@ -104,6 +104,8 @@ class Helper
         $log->spent_at = $spent_at;
         $log->score_id = $data['SCORE_ID'];
         $log->generate_way = $data['generate_way'];
+        $log->recommended_model_code = \App\Helpers\Helper::replaceCarModel($data['recommended_model_code']);
+        $log->recommended_frame_number = $data['recommended_frame_number'];
         $log->save();
 
         /*
