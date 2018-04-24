@@ -178,12 +178,22 @@
 		.user_avatar img { border-radius:45px; border:1px solid #FFF; box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3); width:60px; height:60px; }
 		.user_avatar .name { color:#2782BA; font-size:16px; line-height:40px; }
 
-	.user_box { background:#FFF; border-radius:10px; border:1px solid #DDD; margin:0 10px; }
-		.user_box li { line-height:38px; border-bottom:1px solid #DDD; padding:0 20px 0 10px; color:#333; font-size:14px; font-weight:700; }
+		.user_box ul {height: 40px;}
+		.user_box li {width: 50%; float:left; line-height:38px;  padding:0;margin:0; color:#333; font-size:14px; font-weight:700; }
+		.user_box li div {background:#FFF;  border-radius:10px; border:1px solid #DDD; margin:0 10px;padding:0 20px;position: relative;}
 		.user_box li span { color:#2782BA; float:right; }
+		.user_box li.active div::after {position:absolute;content:"";height:0;width: 0;pointer-events: none;border-right: 20px solid transparent; border-top: 20px solid #fff;border-bottom: 0;border-left: 20px solid transparent;border-width: 10px;left: 50%;margin-left: -10px;top: 100%;}
+		.user_box li.active div::before {position:absolute;content:"";height:0;width: 0;pointer-events: none;border-right: 22px solid transparent; border-top: 22px solid #DDD;border-bottom: 0;border-left: 22px solid transparent;border-width: 11px;left: 50%;margin-left: -11px;top: 100%;} 
 		.btn_exit { padding:10px; }
 		.btn_exit a { background: url(./images/exit.png) no-repeat; width:300px; height:41px; display:block; line-height:2000px; overflow:hidden; margin:0 auto; }
 			.btn_exit a:hover { background: url(./images/exit_on.png) no-repeat;}
+	.user_box .table { line-height: 32px;display: none; }
+	.user_box .table th { font-weight: normal;padding:0 5px;background: #ddd;border-top:1px solid #9d9d9d;border-bottom: 1px solid #9d9d9d;}
+	.user_box .table td { padding:0 5px;background: #fff;}
+	.user_box .table { margin:10px 10px;}
+	.user_box .table table {width: 100%;}
+	.user_box .table span {color: #999}
+		
 
 	.myinfo_list { width:300px; margin:0 auto; }
 	.myinfo_list li { background: url(./images/my_subject_bg.png) no-repeat; width:145px; height:73px; float:left; margin:0 0 10px 5px; }

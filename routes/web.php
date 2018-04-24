@@ -152,6 +152,25 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
                 'verifies'=>$verifies
             ]);
         });
+        Route::get('/logs', function(){
+            $uid = session('discuz.user.uid');
+            $user = \DB::table('discuz_common_member as m')
+                ->leftJoin('discuz_common_member_count as c','m.uid' , '=' , 'c.uid')
+                ->select('m.username','c.extcredits1 as point', 'c.extcredits4 as coin')
+                ->where('m.uid', $uid)
+                ->first();
+            $logs = \DB::table('discuz_common_credit_log as l')
+                ->leftJoin('discuz_common_credit_log_field as f','l.logid' , '=' , 'f.logid')
+                ->select('l.extcredits1 as point','l.extcredits4 as coin','f.title','f.text','l.dateline')
+                ->orderBy('l.dateline', 'DESC')
+                ->where('l.uid',$uid)
+                ->get();
+            return view('logs', [
+                'uid' => $uid,
+                'user' => $user,
+                'logs' => $logs
+            ]);
+        });
         //Route::get('/verify/logs', 'OwnerController@verifyLogs');
         Route::post('/verify', 'OwnerController@verify');
         Route::get('/points/update', 'OwnerController@update');
