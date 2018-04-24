@@ -22,7 +22,7 @@
 <header class="header">
     <div class="nav">
 <a href="javascript:;" onclick="history.go(-1);" class="z"><img src="bbs/static/image/mobile/images/icon_back.png" /></a>
-<span>我的资料</span>
+<span>积分风迷币</span>
     </div>
 </header>
 <!-- header end -->
