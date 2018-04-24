@@ -42,8 +42,9 @@
     <tr>
         <th>操作</th><th>积分变更</th><th>详情</th><th>时间</th>
     </tr>
-    @foreach($logs as $log)
+    
     @php $i=0 @endphp
+    @foreach($logs as $log)
     @if($log->point != 0)
     @php $i++; @endphp
     <tr>
@@ -61,8 +62,9 @@
     <tr>
         <th>操作</th><th>风迷币变更</th><th>详情</th><th>时间</th>
     </tr>
-    @foreach($logs as $log)
     @php $i=0 @endphp
+    
+    @foreach($logs as $log)
     @if($log->coin != 0)
     @php $i++; @endphp    
     <tr>
