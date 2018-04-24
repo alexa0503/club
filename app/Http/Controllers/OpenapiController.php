@@ -218,7 +218,6 @@ class OpenapiController extends Controller{
         $regip = $request->regip;
         $regdate = $this->timestamp;
         $groupid = 11;//默认11
-
         $user = DB::table('discuz_ucenter_members')->select('uid')->where('username', $username)->first();
         if( $user != null ){
             $uid = $user->uid;
