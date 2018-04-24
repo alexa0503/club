@@ -9,11 +9,11 @@
 <meta name="keywords" content="{{$user->username}}的个人资料" />
 <meta name="description" content="{{$user->username}}的个人资料 ,超级风迷东风风光车友会" />
 <title>{{$user->username}}的个人资料 -  超级风迷东风风光车友会 -  手机版</title>
-<link rel="stylesheet" href="bbs/static/image/mobile/style.css" type="text/css" media="all">
-<script src="bbs/static/js/mobile/jquery.min.js?O2Q" type="text/javascript"></script>
+<link rel="stylesheet" href="bbs/static/image/mobile/style.css?v=20180424" type="text/css" media="all">
+<script src="bbs/static/js/mobile/jquery.min.js??v=20180424" type="text/javascript"></script>
 
 
-<script src="bbs/static/js/mobile/common.js?O2Q" type="text/javascript" charset="utf-8"></script>
+<script src="bbs/static/js/mobile/common.js??v=20180424" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body class="bg">
