@@ -50,7 +50,7 @@ class ReferenceController extends Controller
         $model = \DB::table('owner_logs as l')
             ->leftJoin('discuz_common_member as m','m.uid','=','l.uid')
             ->leftJoin('verifies as v','v.uid','l.uid')
-            ->select('l.id','m.uid','m.username','l.score_id','l.point','l.coin', 'l.reason','l.spent_at','v.model_code','l.dealer','l.recommended_frame_number','l.recommended_model_code')
+            ->select('l.id','m.uid','m.username','l.point','l.coin', 'l.reason','l.spent_at','v.model_code','l.dealer','l.recommended_frame_number','l.recommended_model_code')
             ->orderBy('l.id', 'DESC');
         if(null != $request->keywords){
             $model->where('m.uid','=', $request->keywords);
@@ -71,7 +71,7 @@ class ReferenceController extends Controller
         $fp = fopen(public_path("downloads/datacsv/".$filename), 'w');
         fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));
 
-        $title = ["ID","UID","用户名","RESULT ID","积分","风迷币","原因","消费时间","车型","经销商代码","推荐购车车架号","推荐购车车型"];
+        $title = ["ID","UID","用户名","积分","风迷币","原因","消费时间","车型","经销商代码","推荐购车车架号","推荐购车车型"];
         fputcsv($fp, $title);
 
         $model->chunk(10000, function($list) use ($fp){

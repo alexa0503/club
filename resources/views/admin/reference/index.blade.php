@@ -23,7 +23,6 @@
                         <th>ID</th>
                         <th>UID</th>
                         <th>用户名</th>
-                        <th>RESULT ID</th>
                         <th>积分</th>
                         <th>风迷币</th>
                         <th>原因</th>
@@ -40,15 +39,14 @@
                             <td>{{$row->id}}</td>
                             <td>{{$row->uid}}</td>
                             <td>{{$row->username}}</td>
-                            <td>{{$row->score_id}}</td>
                             <td>{{$row->point}}</td>
                             <td>{{$row->coin}}</td>
                             <td>{{$row->reason}}</td>
                             <td>{{$row->spent_at}}</td>
                             <td>{{$row->model_code}}</td>
                             <td>{{$row->dealer}}</td>
-                            <td>{{$row->recommended_model_code}}</td>
                             <td>{{$row->recommended_frame_number}}</td>
+                            <td>{{$row->recommended_model_code}}</td>
                         </tr>
                     @endforeach
                     </tbody>
