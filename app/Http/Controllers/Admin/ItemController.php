@@ -44,34 +44,15 @@ class ItemController extends Controller
         if($request->status !== null){
             $model->where('status', $request->status);
         }
-        if($request->name !== null){
-            $item_ids = \App\Item::where('name', 'LIKE', '%'.$request->name.'%')->get()->map(function($item){
-                return $item->id;
-            });
-            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
-                return $item->order_id;
-            });
-            $model->whereIn('id', $ids);
+        
+        if($request->input('name') != null){
+            $model->where('name', 'LIKE', '%'.$request->name.'%');
         }
         if($request->dealer_id !== null){
-            $dealer = \App\Dealer::find($request->dealer_id);
-            $item_ids = \App\Item::where('dealer_id', $dealer->id)->get()->map(function($item){
-                return $item->id;
-            });
-            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
-                return $item->item_id;
-            });
-            $model->whereIn('id', $ids);
+            $model->where('dealer_id', $request->dealer_id);
         }
         if($request->category_id !== null){
-            $category = \App\Category::find($request->category_id);
-            $item_ids = \App\Item::where('category_id', $category->id)->get()->map(function($item){
-                return $item->id;
-            });
-            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
-                return $item->order_id;
-            });
-            $model->whereIn('id', $ids);
+            $model->where('category_id', $request->category_id);
         }
         $items = $model->withTrashed()->paginate(20);
         return view('admin.item.index',[
@@ -99,6 +80,7 @@ class ItemController extends Controller
             });
             $model->whereIn('dealer_id',$dealer_ids);
         }
+        
         if($request->date1 !== null){
             $model->where('created_at', '>=', $request->date1);
         }
@@ -108,35 +90,17 @@ class ItemController extends Controller
         if($request->status !== null){
             $model->where('status', $request->status);
         }
-        if($request->name !== null){
-            $item_ids = \App\Item::where('name', 'LIKE', '%'.$request->name.'%')->get()->map(function($item){
-                return $item->id;
-            });
-            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
-                return $item->order_id;
-            });
-            $model->whereIn('id', $ids);
+        
+        if($request->input('name') != null){
+            $model->where('name', 'LIKE', '%'.$request->name.'%');
         }
         if($request->dealer_id !== null){
-            $dealer = \App\Dealer::find($request->dealer_id);
-            $item_ids = \App\Item::where('dealer_id', $dealer->id)->get()->map(function($item){
-                return $item->id;
-            });
-            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
-                return $item->item_id;
-            });
-            $model->whereIn('id', $ids);
+            $model->where('dealer_id', $request->dealer_id);
         }
         if($request->category_id !== null){
-            $category = \App\Category::find($request->category_id);
-            $item_ids = \App\Item::where('category_id', $category->id)->get()->map(function($item){
-                return $item->id;
-            });
-            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
-                return $item->order_id;
-            });
-            $model->whereIn('id', $ids);
+            $model->where('category_id', $request->category_id);
         }
+        
         $items = $model->withTrashed()->get()->map(function($item){
             return [
                 $item->product_code,
