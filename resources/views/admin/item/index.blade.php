@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">查询</button>
-                <button type="button" class="btn btn-primary export">导出</button>
+                <a type="button" class="btn btn-primary export">导出</a>
             </div>
         </form>
     </div>
@@ -133,6 +133,15 @@ $().ready(function () {
         }
         return false;
 	});
+    $('.export').click(function () {
+        var date1 = $('input[name=date1]').val();
+        var date2 = $('input[name=date2]').val();
+        var category_id = $('select[name=category_id]').val();
+        var name = $('input[name=name]').val();
+        var dealer_id = $('select[name=dealer_id]').val();
+        var url = "{{url('admin/item/export')}}" + '?date1=' + date1 + '&date2=' + date2 + '&dealer_id=' + dealer_id + '&category_id=' + category_id + '&name=' + name;
+        location.href = encodeURI(url);
+    })
 })
 </script>
 @endsection

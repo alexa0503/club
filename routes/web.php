@@ -45,6 +45,7 @@ Route::group(['middleware' => ['role:*', 'menu'], 'prefix' => 'admin', 'namespac
         return redirect('/admin/dashboard');
     });
     Route::get('/dashboard', 'IndexController@index');
+    Route::get('item/export', 'ItemController@export')->name('item.export');
     Route::get('item/{id}/restore', 'ItemController@restore')->name('item.restore');
     Route::resource('item', 'ItemController');
     Route::resource('page.block', 'BlockController');

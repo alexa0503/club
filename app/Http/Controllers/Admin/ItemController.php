@@ -59,7 +59,7 @@ class ItemController extends Controller
                 return $item->id;
             });
             $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
-                return $item->order_id;
+                return $item->item_id;
             });
             $model->whereIn('id', $ids);
         }
@@ -79,6 +79,101 @@ class ItemController extends Controller
             'dealers' => $dealers,
             'categories' => $categories,
         ]);
+    }
+
+    public function export(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        
+        $categories = \App\Category::all();
+        $model = \App\Item::orderBy('created_at', 'DESC');
+        
+        if($admin->hasRole('管理员')){
+            $dealers = \App\Dealer::all();
+        }
+        else{
+            $role_names = $admin->getRoleNames();
+            $dealers = \App\Dealer::whereIn('name', $role_names)->get();
+            $dealer_ids = $dealers->map(function($item){
+                return $item->id;
+            });
+            $model->whereIn('dealer_id',$dealer_ids);
+        }
+        if($request->date1 !== null){
+            $model->where('created_at', '>=', $request->date1);
+        }
+        if($request->date2 !== null){
+            $model->where('created_at', '<', $request->date2);
+        }
+        if($request->status !== null){
+            $model->where('status', $request->status);
+        }
+        if($request->name !== null){
+            $item_ids = \App\Item::where('name', 'LIKE', '%'.$request->name.'%')->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        if($request->dealer_id !== null){
+            $dealer = \App\Dealer::find($request->dealer_id);
+            $item_ids = \App\Item::where('dealer_id', $dealer->id)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->item_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        if($request->category_id !== null){
+            $category = \App\Category::find($request->category_id);
+            $item_ids = \App\Item::where('category_id', $category->id)->get()->map(function($item){
+                return $item->id;
+            });
+            $ids = \App\OrderItem::whereIn('item_id', $item_ids)->get()->map(function($item){
+                return $item->order_id;
+            });
+            $model->whereIn('id', $ids);
+        }
+        $items = $model->withTrashed()->get()->map(function($item){
+            return [
+                $item->product_code,
+                $item->name,
+                $item->type==1?'优惠券':'普通商品',
+                $item->category ? $item->category->name : '--',
+                $item->dealer ? $item->dealer->name : '--',
+                $item->sold_quantity,
+                $item->price,
+                $item->point,
+                $item->deleted_at ? '已删' : '正常'
+            ];
+        })->toArray();
+        $arr_title = [
+            '产品编号',
+            '产品名',
+            '产品性质',
+            '产品分类',
+            '经销商',
+            '已售',
+            '市场价',
+            '风迷币',
+            '状态'
+        ];
+        
+        //array_unshift($arr,$arr_title);
+        $contens = array_merge(array($arr_title), $items);
+        $filename = 'downloads/datacsv/item-'.date('Ymd').rand(1000,9999).'.csv';
+        $file = fopen(public_path($filename), 'w');
+        fwrite($file, chr(0xEF).chr(0xBB).chr(0xBF));
+        foreach ($contens as $content) {
+            fputcsv($file, $content);
+        }
+        fclose($file);
+        return redirect(asset($filename));
+
+        //return $arr;
     }
 
     /**
