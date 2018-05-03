@@ -104,8 +104,12 @@ class Helper
         $log->spent_at = $spent_at;
         $log->score_id = $data['SCORE_ID'];
         $log->generate_way = $data['generate_way'];
-        $log->recommended_model_code = \App\Helpers\Helper::replaceCarModel($data['recommended_model_code']);
-        $log->recommended_frame_number = $data['recommended_frame_number'];
+        if( isset($data['recommended_model_code']) ){
+            $log->recommended_model_code = \App\Helpers\Helper::replaceCarModel($data['recommended_model_code']);
+        }
+        if( isset($data['recommended_frame_number']) ){
+            $log->recommended_frame_number = $data['recommended_frame_number'];
+        }
         $log->save();
 
         /*
