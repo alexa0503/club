@@ -193,7 +193,7 @@ class OrderController extends Controller
                 $price,
                 $settlement_price,
                 $dealer,
-                $item->logistics_name.' '.$item->logistics_code,
+                $order->logistics_name.' '.$order->logistics_code,
                 $order->created_at,
                 $order->receiver.'，手机：'.$order->mobile.'，地址：'.$order->address,
                 $order_statuses[$order->status],
