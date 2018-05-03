@@ -33,7 +33,7 @@
 			        	<th>积分</th>
 			        	<th>风迷币</th>
 			        	<th>原因</th>
-			        	<th>消费时间</th>
+			        	<th>创建时间</th>
 			        	<th>车型</th>
 	        		</tr>
 	      		</thead>
