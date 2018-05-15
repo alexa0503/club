@@ -70,7 +70,8 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         
         $agent = new Agent;
         if($agent->isMobile()){
-            return view('mobile.index');
+            return redirect('/mall');
+            //return view('mobile.index');
         }
         $page = \App\Page::find(1);
         $kvs = $page->blocks->filter(function ($value, $key) {
