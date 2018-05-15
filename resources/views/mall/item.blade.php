@@ -66,7 +66,7 @@
                 <div class="subtitle">{{$item->subtitle}}</div>
                 {{ Form::open(array('url' => url('/mall/cart'), 'class'=>'form-horizontal', 'method'=>'POST', 'id'=>'post-form')) }}
                 <div class="form-group">
-                    价格：<font color="red">{{$item->point}}风迷币</font>
+                    价格：<font color="#31aff8">{{$item->point}}风迷币</font>
                 </div>
                 <div class="form-group" id="form-group-quantity">
                     数量：

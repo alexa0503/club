@@ -54,6 +54,7 @@ $().ready(function(){
             window.location.href="/mall"
         },2000)
     }
+
 })
 </script>
 </body>

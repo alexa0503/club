@@ -233,7 +233,7 @@ body {
 }
 
 #main .row1 .content span {
-    color: #d2241e;
+    color: #31aff8;
     margin-bottom: 10px;
     display: block;
     text-align: center;
@@ -333,7 +333,7 @@ footer .container {
 }
 
 .slider-nav .slick-current {
-    border: 2px solid red;
+    border: 2px solid #ccc;
 }
 
 .slick-slide {
@@ -595,7 +595,7 @@ footer .container {
     height: 100%;
     width: 100%;
     text-decoration: none;
-    color: #a8a8a8;
+    color: #333;
 }
 
 .modal-content {
@@ -679,11 +679,14 @@ footer .container {
     .nav-tabs>li.active>a:focus,
     .nav-tabs>li.active>a:hover {
         border: none;
-        color: #bf321b;
-        border-bottom: 5px solid #bf321b;
+        color: #31aff8;
+        border-bottom: 5px solid #31aff8;
     }
     .mobile-btns .btn {
-        background: #d2241e;
+        background: -webkit-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: -o-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: -moz-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: linear-gradient(#1c6193, #2875a1, #3183a9);
         color: #fff;
         border-radius: 0;
         font-size: 14px;
@@ -696,7 +699,7 @@ footer .container {
         margin: 0 5px;
     }
     .more-text a {
-        color: #d2241e;
+        color: #31aff8;
         padding-top: 20px;
         font-weight: 600;
     }
@@ -729,7 +732,7 @@ footer .container {
     .car-bar .nav-pills>li.active>a:hover {
         background: #fff;
         border-radius: 0;
-        color: #d2241e;
+        color: #31aff8;
     }
     .car-bar .nav-pills a span {
         width: 100%;
@@ -766,7 +769,7 @@ footer .container {
     .list-categories .list-group-item.active a,
     .list-categories .list-group-item.active a:focus,
     .list-categories .list-group-item.active a:hover {
-        color: #bf321b;
+        color: #31aff8;
     }
     .search_bar input {
         padding-left: 2px;
@@ -787,10 +790,6 @@ footer .container {
     }
     .item-detail {
         margin: 30px 15px 0;
-    }
-    .modal {
-        top: auto;
-        bottom: 100px;
     }
     #modal-tip .modal-dialog {
         width: 80%;
@@ -884,7 +883,7 @@ footer .container {
         font-size: 16px;
         text-align: left;
     }
-    .btn-star .glyphicon-star  {
+    .btn-star .glyphicon-star {
         margin-left: 2px;
     }
     .item-detail-favourite {
@@ -909,7 +908,10 @@ footer .container {
         color: gray !important;
     }
     .item-detail .btn-custom {
-        background-color: #c1372b;
+        background: -webkit-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: -o-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: -moz-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: linear-gradient(#1c6193, #2875a1, #3183a9);
         font-size: 16px;
         font-weight: normal;
     }
@@ -925,7 +927,10 @@ footer .container {
         border-width: 1px;
     }
     .search_bar button {
-        background: #c1372b;
+        background: -webkit-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: -o-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: -moz-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: linear-gradient(#1c6193, #2875a1, #3183a9);
         width: 60px;
         color: #fff;
     }
@@ -944,7 +949,7 @@ footer .container {
         background: #fff;
         margin-left: 5px;
         font-size: 12px;
-        color:#666;
+        color: #666;
     }
     .mobile-item-list {
         width: 78%;
@@ -978,12 +983,20 @@ footer .container {
     .pagination>.active>span,
     .pagination>.active>span:focus,
     .pagination>.active>span:hover {
-        background-color: #c1372b;
-        border-color: #c1372b;
+        background-color: #31aff8;
+        border-color: #31aff8;
     }
     .pagination>li>a,
     .pagination>li>span {
-        color: #c1372b;
+        color: #31aff8;
+    }
+    .btn-star {
+        color: #31aff8 !important;
+    }
+    .btn-star-gray {
+        background: transparent;
+        border-radius: 0;
+        color: #999 !important;
     }
     .border-index {
         border-right: 5px solid #f0f0f0;
@@ -1018,5 +1031,43 @@ footer .container {
     #main .row1 .top {
         font-size: 16px;
         text-align: center;
+        background: -webkit-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: -o-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: -moz-linear-gradient(#1c6193, #2875a1, #3183a9);
+        background: linear-gradient(#1c6193, #2875a1, #3183a9);
+    }
+    #main .row1 .caret {
+        border-top-color: #3183a9 !important;
+    }
+    #main .row1 .top-border {
+        background: #1c6193;
+    }
+    .modal-footer .btn-custom {
+        width: 100%;
+        border-radius: 0;
+        background-color: #1c6193;
+        color: #ffffff;
+    }
+    
+    .modal-footer {
+        padding: 0;
+        border: none;
+    }
+    
+    .modal {
+        text-align: center;
+    }
+    .modal:before {
+        content: '';
+        height: 100%;
+        width: 1px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .modal-dialog {
+        text-align: left;
+        margin: 10px auto;
+        display: inline-block;
+        vertical-align: middle;
     }
 }

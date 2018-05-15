@@ -16,7 +16,7 @@
                     @endforeach
                 </ul>
                 @endif
-                <button style="margin-left: 50px;border: 0;background: red;color:#fff;" id="btn-add-address">@if(count($addresses) <=0 )创建地址@else使用新地址@endif</button>
+                <button  id="btn-add-address">@if(count($addresses) <=0 )创建地址@else使用新地址@endif</button>
             </div>
             <div style="width:100%;height:5px;background:red;margin:30px 0;z-index:1;"></div>
             <div class="shangpinbox">
@@ -108,9 +108,6 @@
                         $('#province').val(json.data.province).trigger("change");
                         $('#city').val(json.data.city).trigger("change");
                         $('#district').val(json.data.district).trigger("change");
-
-
-
                         $('#modal-address').modal('show');
                     }
                     else{
@@ -272,7 +269,7 @@
                     success: function(json){
                         if(json.ret == 0){
                             $('#modal-tip').find('.modal-body').html('<div class="text-center"><h4>恭喜</h4>'+json.msg+'。</div>');
-                            $('#modal-tip').find('.modal-title').html('<img src="/images/mall/mobile/icon-success.png" height="40" />');
+                            //$('#modal-tip').find('.modal-title').html('<img src="/images/mall/mobile/icon-success.png" height="40" />');
                             $('#modal-tip').modal('show').on('hidden.bs.modal', function () {
                                 // do something…
                                 window.location.href = '{{url("/mall/order")}}';

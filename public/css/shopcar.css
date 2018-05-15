@@ -104,6 +104,12 @@ header .container .btnShopCarP .carbox .shopBox .shopAdd {
     cursor: pointer;
 }
 
+#btn-add-address {
+    margin-left: 50px;
+    border: 0;
+    background: red;
+    color:#fff;
+}
 header .container .btnShopCarP .carbox .shopJiage {
     position: absolute;
     right: 10px;
@@ -455,5 +461,41 @@ header .container .btnShopCarP .carbox .removeSp {
         height: 32px;
         line-height: 32px;
         box-shadow:0 5px 5px -5px #9f9f9f!important;
+    }
+    .container .shangpinbox .shopDi .jiesuan {
+        background: #31aff8!important;
+    }
+    
+    #main .container .shangpinbox .shopDi .dibox .Total {
+        color: #31aff8!important;
+    }
+    #main .container .shangpinbox .shangpin .toolbox .jinbi {
+        color: #31aff8!important;
+    }
+    #btn-add-address {
+        background: #31aff8;
+        color: red;
+        padding: 6px;
+    }
+    .modal-footer {
+        padding: 0;
+        border: none;
+    }
+    
+    .modal {
+        text-align: center;
+    }
+    .modal:before {
+        content: '';
+        height: 100%;
+        width: 1px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .modal-dialog {
+        text-align: left;
+        margin: 10px auto;
+        display: inline-block;
+        vertical-align: middle;
     }
 }

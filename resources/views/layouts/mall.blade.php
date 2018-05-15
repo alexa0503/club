@@ -137,10 +137,10 @@
                     @else
                     欢迎，{{session('discuz.user.username')}}
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="{{ url('/mall/favourite') }}"><i class="glyphicon glyphicon-star-empty " aria-hidden="true"></i> 我的收藏</a>
+                    <a href="{{ url('/mall/favourite') }}"><img src="{{asset('/images/icon-star.png')}}" alt="" height="14" /> 我的收藏</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="{{url('/mall/cart')}}">
-                        <img src="{{asset('/images/icon-car.png')}}" alt="" /> 购物车
+                        <img src="{{asset('/images/icon-car.png')}}" alt="" height="14" /> 购物车
                         <span id="cart-count">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;></a>
                     @endif
                     
@@ -318,7 +318,7 @@
         </div>
     </footer>
 
-    <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal fade " id="modal-login" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -351,16 +351,11 @@
             </div>
             <!-- /.modal-content -->
         </div>
-        <!-- /.modal -->
     </div>
 
     <div class="modal fade" id="modal-tip" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="">购买失败</h4>
-                </div>
                 <div class="modal-body">
                 </div>
                 <div class="modal-footer">

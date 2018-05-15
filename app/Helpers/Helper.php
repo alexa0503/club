@@ -61,6 +61,7 @@ class Helper
             case '风光S560':
                 $credits1 = 3000;
                 $credits4 = 0;
+                break;
             case '风光370':
             case '风光360':
             case '风光360/370':
