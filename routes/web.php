@@ -147,6 +147,15 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
     Route::get('/mall/category/{id?}', 'MallController@category');
     Route::get('/mall/item/{id}', 'MallController@item');
     Route::group(['middleware' => ['auth.discuz.must']], function () {
+        Route::get('/profile', function(){
+            $agent = new Agent;
+            if(!$agent->isMobile()){
+                return redirect('/mall');
+            }
+            else{
+                return view('mobile.profile');
+            }
+        });
         Route::get('/verify', function(){
             $uid = session('discuz.user.uid');
             $verifies = \App\Verify::where('uid', $uid)->get();
