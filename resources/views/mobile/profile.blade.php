@@ -7,7 +7,7 @@
 <meta name="format-detection" content="telephone=no" />
 <meta name="keywords" content="admin的个人资料" />
 <meta name="description" content="admin的个人资料 ,超级风迷东风风光车友会" />
-<title>admin的个人资料 -  超级风迷东风风光车友会 -  手机版 - Powered by Discuz!</title>
+<title>个人资料 -  超级风迷东风风光车友会 -  手机版 - Powered by Discuz!</title>
 <link rel="stylesheet" href="/bbs/static/image/mobile/style.css" type="text/css" media="all">
 <script src="/bbs/static/js/mobile/jquery.min.js?O2Q" type="text/javascript"></script>
 <script src="/bbs/static/js/mobile/common.js?O2Q" type="text/javascript" charset="utf-8"></script>
@@ -38,8 +38,8 @@
 <li><a href="/logs">积分风迷币</a></li>
       <li><a href="/verify">车主认证</a></li>
       <li><a href="/mall/order">我的订单</a></li>
-      <li><a href="/bbs/home.php?mod=spacecp&ac=credit&op=rule&forcemobile=1">积分规则</a></li>
-      <li><a href="/bbs/home.php?mod=spacecp&ac=credit4&op=rule">风迷币规则</a></li>
+      <li><a href="/rule">积分规则</a></li>
+      <li><a href="/coin">风迷币规则</a></li>
 </ul>
 </div>
 </div>

@@ -156,6 +156,24 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
                 return view('mobile.profile');
             }
         });
+        Route::get('/rule', function(){
+            $agent = new Agent;
+            if(!$agent->isMobile()){
+                return redirect('/mall');
+            }
+            else{
+                return view('mobile.rule');
+            }
+        });
+        Route::get('/rule/coin', function(){
+            $agent = new Agent;
+            if(!$agent->isMobile()){
+                return redirect('/mall');
+            }
+            else{
+                return view('mobile.rule_coin');
+            }
+        });
         Route::get('/verify', function(){
             $uid = session('discuz.user.uid');
             $verifies = \App\Verify::where('uid', $uid)->get();
