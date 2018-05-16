@@ -39,7 +39,7 @@
       <li><a href="/verify">车主认证</a></li>
       <li><a href="/mall/order">我的订单</a></li>
       <li><a href="/rule">积分规则</a></li>
-      <li><a href="/coin">风迷币规则</a></li>
+      <li><a href="/rule/coin">风迷币规则</a></li>
 </ul>
 </div>
 </div>
