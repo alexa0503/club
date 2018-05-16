@@ -28,7 +28,7 @@
 <div class="user_avatar">
 <div class="avatar_m"><span><img src="{{ session('discuz.user.avatar') }}" /></span></div>
 <h2 class="name">{{ session('discuz.user.username') }}</h2>
-<div><span style="background:#fff;padding:4px 6px;">评级积分：{{ session('discuz.user.user_count.extcredits1') }} &nbsp;&nbsp;&nbsp;风迷币：{{ session('discuz.user.user_count.extcredits4') }}</span></div>
+<div><span style="background:#fff;padding:4px 6px;">等级：{{ session('discuz.user.user_group.grouptitle') }}&nbsp;&nbsp;&nbsp;评级积分：{{ session('discuz.user.user_count.extcredits1') }} &nbsp;&nbsp;&nbsp;风迷币：{{ session('discuz.user.user_count.extcredits4') }}</span></div>
 </div>
 <div class="myinfo_list cl">
 <ul>
