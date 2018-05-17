@@ -188,6 +188,7 @@ class uc_note {
 		if(($member = getuserbyuid($uid, 1))) {
 			dsetcookie('auth', authcode("$member[password]\t$member[uid]", 'ENCODE'), $cookietime);
 		}
+		header('Location:/');
 	}
 
 	function synlogout($get, $post) {

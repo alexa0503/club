@@ -9,36 +9,34 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 use App\Helpers\DiscuzHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Jenssegers\Agent\Agent;
-
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 Route::get('admin/login', 'Admin\LoginController@ShowLogin');
 Route::post('admin/login', 'Admin\LoginController@login');
 Route::get('admin/logout', 'Admin\LoginController@logout');
-Route::get('admin/install', function(){
+Route::get('admin/install', function () {
     /*
     $user = new App\Admin();
     $user->name = 'admin';
     $user->email = 'admin@admin.com';
     $user->password = bcrypt('admin@2017');
     $user->save();
-    */
+     */
 
     //Role::create(['guard_name'=>'admin','name' => 'superadmin']);
     //Permission::create(['guard_name'=>'admin','name' => 'global privileges']);
-    
+
     $role = Role::findByName('superadmin');
     //$role->givePermissionTo('global privileges');
     //$user = App\Admin::find(1);
     //$user->givePermissionTo('global privileges');
     //$user->assignRole(['superadmin'],'superadmin');
-        
+
 });
 Route::group(['middleware' => ['role:*', 'menu'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', function () {
@@ -67,9 +65,9 @@ Route::group(['middleware' => ['role:*', 'menu'], 'prefix' => 'admin', 'namespac
 Route::group(['middleware' => ['auth.discuz.user']], function () {
 
     Route::get('/', function () {
-        
+
         $agent = new Agent;
-        if($agent->isMobile()){
+        if ($agent->isMobile()) {
             return redirect('/mall');
             //return view('mobile.index');
         }
@@ -96,7 +94,7 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
 
         $forums['digest'] = \DB::table('discuz_forum_thread')
             ->join('discuz_forum_forum', 'discuz_forum_thread.fid', '=', 'discuz_forum_forum.fid')
-            ->where('discuz_forum_thread.digest',1)
+            ->where('discuz_forum_thread.digest', 1)
             ->orderBy('discuz_forum_thread.dateline', 'DESC')
             ->select('discuz_forum_thread.*', 'discuz_forum_forum.name')
             ->offset(0)
@@ -127,15 +125,13 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
             ->limit(5)
             ->get();
 
-
-
-        return view('index',[
-            'kvs'=>$kvs,
-            'features'=>$features,
-            'hots'=>$hots,
-            'events'=>$events,
-            'right_top_kv'=>$right_top_kv,
-            'right_bottom_kv'=>$right_bottom_kv,
+        return view('index', [
+            'kvs' => $kvs,
+            'features' => $features,
+            'hots' => $hots,
+            'events' => $events,
+            'right_top_kv' => $right_top_kv,
+            'right_bottom_kv' => $right_bottom_kv,
             'forums' => $forums,
             'members' => $members,
         ]);
@@ -146,64 +142,106 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
     Route::get('/mall/search', 'MallController@search');
     Route::get('/mall/category/{id?}', 'MallController@category');
     Route::get('/mall/item/{id}', 'MallController@item');
+    /*
+    Route::get('oauthtest', function(){
+        $verify = \App\Verify::find(rand(10,354682));
+        $timestamp = time();
+        $array = [
+            'timestamp' => $timestamp,
+            'frame_number' => $verify->frame_number,
+            'secret' => env('APP_SECRET'),
+        ];
+        $_token = \App\Helpers\Helper::generateToken($array);
+        $array['token'] = $_token;
+        unset($array['secret']);
+        $url = url('/oauth?'.http_build_query($array));
+        var_dump($array,$url);
+        //return redirect('/oauth?'.http_build_query($array));
+    });
+    */
+    //app验证接口    
+    Route::get('oauth', function (Request $request) {
+        $timestamp =  $request->input('timestamp');
+        $token = $request->input('token');
+        $frame_number = $request->input('frame_number');
+        $array = [
+            'timestamp' => $timestamp,
+            'frame_number' => $frame_number,
+            'secret' => env('APP_SECRET'),
+        ];
+        $_token = \App\Helpers\Helper::generateToken($array);
+        if($_token == null || $token !== $_token ){
+            return '验证失败';
+        }
+        //车架号，secret匹配验证 
+        $verify = \App\Verify::where('frame_number', 'LIKE', '%'.$frame_number)->first();
+        if( null == $verify ){
+            return '不存在该用户信息';
+        }
+        $user = \App\UUser::where('uid', $verify->uid)->first();
+        if (null == $user) {
+            return '用户不存在';
+        }
+        $timestamp = time();
+        $key = env('DISCUZ_UCKEY');
+        $login_url = url('/') . '/bbs/api/uc.php?time=' . $timestamp . '&code=' . urlencode(DiscuzHelper::authcode('action=synlogin&username=' . $user->username . '&uid=' . $user->uid . '&password=' . $user->password . "&time=" . $timestamp, 'ENCODE', $key));
+        return redirect($login_url);
+    });
     Route::group(['middleware' => ['auth.discuz.must']], function () {
-        Route::get('/profile', function(){
+        Route::get('/profile', function () {
             $agent = new Agent;
-            if(!$agent->isMobile()){
+            if (!$agent->isMobile()) {
                 return redirect('/mall');
-            }
-            else{
+            } else {
                 return view('mobile.profile');
             }
         });
-        Route::get('/rule', function(){
+        Route::get('/rule', function () {
             $agent = new Agent;
-            if(!$agent->isMobile()){
+            if (!$agent->isMobile()) {
                 return redirect('/mall');
-            }
-            else{
+            } else {
                 return view('mobile.rule');
             }
         });
-        Route::get('/rule/coin', function(){
+        Route::get('/rule/coin', function () {
             $agent = new Agent;
-            if(!$agent->isMobile()){
+            if (!$agent->isMobile()) {
                 return redirect('/mall');
-            }
-            else{
+            } else {
                 return view('mobile.rule_coin');
             }
         });
-        Route::get('/verify', function(){
+        Route::get('/verify', function () {
             $uid = session('discuz.user.uid');
             $verifies = \App\Verify::where('uid', $uid)->get();
-            return view('mall.verify',[
-                'verifies'=>$verifies
+            return view('mall.verify', [
+                'verifies' => $verifies,
             ]);
         });
-        Route::get('/logs', function(){
+        Route::get('/logs', function () {
             $uid = session('discuz.user.uid');
             $user = \DB::table('discuz_common_member as m')
-                ->leftJoin('discuz_common_member_count as c','m.uid' , '=' , 'c.uid')
-                ->select('m.username','c.extcredits1 as point', 'c.extcredits4 as coin')
+                ->leftJoin('discuz_common_member_count as c', 'm.uid', '=', 'c.uid')
+                ->select('m.username', 'c.extcredits1 as point', 'c.extcredits4 as coin')
                 ->where('m.uid', $uid)
                 ->first();
             $logs = \DB::table('discuz_common_credit_log as l')
-                ->leftJoin('discuz_common_credit_log_field as f','l.logid' , '=' , 'f.logid')
-                ->select('l.extcredits1 as point','l.extcredits4 as coin','f.title','f.text','l.dateline')
+                ->leftJoin('discuz_common_credit_log_field as f', 'l.logid', '=', 'f.logid')
+                ->select('l.extcredits1 as point', 'l.extcredits4 as coin', 'f.title', 'f.text', 'l.dateline')
                 ->orderBy('l.dateline', 'DESC')
-                ->where('l.uid',$uid)
+                ->where('l.uid', $uid)
                 ->get();
             return view('logs', [
                 'uid' => $uid,
                 'user' => $user,
-                'logs' => $logs
+                'logs' => $logs,
             ]);
         });
         //Route::get('/verify/logs', 'OwnerController@verifyLogs');
         Route::post('/verify', 'OwnerController@verify');
         Route::get('/points/update', 'OwnerController@update');
-        Route::get('/reference', function(){
+        Route::get('/reference', function () {
             return view('mall.reference');
         });
         Route::post('/reference', 'OwnerController@reference');
@@ -231,26 +269,25 @@ Route::get('/openapi/extcredits4', 'OpenapiController@getExtcredits4');
 Route::get('/openapi/credits/update', 'OpenapiController@updateCredits');
 /**********************2017-07-28*****************************/
 
-
 //省市数据
-Route::get('/districts', function(){
-    $provinces = \App\District::whereNull('parent_id')->get()->map(function($item){
-        $cities = $item->children->map(function($item){
-            $districts = $item->children->map(function($item){
+Route::get('/districts', function () {
+    $provinces = \App\District::whereNull('parent_id')->get()->map(function ($item) {
+        $cities = $item->children->map(function ($item) {
+            $districts = $item->children->map(function ($item) {
                 return [
                     'id' => $item->id,
-                    'name' => $item->name.$item->suffix,
+                    'name' => $item->name . $item->suffix,
                 ];
             });
             return [
                 'id' => $item->id,
-                'name' => $item->name.$item->suffix,
+                'name' => $item->name . $item->suffix,
                 'districts' => $districts,
             ];
         });
         return [
             'id' => $item->id,
-            'name'=>$item->name.$item->suffix,
+            'name' => $item->name . $item->suffix,
             'cities' => $cities,
         ];
     });
@@ -283,7 +320,6 @@ Route::get('/discuz/logout', function () {
     $url = url('/') . '/bbs/api/uc.php?time=' . $timestamp . '&code=' . urlencode(DiscuzHelper::authcode("action=synlogout&time=" . $timestamp, 'ENCODE', $key));
     return ['ret' => 0, 'url' => $url];
 });
-
 
 Auth::routes();
 

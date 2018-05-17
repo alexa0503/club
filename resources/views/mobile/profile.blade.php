@@ -17,10 +17,6 @@
 
 <!-- header start -->
 <header class="header">
-<div class="hdc cl">
-<h2><a title="超级风迷东风风光车友会" href="forum.php?mobile=2"><img src="/bbs/static/image/mobile/images/logo.png" /></a></h2>
-
-</div>
 </header>
 <!-- header end -->
 <!-- userinfo start -->

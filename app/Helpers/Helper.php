@@ -266,4 +266,16 @@ class Helper
             return false;
         return @mkdir($dir, $mode);
     }
+
+    public static function generateToken($array)
+    {
+        $secret = env('APP_SECRET');
+        $now = time(); 
+        $timestamp = $array['timestamp'];
+        if( $now - 300 > $timestamp || empty($secret) ){
+            return null;
+        }
+        $frame_number = $array['frame_number'];
+        return substr(md5($secret.$timestamp.$frame_number), 7, 16);
+    }
 }
