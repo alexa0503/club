@@ -142,23 +142,9 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
     Route::get('/mall/search', 'MallController@search');
     Route::get('/mall/category/{id?}', 'MallController@category');
     Route::get('/mall/item/{id}', 'MallController@item');
-    /*
     Route::get('oauthtest', function(){
-        $verify = \App\Verify::find(rand(10,354682));
-        $timestamp = time();
-        $array = [
-            'timestamp' => $timestamp,
-            'frame_number' => $verify->frame_number,
-            'secret' => env('APP_SECRET'),
-        ];
-        $_token = \App\Helpers\Helper::generateToken($array);
-        $array['token'] = $_token;
-        unset($array['secret']);
-        $url = url('/oauth?'.http_build_query($array));
-        var_dump($array,$url);
         //return redirect('/oauth?'.http_build_query($array));
     });
-    */
     //app验证接口    
     Route::get('oauth', function (Request $request) {
         $timestamp =  $request->input('timestamp');

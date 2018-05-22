@@ -8,6 +8,6 @@ class Category extends Model
 {
     public function indexItems()
     {
-        return $this->hasMany('App\Item')->limit(6);
+        return $this->hasMany('App\Item')->orderBy('feature2', 'ASC')->limit(6);
     }
 }
