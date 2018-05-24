@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\DiscuzHelper;
+use Carbon\Carbon;
 
 class SendLevels extends Command
 {
@@ -42,10 +43,19 @@ class SendLevels extends Command
         ini_set('memory_limit', '1024M');
         $count = \App\Verify::where('status','>=',0)->count();
         $n = ceil($count/10000);
+        $date = Carbon::now()->subMonths(3)->toDateString();
         for ($i=0; $i < $n; $i++) {
-            $verifies = \App\Verify::where('status','>=',0)->skip($i*10000)->take(10000)->get();
+            $verifies = \App\Verify::join('owner_logs', function($join){
+                    $join->on('verifies.id', '=', 'owner_logs.verify_id');
+                })
+                ->where('owner_logs.created_at', '>', $date)
+                ->where('verifies.status','>=',0)
+                ->skip($i*10000)
+                ->take(10000)
+                ->get();
             foreach($verifies as $verify){
                 $uid = $verify->uid;
+                $frame_number = $verify->frame_number;//车架号
                 DiscuzHelper::checkUserGroup($uid);//更新用户等级
                 $user = \DB::table('discuz_common_member')
                 ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
@@ -74,7 +84,6 @@ class SendLevels extends Command
                     $multiple = 1;
                 }
                 $member_level = $user->grouptitle;
-                $frame_number = $verify->frame_number;//车架号
                 $user_count = \DB::table('discuz_common_member_count')->where('uid', $uid)->first();
                 $client = new \SoapClient("http://124.162.32.6:8081/infodms_interface_hy/services/HY03?wsdl",['exceptions' => 0]);
                 $options = [
