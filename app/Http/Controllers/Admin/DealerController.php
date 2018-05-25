@@ -120,7 +120,7 @@ class DealerController extends Controller
         if( \App\Item::where('dealer_id', $id)->withTrashed()->count() > 0){
             return response()->json(['ret'=>1001, 'msg'=>'产品中含有该供应商的产品，无法删除']);
         }
-        $dealer = \App\Admin::find($id);
+        $dealer = \App\Dealer::find($id);
         $dealer->delete();
         return response()->json(['ret'=>0]);
     }
