@@ -103,7 +103,7 @@ class DiscuzHelper
         $user_count = \DB::table('discuz_common_member_count')->where('uid',$id)->first();
 
         if( null == $user_count){
-          return;
+          return null;
         }
 
         $right_group = \DB::table('discuz_common_usergroup')
@@ -118,6 +118,10 @@ class DiscuzHelper
                 'groupid'=>$right_group->groupid
             ]);
         }
+        return [
+            $user_group->groupid,
+            $right_group->groupid
+        ];
 
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\DiscuzHelper;
 use Carbon\Carbon;
+use App\Jobs\SendUserGroup;
 
 class SendLevels extends Command
 {
@@ -43,24 +44,18 @@ class SendLevels extends Command
         ini_set('memory_limit', '1024M');
         $count = \App\Verify::where('status','>=',0)->count();
         $n = ceil($count/10000);
-        $date = Carbon::now()->subMonths(3)->toDateString();
+        //$date = Carbon::now()->subMonths(3)->toDateString();
         for ($i=0; $i < $n; $i++) {
             $verifies = \App\Verify::where('status','>=',0)->skip($i*10000)->take(10000)->get();
-            /*
-            $verifies = \App\Verify::join('owner_logs', function($join){
-                    $join->on('verifies.id', '=', 'owner_logs.verify_id');
-                })
-                ->where('owner_logs.created_at', '>', $date)
-                ->where('verifies.status','>=',0)
-                ->orderBy('verifies.uid', 'DESC')
-                ->skip($i*10000)
-                ->take(10000)
-                ->get();
-            */
             foreach($verifies as $verify){
+                SendUserGroup::dispatch($verify);
+                /*
                 $uid = $verify->uid;
                 $frame_number = $verify->frame_number;//车架号
-                DiscuzHelper::checkUserGroup($uid);//更新用户等级
+                $return = DiscuzHelper::checkUserGroup($uid);//更新用户等级
+                if( $return == null || $return[0] == $return[1] ){
+                    //continue;
+                }
                 $user = \DB::table('discuz_common_member')
                 ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
                 ->select('discuz_common_member.groupid','discuz_common_usergroup.grouptitle')
@@ -68,9 +63,6 @@ class SendLevels extends Command
                 ->first();
                 $groupid = $user == null ? 11 : $user->groupid;
                 
-                if($groupid == 11 ){
-                    continue;
-                }
                 switch ($groupid){
                     case 11:
                     //$member_level = '银牌';
@@ -114,8 +106,8 @@ class SendLevels extends Command
                     $this->info('发送会员等级['.$frame_number.']:'.'失败');
                     \Log::info('发送会员等级['.$frame_number.']:'.'失败');
                 }
+            */
             }
-            
         }
     }
 }
