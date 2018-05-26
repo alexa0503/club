@@ -67,6 +67,10 @@ class SendLevels extends Command
                 ->where('uid',$uid)
                 ->first();
                 $groupid = $user == null ? 11 : $user->groupid;
+                
+                if($groupid == 11 ){
+                    continue;
+                }
                 switch ($groupid){
                     case 11:
                     //$member_level = '银牌';
