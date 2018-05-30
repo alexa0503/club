@@ -188,7 +188,7 @@ class OpenapiController extends Controller{
             ->leftJoin("discuz_common_member as c","c.uid","=","a.uid")
             ->leftJoin("discuz_common_usergroup as d","d.groupid","=","c.groupid")
             ->where("a.frame_number","=",$request->Vin)
-            ->select("a.uid","a.status","b.extcredits1","b.extcredits4","c.groupid","d.grouptitle")
+            ->select("a.uid","a.status","b.extcredits1","b.extcredits4","c.groupid","d.grouptitle","a.created_at")
             ->first();
 
         if($info){
