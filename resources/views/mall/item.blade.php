@@ -33,7 +33,7 @@
                 <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray' }}">
                     <span class="glyphicon glyphicon-star " aria-hidden="true"></span>
                 </button>
-                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{$item->dealer->qq}}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{{$item->dealer->qq}}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                @if($item->dealer->qq)<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{$item->dealer->qq}}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{{$item->dealer->qq}}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>@endif
                 {{ Form::close() }}
             </div>
             @endif
@@ -53,11 +53,13 @@
                     @endforeach
                 </div>
                 <div class="item-detail-favourite">
-                    <button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray ' }}">
+                    <div class="pull-left"><button type="button" data-url="{{ url('/mall/favourite/'.$item->id) }}" class="btn-star btn btn-lg {{ $has_favoured ? '' : 'btn-star-gray ' }}">
                         <span class="glyphicon glyphicon-star " aria-hidden="true"></span>
                         <br/>收藏
-                    </button>
-                    <a href="tel:{{$item->dealer->tel}}"><img src="/images/mall/mobile/service.png" height="26" style="margin-bottom:4px;" /><br/>客服</a>
+                    </button></div>
+                    <div class="pull-float">
+                    <a href="tel:{{$item->dealer->tel}}" style="padding:10px 16px;height:36px;display:block;"><img src="/images/mall/mobile/service.png" height="26" style="margin-bottom:4px;" /><br/>客服</a>
+                    </div>
                 </div>
             </div>
             @if(Agent::isMobile())
