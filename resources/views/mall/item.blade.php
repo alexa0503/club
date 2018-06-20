@@ -58,7 +58,7 @@
                         <br/>收藏
                     </button></div>
                     <div class="pull-float">
-                    <a href="tel:{{$item->dealer->tel}}" style="padding:10px 16px;height:36px;display:block;"><img src="/images/mall/mobile/service.png" height="26" style="margin-bottom:4px;" /><br/>客服</a>
+                    <a href="tel:{{$item->dealer->tel}}" style="padding:2px 16px;height:52px;display:block;"><img src="/images/mall/mobile/service.png" height="26" style="margin-bottom:4px;" /><br/>客服</a>
                     </div>
                 </div>
             </div>
