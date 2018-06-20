@@ -42,20 +42,18 @@ class SendLevels extends Command
     public function handle()
     {
         ini_set('memory_limit', '1024M');
-        $count = \App\Verify::where('status','>=',0)->count();
+        $time = time() - 3*24*3600;
+        $count = \DB::table('verifies')->join('discuz_common_credit_log', 'verifies.uid', '=', 'discuz_common_credit_log.uid')->where('dateline', '>', $time)->count();
         $n = ceil($count/10000);
-        //$date = Carbon::now()->subMonths(3)->toDateString();
         for ($i=0; $i < $n; $i++) {
-            $verifies = \App\Verify::where('status','>=',0)->skip($i*10000)->take(10000)->get();
+            //$verifies = \App\Verify::where('status','>=',0)->skip($i*10000)->take(10000)->get();
+            $verifies = \DB::table('verifies')->join('discuz_common_credit_log', 'verifies.uid', '=', 'discuz_common_credit_log.uid')->select('verifies.uid','verifies.frame_number')->where('dateline', '>', $time)->skip($i*10000)->take(10000)->get();
             foreach($verifies as $verify){
-                SendUserGroup::dispatch($verify);
-                /*
+                //SendUserGroup::dispatch($verify);
+                //continue;
                 $uid = $verify->uid;
                 $frame_number = $verify->frame_number;//车架号
-                $return = DiscuzHelper::checkUserGroup($uid);//更新用户等级
-                if( $return == null || $return[0] == $return[1] ){
-                    //continue;
-                }
+                DiscuzHelper::checkUserGroup($uid);//更新用户等级
                 $user = \DB::table('discuz_common_member')
                 ->join('discuz_common_usergroup','discuz_common_member.groupid','=','discuz_common_usergroup.groupid')
                 ->select('discuz_common_member.groupid','discuz_common_usergroup.grouptitle')
@@ -106,7 +104,6 @@ class SendLevels extends Command
                     $this->info('发送会员等级['.$frame_number.']:'.'失败');
                     \Log::info('发送会员等级['.$frame_number.']:'.'失败');
                 }
-            */
             }
         }
     }
