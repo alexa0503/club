@@ -211,11 +211,11 @@ class CreditController extends Controller
             'username' => 'required',
             'extcredits1' => [
                 'required',
-                'regex:/^\d*$/'
+                'regex:/^\-?\d*$/'
             ],
             'extcredits4' => [
                 'required',
-                'regex:/^\d*$/'
+                'regex:/^\-?\d*$/'
             ],
             'title' => 'required',
             'text' => 'required',
