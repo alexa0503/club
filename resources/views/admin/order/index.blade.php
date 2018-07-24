@@ -67,7 +67,7 @@
                                 style="margin-left: 20px;">{{$order_statuses[$item->status]}}</a>
                         </td>
                     </tr>
-                    @if( isset($item->items) && count($item->items) > 0)
+                    @if( isset($item->items) && count($item->items) > 0 )
                     <tr>
                         <td width="400">
                             <div style="position: relative;">
@@ -109,11 +109,10 @@
 
                         </td>
                     </tr>
-                    @endif
+                    @endif @endforeach
                     @else
-                    <tr><td>--</td></tr>
+                    <tr><td colspan="7">--</td></tr>
                     @endif
-                @endforeach
                 </tbody>
                 @endforeach
                 <tfoot>
