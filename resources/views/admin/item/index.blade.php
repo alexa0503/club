@@ -73,7 +73,7 @@
 								<a href="{{route('item.restore',['id'=>$item->id])}}" class="btn restore btn-default btn-xs">恢复</a>
 						@else
 								<a href="{{route('item.edit',['id'=>$item->id])}}" class="btn btn-default btn-xs">编辑</a>
-								<a href="{{route('item.destroy',['id'=>$item->id])}}" class="btn destroy btn-default btn-xs">删除</a>
+								{{--  <a href="{{route('item.destroy',['id'=>$item->id])}}" class="btn destroy btn-default btn-xs">删除</a>  --}}
 						@endif
 						</td>
 		        	</tr>
