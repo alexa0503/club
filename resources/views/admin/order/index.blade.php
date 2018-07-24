@@ -67,9 +67,9 @@
                                 style="margin-left: 20px;">{{$order_statuses[$item->status]}}</a>
                         </td>
                     </tr>
+                    @if( isset($item->items) && count($item->items) > 0)
                     <tr>
                         <td width="400">
-                        @if( isset($item->items) && count($item->items) > 0)
                             <div style="position: relative;">
                                 <div class="pull-right" style="width: 280px;">
                                     <h5>{{$item->items[0]['name']}} <span class="label label-default">{{ $item->_items[0]->category->name }}</span></h5>
@@ -82,7 +82,6 @@
                                     <img src="{{ $item->items[0]['image'] }}" width="100" />
                                 </div>
                             </div>
-                        @endif
                         </td>
                         <td rowspan="{{count($item->items)}}}">{{$item->user->username}}</td>
                         <td rowspan="{{count($item->items)}}}">{{$item->quantity}}</td>
@@ -110,7 +109,11 @@
 
                         </td>
                     </tr>
-                    @endif @endforeach
+                    @endif
+                    @else
+                    <tr><td>--</td></tr>
+                    @endif
+                @endforeach
                 </tbody>
                 @endforeach
                 <tfoot>
