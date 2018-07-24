@@ -470,6 +470,10 @@ class OrderController extends Controller
         else{
             $order->status += 1;
         }
+
+        if($order->status > 2 ){
+            $order->status = 2;
+        }
         
         $order->save();
         return response(['ret'=>0,'url'=>route('order.index')]);
