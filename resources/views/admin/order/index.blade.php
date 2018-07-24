@@ -64,7 +64,7 @@
                         <td colspan="7" style="background: #f5f5f5;">订单时间:{{$item->created_at}}
                             <span style="margin-left: 20px;">订单号:{{$item->number}}</span>
                             <a data-url="{{route('order.edit',['id'=>$item->id])}}" href="javascript:;" title="点击发货" class="label label-info click-send"
-                                style="margin-left: 20px;">{{$order_statuses[$item->status]}}</a>
+                                style="margin-left: 20px;">@if(isset($order_statuses[$item->status])){{$order_statuses[$item->status]}}@endif</a>
                         </td>
                     </tr>
                     @if( isset($item->items) && count($item->items) > 0 )
