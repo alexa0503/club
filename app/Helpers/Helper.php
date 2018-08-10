@@ -42,6 +42,9 @@ class Helper
             case 'F503S':
                 $return = '风光330S';
                 break;
+            case 'F537';
+                $return = '风光iX5';
+                break;
             default:
                 $return = '小康微车';
                 break;
@@ -55,6 +58,7 @@ class Helper
         switch ($model_code){
             case '风光580':
             case '风光580智尚版':
+            case '风光iX5':
                 $credits1 = 4000;
                 $credits4 = 0;
                 break;
