@@ -162,11 +162,11 @@ Route::group(['middleware' => ['auth.discuz.user']], function () {
         //车架号，secret匹配验证 
         $verify = \App\Verify::where('frame_number', 'LIKE', '%'.$frame_number)->first();
         if( null == $verify ){
-            return '不存在该用户信息';
+            return '不存在该抱歉，未找到该车的实际购车记录，无法享受会员权益！赶紧购车，加入东风风光车友会吧！更多权益，等你体验！用户信息';
         }
         $user = \App\UUser::where('uid', $verify->uid)->first();
         if (null == $user) {
-            return '用户不存在';
+            return '不存在该抱歉，未找到该车的实际购车记录，无法享受会员权益！赶紧购车，加入东风风光车友会吧！更多权益，等你体验！用户信息';
         }
         $timestamp = time();
         $key = env('DISCUZ_UCKEY');
